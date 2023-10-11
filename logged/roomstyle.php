@@ -60,7 +60,7 @@
                 $ngaydenas = $_POST["ngaydenrs"];
                 $ngaydias = $_POST["ngaydirs"];
                 $nguoias = $_POST["checknguoi"];
-                $phongas = $_POST["checkphong"];
+                $loaiphong = $_POST["checkphong"];
                 $_SESSION['ngayden'] = $ngaydenas; //lưu giá trị 
                 $_SESSION['ngaydi'] = $ngaydias;
                 $_SESSION['nguoi'] = $nguoias;
@@ -98,42 +98,42 @@
                                     echo "<option value ='1'selected>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'> 4 người</option>";
+                                    echo "<option value ='4'>4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
                                 } else if ($nguoi == 2 || $nguoias == 2) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'selected>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'> 4 người</option>";
+                                    echo "<option value ='4'>4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
                                 } else if ($nguoi == 3 || $nguoias == 3) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'selected>3 người</option>";
-                                    echo "<option value ='4'> 4 người</option>";
+                                    echo "<option value ='4'>4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
                                 } else if ($nguoi == 4 || $nguoias == 4) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'selected> 4 người</option>";
+                                    echo "<option value ='4'selected>4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
                                 } else if ($nguoi == 5 || $nguoias == 5) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'> 4 người</option>";
+                                    echo "<option value ='4'>4 người</option>";
                                     echo "<option value ='5'selected>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
                                 } else if ($nguoi == 6 || $nguoias == 6) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'> 4 người</option>";
+                                    echo "<option value ='4'>4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'selected>6 người</option>";
                                 }
@@ -146,18 +146,18 @@
                         <select name="checkphong" id="phong">
                             <?php
                             if (isset($_POST["btn"]) || isset($_POST["submit"])) {
-                                if ($phong == 1 || $phongas == 1) {
-                                    echo "<option value ='1'selected>Deluxe</option>";
-                                    echo "<option value ='2'>Executive</option>";
-                                    echo "<option value ='3'>Suite</option>";
-                                } else if ($phong == 2 || $phongas == 2) {
-                                    echo "<option value ='1'>Deluxe</option>";
-                                    echo "<option value ='2'selected>Executive</option>";
+                                if ($phong == 'Deluxe' || $loaiphong == 'Deluxe') {
+                                    echo "<option value ='Deluxe'selected>Deluxe</option>";
+                                    echo "<option value ='Executive'>Executive</option>";
+                                    echo "<option value ='Suite'>Suite</option>";
+                                } else if ($phong == "Executive" || $loaiphong == "Executive") {
+                                    echo "<option value ='Deluxe'>Deluxe</option>";
+                                    echo "<option value ='Executive'selected>Executive</option>";
                                     echo "<option value ='3'>Suite</option>";
                                 } else {
-                                    echo "<option value ='1'>Deluxe</option>";
-                                    echo "<option value ='2'>Executive</option>";
-                                    echo "<option value ='3'selected>Suite</option>";
+                                    echo "<option value ='Deluxe'>Deluxe</option>";
+                                    echo "<option value ='Executive'>Executive</option>";
+                                    echo "<option value ='Suite'selected>Suite</option>";
                                 }
                             }
 
@@ -180,14 +180,17 @@
                 die("Kết nối không thành công");
             }
 
-            $sql = "SELECT * From phong,chitietphong where phong.ID=chitietphong.ID_Phong AND chitietphong.NguoiMax >='" . $nguoi . "' AND  phong.ID='" . $phong . "' and SoLuongPhong > 0";
+            $sql = "SELECT * From phong where SLMax >='" . $nguoi . "' AND  Loaiphong='" . $phong . "' and TrangThai = '0'";
             $result = mysqli_query($con, $sql);
             $phongs = array();
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     $phongs[] = array(
-                        'TenPhong' => $row['TenPhong'], 'NguoiMax' => $row['NguoiMax'], "IMG" => $row['IMG'],
-                        'GiaPhong' => $row['GiaPhong']
+                        'LoaiPhong' => $row['LoaiPhong'], 
+                        'SLMax' => $row['SLMax'], 
+                        "IMG" => $row['IMG'],
+                        'GiaPhong' => $row['GiaPhong'],
+                        'MaPhong' => $row['MaPhong']
                     );
                     echo "</br>";
                 }
@@ -200,7 +203,7 @@
                             <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
                         </div>
                         <div class="mainroom11">
-                            <p class="mainroom111"> <?php echo $value['TenPhong']; ?> </p>
+                            <p class="mainroom111"> <?php echo $value['MaPhong']; ?></p>
 
                             <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
                                 the map
@@ -208,7 +211,7 @@
                             <div class="icon">
                                 <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
                                 </span>
-                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['NguoiMax']; ?>)Guest's</span>
+                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['SLMax']; ?>)Guest's</span>
                             </div>
                         </div>
                         <div class="mainroom13">
@@ -218,7 +221,7 @@
                                 5/5
                             </div>
                             <div class="mainroom133">
-                                <a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>">READ MORE</a>
+                                <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
                             </div>
                         </div>
                     </div>
@@ -238,13 +241,13 @@
                 die("Kết nối không thành công");
             }
 
-            $sql = "SELECT * From phong,chitietphong where phong.ID=chitietphong.ID_Phong AND chitietphong.NguoiMax >='" . $nguoias . "' AND  phong.ID='" . $phongas . "' and SoLuongPhong>0";
+            $sql = "SELECT * From phong where  SLMax >='" . $nguoias . "' AND  LoaiPhong='" . $loaiphong . "' and TrangThai = 0";
             $result = mysqli_query($con, $sql);
             $phongs = array();
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     $phongs[] = array(
-                        'TenPhong' => $row['TenPhong'], 'NguoiMax' => $row['NguoiMax'], "IMG" => $row['IMG'],
+                        'MaPhong' => $row['MaPhong'], 'SLMax' => $row['SLMax'], "IMG" => $row['IMG'],
                         'GiaPhong' => $row['GiaPhong']
                     );
                     echo "</br>";
@@ -258,14 +261,14 @@
                             <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
                         </div>
                         <div class="mainroom11">
-                            <p class="mainroom111"> <?php echo $value['TenPhong']; ?> </p>
+                            <p class="mainroom111">Phòng <?php echo $value['MaPhong']; ?> </p>
                             <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
                                 the map
                                 . They are looking for a<br> memorable experience.</p>
                             <div class="icon">
                                 <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
                                 </span>
-                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['NguoiMax']; ?>)Guest's</span>
+                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['SLMax']; ?>)Guest's</span>
                             </div>
                         </div>
                         <div class="mainroom13">
@@ -275,7 +278,7 @@
                                 5/5
                             </div>
                             <div class="mainroom133">
-                                <a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>">READ MORE</a>
+                                <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
                             </div>
                         </div>
                     </div>

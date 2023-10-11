@@ -59,7 +59,7 @@
                 $result=mysqli_query($con,$sql);
                 if(mysqli_num_rows($result)>0){
                     while ($row=mysqli_fetch_assoc($result)){
-                      echo"<option value ='".$row['ID']."'>".$row["LoaiPhong"]."</option>";
+                      echo "<option value='" . $row['LoaiPhong'] . "'>" . $row['LoaiPhong'] . "</option>";
                     }
                 }
               ?> 

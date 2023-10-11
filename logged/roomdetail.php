@@ -29,16 +29,17 @@
         if(!$con){
             die("Kết nối không thành công");
         }
-        $TenPhong=$_GET['TenPhong'];
-        $sql = "SELECT * From chitietphong where  TenPhong='$TenPhong'";
+        $MaPhong=$_GET['MaPhong'];
+        $sql = "SELECT * From phong where  MaPhong='$MaPhong'";
         $result = mysqli_query($con, $sql);
         if(mysqli_num_rows($result)>0){
             while($row=mysqli_fetch_assoc($result)){
+                $KieuPhong=$row["KieuPhong"];
                 $LoaiGiuong=$row["LoaiGiuong"];
-                $SucChua=$row["NguoiMax"];
+                $SucChua=$row["SLMax"];
                 $TamNhin=$row["TamNhin"];
                 $DienTich=$row["DienTich"];
-                $NguoiMax=$row["NguoiMax"];
+                $NguoiMax=$row["SLMax"];
                 $IMG=$row['IMG'];
             }
         }
@@ -54,7 +55,7 @@
                     <div class="trangtri"></div>
                     <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
                             style="color: #C89E4B;">Room</span></p>
-                    <h3 style="font-size:36px;font-family: Montserrat-Bold;"><?php echo $TenPhong?></h3>
+                    <h3 style="font-size:36px;font-family: Montserrat-Bold;"><?php echo $KieuPhong?></h3>
                     <div class="trangtri"></div>
                 </div>
             </div>
