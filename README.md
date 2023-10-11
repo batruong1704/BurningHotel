@@ -36,7 +36,7 @@ sudo apt install git
     ```bash
     sudo service ssh status
     ```
-    ![Alt text](image.png)
+    ![Alt text](./img/readme/image.png)
 **2.2. Cấu hình SSH.**
 - Mở file cấu hình:
     ```bash
@@ -101,8 +101,8 @@ sudo apt install git
     ```bash
     sudo mysql_secure_installation
     ```
-    ![Alt text](image-1.png)
-    ![Alt text](image-2.png)
+    ![Alt text](./img/readme/image-1.png)
+    ![Alt text](./img/readme/image-2.png)
 
 #### 4. Cấu hình máy chủ web Apache
 
@@ -246,7 +246,7 @@ sudo apt install git
     ```
     http://burninghotel.com/
     ```
-    ![Alt text](image-3.png)
+    ![Alt text](./img/readme/image-3.png)
 
 ===============================================================================================================================================================
 # 1. GIT
