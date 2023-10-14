@@ -76,7 +76,7 @@
                                       <li style="color: white; text-align: center; text-transform:capitalize"><?php echo $_SESSION['ten']?></li>
                                       <li><a class="dropdown-item" href="infor.php"><img src="../img/icon_ThongTinCaNhan.png" alt="" class="icon"> Thông Tin Cá Nhân</a></li>
                                       <li><a class="dropdown-item" href="history.php"><img src="../img/icon_NgayDat.png" alt="" class="icon">Lịch Sử Đặt Phòng</a></li>
-                                      <li><a class="dropdown-item" href="../not loggin/index.php"><img src="../img/icon_DangXuat.png" alt="" class="p-1" height="34px">Đăng Xuất</a></li>
+                                      <li><a class="dropdown-item" href="../logout.php"><img src="../img/icon_DangXuat.png" alt="" class="p-1" height="34px">Đăng Xuất</a></li>
                                     </ul>
                                 </div>
                             </li>

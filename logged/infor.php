@@ -24,7 +24,7 @@
                if(!$con){
                    die("Kết nối không thành công");
                }
-               $sql = "SELECT * From quanlytaikhoan where SDT='".$_SESSION['sdt']."'";
+               $sql = "SELECT * From quanlytaikhoan where Email='".$_SESSION['email']."'";
                $result = mysqli_query($con, $sql);
                if(mysqli_num_rows($result) > 0){
                   while($row = mysqli_fetch_array($result)){
@@ -122,7 +122,7 @@
                 if(!$con){
                    die("Kết nối không thành công");
                 }
-                $sql = "SELECT * From quanlytaikhoan where SDT='".$_SESSION['sdt']."'";
+                $sql = "SELECT * From quanlytaikhoan where Email='".$_SESSION['email']."'";
                 $result = mysqli_query($con, $sql);
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){

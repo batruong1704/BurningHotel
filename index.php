@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,6 +50,14 @@
                         <a href="dangky.php">
                             <p style="margin-top:20px ;">Đăng kí tài khoản trực tuyến</p>
                         </a>
+                        <?php
+                            require_once 'config.php';
+                            if (isset($_SESSION['user_token'])) {
+                                header("Location: .\logged\home.php");
+                            } else {
+                                echo "<a href='" . $client->createAuthUrl() . "'>Login With Google</a>";
+                            }
+                        ?>
                         <a href="quenmatkhau.php">
                             <p style="margin-top:20px ;">Đổi Mật Khẩu</p>
                         </a>
@@ -113,11 +123,10 @@
                             alert("Chào Mừng BẠN ĐẾN VỚI BURNING HOTEL!"); 
                             window.location="./logged/home.php";
                             </script>';
+                            $_SESSION['ten']=$row['HoTen'];
+                            $_SESSION['sdt']=$row['SDT'];
+                            $_SESSION['email']=$row['Email'];
                         }
-                        
-                        $_SESSION['ten']=$row['HoTen'];
-                        $_SESSION['sdt']=$row['SDT'];
-                        $_SESSION['email']=$row['Email'];
                         }
                         catch (Exception $e) {
                             echo '<script>
@@ -127,7 +136,7 @@
                             echo 'Lỗi: ' . $e->getMessage();
                         }
                     }
-?>
+            ?>
         </div>
     </div>
 </body>

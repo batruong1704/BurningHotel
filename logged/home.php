@@ -1,3 +1,70 @@
+<?php
+  require_once '../config.php';
+
+  // Đảm bảo phiên đăng nhập đã được bắt đầu
+  session_start();
+
+  if (isset($_GET['code'])) {
+    // Xử lý đăng nhập qua Google
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    if (isset($token['access_token'])) {
+        $client->setAccessToken($token['access_token']);
+    } else {
+        $token['access_token'] = null;
+        $client->setAccessToken($token);
+    }
+    
+    // Lấy thông tin người dùng từ Google
+    $google_oauth = new Google\Service\Oauth2($client);
+    $google_account_info = $google_oauth->userinfo->get();
+    
+    $email = $google_account_info['email'];
+
+    // Kiểm tra xem người dùng đã tồn tại trong cơ sở dữ liệu dựa trên email
+    $sql = "SELECT * FROM quanlytaikhoan WHERE Email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Người dùng đã tồn tại, lấy thông tin từ cơ sở dữ liệu
+        $userinfo = $result->fetch_assoc();
+        $_SESSION['ten'] = $userinfo['HoTen'];
+    } else {
+        // Người dùng chưa tồn tại, thêm vào cơ sở dữ liệu
+        $full_name = $google_account_info['name'];
+        $token = $google_account_info['id'];
+
+        $sql = "INSERT INTO quanlytaikhoan(HoTen, SDT, Email, CMND, PassWord, AccessToken)
+                VALUES (?, 'null', ?, 'null', '123', ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $full_name, $email, $token);
+        $stmt->execute();
+
+        if (!$stmt) {
+            echo "User is not created";
+            die();
+        }
+
+        $userinfo = [
+            'email' => $email,
+            'full_name' => $full_name,
+            'token' => $token
+        ];
+        $_SESSION['ten'] = $full_name;
+    }
+
+    // Lưu thông tin người dùng vào phiên
+    $_SESSION['email'] = $email;
+  }
+
+  if (!isset($_SESSION['email'])) {
+    // Chưa đăng nhập, chuyển về trang đăng nhập
+    header("Location: ../index.php");
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +88,7 @@
 <body>
   <!-- header -->
   <?php
-  include('header.php');
+    include('header.php');
   ?>
   
   <!-- Slider -->
@@ -58,7 +125,7 @@
 
   <!-- checknow -->
     <?php
-    include('thanhcheck.php');
+      include('thanhcheck.php');
     ?>
   <!-- end checknow -->
   
