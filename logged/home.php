@@ -1,10 +1,9 @@
 <?php
-  require_once '../config.php';
+require_once '../config.php';
 
-  // Đảm bảo phiên đăng nhập đã được bắt đầu
-  session_start();
+session_start();
 
-  if (isset($_GET['code'])) {
+if (isset($_GET['code'])) {
     // Xử lý đăng nhập qua Google
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
     if (isset($token['access_token'])) {
@@ -28,16 +27,19 @@
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Người dùng đã tồn tại, lấy thông tin từ cơ sở dữ liệu
+        // Người dùng đã tồn tại, chuyển hướng sang trang home.php
         $userinfo = $result->fetch_assoc();
         $_SESSION['ten'] = $userinfo['HoTen'];
+        $_SESSION['email'] = $email; 
+        header("Location: home.php");
+        exit;
     } else {
         // Người dùng chưa tồn tại, thêm vào cơ sở dữ liệu
         $full_name = $google_account_info['name'];
         $token = $google_account_info['id'];
 
         $sql = "INSERT INTO quanlytaikhoan(HoTen, SDT, Email, CMND, PassWord, AccessToken)
-                VALUES (?, 'null', ?, 'null', '123', ?)";
+                VALUES (?, '', ?, '', '', ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $full_name, $email, $token);
         $stmt->execute();
@@ -57,13 +59,15 @@
 
     // Lưu thông tin người dùng vào phiên
     $_SESSION['email'] = $email;
-  }
+    header("Location: registerwithgoogle.php");
+}
 
-  if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email'])) {
     // Chưa đăng nhập, chuyển về trang đăng nhập
     header("Location: ../index.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>

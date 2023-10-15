@@ -90,10 +90,10 @@
                             return;
                         }
                         if($email==""||$pass==""){
-                        echo '<script>
-                        alert("Vui lòng nhập đầy đủ thông tin");
-                        window.location="javascript: history.go(-1)";
-                        </script>';
+                            echo '<script>
+                            alert("Vui lòng nhập đầy đủ thông tin");
+                            window.location="javascript: history.go(-1)";
+                            </script>';
                         exit;
                         }
 
@@ -115,7 +115,7 @@
                             alert("Mật khẩu không đúng!Vui lòng kiểm tra lại"); 
                             window.location="javascript: history.go(-1)";
                             </script>';
-                            exit;
+                        exit;
                         }
 
                         else{
