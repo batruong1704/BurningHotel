@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,9 @@
     <link rel="stylesheet" href="./css/doimatkhau.css?v=<?php echo time(); ?>">
     <link rel="icon" href="./public_html/favicon.ico" type="image/png">
 </head>
+
 <body>
-<header id="menu">
+    <header id="menu">
         <div class="menu-nav">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid px-5">
@@ -30,86 +32,85 @@
             <p style="font-family: Montserrat-SemiBold;" class="mb-5">Thông tin được cung cấp bên dưới sẽ được sử dụng để đăng nhập vào tài khoản của khách sạn cho nhu cầu đặt phòng của bạn.</p>
         </div>
         <form action="" method="POST">
-        <div class="row mb-2">
-            <div class="left col-5 ">
-                <div>
-                    <label id="mkc">Số Điện Thoại</label>
+            <div class="row mb-2">
+                <div class="left col-5 ">
+                    <div>
+                        <label id="mkc">Số Điện Thoại</label>
+                    </div>
+                    <div>
+                        <label id="mkc">Mật Khẩu Mới</label>
+                    </div>
+                    <div>
+                        <label id="mkm"> Nhập Lại Mật Khẩu</label>
+                    </div>
                 </div>
-                <div>
-                    <label id="mkc">Mật Khẩu Mới</label>
-                </div>
-                <div>
-                    <label id="mkm"> Nhập Lại Mật Khẩu</label>
+                <div class="right col-7">
+                    <div>
+                        <input type="text" name="sdt">
+                    </div>
+
+                    <div>
+                        <input type="password" name="mkm">
+                    </div>
+
+                    <div>
+                        <input type="password" name="nlmk">
+                    </div>
+
                 </div>
             </div>
-            <div class="right col-7">
-                <div>
-                    <input type="text" name="sdt">
-                </div>
 
-                <div>
-                    <input type="password" name="mkm">
-                </div>
-
-                <div>
-                    <input type="password" name="nlmk">
-                </div>
-
+            <div class="button">
+                <button type="submit" name="btn" style="background-color:#937438;">Xác Nhận</button>
             </div>
-        </div>
-
-        <div class="button">
-            <button type="submit" name="btn" style="background-color:#937438;">Xác Nhận</button>
-        </div>
         </form>
         <?php
-            if(isset($_POST['btn'])){
-                $sdt=$_POST['sdt'];
-                $passcu=$_POST['mkm'];
-                $passmoi=$_POST['nlmk'];
-                $con=mysqli_connect("localhost","root","","burninghotel");
-                if(!$con){
-                        echo"Kết nối thất bại";
-                        return;
-                }
-                $sql = "SELECT PassWord, SDT FROM quanlytaikhoan Where SDT='".$sdt."'";
-                $_result= mysqli_query($con,$sql);
-                if (mysqli_num_rows($_result) == 0){
-                    echo '<script>
+        if (isset($_POST['btn'])) {
+            $sdt = $_POST['sdt'];
+            $passcu = $_POST['mkm'];
+            $passmoi = $_POST['nlmk'];
+            $con = mysqli_connect("localhost", "root", "", "burninghotel");
+            if (!$con) {
+                echo "Kết nối thất bại";
+                return;
+            }
+            $sql = "SELECT PassWord, SDT FROM quanlytaikhoan Where SDT='" . $sdt . "'";
+            $_result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($_result) == 0) {
+                echo '<script>
                     alert("Kiểm tra lại số điện thoại "); 
                     window.location="javascript: history.go(-1)";
                     </script>';
-                     exit;
+                exit;
             }
-            if($passcu!=$passmoi){
+            if ($passcu != $passmoi) {
                 echo '<script>
                     alert("Vui Lòng Nhập Lại Mật Khẩu!"); 
                     window.location="javascript: history.go(-1)";
                     </script>';
-                    exit;
+                exit;
             }
-            $sql ="UPDATE quanlytaikhoan SET PassWord='$passmoi'";
-            $_result= mysqli_query($con,$sql);
-                if($_result==true){
-                    echo '<script>
+            $sql = "UPDATE quanlytaikhoan SET PassWord='$passmoi'";
+            $_result = mysqli_query($con, $sql);
+            if ($_result == true) {
+                echo '<script>
                     alert("Đổi mật khẩu thành công!"); 
                     window.location="dangnhap.php";
                     </script>';
-                    exit;
-                }
-                else{
-                    echo '<script>
+                exit;
+            } else {
+                echo '<script>
                     alert("Lỗi Đổi Mật Khẩu!"); 
                     window.location="javascript: history.go(-1)";
                     </script>';
-                     exit;
-                }
-                mysqli_close($con);
+                exit;
             }
+            mysqli_close($con);
+        }
         ?>
 
     </section>
-  <section id="footer">
+    <section id="footer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3">
@@ -170,12 +171,12 @@
                 <div class="col-3">
                     <h5>SUBSCRIBE</h5>
                     <div class="Send">
-                        <input type="email" name="" id="" placeholder="Email Address"> <button><img
-                                src="./img/trangchu1/icon-send.png" alt="" class="logo"></button>
+                        <input type="email" name="" id="" placeholder="Email Address"> <button><img src="./img/trangchu1/icon-send.png" alt="" class="logo"></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </body>
+
 </html>
