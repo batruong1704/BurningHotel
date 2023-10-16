@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 12, 2023 lúc 05:14 PM
+-- Thời gian đã tạo: Th10 16, 2023 lúc 10:29 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -201,16 +201,19 @@ CREATE TABLE `quanlytaikhoan` (
   `SDT` varchar(12) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `CMND` int(12) NOT NULL,
-  `PassWord` varchar(20) NOT NULL
+  `PassWord` varchar(20) NOT NULL,
+  `AccessToken` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `quanlytaikhoan`
 --
 
-INSERT INTO `quanlytaikhoan` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `PassWord`) VALUES
-(1, 'Admin', '0123456789', 'admin@gmail.com', 343025555, 'admin'),
-(2, 'Bá Hoàng', '023124514', 'batruong1704@gmail.com', 31251435, 'admin');
+INSERT INTO `quanlytaikhoan` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `PassWord`, `AccessToken`) VALUES
+(1, 'Admin', '0123456789', 'admin@gmail.com', 343025555, 'admin', NULL),
+(46, 'Trường Bá', 'null', '7steam.work@gmail.com', 0, '123', '105238185890006122819'),
+(47, 'Cát Trường Trương Bá', 'null', 'truongtg2k@gmail.com', 0, '123', '109408661915133195138'),
+(50, 'Cát Trường Trương Bá', '0336004076', 'batruong1704@gmail.com', 123456789, '0123456789', '108617347685033795623');
 
 -- --------------------------------------------------------
 
@@ -342,7 +345,7 @@ ALTER TABLE `monan`
 -- AUTO_INCREMENT cho bảng `quanlytaikhoan`
 --
 ALTER TABLE `quanlytaikhoan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoanadmin`
