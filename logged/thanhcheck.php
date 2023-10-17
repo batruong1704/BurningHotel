@@ -9,6 +9,9 @@
 </head>
 
 <body>
+  <?php
+    include('../config.php');
+  ?>
   <section id="checknow">
     <div class="container check text-white p-4">
       <form action="roomstyle.php" method="POST">
@@ -46,10 +49,7 @@
             <div>
               <select name="category" id="category">
                 <?php
-                  $con = mysqli_connect("localhost", "root", "", "burninghotel");
-                  if (!$con) {
-                    echo 'kết nối không thành công';
-                  }
+                  
                   $sql = "SELECT DISTINCT LoaiPhong FROM phong";
                   $result = mysqli_query($con, $sql);
                   if (mysqli_num_rows($result) > 0) {

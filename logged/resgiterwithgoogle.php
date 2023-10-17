@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="../css/infor.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/registergg.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
@@ -18,10 +18,7 @@
 
     <?php include('header.php'); ?>
     <?php
-    $con = mysqli_connect("localhost", "root", "", "burninghotel");
-    if (!$con) {
-        die("Kết nối không thành công");
-    }
+    include('../config.php');
 
     $sql = "SELECT * From quanlytaikhoan where Email='" . $_SESSION['email'] . "'";
     $result = mysqli_query($con, $sql);
@@ -40,11 +37,7 @@
         $sdt = $_POST["sdt"];
         $cmnd = $_POST["cmnd"];
         $pass = $_POST["pass"];
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            echo "Kết nối thất bại";
-            return;
-        }
+       
         $sql = "UPDATE quanlytaikhoan SET HoTen='" . $hoten . "', SDT='" . $sdt . "', Email='" . $email . "', CMND='" . $cmnd . "',PassWord='" . $pass . "' WHERE SDT='" . $_SESSION['sdt'] . "'";
         $result = mysqli_query($con, $sql);
         if ($result == true) {
@@ -53,6 +46,7 @@
             echo "window.location.href=' home.php'";
             echo "</script>";
             header("Location: home.php");
+            $_SESSION['makhachhang'] = $_POST["ID"];
         } else {
             echo "<script>";
             echo "alert('Thất bại !!!');";
@@ -60,11 +54,7 @@
             echo "</script>";
         }
     } else if (isset($_POST['submit_huy'])) { // Tại button xác nhận thông tin
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            echo "Kết nối thất bại";
-            return;
-        }
+       
         $email = $_POST["email"];
         $sql = "DELETE FROM quanlytaikhoan WHERE Email = '$email'";
         $result = mysqli_query($con, $sql);
@@ -76,10 +66,7 @@
             header("Location: ../index.php");
         }
     } else {
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+        
         $sql = "SELECT * From quanlytaikhoan where Email='" . $_SESSION['email'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
