@@ -17,7 +17,10 @@
 
 <body>
     <!-- header -->
-    <?php include('header.php'); ?>
+    <?php
+     include('header.php');
+     include('config.php');
+      ?>
 
     <!-- banner -->
     <section id="banner">
@@ -49,10 +52,7 @@
         $ma = $_POST['ma'];
         $sdt = $_POST['sdt'];
         $_SESSION['ma'] = $ma;
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+       
         if ($ma == "" || $sdt == "") {
             echo '<script>
                 alert("Vui lòng nhập đầy đủ thông tin");

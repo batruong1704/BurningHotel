@@ -19,14 +19,14 @@
 </head>
 
 <body>
-    <?php include('header.php') ?>
+    <?php
+     include('header.php');
+     include('config.php');
+      ?>
     <div class="main">
         <?php
 
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+       
         $sql = "SELECT * From chitietthanhtoan,chitietphong where chitietphong.TenPhong=chitietthanhtoan.TenPhong AND HoTen='" . $_SESSION['ten'] . "'";
         $result = mysqli_query($con, $sql);
         $chitiets = array();

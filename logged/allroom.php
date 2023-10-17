@@ -23,7 +23,11 @@
 <body>
 
     <!-- header -->
-    <?php include('header.php'); ?>
+    <?php 
+        include('header.php'); 
+        include('config.php'); 
+    ?>
+
 
     <!-- banner -->
     <section id="banner">

@@ -22,10 +22,7 @@
     <!-- header -->
     <?php
         include('header.php');
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+        include('config.php');
         $tiendichvu = 0;
     ?>
     <!-- Banner -->

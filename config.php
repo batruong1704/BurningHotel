@@ -20,4 +20,5 @@ $username = "root";
 $password = "";
 $database = "BurningHotel";
 
-$conn = mysqli_connect($hostname, $username, "", $database);
+$con = mysqli_connect($hostname, $username, "", $database);
+?>

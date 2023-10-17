@@ -21,10 +21,7 @@
     <!-- header -->
     <?php
     include('header.php');
-    $con = mysqli_connect("localhost", "root", "", "burninghotel");
-    if (!$con) {
-        echo 'Kết nối không thành công';
-    }
+    include('config.php');
     ?>
 
     <!-- Banner -->

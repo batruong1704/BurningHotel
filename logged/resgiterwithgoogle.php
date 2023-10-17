@@ -18,10 +18,7 @@
 
     <?php include('header.php'); ?>
     <?php
-    $con = mysqli_connect("localhost", "root", "", "burninghotel");
-    if (!$con) {
-        die("Kết nối không thành công");
-    }
+    include('config.php');
 
     $sql = "SELECT * From quanlytaikhoan where Email='" . $_SESSION['email'] . "'";
     $result = mysqli_query($con, $sql);
@@ -40,11 +37,7 @@
         $sdt = $_POST["sdt"];
         $cmnd = $_POST["cmnd"];
         $pass = $_POST["pass"];
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            echo "Kết nối thất bại";
-            return;
-        }
+       
         $sql = "UPDATE quanlytaikhoan SET HoTen='" . $hoten . "', SDT='" . $sdt . "', Email='" . $email . "', CMND='" . $cmnd . "',PassWord='" . $pass . "' WHERE SDT='" . $_SESSION['sdt'] . "'";
         $result = mysqli_query($con, $sql);
         if ($result == true) {
@@ -60,11 +53,7 @@
             echo "</script>";
         }
     } else if (isset($_POST['submit_huy'])) {                                 // Tại button xác nhận thông tin
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            echo "Kết nối thất bại";
-            return;
-        }
+       
         $email = $_POST["email"];
         $sql = "DELETE FROM quanlytaikhoan WHERE Email = '$email'";
         $result = mysqli_query($con, $sql);
@@ -76,10 +65,7 @@
             header("Location: ../index.php");
         }
     } else {
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+        
         $sql = "SELECT * From quanlytaikhoan where Email='" . $_SESSION['email'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {

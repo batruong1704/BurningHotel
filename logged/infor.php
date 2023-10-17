@@ -17,12 +17,8 @@
 
     <?php
         include('header.php');
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            echo "Kết nối thất bại";
-            return;
-        }
-
+        include('config.php');
+        
         $sql = "SELECT * From quanlytaikhoan where ID='" . $_SESSION['makhachhang'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {

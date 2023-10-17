@@ -22,10 +22,7 @@
 
     <?php include('header.php'); ?>
     <?php
-        $con = mysqli_connect("localhost", "root", "", "burninghotel");
-        if (!$con) {
-            die("Kết nối không thành công");
-        }
+        include('config.php');
         $sql = "SELECT * From chitietthanhtoan, chitietphong, phong where phong.ID=chitietphong.ID_Phong and chitietphong.TenPhong=chitietthanhtoan.TenPhong AND MaDonHang='" . $_SESSION['ma'] . "'";
         $result = mysqli_query($con, $sql);
         $chitiets = array();
