@@ -13,29 +13,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Document</title>
-    <link rel="icon" href="../public_html/favicon.ico" type="image/png">
 </head>
 
 <body>
     <!-- header -->
     <?php
     include('header.php');
+    $con = mysqli_connect("localhost", "root", "", "quanlykhachsan");
+    if (!$con) {
+        die("Kết nối không thành công");
+    }
     ?>
 
     <!-- banner -->
-    <section id="banner">
-        <div class="container-fluid p-0 text-center">
-            <div class="img h-100">
-                <img src="../img/pay/banner.jpg" alt="" class="w-100">
-                <div class="box">
-                    <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #C89E4B;">Service</span></p>
-                    <h3 style="font-size:36px;font-family: Montserrat-Bold;">Room Style</h3>
-                    <div class="trangtri"></div>
-                </div>
-            </div>
+ 
+    <div class="header">
+            <img  src="../img/pay/banner.jpg" alt="">
+             <div class="header_mota">   
+                     <span class="mota1">Home</span>
+                     <span class="mota2">-Room</span>
+                     <p class="mota3">ROOMSTYLE</p>
+             </div>
         </div>
-    </section>
+    <!-- end banner -->
+
 
     <!-- end banner -->
 
@@ -43,7 +44,7 @@
     <div class="main">
         <div class="main_menu">
             <p>Booking now</p>
-            <!-- nút checknow bên home -->
+            <!-- nút checknow bên index1 -->
 
             <?php
 
@@ -57,13 +58,13 @@
                 $_SESSION['nguoi'] = $nguoi;
             }
             if (isset($_POST["submit"])) {
-                $ngaydenas = $_POST["ngaydenrs"];
-                $ngaydias = $_POST["ngaydirs"];
-                $nguoias = $_POST["checknguoi"];
-                $loaiphong = $_POST["checkphong"];
-                $_SESSION['ngayden'] = $ngaydenas; //lưu giá trị 
-                $_SESSION['ngaydi'] = $ngaydias;
-                $_SESSION['nguoi'] = $nguoias;
+                $ngayden = $_POST["ngaydenrs"];
+                $ngaydi = $_POST["ngaydirs"];
+                $nguoi = $_POST["checknguoi"];
+                $phong = $_POST["checkphong"];
+                $_SESSION['ngayden'] = $ngayden; 
+                $_SESSION['ngaydi'] = $ngaydi;
+                $_SESSION['nguoi'] = $nguoi;
             }
 
             ?>
@@ -80,9 +81,9 @@
 
                     } else {
                     ?>
-                        <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngaydenas ?>">
+                        <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngayden ?>">
                         </div>
-                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydias ?>">
+                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>">
                         </div>
 
                     <?php
@@ -94,48 +95,9 @@
                         <select name="checknguoi" id="room">
                             <?php
                             if (isset($_POST["btn"]) || isset($_POST["submit"])) {
-                                if ($nguoi == 1 || $nguoias == 1) {
-                                    echo "<option value ='1'selected>1 người</option>";
-                                    echo "<option value ='2'>2 người</option>";
-                                    echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'>4 người</option>";
-                                    echo "<option value ='5'>5 người</option>";
-                                    echo "<option value ='6'>6 người</option>";
-                                } else if ($nguoi == 2 || $nguoias == 2) {
-                                    echo "<option value ='1'>1 người</option>";
-                                    echo "<option value ='2'selected>2 người</option>";
-                                    echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'>4 người</option>";
-                                    echo "<option value ='5'>5 người</option>";
-                                    echo "<option value ='6'>6 người</option>";
-                                } else if ($nguoi == 3 || $nguoias == 3) {
-                                    echo "<option value ='1'>1 người</option>";
-                                    echo "<option value ='2'>2 người</option>";
-                                    echo "<option value ='3'selected>3 người</option>";
-                                    echo "<option value ='4'>4 người</option>";
-                                    echo "<option value ='5'>5 người</option>";
-                                    echo "<option value ='6'>6 người</option>";
-                                } else if ($nguoi == 4 || $nguoias == 4) {
-                                    echo "<option value ='1'>1 người</option>";
-                                    echo "<option value ='2'>2 người</option>";
-                                    echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'selected>4 người</option>";
-                                    echo "<option value ='5'>5 người</option>";
-                                    echo "<option value ='6'>6 người</option>";
-                                } else if ($nguoi == 5 || $nguoias == 5) {
-                                    echo "<option value ='1'>1 người</option>";
-                                    echo "<option value ='2'>2 người</option>";
-                                    echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'>4 người</option>";
-                                    echo "<option value ='5'selected>5 người</option>";
-                                    echo "<option value ='6'>6 người</option>";
-                                } else if ($nguoi == 6 || $nguoias == 6) {
-                                    echo "<option value ='1'>1 người</option>";
-                                    echo "<option value ='2'>2 người</option>";
-                                    echo "<option value ='3'>3 người</option>";
-                                    echo "<option value ='4'>4 người</option>";
-                                    echo "<option value ='5'>5 người</option>";
-                                    echo "<option value ='6'selected>6 người</option>";
+                                for($i=1;$i<7;$i++){
+                                    $selected = ($nguoi == $i ) ? 'selected' : '';
+                                    echo "<option value='$i' $selected> $i người </option>";
                                 }
                             }
 
@@ -145,52 +107,37 @@
                     <div class="form_item">
                         <select name="checkphong" id="phong">
                             <?php
-                            if (isset($_POST["btn"]) || isset($_POST["submit"])) {
-                                if ($phong == 'Deluxe' || $loaiphong == 'Deluxe') {
-                                    echo "<option value ='Deluxe'selected>Deluxe</option>";
-                                    echo "<option value ='Executive'>Executive</option>";
-                                    echo "<option value ='Suite'>Suite</option>";
-                                } else if ($phong == "Executive" || $loaiphong == "Executive") {
-                                    echo "<option value ='Deluxe'>Deluxe</option>";
-                                    echo "<option value ='Executive'selected>Executive</option>";
-                                    echo "<option value ='3'>Suite</option>";
-                                } else {
-                                    echo "<option value ='Deluxe'>Deluxe</option>";
-                                    echo "<option value ='Executive'>Executive</option>";
-                                    echo "<option value ='Suite'selected>Suite</option>";
+                          
+                            $sql="SELECT DISTINCT LoaiPhong FROM phong";
+                            $result = mysqli_query($con, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $loaiphongs[] =  $row['LoaiPhong'];
                                 }
+                            
+                            foreach ($loaiphongs as $loaiphong) {
+                                $selected = ($phong == $loaiphong || $phongas == $loaiphong ) ? 'selected' : '';
+                                echo "<option value='$loaiphong' $selected> $loaiphong </option>";
                             }
-
-
+                           
+                        }
                             ?>
                         </select>
                     </div>
-
-                    <input class="check" type="submit" name="submit" value="Check">
-
-
-            </div>
+                    <button  type="submit" name="submit"><img src="../img/icon_muiten.png">Check </button>
             </form>
+            </div>
         </div>
-
         <?php
-        if (isset($_POST["btn"])) { //sau khi ấn nút submit        
-            $con = mysqli_connect("localhost","root","","burninghotel");
-            if (!$con) {
-                die("Kết nối không thành công");
-            }
-
-            $sql = "SELECT * From phong where SLMax >='" . $nguoi . "' AND  Loaiphong='" . $phong . "' and TrangThai = '0'";
+           
+            $sql = "SELECT * FROM phong WHERE SLMAX >= '" . $nguoi . "' AND LoaiPhong = '" . $phong . "' AND TrangThai = 'Trống'";
             $result = mysqli_query($con, $sql);
             $phongs = array();
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     $phongs[] = array(
-                        'LoaiPhong' => $row['LoaiPhong'], 
-                        'SLMax' => $row['SLMax'], 
-                        "IMG" => $row['IMG'],
-                        'GiaPhong' => $row['GiaPhong'],
-                        'MaPhong' => $row['MaPhong']
+                        'KieuPhong' => $row['KieuPhong'], 'SLMax' => $row['SLMax'], "IMG" => $row['IMG'],
+                        'GiaPhong' => $row['GiaPhong'],'MaPhong' => $row['MaPhong']
                     );
                     echo "</br>";
                 }
@@ -203,15 +150,15 @@
                             <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
                         </div>
                         <div class="mainroom11">
-                            <p class="mainroom111"> <?php echo $value['MaPhong']; ?></p>
+                            <p class="mainroom111"> <?php echo $value['KieuPhong']; ?> </p>
 
                             <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
                                 the map
                                 . They are looking for a<br> memorable experience.</p>
                             <div class="icon">
-                                <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
+                                <span class="icon_giuong"><img src="../img/icon_Room.png" width="32px" height="25px">(2)bed's
                                 </span>
-                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['SLMax']; ?>)Guest's</span>
+                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="32px" height="25px">(<?php echo $value['SLMax']; ?>)Guest's</span>
                             </div>
                         </div>
                         <div class="mainroom13">
@@ -230,175 +177,6 @@
                 }
                 ?>
             </div>
-        <?php
-        } else {
-
-        ?>
-
-            <?php
-            $con = mysqli_connect("localhost","root","","burninghotel");
-            if (!$con) {
-                die("Kết nối không thành công");
-            }
-
-            $sql = "SELECT * From phong where  SLMax >='" . $nguoias . "' AND  LoaiPhong='" . $loaiphong . "' and TrangThai = 0";
-            $result = mysqli_query($con, $sql);
-            $phongs = array();
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    $phongs[] = array(
-                        'MaPhong' => $row['MaPhong'], 'SLMax' => $row['SLMax'], "IMG" => $row['IMG'],
-                        'GiaPhong' => $row['GiaPhong']
-                    );
-                    echo "</br>";
-                }
-            }
-            ?>
-            <div class="mainroom">
-                <?php foreach ($phongs as $key => $value) { ?>
-                    <div class="mainroom_1">
-                        <div class="mainroom12">
-                            <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
-                        </div>
-                        <div class="mainroom11">
-                            <p class="mainroom111">Phòng <?php echo $value['MaPhong']; ?> </p>
-                            <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                                the map
-                                . They are looking for a<br> memorable experience.</p>
-                            <div class="icon">
-                                <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
-                                </span>
-                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px" height="30px">(<?php echo $value['SLMax']; ?>)Guest's</span>
-                            </div>
-                        </div>
-                        <div class="mainroom13">
-                            <div class="mainroom131"><?php echo $value['GiaPhong'] ?>/Night</div>
-                            <div class="mainroom132">
-                                <i class="fa fa-star" style="color:yellow"> </i>
-                                5/5
-                            </div>
-                            <div class="mainroom133">
-                                <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-
-        <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <div class="mainroom_2">
-                <div class="mainroom12">
-                    <img src="../img/roomstyle/junior_suite.jpg" alt="" width="250px" height="200px">
-                </div>
-                <div class="mainroom11">
-                    <p class="mainroom111"> Deluxe</p>
-                    <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                        the map
-                        .They are looking for a<br> memorable experience.</p>
-                        <div class="icon">
-                            <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
-                            </span>
-                            <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px"
-                                    height="30px">(3)Guest's</span>
-                        </div>
-                </div>
-                <div class="mainroom13">
-                    <div class="mainroom131">$205/Night</div>
-                    <div class="mainroom132">2.9/5</div>
-                    <div class="mainroom133">READ MORE</div>
-                </div>
-            </div>
-            <div class="mainroom_3">
-                <div class="mainroom12">
-                    <img src="../img/roomstyle/double_room.jpg" alt="" width="250px" height="200px">
-                </div>
-                <div class="mainroom11">
-                    <p class="mainroom111">Double Room</p>
-                    <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                        the map
-                        . They are looking for a<br> memorable experience.</p>
-                        <div class="icon">
-                            <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
-                            </span>
-                            <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px"
-                                    height="30px">(3)Guest's</span>
-                        </div>
-                </div>
-                <div class="mainroom13">
-                    <div class="mainroom131">$205/Night</div>
-                    <div class="mainroom132">2.9/5</div>
-                    <div class="mainroom133">READ MORE</div>
-                </div>
-            </div>
-            <div class="mainroom_4">
-                <div class="mainroom12">
-                    <img src="../img/roomstyle/small_suite.jpg" alt="" width="250px" height="200px">
-                </div>
-                <div class="mainroom11">
-                    <p class="mainroom111">Small Suite</p>
-                    <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                        the map
-                        . They are looking for a<br> memorable experience.</p>
-                        <div class="icon">
-                            <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
-                            </span>
-                            <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px"
-                                    height="30px">(3)Guest's</span>
-                        </div>
-                </div>
-                <div class="mainroom13">
-                    <div class="mainroom131">$205/Night</div>
-                    <div class="mainroom132">2.9/5</div>
-                    <div class="mainroom133">READ MORE</div>
-                </div>
-            </div>
-            <div class="mainroom_5">
-                <div class="mainroom12">
-                    <img src="../img/roomstyle/Luxury_room.jpg" alt="" width="250px" height="200px">
-                </div>
-                <div class="mainroom11">
-                    <p class="mainroom111">Luxury Room</p>
-                    <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                        the map
-                        . They are looking for a<br> memorable experience.</p>
-                        <div class="icon">
-                            <span class="icon_giuong"><img src="../img/icon_Room.png" width="35px" height="30px">(2)bed's
-                            </span>
-                            <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="35px"
-                                    height="30px">(3)Guest's</span>
-                        </div>
-                </div>
-                <div class="mainroom13">
-                    <div class="mainroom131">$205/Night</div>
-                    <div class="mainroom132">2.9/5</div>
-                    <div class="mainroom133">READ MORE</div>
-                </div>
-            </div> -->
     </div>
     </div>
     <!--end main -->
