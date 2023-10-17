@@ -34,13 +34,9 @@
     height: 25px;
     background-color: black;
 }
-#hienthi{
-    width: 300px;
-    height: 100px;
-    color: white;
-    font-family: Montserrat-SemiBold;
-    background-color: bisque;
-    display: none;
-    position: absolute;
-    top:45%;
+
+.error-message {
+    padding-top: 5px;
+    font-family: Montserrat-SemiBoldItalic;
+    color: red;
 }
