@@ -95,7 +95,7 @@
                         exit;
                         }
 
-                        $sql = "SELECT Email,SDT,PassWord, HoTen FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
+                        $sql = "SELECT * FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
                         $_result= mysqli_query($con,$sql);
                         if (mysqli_num_rows($_result) == 0){
                             echo '<script>
@@ -124,6 +124,7 @@
                             $_SESSION['ten']=$row['HoTen'];
                             $_SESSION['sdt']=$row['SDT'];
                             $_SESSION['email']=$row['Email'];
+                            $_SESSION['makhachhang']=$row['ID'];
                         }
                         }
                         catch (Exception $e) {

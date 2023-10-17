@@ -1,6 +1,7 @@
 body {
     background-color: #181A1B;
 }
+
 #infor{
     background-color: #181A1B;
     color: white;
@@ -8,6 +9,7 @@ body {
     /* margin-top: 85px; */
     padding-top: 100px;
 }
+
 #infor .text-center{
     background-color: #181A1B;
     /* margin-top: 85px; */
@@ -43,7 +45,6 @@ body {
     margin-top: 30px;
     margin-bottom: 125px;
     font-size: 18px;
-
 }
 
 .error {
@@ -56,4 +57,18 @@ body {
     font-family: Montserrat-SemiBoldItalic;
     color: red;
 }
-  
+#hienthi{
+    width: 300px;
+    height: 100px;
+    color: white;
+    font-family: Montserrat-SemiBold;
+    background-color: bisque;
+    display: none;
+    position: absolute;
+    top:45%;
+}
+.row button {
+    width: 25px;
+    height: 25px;
+    background-color: black;
+}

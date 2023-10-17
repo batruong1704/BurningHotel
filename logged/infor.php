@@ -15,7 +15,7 @@
 
 <?php
     include('header.php');
-    $con=mysqli_connect("localhost","root","","quanlykhachsan");
+    $con=mysqli_connect("localhost","root","","burninghotel");
     if(!$con){
         echo"Kết nối thất bại";
         return;

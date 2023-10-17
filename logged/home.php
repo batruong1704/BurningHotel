@@ -30,6 +30,7 @@ if (isset($_GET['code'])) {
         // Người dùng đã tồn tại, chuyển hướng sang trang home.php
         $userinfo = $result->fetch_assoc();
         $_SESSION['ten'] = $userinfo['HoTen'];
+        $_SESSION['makhachhang'] = $userinfo['ID'];
         $_SESSION['email'] = $email; 
         header("Location: home.php");
         exit;
@@ -55,6 +56,10 @@ if (isset($_GET['code'])) {
             'token' => $token
         ];
         $_SESSION['ten'] = $full_name;
+        $_SESSION['email'] = $email;
+
+        header("Location: resgiterwithgoogle.php");
+
     }
 
     // Lưu thông tin người dùng vào phiên
