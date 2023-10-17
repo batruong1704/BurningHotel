@@ -55,11 +55,13 @@ if (isset($_GET['code'])) {
             'token' => $token
         ];
         $_SESSION['ten'] = $full_name;
+        $_SESSION['email'] = $email;
+
+        header("Location: resgiterwithgoogle.php");
+
     }
 
     // Lưu thông tin người dùng vào phiên
-    $_SESSION['email'] = $email;
-    header("Location: registerwithgoogle.php");
 }
 
 if (!isset($_SESSION['email'])) {
