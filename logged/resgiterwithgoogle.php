@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="../css/infor.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/registergg.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
@@ -18,7 +18,7 @@
 
     <?php include('header.php'); ?>
     <?php
-    include('config.php');
+    include('../config.php');
 
     $sql = "SELECT * From quanlytaikhoan where Email='" . $_SESSION['email'] . "'";
     $result = mysqli_query($con, $sql);

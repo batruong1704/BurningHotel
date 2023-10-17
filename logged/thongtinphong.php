@@ -22,7 +22,7 @@
 
     <?php include('header.php'); ?>
     <?php
-        include('config.php');
+        include('../config.php');
         $sql = "SELECT * From chitietthanhtoan, chitietphong, phong where phong.ID=chitietphong.ID_Phong and chitietphong.TenPhong=chitietthanhtoan.TenPhong AND MaDonHang='" . $_SESSION['ma'] . "'";
         $result = mysqli_query($con, $sql);
         $chitiets = array();

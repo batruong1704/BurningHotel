@@ -19,7 +19,7 @@
     <!-- header -->
     <?php
     include('header.php');
-    include('config.php');
+    include('../config.php');
     ?>
 
     <!-- banner -->

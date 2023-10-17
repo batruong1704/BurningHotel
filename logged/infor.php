@@ -17,8 +17,8 @@
 
     <?php
         include('header.php');
-        include('config.php');
-        
+        include('../config.php');
+
         $sql = "SELECT * From quanlytaikhoan where ID='" . $_SESSION['makhachhang'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
@@ -41,28 +41,28 @@
                     </div>
                     <div class="col-7">
                         <input type="text" name="ten" id="ten" value="<?php echo $ten ?>" readonly>
-                        <button type="button" onclick="editten()"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
+                        <button type="button" onclick="editten()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
                     <div class="col-5">
                         <label for="">Số Điện Thoại: </label>
                     </div>
                     <div class="col-7">
                         <input type="text" name="sdt" id="sdt" value="<?php echo $sdt ?>" readonly>
-                        <button type="button" onclick="editsdt()"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
+                        <button type="button" onclick="editsdt()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
                     <div class="col-5">
                         <label for="">Email: </label>
                     </div>
                     <div class="col-7">
                         <input type="text" name="email" id="email" value="<?php echo $email ?>" readonly>
-                        <button type="button" onclick="editemail()"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
+                        <button type="button" onclick="editemail()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
                     <div class="col-5">
                         <label for="">Số CMND: </label>
                     </div>
                     <div class="col-7">
                         <input type="text" name="cmnd" id="cmnd" value="<?php echo $cmnd ?>" readonly>
-                        <button type="button" onclick="editcmnd()"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
+                        <button type="button" onclick="editcmnd()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@
                 if ($result == true) {
                     echo "<script>";
                     echo "alert('Cập nhật thành công !!!');";
-                    echo "window.location.href='../dangnhap.php'";
+                    echo "window.location.href='../index.php'";
                     echo "</script>";
                 }
             }

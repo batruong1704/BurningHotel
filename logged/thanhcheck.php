@@ -10,7 +10,7 @@
 
 <body>
   <?php
-    include('config.php');
+    include('../config.php');
   ?>
   <section id="checknow">
     <div class="container check text-white p-4">

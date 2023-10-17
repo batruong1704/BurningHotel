@@ -21,7 +21,7 @@
     <!-- header -->
     <?php include('header.php'); ?>
     <?php
-        include('config.php');
+        include('../config.php');
         $MaPhong=$_GET['MaPhong'];
         $sql = "SELECT * From phong where  MaPhong='$MaPhong'";
         $result = mysqli_query($con, $sql);
