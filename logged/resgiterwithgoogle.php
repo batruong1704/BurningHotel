@@ -49,9 +49,11 @@
         $result = mysqli_query($con, $sql);
         if ($result == true) {
             echo "<script>";
-            echo "alert('Cập nhật thành công !!!');";
-            
+            echo "alert('Đăng kí thành công !!!');";
+            echo "window.location.href=' home.php'";
             echo "</script>";
+            header("Location: home.php");
+            
         } else {
             echo "<script>";
             echo "alert('Thất bại !!!');";
@@ -140,96 +142,94 @@
     <?php
     include('footer.php');
     ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");
+        const submitButton = form.querySelector("[name='submit_confirm']");
+        const inputs = form.querySelectorAll("input");
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.querySelector("form");
-            const submitButton = document.querySelector("[name='submit_confirm']");
-            const inputs = form.querySelectorAll("input");
+        form.addEventListener("submit", function(event) {
+            let valid = true;
 
-            form.addEventListener("submit_confirm", function(event) {
-                let valid = true;
+            inputs.forEach(function(input) {
+                const value = input.value.trim();
+                if (value === "") {
+                    valid = false;
+                    input.classList.add("error");
+                    showErrorMessage(input, "Vui lòng nhập giá trị.");
+                } else {
+                    input.classList.remove("error");
+                    hideErrorMessage(input);
+                }
 
-                inputs.forEach(function(input) {
-                    const value = input.value.trim();
-                    if (value === "") {
-                        valid = false;
-                        input.classList.add("error");
-                        showErrorMessage(input, "Vui lòng nhập giá trị.");
-                    } else {
-                        input.classList.remove("error");
-                        hideErrorMessage(input);
-                    }
+                if (input.name === "sdt" && !isValidPhoneNumber(value)) {
+                    valid = false;
+                    input.classList.add("error");
+                    showErrorMessage(input, "Số điện thoại không hợp lệ.");
+                }
 
-                    if (input.name === "sdt" && !isValidPhoneNumber(value)) {
-                        valid = false;
-                        input.classList.add("error");
-                        showErrorMessage(input, "Số điện thoại không hợp lệ.");
-                    }
+                if (input.name === "cmnd" && !isValidCMND(value)) {
+                    valid = false;
+                    input.classList.add("error");
+                    showErrorMessage(input, "Số CMND không hợp lệ.");
+                }
 
-                    if (input.name === "cmnd" && !isValidCMND(value)) {
-                        valid = false;
-                        input.classList.add("error");
-                        showErrorMessage(input, "Số CMND không hợp lệ.");
-                    }
+                if (input.name === "email" && !isValidEmail(value)) {
+                    valid = false;
+                    input.classList.add("error");
+                    showErrorMessage(input, "Email không hợp lệ.");
+                }
 
-                    if (input.name === "email" && !isValidEmail(value)) {
-                        valid = false;
-                        input.classList.add("error");
-                        showErrorMessage(input, "Email không hợp lệ.");
-                    }
-
-                    if (input.name === "pass" && !isValidPassword(value)) {
-                        valid = false;
-                        input.classList.add("error");
-                        showErrorMessage(input, "Mật khẩu phải có ít nhất 8 ký tự.");
-                    }
-                });
-
-                if (!valid) {
-                    event.preventDefault();
+                if (input.name === "pass" && !isValidPassword(value)) {
+                    valid = false;
+                    input.classList.add("error");
+                    showErrorMessage(input, "Mật khẩu phải có ít nhất 8 ký tự.");
                 }
             });
 
-            function isValidPhoneNumber(phoneNumber) {
-                // Kiểm tra định dạng số điện thoại (ví dụ: 1234567890)
-                const phoneRegex = /^[0-9]{10}$/;
-                return phoneRegex.test(phoneNumber);
-            }
-
-            function isValidCMND(cmnd) {
-                // Kiểm tra định dạng số CMND (ví dụ: 123456789)
-                const cmndRegex = /^[0-9]{9}$/;
-                return cmndRegex.test(cmnd);
-            }
-
-            function isValidEmail(email) {
-                // Kiểm tra định dạng email
-                const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-                return emailRegex.test(email);
-            }
-
-            function isValidPassword(password) {
-                // Kiểm tra mật khẩu có ít nhất 8 ký tự
-                return password.length >= 8;
-            }
-
-            function showErrorMessage(input, message) {
-                const errorElement = document.createElement("div");
-                errorElement.className = "error-message";
-                errorElement.textContent = message;
-                input.parentNode.appendChild(errorElement);
-            }
-
-            function hideErrorMessage(input) {
-                const errorElement = input.parentNode.querySelector(".error-message");
-                if (errorElement) {
-                    errorElement.remove();
-                }
+            if (!valid) {
+                event.preventDefault();
             }
         });
-    </script>
 
+        function isValidPhoneNumber(phoneNumber) {
+            // Kiểm tra định dạng số điện thoại (ví dụ: 1234567890)
+            const phoneRegex = /^[0-9]{10}$/;
+            return phoneRegex.test(phoneNumber);
+        }
+
+        function isValidCMND(cmnd) {
+            // Kiểm tra định dạng số CMND (ví dụ: 123456789)
+            const cmndRegex = /^[0-9]{9}$/;
+            return cmndRegex.test(cmnd);
+        }
+
+        function isValidEmail(email) {
+            // Kiểm tra định dạng email
+            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+            return emailRegex.test(email);
+        }
+
+        function isValidPassword(password) {
+            // Kiểm tra mật khẩu có ít nhất 8 ký tự
+            return password.length >= 8;
+        }
+
+        function showErrorMessage(input, message) {
+            const errorElement = document.createElement("div");
+            errorElement.className = "error-message";
+            errorElement.textContent = message;
+            input.parentNode.appendChild(errorElement);
+        }
+
+        function hideErrorMessage(input) {
+            const errorElement = input.parentNode.querySelector(".error-message");
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+    });
+</script>
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <!-- bootstrap -->
