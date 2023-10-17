@@ -1,5 +1,5 @@
 <?php
-    $con = mysqli_connect("localhost", "root", "", "quanlykhachsan");
+    $con = mysqli_connect("localhost", "root", "", "burninghotel");
     if (!$con) {
         echo 'Kết nối không thành công';
     }
@@ -10,4 +10,3 @@
     } else {
         echo 'Cập nhật không thành công' ;
     }
-?>

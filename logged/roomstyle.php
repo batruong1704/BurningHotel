@@ -19,22 +19,22 @@
     <!-- header -->
     <?php
     include('header.php');
-    $con = mysqli_connect("localhost", "root", "", "quanlykhachsan");
+    $con = mysqli_connect("localhost", "root", "", "burninghotel");
     if (!$con) {
         die("Kết nối không thành công");
     }
     ?>
 
     <!-- banner -->
- 
+
     <div class="header">
-            <img  src="../img/pay/banner.jpg" alt="">
-             <div class="header_mota">   
-                     <span class="mota1">Home</span>
-                     <span class="mota2">-Room</span>
-                     <p class="mota3">ROOMSTYLE</p>
-             </div>
+        <img src="../img/pay/banner.jpg" alt="">
+        <div class="header_mota">
+            <span class="mota1">Home</span>
+            <span class="mota2">-Room</span>
+            <p class="mota3">ROOMSTYLE</p>
         </div>
+    </div>
     <!-- end banner -->
 
 
@@ -47,152 +47,132 @@
             <!-- nút checknow bên index1 -->
 
             <?php
-
-            if (isset($_POST["btn"])) {
-                $ngayden = $_POST["ngayden"];
-                $ngaydi = $_POST["ngaydi"];
-                $nguoi = $_POST["room"];
-                $phong = $_POST["category"];
-                $_SESSION['ngayden'] = $ngayden;
-                $_SESSION['ngaydi'] = $ngaydi;
-                $_SESSION['nguoi'] = $nguoi;
-            }
-            if (isset($_POST["submit"])) {
-                $ngayden = $_POST["ngaydenrs"];
-                $ngaydi = $_POST["ngaydirs"];
-                $nguoi = $_POST["checknguoi"];
-                $phong = $_POST["checkphong"];
-                $_SESSION['ngayden'] = $ngayden; 
-                $_SESSION['ngaydi'] = $ngaydi;
-                $_SESSION['nguoi'] = $nguoi;
-            }
-
+                if (isset($_POST["btn"])) {
+                    $ngayden = $_POST["ngayden"];
+                    $ngaydi = $_POST["ngaydi"];
+                    $nguoi = $_POST["room"];
+                    $phong = $_POST["category"];
+                    $_SESSION['ngayden'] = $ngayden;
+                    $_SESSION['ngaydi'] = $ngaydi;
+                    $_SESSION['nguoi'] = $nguoi;
+                }
+                if (isset($_POST["submit"])) {
+                    $ngayden = $_POST["ngaydenrs"];
+                    $ngaydi = $_POST["ngaydirs"];
+                    $nguoi = $_POST["checknguoi"];
+                    $phong = $_POST["checkphong"];
+                    $_SESSION['ngayden'] = $ngayden;
+                    $_SESSION['ngaydi'] = $ngaydi;
+                    $_SESSION['nguoi'] = $nguoi;
+                }
             ?>
             <div class="form">
                 <form action="" method="POST">
-                    <?php
-                    if (isset($_POST["btn"])) {
-                    ?>
+                    <?php if (isset($_POST["btn"])) { ?>
                         <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngayden ?>">
                         </div>
-                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>" >
+                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>">
                         </div>
-                    <?php
-
-                    } else {
-                    ?>
+                    <?php } else { ?>
                         <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngayden ?>">
                         </div>
                         <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>">
                         </div>
 
-                    <?php
-                    }
-
-                    ?>
+                    <?php } ?>
 
                     <div class="form_item">
                         <select name="checknguoi" id="room">
                             <?php
-                            if (isset($_POST["btn"]) || isset($_POST["submit"])) {
-                                for($i=1;$i<7;$i++){
-                                    $selected = ($nguoi == $i ) ? 'selected' : '';
-                                    echo "<option value='$i' $selected> $i người </option>";
+                                if (isset($_POST["btn"]) || isset($_POST["submit"])) {
+                                    for ($i = 1; $i < 7; $i++) {
+                                        $selected = ($nguoi == $i) ? 'selected' : '';
+                                        echo "<option value='$i' $selected> $i người </option>";
+                                    }
                                 }
-                            }
-
                             ?>
                         </select>
                     </div>
                     <div class="form_item">
                         <select name="checkphong" id="phong">
                             <?php
-                          
-                            $sql="SELECT DISTINCT LoaiPhong FROM phong";
-                            $result = mysqli_query($con, $sql);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_array($result)) {
-                                    $loaiphongs[] =  $row['LoaiPhong'];
+                                $sql = "SELECT DISTINCT LoaiPhong FROM phong";
+                                $result = mysqli_query($con, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $loaiphongs[] =  $row['LoaiPhong'];
+                                    }
+
+                                    foreach ($loaiphongs as $loaiphong) {
+                                        $selected = ($phong == $loaiphong || $phongas == $loaiphong) ? 'selected' : '';
+                                        echo "<option value='$loaiphong' $selected> $loaiphong </option>";
+                                    }
                                 }
-                            
-                            foreach ($loaiphongs as $loaiphong) {
-                                $selected = ($phong == $loaiphong || $phongas == $loaiphong ) ? 'selected' : '';
-                                echo "<option value='$loaiphong' $selected> $loaiphong </option>";
-                            }
-                           
-                        }
                             ?>
                         </select>
                     </div>
-                    <button  type="submit" name="submit"><img src="../img/icon_muiten.png">Check </button>
-            </form>
+                    <button type="submit" name="submit"><img src="../img/icon_muiten.png">Check </button>
+                </form>
             </div>
         </div>
         <?php
-           
-            $sql = "SELECT * FROM phong WHERE SLMAX >= '" . $nguoi . "' AND LoaiPhong = '" . $phong . "' AND TrangThai = 'Trống'";
-            $result = mysqli_query($con, $sql);
-            $phongs = array();
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    $phongs[] = array(
-                        'KieuPhong' => $row['KieuPhong'], 'SLMax' => $row['SLMax'], "IMG" => $row['IMG'],
-                        'GiaPhong' => $row['GiaPhong'],'MaPhong' => $row['MaPhong']
-                    );
-                    echo "</br>";
-                }
-            }
-        ?>
-            <div class="mainroom">
-                <?php foreach ($phongs as $key => $value) { ?>
-                    <div class="mainroom_1">
-                        <div class="mainroom12">
-                            <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
-                        </div>
-                        <div class="mainroom11">
-                            <p class="mainroom111"> <?php echo $value['KieuPhong']; ?> </p>
 
-                            <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
-                                the map
-                                . They are looking for a<br> memorable experience.</p>
-                            <div class="icon">
-                                <span class="icon_giuong"><img src="../img/icon_Room.png" width="32px" height="25px">(2)bed's
-                                </span>
-                                <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="32px" height="25px">(<?php echo $value['SLMax']; ?>)Guest's</span>
-                            </div>
-                        </div>
-                        <div class="mainroom13">
-                            <div class="mainroom131"><?php echo $value['GiaPhong'] ?>/Night</div>
-                            <div class="mainroom132">
-                                <i class="fa fa-star" style="color:yellow"> </i>
-                                5/5
-                            </div>
-                            <div class="mainroom133">
-                                <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
-                            </div>
+        $sql = "SELECT * FROM phong WHERE SLMAX >= '" . $nguoi . "' AND LoaiPhong = '" . $phong . "' AND TrangThai = 'Trống'";
+        $result = mysqli_query($con, $sql);
+        $phongs = array();
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $phongs[] = array(
+                    'KieuPhong' => $row['KieuPhong'], 'SLMax' => $row['SLMax'], "IMG" => $row['IMG'],
+                    'GiaPhong' => $row['GiaPhong'], 'MaPhong' => $row['MaPhong']
+                );
+                echo "</br>";
+            }
+        }
+        ?>
+        <div class="mainroom">
+            <?php foreach ($phongs as $key => $value) { ?>
+                <div class="mainroom_1">
+                    <div class="mainroom12">
+                        <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
+                    </div>
+                    <div class="mainroom11">
+                        <p class="mainroom111"> <?php echo $value['KieuPhong']; ?> </p>
+
+                        <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
+                            the map
+                            . They are looking for a<br> memorable experience.</p>
+                        <div class="icon">
+                            <span class="icon_giuong"><img src="../img/icon_Room.png" width="32px" height="25px">(2)bed's
+                            </span>
+                            <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="32px" height="25px">(<?php echo $value['SLMax']; ?>)Guest's</span>
                         </div>
                     </div>
-                <?php
-
-                }
-                ?>
-            </div>
+                    <div class="mainroom13">
+                        <div class="mainroom131"><?php echo $value['GiaPhong'] ?>/Night</div>
+                        <div class="mainroom132">
+                            <i class="fa fa-star" style="color:yellow"> </i>
+                            5/5
+                        </div>
+                        <div class="mainroom133">
+                            <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
     </div>
     </div>
     <!--end main -->
 
     <!-- footer -->
-    <?php
-    include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
 
     <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
     <script>
-        // flatpickr("#ngay", {
-        //     enableTime: true,
-        //     dateFormat: "d.m.Y"
-        // });
     </script>
 </body>
 

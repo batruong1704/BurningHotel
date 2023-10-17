@@ -19,9 +19,7 @@
 
 <body>
     <!-- header -->
-    <?php
-    include('header.php');
-    ?>
+    <?php include('header.php'); ?>
     <!-- banner -->
     <section id="banner">
         <div class="container-fluid p-0 text-center">
@@ -188,11 +186,9 @@
     </section>
     <!-- end content -->
 
-     <!-- footer -->
-    <?php
-    include('footer.php');
-    ?>
-    
+    <!-- footer -->
+    <?php include('footer.php'); ?>
+
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <!-- bootstrap -->

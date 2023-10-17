@@ -19,12 +19,9 @@
 
 <body>
     <!-- header -->
-   
+    <?php include('header.php'); ?>
     <?php
-    include('header.php');
-    ?>
-    <?php
-        $con = mysqli_connect("localhost","root","","quanlykhachsan");
+        $con = mysqli_connect("localhost","root","","burninghotel");
         if(!$con){
             die("Kết nối không thành công");
         }
@@ -182,21 +179,13 @@
                     <span>- Giá phòng ở trên là giá cho một phòng một đêm và có thể thay đổi theo ngày đặt phòng.</span>
                 </div>
             </div>
-            
             <div class="d-flex justify-content-end">
                 <button><a style="text-decoration:none; color:white" href="payddn.php?MaPhong=<?php echo $MaPhong?>">BOOKING NOW</a></button>
-                
-               
             </div>
-            
-          
         </div>
         <hr class="mb-0 mt-5">
        
     </section>
-    
-    
-   
     <!-- end detail -->
 
     <!-- room -->
@@ -244,14 +233,7 @@
     </section>
    
     
-    <?php
-      
-     //end room
-
-          //footer
-      
-    include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
     
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

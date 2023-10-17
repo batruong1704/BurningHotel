@@ -16,16 +16,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
-    
+
     <title>Document</title>
 </head>
 
 <body>
 
     <!-- header -->
-    <?php
-    include('header.php');
-    ?>
+    <?php include('header.php'); ?>
 
     <!-- banner -->
     <section id="banner">
@@ -47,16 +45,16 @@
         <div class="main_menu">
             <p>Booking now</p>
             <?php
-            if (isset($_POST['submit'])) {
-                $ngayden = $_POST['ngayden'];
-                $ngaydi = $_POST['ngaydi'];
-                $nguoi = $_POST['room'];
-                $phong = $_POST['category'];
-                $_SESSION['ngayden']=$ngayden;
-                $_SESSION['ngaydi']=$ngaydi;
-            }
+                if (isset($_POST['submit'])) {
+                    $ngayden = $_POST['ngayden'];
+                    $ngaydi = $_POST['ngaydi'];
+                    $nguoi = $_POST['room'];
+                    $phong = $_POST['category'];
+                    $_SESSION['ngayden'] = $ngayden;
+                    $_SESSION['ngaydi'] = $ngaydi;
+                }
             ?>
-        
+
             <div class="form">
                 <form action="" method="POST">
                     <?php
@@ -66,8 +64,8 @@
                     <?php
                     } else {
                     ?>
-                        <div class="form_item"><input type="datetime-local" name="ngayden" id="ngayden" value="" ></div>
-                        <div class="form_item"><input type="datetime-local" name="ngaydi" id="ngayden"  value="" ></div>
+                        <div class="form_item"><input type="datetime-local" name="ngayden" id="ngayden" value=""></div>
+                        <div class="form_item"><input type="datetime-local" name="ngaydi" id="ngayden" value=""></div>
                     <?php
                     }
                     ?>
@@ -82,40 +80,35 @@
                                     echo "<option value ='4'> 4 người</option>";
                                     echo "<option value ='5'> 5 người</option>";
                                     echo "<option value ='6'> 6 người</option>";
-                                } 
-                                else if ($nguoi == 2) {
+                                } else if ($nguoi == 2) {
                                     echo "<option value ='1'> 1 người</option>";
                                     echo "<option value ='2'selected> 2 người</option>";
                                     echo "<option value ='3'> 3 người</option>";
                                     echo "<option value ='4'> 4 người</option>";
                                     echo "<option value ='5'> 5 người</option>";
                                     echo "<option value ='6'> 6 người</option>";
-                                } 
-                                else if ($nguoi == 3) {
+                                } else if ($nguoi == 3) {
                                     echo "<option value ='1'> 1 người</option>";
                                     echo "<option value ='2'> 2 người</option>";
                                     echo "<option value ='3'selected> 3 người</option>";
                                     echo "<option value ='4'> 4 người</option>";
                                     echo "<option value ='5'> 5 người</option>";
                                     echo "<option value ='6'> 6 người</option>";
-                                } 
-                                else if ($nguoi == 4) {
+                                } else if ($nguoi == 4) {
                                     echo "<option value ='1'>1 người</option>";
                                     echo "<option value ='2'>2 người</option>";
                                     echo "<option value ='3'>3 người</option>";
                                     echo "<option value ='4'selected> 4 người</option>";
                                     echo "<option value ='5'>5 người</option>";
                                     echo "<option value ='6'>6 người</option>";
-                                } 
-                                else if ($nguoi == 5) {
+                                } else if ($nguoi == 5) {
                                     echo "<option value ='1'> 1 người</option>";
                                     echo "<option value ='2'> 2 người</option>";
                                     echo "<option value ='3'> 3 người</option>";
                                     echo "<option value ='4'> 4 người</option>";
                                     echo "<option value ='5'selected>5 người</option>";
                                     echo "<option value ='6'> 6 người</option>";
-                                } 
-                                else {
+                                } else {
                                     echo "<option value ='1'> 1 người</option>";
                                     echo "<option value ='2'> 2 người</option>";
                                     echo "<option value ='3'> 3 người</option>";
@@ -123,8 +116,7 @@
                                     echo "<option value ='5'> 5 người</option>";
                                     echo "<option value ='6'selected>6 người</option>";
                                 }
-                            } 
-                            else {
+                            } else {
                                 echo "<option value ='1'> 1 người</option>";
                                 echo "<option value ='2'> 2 người</option>";
                                 echo "<option value ='3'> 3 người</option>";
@@ -144,19 +136,16 @@
                                     echo "<option value ='1'selected>Deluxe</option>";
                                     echo "<option value ='2'>Executive</option>";
                                     echo "<option value ='3'>Suite</option>";
-                                } 
-                                else if ($phong == 2) {
+                                } else if ($phong == 2) {
                                     echo "<option value ='1'>Deluxe</option>";
                                     echo "<option value ='2'selected>Executive</option>";
                                     echo "<option value ='3'>Suite</option>";
-                                } 
-                                else {
+                                } else {
                                     echo "<option value ='1'>Deluxe</option>";
                                     echo "<option value ='2'>Executive</option>";
                                     echo "<option value ='3'selected>Suite</option>";
                                 }
-                            } 
-                            else {
+                            } else {
                                 echo "<option value ='1'>Deluxe</option>";
                                 echo "<option value ='2'>Executive</option>";
                                 echo "<option value ='3'>Suite</option>";
@@ -173,7 +162,7 @@
         </div>
         <?php
         if (isset($_POST['submit'])) {
-            $con = mysqli_connect("localhost","root","","burninghotel");
+            $con = mysqli_connect("localhost", "root", "", "burninghotel");
             if (!$con) {
                 die("Kết nối không thành công");
             }
@@ -206,7 +195,7 @@
                                         <span class="icon_giuong"><img src="../img/icon_Room.png" width="30px" height="20px">(2)bed's </span>
                                         <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="30px" height="20px">(<?php echo $value['NguoiMax'] ?>)Guest's</span>
                                     </div>
-                                       <button style="submit" name="btn" class="btn"><a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>" class="btn mt-2" style="background-color:#C89E4B">Chi Tiết</a></button>
+                                    <button style="submit" name="btn" class="btn"><a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>" class="btn mt-2" style="background-color:#C89E4B">Chi Tiết</a></button>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +209,7 @@
         <?php
         } else {
 
-            $con = mysqli_connect("localhost","root","","burninghotel");
+            $con = mysqli_connect("localhost", "root", "", "burninghotel");
             if (!$con) {
                 die("Kết nối không thành công");
             }
@@ -254,8 +243,8 @@
                                         <span class="icon_giuong"><img src="../img/icon_Room.png" width="30px" height="20px">(2)bed's </span>
                                         <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="30px" height="20px">(<?php echo $value['NguoiMax'] ?>)Guest's</span>
                                     </div>
-                                       <button style="submit" name="btn" class="btn"><a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>" class="btn mt-2" style="background-color:#C89E4B">Chi Tiết</a></button>
-                                   
+                                    <button style="submit" name="btn" class="btn"><a href="roomdetail.php?TenPhong=<?php echo $value['TenPhong']; ?>" class="btn mt-2" style="background-color:#C89E4B">Chi Tiết</a></button>
+
                                 </div>
                             </div>
                         </div>
@@ -275,9 +264,7 @@
 
 
     <!-- footer -->
-    <?php
-    include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
 
     <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
