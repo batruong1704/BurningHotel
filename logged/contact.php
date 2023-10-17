@@ -95,7 +95,7 @@
            include('footer.php');
            ?>
 
-    <script src="./common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
-        <script src="./common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+    <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
+        <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
 </body> 
 </html>
