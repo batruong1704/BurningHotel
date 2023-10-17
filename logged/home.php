@@ -59,7 +59,7 @@ if (isset($_GET['code'])) {
 
     // Lưu thông tin người dùng vào phiên
     $_SESSION['email'] = $email;
-    header("Location: registerwithgoogle.php");
+    header("Location: resgiterwithgoogle.php");
 }
 
 if (!isset($_SESSION['email'])) {
