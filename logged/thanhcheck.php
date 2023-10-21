@@ -51,7 +51,7 @@
               function chonngayden() {
                 ngayhientai = new Date();
                 ngayden = new Date(document.getElementById("ngayden").value);
-                if (ngayden < ngayhientai) {
+                if (ngayden < ngayhientai || ngayden > ngaydi) {
                   document.getElementById("thongbaongayden").innerHTML = "Ngày đến không hợp lệ";
                 } 
                 else {
