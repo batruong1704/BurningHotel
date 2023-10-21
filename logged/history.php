@@ -22,26 +22,39 @@
     ?>
     <div class="main">
     <?php
-               $ngayhientai=date("Y-m-d ", time());
-              
-               $sql = "SELECT * From chitietdatphong,phong,phieudatphong,quanlytaikhoan where phong.MaPhong=chitietdatphong.MaPhong
-                                     AND quanlytaikhoan.ID=phieudatphong.MaKhachHang AND phieudatphong.MaPDP=chitietdatphong.MaPDP AND quanlytaikhoan.ID='".$_SESSION['makhachhang']."'" ;
+   
+               $sql = "SELECT *FROM phieudatphong AS pdp
+                        INNER JOIN chitietdatphong AS ctdp ON pdp.MaPDP = ctdp.MaPDP
+                        INNER JOIN phong AS p ON ctdp.MaPhong = p.MaPhong
+                        LEFT JOIN phieudichvu AS pdv ON pdp.MaPDP = pdv.MaPDP
+                        LEFT JOIN chitietdichvu AS ctdv ON pdv.MaPDV = ctdv.MaPDV
+                        INNER JOIN quanlytaikhoan AS qltk ON qltk.ID = pdp.MaKhachHang
+                        INNER JOIN hoadon AS hd ON hd.MaPDP = pdp.MaPDP
+                        WHERE qltk.ID = '".$_SESSION['makhachhang']."'
+                        GROUP BY pdp.MaPDP";
+                        
                $result = mysqli_query($con, $sql);
                $lichsuphongs = array();
                if(mysqli_num_rows($result) > 0){
                   while($row = mysqli_fetch_array($result)){
-                      $lichsuphongs[]=array('KieuPhong'=>$row["KieuPhong"], 'TongTien'=>$row["TongTien"],'ThanhToanTruoc'=>$row["ThanhToanTruoc"],
-                      'NgayDen'=>$row["NgayDen"],'NgayDi'=>$row["NgayDi"], 'PhuongThucThanhToan'=> $row['PhuongThucThanhToan'],
-                      'IMG'=>$row['IMG'], 'NgayTT'=>$row["NgayTT"]);
-                      echo"</br>";
+                    
+                    $lichsuphongs[]=array('MaPDP'=>$row["MaPDP"],'MaPDV'=>$row["MaPDV"],'KieuPhong'=>$row["KieuPhong"], 'TongTien'=>$row["TongTien"],
+                                    'ThanhToanTruoc'=>$row["ThanhToanTruoc"],'TinhTrang'=>$row['TinhTrang'],
+                                    'NgayDen'=>$row["NgayDen"],'NgayDi'=>$row["NgayDi"], 'PhuongThucThanhToan'=> $row['PhuongThucThanhToan'],
+                                    'IMG'=>$row['IMG'], 'NgayTT'=>$row["NgayTT"]);
                   }
                }
                
               ?>
-        
+     
         <div class="mainroom">
-        <?php foreach($lichsuphongs as $key => $value) { ?>
-            <div class="ngaydat"> <?php echo  date("d-m-Y", strtotime($value['NgayTT']));?></div>
+        <?php foreach($lichsuphongs as $key => $value) { 
+            $ngayden=date("d-m-Y", strtotime($value['NgayDen']));
+            $ngaydi=date("d-m-Y", strtotime($value['NgayDi']));
+            $ngayhientai=date("d-m-Y ", time());
+            $ngaythanhtoan=date("d-m-Y", strtotime($value['NgayTT']));
+            ?>
+            <div class="ngaydat"> <?php echo  $ngaythanhtoan ?></div>
             <div class="mainroom_1">
                 <div class="mainroom12">
                     <img src="<?php echo $value['IMG']?>" alt="" width="250px" height="200px">
@@ -50,36 +63,41 @@
                 <div class="mainroom11">
                     <p class="mainroom111"><?php echo $value['KieuPhong']?></p>
                     <p class="mainroom112">Tổng Số Tiền : <?php echo $value['TongTien']?> VNĐ</p>
-                    <p class="mainroom112">Ngày Đến - Ngày Đi: <?php echo $value['NgayDen']. '/' .$value['NgayDi']?></p>
-                    <p class="mainroom112">Đã thanh toán: <?php echo $value['ThanhToanTruoc'] ?> VNĐ</p>
-                    <p class="mainroom112">Phương thức thanh toán:  <?php echo $value['PhuongThucThanhToan']?></p>
+                    <p class="mainroom112">Ngày Đến - Ngày Đi: <?php echo $ngayden .' / '.$ngaydi?></p>
+                    <p class="mainroom112">Ngày đặt phòng: <?php echo $ngaythanhtoan ?></p>
                 </div>
                 <div class="mainroom13">
                     <div class="mainroom131">Trạng thái</div>
-                    <div class="mainroom132">
+                    <div class="mainroom132" id="trangthai">
                         <?php
-                            if($ngayhientai<$value['NgayDen']){
-                                echo 'Đã đặt cọc';
-                            }
-                            else if($ngayhientai>=$value['NgayDen'] & $ngayhientai<=$value['NgayDi']){
-                                echo 'Chờ thanh toán';
-                            }
-                            else{
-                                echo 'Đã thanh toán ';
-                            }
+                            echo $value['TinhTrang'];
                         ?>
                     </div>
+                    <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
+                    <div> <a id="huyphong" style="text-decoration: none " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy Đặt Phòng</a> </div>
                 </div>
             </div>
+            <script>
+                trangthai=document.getElementById('trangthai').innerHTML;
+                ngayhientai = new Date('<?php echo $ngayhientai?>');
+                ngayden = new Date('<?php echo $ngayden?>');
+                
+                if((trangthai == "Đã đặt cọc")|| (trangthai == "Đã thanh toán" && ngayhientai<ngayden)) {
+                    document.getElementById('huyphong').style.display = "block";
+                 }
+                else{
+                    document.getElementById('huyphong').style.display = "none";
+                }
+                </script>
             <?php
                 }
                 ?>
+        </div>
+                
       </div>
-    </div>
-    
     
     <?php
-    include('footer.php')
+        include('footer.php')
     ?>
      <!-- jquery -->
      <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

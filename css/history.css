@@ -64,6 +64,7 @@ input{
 }
 .mainroom{
     width: 65%;
+  
 }
 .mainroom_1{
     border: 1px solid rgb(48,50,51 ) ;
@@ -101,7 +102,7 @@ input{
     top:25px;
 }
 .mainroom112{
-    font-size: 12px;
+    font-size: 15px;
 }
 .mainroom13{
     display: block;
