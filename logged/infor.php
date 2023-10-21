@@ -19,7 +19,7 @@
         include('header.php');
         include('../config.php');
 
-        $sql = "SELECT * From quanlytaikhoan where ID='" . $_SESSION['makhachhang'] . "'";
+        $sql = "SELECT * From quanlytaikhoan where Email ='" . $_SESSION['email'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {

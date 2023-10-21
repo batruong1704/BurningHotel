@@ -21,7 +21,7 @@ if (isset($_GET['code'])) {
 
   // Kiểm tra xem người dùng đã tồn tại trong cơ sở dữ liệu dựa trên email
   $sql = "SELECT * FROM quanlytaikhoan WHERE Email = ?";
-  $stmt = $conn->prepare($sql);
+  $stmt = $con->prepare($sql);
   $stmt->bind_param("s", $email);
   $stmt->execute();
   $result = $stmt->get_result();
@@ -41,7 +41,7 @@ if (isset($_GET['code'])) {
 
     $sql = "INSERT INTO quanlytaikhoan(HoTen, SDT, Email, CMND, PassWord, AccessToken)
                 VALUES (?, '', ?, '', '', ?)";
-    $stmt = $conn->prepare($sql);
+    $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $full_name, $email, $token);
     $stmt->execute();
 
@@ -96,9 +96,7 @@ if (!isset($_SESSION['email'])) {
 
 <body>
   <!-- header -->
-  <?php
-  include('header.php');
-  ?>
+  <?php include('header.php'); ?>
 
   <!-- Slider -->
   <section id="slider">
