@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +85,7 @@
                         $email=$_POST["email"];
                         $pass=$_POST["password"];
                     
-                        $con=mysqli_connect("localhost","root","","burninghotel");
+                        // $con=mysqli_connect("localhost","root","","burninghotel");
                         if(!$con){
                             echo"Kết nối thất bại";
                             return;
