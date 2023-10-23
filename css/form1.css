@@ -1,0 +1,66 @@
+#banner{
+    margin-top: 88px;
+    color: white;
+}
+#banner .img{
+    position: relative;
+    height: 450px;
+}
+#banner .img img{
+    filter: brightness(70%);
+    height: 305px;
+}
+#banner .box {
+    position: absolute;
+    width: 300px;
+    left: 20%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+#banner button{
+background-color: transparent; 
+height: 40px;
+width: 120px;
+}
+#banner .btbook{
+    border: solid #937438;
+    color: #937438;
+}
+#banner .btget{
+    border: none;
+    color: white;
+}
+
+/* service */
+#service {
+    background-color: white;
+    color: black;
+}
+#service .container{
+    width: 1110px;
+}
+#service .img{
+    align-items: center;
+}
+#service .img1{
+    height: 300px;
+}
+#service h5{
+    font-family: Montserrat-SemiBold;
+}
+#service p{
+    font-size: 14px;
+    font-family: Montserrat-Regular;
+    color: #717272;
+}
+#service h3{
+    font-family: Montserrat-SemiBold;
+}
+
+#service button{
+    border: solid #937438;
+    color: #937438;
+    background-color: transparent;
+    font-family: Montserrat-SemiBold;
+}
+/* end service */

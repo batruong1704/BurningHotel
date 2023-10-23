@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact us</title>
-    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/form1.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
@@ -69,17 +69,17 @@
                             </span>
                         </div>
                 </div>
-                <div class="main_form"> 
+                <div class="main_form" action="send-email.php"> 
                     <p>Send Message</p>
                     <div class="infor1">
                         <div class="infor11">
-                            <input type="text" id="ten" name="ten" placeholder="Full name" >
+                            <input type="text" id="name" name="name" placeholder="Full name" >
                         </div>
                         <div class="infor12">
                             <input type="text" name="email" id="email"  placeholder="Email Address"></div> 
                     </div>
                     <div class="infor2">
-                        <div class="infor21"><input type="text" id="number" name="number" placeholder="Phone"></div>
+                        <div class="infor21"><input type="text" id="phone" name="phone" placeholder="Phone"></div>
                         <div class="infor22"><input type="text" id="subject" name="subject" placeholder="Subject"></div>
                     </div>
                     <div class="infor3">
@@ -95,7 +95,7 @@
            include('footer.php');
            ?>
 
-    <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
+        <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
         <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
 </body> 
 </html>
