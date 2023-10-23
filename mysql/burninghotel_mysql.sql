@@ -106,7 +106,7 @@ CREATE TABLE `hoadon` (
   `MaHoaDon` int(11) NOT NULL,
   `MaPDP` int(11) NOT NULL,
   `TongTien` varchar(50) NOT NULL,
-  `TrangThai` varchar(50) NOT NULL
+  `TinhTrang` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -161,7 +161,7 @@ INSERT INTO `phieudatphong` (`MaPDP`, `MaKhachHang`, `TongTien`, `ThanhToanTruoc
 CREATE TABLE `phieudichvu` (
   `MaPDV` int(11) NOT NULL,
   `MaPDP` int(11) NOT NULL,
-  `TongTien` varchar(50) NOT NULL
+  `TongTienDV` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

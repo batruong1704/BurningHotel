@@ -40,27 +40,26 @@
     <!-- end banner -->
     <section id="check">
         <div class="checkroom_infor">
-            <form method="POST">
-                <div class="infor_item"><input type="text" name="ma" id="ma" placeholder="Nhập mã phòng"></div>
+            <form action="thongtinphong.php" method="POST">
+                <div class="infor_item"><input type="text" name="madatphong" id="madatphong" placeholder="Nhập mã phòng"></div>
                 <div class="infor_item"><input type="text" name="sdt" id="sdt" placeholder="Nhập số điện thoại"></div>
-                <div class="infor_item"><button id="btn" type="sunmit" name="btn">Kiểm Tra</button></div>
+                <div class="infor_item"><button id="btn" type="submit" name="btn">Kiểm Tra</button></div>
             </form>
         </div>
     </section>
     <?php
     if (isset($_POST['btn'])) {
-        $ma = $_POST['ma'];
+        $madatphong = $_POST['madatphong'];
         $sdt = $_POST['sdt'];
-        $_SESSION['ma'] = $ma;
        
-        if ($ma == "" || $sdt == "") {
+        if ($madatphong == "" || $sdt == "") {
             echo '<script>
                 alert("Vui lòng nhập đầy đủ thông tin");
                 window.location="javascript: history.go(-1)";
                 </script>';
             exit;
         }
-        $sql = "SELECT * From chitietthanhtoan,chitietphong where chitietphong.TenPhong=chitietthanhtoan.TenPhong AND  chitietthanhtoan.SDT='" . $sdt . "' AND chitietthanhtoan.MaDonHang='" . $ma . "'";
+        $sql = "SELECT * From phieudatphong,quanlytaikhoan where phieudatphong.MaKhachHang=quanlytaikhoan.ID AND  phieudatphong.MaKhachHang='".$_SESSION['makhachhang']."' AND quanlytaikhoan.SDT='" . $sdt . "' AND phieudatphong.MaPDP='" . $madatphong . "'";
         $_result = mysqli_query($con, $sql);
         if (mysqli_num_rows($_result) == 0) {
             echo '<script>
@@ -70,7 +69,7 @@
             exit;
         }
         $row = mysqli_fetch_assoc($_result);
-        if ($ma != $row['MaDonHang']) {
+        if ($madatphong != $row['MaPDP']) {
             echo '<script>
                 alert("Mã phòng sai! Vui lòng kiểm tra lại"); 
                 window.location="javascript: history.go(-1)";

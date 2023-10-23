@@ -205,6 +205,7 @@
                     }
                     else{
                         $_SESSION['tiendichvu']=0;
+                        $_SESSION['madichvu']="";
                     }
                 }
                 ?>
@@ -393,7 +394,12 @@
                 $thanhtoantruoc = $_POST["thanhtoantruoc"];
                 if ($thanhtoantruoc < $phaitra * 0.1) {
                     echo "<script>";
-                    echo "alert('Số tiền thanh toán chưa đủ!!!')";
+                    echo "alert('Số tiền thanh toán không hợp lệ!!!')";
+                    echo "</script>";
+                }
+                else if($thanhtoantruoc> $phaitra){
+                    echo "<script>";
+                    echo "alert('Tiền thanh toán lớn hơn tiền cần trả!!!')";
                     echo "</script>";
                 }
                 else if(empty($_POST['thanhtoan'])){
@@ -421,22 +427,28 @@
                               alert("Chúc bạn có một kỳ nghỉ vui vẻ!"); 
                               </script>';
                     }
+                    if($_SESSION["tiendichvu"]>0){
+                        $sql="INSERT INTO phieudichvu VALUES ('','".$maphieudatphong."','".$_SESSION["tiendichvu"]."')";
+                        if(mysqli_query($con,$sql)){
+                            $maphieudichvu=mysqli_insert_id($con);
+                        }
 
-                    $sql="INSERT INTO phieudichvu VALUES ('','".$maphieudatphong."','".$_SESSION["tiendichvu"]."')";
-                    if(mysqli_query($con,$sql)){
-                        $maphieudichvu=mysqli_insert_id($con);
-                    }
-
-                    foreach( $_SESSION['madichvu'] as $mdv){
-                         $sql1 = "INSERT INTO chitietdichvu VALUES ('','".$maphieudichvu."','".$mdv."')";
-                         mysqli_query($con, $sql1);
+                        foreach( $_SESSION['madichvu'] as $mdv){
+                            $sql1 = "INSERT INTO chitietdichvu VALUES ('','".$maphieudichvu."','".$mdv."')";
+                            mysqli_query($con, $sql1);
+                        }
                     }
                     
                     if($thanhtoantruoc==$phaitra){
-                        $trangthai="Đã hoàn thành";
+                        $trangthai="Đã thanh toán";
                     }
                     else {
-                        $trangthai="Chờ thanh toán";
+                        if($ngayhientai<$ngayden){
+                            $trangthai= 'Đã đặt cọc';
+                        }
+                        else {
+                            $trangthai= 'Chờ thanh toán';
+                        }
                     }
                     $sql="INSERT INTO hoadon VALUES ('','".$maphieudatphong."','".$phaitra."','".$trangthai."')";
                     mysqli_query($con,$sql);
@@ -447,14 +459,9 @@
                             window.location="home.php";
                             </script>
                         <?php
-                        
                     
-                   
                 }
         }
-    
-     
-
             ?>
 
      <!-- footer -->
