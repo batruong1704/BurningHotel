@@ -22,7 +22,6 @@
     ?>
     <div class="main">
     <?php
-   
                $sql = "SELECT *FROM phieudatphong AS pdp
                         INNER JOIN chitietdatphong AS ctdp ON pdp.MaPDP = ctdp.MaPDP
                         INNER JOIN phong AS p ON ctdp.MaPhong = p.MaPhong
@@ -67,28 +66,35 @@
                     <p class="mainroom112">Ngày đặt phòng: <?php echo $ngaythanhtoan ?></p>
                 </div>
                 <div class="mainroom13">
-                    <div class="mainroom131">Trạng thái</div>
-                    <div class="mainroom132" id="trangthai">
-                        <?php
-                            echo $value['TinhTrang'];
-                        ?>
-                    </div>
-                    <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
-                    <div> <a id="huyphong" style="text-decoration: none " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy Đặt Phòng</a> </div>
+                <div class="mainroom131">Trạng thái</div>
+                <div class="mainroom132 trangthai ">
+                    <?php
+                        echo $value['TinhTrang'];
+                    ?>
                 </div>
-            </div>
-            <script>
-                trangthai=document.getElementById('trangthai').innerHTML;
-                ngayhientai = new Date('<?php echo $ngayhientai?>');
-                ngayden = new Date('<?php echo $ngayden?>');
-                
-                if((trangthai == "Đã đặt cọc")|| (trangthai == "Đã thanh toán" && ngayhientai<ngayden)) {
-                    document.getElementById('huyphong').style.display = "block";
-                 }
-                else{
-                    document.getElementById('huyphong').style.display = "none";
+                <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
+                <div> <a class="huyphong" style="text-decoration: none " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy Đặt Phòng</a> </div>
+                </div>
+                </div>
+                <script>
+                    var trangthaiElements = document.querySelectorAll('.trangthai');
+                    var huyphongElements = document.querySelectorAll('.huyphong');
+
+                    var ngayhientai = new Date('<?php echo $ngayhientai?>');
+                    var ngayden = new Date('<?php echo $ngayden?>');
+            
+                    for (var i = 0; i < trangthaiElements.length; i++) {
+                    var trangthai = trangthaiElements[i].innerText;
+                    var huyphong = huyphongElements[i];
+
+                    if (trangthai == "Đã đặt cọc" || (trangthai == "Đã thanh toán" && ngayhientai < ngayden)) {
+                        huyphong.style.display = "block";
+                    } else {
+                        huyphong.style.display = "none";
+                    }
                 }
                 </script>
+
             <?php
                 }
                 ?>
