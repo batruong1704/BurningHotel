@@ -20,7 +20,6 @@
     $client->addScope("email");
     $client->addScope("profile");
 
-    // Connect to database
     $hostname = "localhost";
     $username = "root";
     $password = "";
