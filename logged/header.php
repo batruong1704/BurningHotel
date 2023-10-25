@@ -15,6 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
   <title>Document</title>
   <link rel="icon" href="../public_html/favicon.ico" type="image/png">
+  </style>
 </head>
 
 <body>
@@ -22,7 +23,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="menu-nav">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid px-5">
-          <a class="navbar-brand" href="./home.php"><img src="../img/logoBurning.png" alt="BurningLogo" class="logo">
+          <a class="navbar-brand" href="./home.php"><img src="../img/logoBurning.png" alt="BurningLogo" class="logo" style="opacity: 0.75;">
             BURNING</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

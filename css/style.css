@@ -107,6 +107,11 @@ header.sticky .logo{
   font-family: Montserrat-SemiBold;
   font-size: 16px;
   color: white;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+}
 }
 #menu .sub-nav li input{
   font-family: Montserrat-Medium;
