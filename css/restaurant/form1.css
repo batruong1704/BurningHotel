@@ -31,6 +31,32 @@ width: 120px;
     color: white;
 }
 
+/* history */
+#history{
+    background-color: #FFF8F5;
+    color: black;
+}
+#history h5{
+    font-family: Montserrat-SemiBold;
+}
+#history .content p{
+    font-size: 14px;
+    font-family: Montserrat-Regular;
+    color: #717272;
+    margin-bottom: 0px;
+}
+#history .img{
+    align-items: center;
+}
+/* end history */
+
+/* menu */
+#menu{
+    background-color: white;
+    color: black;
+}
+/* end menu */
+
 /* service */
 #service {
     background-color: white;
@@ -39,20 +65,11 @@ width: 120px;
 #service .container{
     width: 1110px;
 }
-#service .img{
-    align-items: center;
-}
+
 #service .img1{
     height: 300px;
 }
-#service h5{
-    font-family: Montserrat-SemiBold;
-}
-#service p{
-    font-size: 14px;
-    font-family: Montserrat-Regular;
-    color: #717272;
-}
+
 #service h3{
     font-family: Montserrat-SemiBold;
 }
