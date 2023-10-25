@@ -20,7 +20,7 @@
 <body>
     <!-- header -->
     <?php
-    include('header.php');
+        include('header.php');  
     ?>
     <!-- banner -->
     <section id="banner">
@@ -29,8 +29,7 @@
                 <img src="../img/service/banner_service_1.jpg" alt="" class="w-100">
                 <div class="box">
                     <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
-                            style="color: #C89E4B;">Service</span></p>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #C89E4B;">Service</span></p>
                     <h3 style="font-size:36px;font-family: Montserrat-Bold;">Rate</h3>
                     <div class="trangtri"></div>
                 </div>
@@ -46,8 +45,7 @@
             <div class="row">
                 <div class="col-8">
                     <p>Bình luận:</p>
-                    <textarea name="" id="" cols="100" rows="9"
-                        style="background-color: transparent;position: relative;"></textarea> <br>
+                    <textarea name="" id="" cols="100" rows="9" style="background-color: transparent;position: relative;"></textarea> <br>
                     <button>Gửi</button>
                 </div>
                 <div class="col-4">
@@ -141,9 +139,9 @@
     </section>
     <!-- end content -->
 
-     <!-- footer -->
-     <?php
-    include('footer.php');
+    <!-- footer -->
+    <?php
+        include('footer.php');
     ?>
 
     <!-- jquery -->

@@ -65,16 +65,12 @@
             </div>
         </form>
         <?php
+        include('config.php');
         if (isset($_POST['btn'])) {
             $sdt = $_POST['sdt'];
             $passcu = $_POST['mkm'];
             $passmoi = $_POST['nlmk'];
-            $con = mysqli_connect("localhost", "root", "", "burninghotel");
-            if (!$con) {
-                echo "Kết nối thất bại";
-                return;
-            }
-            $sql = "SELECT PassWord, SDT FROM quanlytaikhoan Where SDT='" . $sdt . "'";
+            $sql = "SELECT  SDT FROM quanlytaikhoan Where SDT='" . $sdt . "'";
             $_result = mysqli_query($con, $sql);
             if (mysqli_num_rows($_result) == 0) {
                 echo '<script>
@@ -95,7 +91,7 @@
             if ($_result == true) {
                 echo '<script>
                     alert("Đổi mật khẩu thành công!"); 
-                    window.location="dangnhap.php";
+                    window.location="index.php";
                     </script>';
                 exit;
             } else {
@@ -105,7 +101,7 @@
                     </script>';
                 exit;
             }
-            mysqli_close($con);
+          
         }
         ?>
 

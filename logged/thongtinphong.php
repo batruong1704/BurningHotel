@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,89 +16,145 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <!-- menu -->
-     
+
+    <?php include('header.php'); ?>
     <?php
-    include('header.php');
+        include('../config.php');
+        $maphieudatphong=$_GET['MaPDP'];
+        if(ISSET($_POST['btn'])){
+            $maphieudatphong=$_POST['madatphong'];
+        }
+        $NgayHienTai=date("Y-m-d ", time());
+
+        $sql = "SELECT *FROM phieudatphong AS pdp
+                        INNER JOIN chitietdatphong AS ctdp ON pdp.MaPDP = ctdp.MaPDP
+                        INNER JOIN phong AS p ON ctdp.MaPhong = p.MaPhong
+                        LEFT JOIN phieudichvu AS pdv ON pdp.MaPDP = pdv.MaPDP
+                        LEFT JOIN chitietdichvu AS ctdv ON pdv.MaPDV = ctdv.MaPDV
+                        LEFT JOIN dichvu AS dv ON ctdv.MaDichVu = dv.MaDichVu
+                        INNER JOIN hoadon AS hd ON hd.MaPDP = pdp.MaPDP
+                        WHERE pdp.MaPDP = '".$maphieudatphong."' ";
+        $result = mysqli_query($con, $sql);
+        $dichvus= array();
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $KieuPhong = $row['KieuPhong'];
+                $GiaPhong = $row['GiaPhong'];
+                $LoaiPhong = $row['LoaiPhong'];
+                $TongTien = $row['TongTien'];
+                $ThanhToanTruoc = $row['ThanhToanTruoc'];
+                $PhuongThucThanhToan=$row['PhuongThucThanhToan'];
+                $NgayTT=$row['NgayTT'];
+                $IMG = $row['IMG'];
+                $NgayDen = $row['NgayDen'];
+                $NgayDi = $row['NgayDi'];
+                $TinhTrang=$row['TinhTrang'];
+                $dichvus[]=array('TenDichVu'=>$row['TenDichVu'], 'GiaDichVu'=>$row['DonGia']);
+            }
+        }
+
+        $songay1 = abs(strtotime($NgayDen) - strtotime($NgayDi));
+        $songay=floor($songay1 / (60*60*24));
     ?>
-      <?php    
-           $con = mysqli_connect("localhost","root","","burninghotel");
-               if(!$con){
-                   die("Kết nối không thành công");
-               }
-               $sql = "SELECT * From chitietthanhtoan, chitietphong, phong where phong.ID=chitietphong.ID_Phong and chitietphong.TenPhong=chitietthanhtoan.TenPhong AND MaDonHang='".$_SESSION['ma']."'";
-               $result = mysqli_query($con, $sql);
-               $chitiets = array();
-               if(mysqli_num_rows($result) > 0){
-                  while($row = mysqli_fetch_array($result)){
-                    $tenphong = $row['TenPhong'];
-                    $dongia = $row['GiaPhong'];
-                    $loaiphong = $row['LoaiPhong'];
-                    $tenphong = $row['TenPhong'];
-                    $tongtien = $row['SoTienPhaiTra'];
-                    $anhphong = $row['IMG'];
-                    $ngayden = $row['NgayDen'];
-                    $ngaydi = $row['NgayDi'];
-                  }
-               }
-               
-              ?>
     <div class="main">
         <div class="body">
             <div class="inforroom">
                 <h1>Chi Tiết Phòng</h1>
-                <p class="inforroom1">Mã Phòng:<?php echo $_SESSION['ma']?></p>
-                <p class="inforroom1">Loại Phòng: <?php echo $loaiphong?></p>
+                <p class="inforroom1">Mã Đặt Phòng : <?php echo $maphieudatphong ?></p>
+                <p class="inforroom1">Loại Phòng: <?php echo $LoaiPhong ?></p>
                 <div class="inforanh">
-                    <img src="<?php echo $anhphong?>" alt="" width="550px" height="250px">
-                    <div class="inforchu">  
+                    <img src="<?php echo $IMG ?>" alt="" width="550px" height="250px">
+                    <div class="inforchu">
                         <div class="inforrice">
-                            <div class="rice1"><?php echo $dongia?></div>
+                            <div class="rice1"><?php echo $GiaPhong ?></div>
                             <div class="rice2">/Night</div>
                         </div>
-                        <div class="rice3"> <?php echo $tenphong?> </div>
+                        <div class="rice3"> <?php echo $KieuPhong ?> </div>
                     </div>
                 </div>
-           </div>
-           <div class="inforchitiet">
+            </div>
+            <div class="inforchitiet">
                 <table>
                     <tr>
-                        <td>Ngày đặt: </td>
-                        <td><?php echo  $ngayden?></td>
+                        <td>Ngày đến: </td>
+                        <td><?php echo  $NgayDen ?></td>
                     </tr>
                     <tr>
                         <td>Ngày trả:</td>
-                        <td> <?php echo $ngaydi?></td>
+                        <td> <?php echo $NgayDi ?></td>
                     </tr>
                     <tr>
                         <td>Tên khách hàng: </td>
-                        <td><?php echo $_SESSION['ten']?></td>
+                        <td><?php echo $_SESSION['ten'] ?></td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td><?php echo $_SESSION['sdt']?></td>
+                        <td><?php echo $_SESSION['sdt'] ?></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><?php echo $_SESSION['email']?></td>
+                        <td><?php echo $_SESSION['email'] ?></td>
                     </tr>
                     <tr>
+                        <td>Tiền Phòng(x <?php echo $songay?>ngày): </td>
+                        <td><?php echo $GiaPhong*$songay ?> VNĐ</td>
+                    </tr>
+                    <tr>
+                        <?php
+                        ?>
+                        <td>Dịch vụ:</td>
+                        <td>
+                        <?php
+                            foreach($dichvus as $key => $value){
+                                if (empty($value['TenDichVu'])) {
+                                    echo '';
+                                } else {
+                                    echo $value['TenDichVu'].' '. $value['GiaDichVu'] ;
+                                    ?>
+                                    VNĐ
+                                    </br>
+                          
+                            <?php 
+                                }
+                            }
+                                ?>
+                        </td>
+                    </tr>
+                  
+                    <tr>
                         <td>Tổng tiền:</td>
-                        <td><?php echo $tongtien?> VND</td>
+                        <td><?php echo $TongTien ?> VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td>Đã thanh toán: </td>
+                        <td><?php echo $ThanhToanTruoc ?> VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td>Phương thức thanh toán: </td>
+                        <td><?php echo $PhuongThucThanhToan ?></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày thanh toán: </td>
+                        <td><?php echo $NgayTT ?></td>
                     </tr>
                     <tr>
                         <td>Trạng thái:</td>
-                        <td>Đã thanh toán</td>
+                        <td>
+                        <?php
+                           echo $TinhTrang;
+                        ?>
+                        </td>
                     </tr>
                 </table>
-           </div>
+            </div>
         </div>
-    
+
     </div>
-        <!-- footer -->
-      <?php
-    include('footer.php');
-    ?>
+    <!-- footer -->
+    <?php include('footer.php'); ?>
 </body>
+
 </html>

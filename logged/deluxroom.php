@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +19,7 @@
 
 <body>
     <!-- header -->
-        <?php
-        include('header.php');
-        ?>
+    <?php include('header.php'); ?>
     <!-- Banner -->
     <section id="banner">
         <div class="container-fluid p-0 text-center">
@@ -28,8 +27,7 @@
                 <img src="../img/pay/banner.jpg" alt="" class="img-fluid">
                 <div class="box">
                     <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
-                            style="color: #C89E4B;">Room</span></p>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #C89E4B;">Room</span></p>
                     <h3 style="font-size:36px;font-family: Montserrat-Bold;">Deluxe Room</h3>
                     <div class="trangtri"></div>
                 </div>
@@ -39,13 +37,11 @@
     <!-- end Banner -->
 
     <!-- checknow -->
-    <?php
-    include('thanhcheck.php');
-    ?>
+    <?php include('thanhcheck.php'); ?>
     <!-- end checknow -->
 
     <!-- information -->
-   
+
     <section id="information">
         <div class="container text-center">
             <p class="p-5" style="width: 67%; margin: 0 auto;font-family:Montserrat-Regular;">Phòng Deluxe nằm từ tầng 7 đến tầng 16, với diện tích
@@ -57,25 +53,21 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="true">
                     <div class="carousel-inner">
                         <div class="slide-item carousel-item active">
-                            <img src="../img/roomdetail/deluxe/roomstyle_deluxe1.png" class="d-block w-100 rounded-3"
-                                style="height: 450px;" alt="">
+                            <img src="../img/roomdetail/deluxe/roomstyle_deluxe1.png" class="d-block w-100 rounded-3" style="height: 450px;" alt="">
                             <div class="carousel-btn d-md-block">
                             </div>
                         </div>
                         <div class="slide-item carousel-item">
-                            <img src="../img/roomdetail/deluxe/roomstyle_deluxe2.png" class="d-block w-100 rounded-3"
-                                style="height: 450px;" alt="">
+                            <img src="../img/roomdetail/deluxe/roomstyle_deluxe2.png" class="d-block w-100 rounded-3" style="height: 450px;" alt="">
                             <div class="carousel-btn d-md-block">
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -177,8 +169,7 @@
                             <p class="m-0"><span style="color:#BB9959;">$134</span>/Đêm</p>
                             <h5>Small Suite</h5>
                             <div class="trangtri"></div>
-                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i
-                                    class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
+                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
                         </div>
                     </div>
                 </div>
@@ -189,8 +180,7 @@
                             <p class="m-0"><span style="color:#BB9959;">$199</span>/Đêm</p>
                             <h5>Deluxe Room</h5>
                             <div class="trangtri1"></div>
-                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i
-                                    class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
+                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
                         </div>
                     </div>
                 </div>
@@ -201,8 +191,7 @@
                             <p class="m-0"><span style="color:#BB9959;">$134</span>/Đêm</p>
                             <h5>Small Suite</h5>
                             <div class="trangtri"></div>
-                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i
-                                    class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
+                            <a href="#" style="font-size: 14px; font-family: Montserrat-Medium;"><i class="fa fa-chevron-circle-right"></i> BOOKING NOW</a>
                         </div>
                     </div>
                 </div>
@@ -210,11 +199,9 @@
         </div>
     </section>
     <!-- end room -->
-     <!-- footer -->
+    <!-- footer -->
 
-           <?php
-           include('footer.php');
-           ?>
+    <?php include('footer.php'); ?>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

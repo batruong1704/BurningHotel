@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +13,10 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <!-- header -->
-    <?php
-    include('header.php');
-    ?>
+    <?php include('header.php'); ?>
 
     <!-- banner -->
     <section id="banner">
@@ -25,8 +25,7 @@
                 <img src="../img/pay/banner.jpg" alt="" class="w-100">
                 <div class="box">
                     <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
-                            style="color: #C89E4B;">Service</span></p>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #C89E4B;">Service</span></p>
                     <h3 style="font-size:36px;font-family: Montserrat-Bold;">Contact Us</h3>
                     <div class="trangtri"></div>
                 </div>
@@ -36,10 +35,10 @@
 
     <!-- end banner -->
     <div class="contactus">
-            <div class="main">
-                <div class="main_lienhe">
-                    <p>Get In Touch</p>
-                    <p>Phasellus nisi sapien, rutrum placerat sapien eu, rhoncus templus felis.<br>
+        <div class="main">
+            <div class="main_lienhe">
+                <p>Get In Touch</p>
+                <p>Phasellus nisi sapien, rutrum placerat sapien eu, rhoncus templus felis.<br>
                     Nulla non pulvina enim, vel viverra nunc.</p>
                     <div class="main_item">
                        <div class="chu "> <img class="phone" src="../img/icon_Phone.png">Emergency Help</div>
@@ -90,10 +89,8 @@
             </div>
     </div>
 
-     <!-- footer -->
-           <?php
-           include('footer.php');
-           ?>
+    <!-- footer -->
+    <?php include('footer.php'); ?>
 
         <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
         <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>

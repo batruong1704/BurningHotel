@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +85,7 @@
                         $email=$_POST["email"];
                         $pass=$_POST["password"];
                     
-                        $con=mysqli_connect("localhost","root","","burninghotel");
+                        // $con=mysqli_connect("localhost","root","","burninghotel");
                         if(!$con){
                             echo"Kết nối thất bại";
                             return;
@@ -95,7 +98,7 @@
                         exit;
                         }
 
-                        $sql = "SELECT Email,SDT,PassWord, HoTen FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
+                        $sql = "SELECT * FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
                         $_result= mysqli_query($con,$sql);
                         if (mysqli_num_rows($_result) == 0){
                             echo '<script>
@@ -124,6 +127,7 @@
                             $_SESSION['ten']=$row['HoTen'];
                             $_SESSION['sdt']=$row['SDT'];
                             $_SESSION['email']=$row['Email'];
+                            $_SESSION['makhachhang']=$row['ID'];
                         }
                         }
                         catch (Exception $e) {

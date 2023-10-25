@@ -19,9 +19,7 @@
 
 <body>
     <!-- header -->
-        <?php
-        include('header.php');
-        ?>
+    <?php include('header.php'); ?>
 
     <!-- banner -->
     <section id="banner">
@@ -30,8 +28,7 @@
                 <img src="../img/service/banner_service_1.jpg" alt="" class="w-100">
                 <div class="box">
                     <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
-                            style="color: #C89E4B;">Service</span></p>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #C89E4B;">Service</span></p>
                     <h3 style="font-size:36px;font-family: Montserrat-Bold;">Burning Bar</h3>
                     <div class="trangtri"></div>
                 </div>
@@ -49,16 +46,14 @@
             <img src="../img/service/bar_2.jpg" alt="" class="w-100">
             <p>
                 Thời gian mở cửa: 20h - 6h <br>
-                Lưu ý: Dịch vụ quầy bar hoàn toàn miễn phí quý khách chỉ cần mang thẻ phòng  để xác nhận là thành viên khách sạn.
+                Lưu ý: Dịch vụ quầy bar hoàn toàn miễn phí quý khách chỉ cần mang thẻ phòng để xác nhận là thành viên khách sạn.
             </p>
         </div>
     </section>
     <!-- end content -->
 
-     <!-- footer -->
-           <?php
-           include('footer.php');
-           ?>
+    <!-- footer -->
+    <?php include('footer.php'); ?>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

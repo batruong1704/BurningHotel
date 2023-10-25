@@ -25,9 +25,7 @@
 
 #step .a{
     width: 20%;
-    margin: -95px auto 0px auto;
-    justify-content: space-between;            
-    /* căn giữa theo độ dài set ở trên  */
+    margin: -95px auto 0px;
 }
 #step .a li a{
     background-color: transparent;
@@ -104,11 +102,15 @@
 #service {
     background-color: #181A1B;
     color: white;
+    /* padding-top: 30px; */
 }
 
 #service .container img{
-    align-items: center;
+    /* align-items: center; */
     height: 60px;
+}
+#service .container .img{
+    align-items: center;
 }
 #service .dichvu{
     margin-left: 70px;
@@ -118,13 +120,16 @@
 #huyphong {
     background-color: #181A1B;
     color: white;
+    /* padding-top: 30px; */
 }
 
 #huyphong .container img{
-    align-items: center;
+    /* align-items: center; */
     height: 60px;
 }
-
+#huyphong .container .img{
+    align-items: center;
+}
 #huyphong .phi{
     margin: 20px 170px;
 }
@@ -132,11 +137,12 @@
 #udai{
     background-color: #181A1B;
     color: white;
+    /* padding-top: 30px; */
 }
 
 #udai .container img{
     /* align-items: center; */
-    height: 40px;
+    height: 60px;
     /* margin-top: 10px; */
 }
 #udai .container .img{
@@ -156,6 +162,7 @@
 
 #udai .ud button{
     margin-top: 20px;
+    
 }
 
 #tieptuc{
@@ -164,4 +171,5 @@
     padding-top: 30px;
     padding-bottom: 20px;
     padding-right: 110px;
+    
 }
