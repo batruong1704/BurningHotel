@@ -13,8 +13,11 @@
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/restaurant/cheflist.css?v=<?php echo time(); ?>">
+
+    <link rel="stylesheet/less" type="text/css"
+        href="../css/restaurant/cheflist.module.scss?v=<?php echo time(); ?>">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
 </head>
 
 <body>
@@ -38,23 +41,26 @@
 
     <?php
     include('../config.php');
-    $sql = "SELECT hinhanh, hoten, chucvu FROM daubep";
+
+    $sql = "SELECT id, hinhanh, hoten, chucvu FROM daubep"; // Thêm cột 'id' vào truy vấn SQL
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
         echo '<section id="chef" class="pb-5">
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center">';
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">';
         while ($row = $result->fetch_assoc()) {
             echo '<div class="col-4 text-center">
-                <img class="cheflist" src="' . $row["hinhanh"] . '" alt="">
-                <h4 class="chefname">' . $row["hoten"] . '</h4>
-                <span>' . $row["chucvu"] . '</span>
-            </div>';
+                    <a href="chefdetail.php?id=' . $row["id"] . '"><img class="cheflist" src="' . $row["hinhanh"] . '" alt=""></a>
+                    <a href="chefdetail.php?id=' . $row["id"] . '"><h4 class="chefname">' . $row["hoten"] . '</h4></a>
+                        <span>' . $row["chucvu"] . '</span>
+                    
+                </div>';
         }
         echo '</div>
-        </div>
-    </section>';
+            </div>
+        </section>';
+
     } else {
         echo "Không có dữ liệu thành viên nào trong cơ sở dữ liệu.";
     }

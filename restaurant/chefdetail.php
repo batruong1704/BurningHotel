@@ -1,6 +1,26 @@
+<?php
+    include('../config.php');
+    $id = $_GET['id']; // Lấy giá trị 'id' từ URL
+    $sql = "SELECT * FROM `daubep` WHERE ID = $id";
+    $result= mysqli_query($con,$sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $hoten = $row["HoTen"];
+            $gioitinh = $row["GioiTinh"];
+            $ngaysinh = $row["NgaySinh"];
+            $chucvu = $row["ChucVu"];
+            $sonamkinhnghiem = $row["SoNamKinhNghiem"];
+            $email = $row["Email"];
+            $sodienthoai = $row["SoDienThoai"];
+            $diachi = $row["DiaChi"];
+            $mota = $row["MoTa"];
+            $hinhanh = $row["HinhAnh"];
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,11 +64,9 @@
         </div>
         <div class="chef__details">
             <div>
-                <div class="chef__name">Evan Mattew</div>
-                <div class="chef__role">Master Chef</div>
-                <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override
-                    the digital divid with additional clickthroughs from Nanotechnology immersion along the information
-                    highway will close the loop on focusing solely the bottom line.</p>
+                <div class="chef__name"><?php echo $hoten; ?></div>
+                <div class="chef__role"><?php echo $chucvu; ?></div>
+                <p><?php echo $mota; ?></p>
             </div>
             <div class="hero__items">
                 <div class="hero__items__left">
@@ -56,14 +74,14 @@
                         <img src="../img/restaurant/icon/email.png" alt="icon" class="lab-icon" />
                         <div class="sup__detail">
                             <div class="lab-name">Email</div>
-                            <div class="lab-details">masterchef@gmail.com</div>
+                            <div class="lab-details"><?php echo $email; ?></div>
                         </div>
                     </div>
                     <div class="items">
                         <img src="../img/restaurant/icon/experience.png" alt="icon" class="lab-icon" />
                         <div class="sup__detail">
                             <div class="lab-name">Experience</div>
-                            <div class="lab-details">10 Years</div>
+                            <div class="lab-details"><?php  echo $sonamkinhnghiem; ?></div>
                         </div>
                     </div>
                 </div>
@@ -72,14 +90,14 @@
                         <img src="../img/restaurant/icon/phone.png" alt="icon" class="lab-icon" />
                         <div class="sup__detail">
                             <div class="lab-name">Phone</div>
-                            <div class="lab-details">0336003012</div>
+                            <div class="lab-details"><?php echo  $sodienthoai; ?></div>
                         </div>
                     </div>
                     <div class="items">
                         <img src="../img/restaurant/icon/location.png" alt="icon" class="lab-icon" />
                         <div class="sup__detail">
                             <div class="lab-name">Location</div>
-                            <div class="lab-details">Hà Nội</div>
+                            <div class="lab-details"><?php echo $diachi; ?></div>
                         </div>
                     </div>
                 </div>
