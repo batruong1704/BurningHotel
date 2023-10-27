@@ -16,7 +16,7 @@
 <body>
   <!-- header -->
   <?php
-  include('header.php');
+  include('../logged/header.php');
   ?>
   <!-- banner -->
   <section id="banner">
@@ -37,6 +37,7 @@
   </section>
   <!-- end banner -->
 
+  </section>
   <!--History -->
   <section id="history" class="py-5">
     <div class="container">
@@ -89,22 +90,35 @@
         </div>
       </div>
     </div>
-    </div>
   </section>
   <!--end History-->
 
   <!-- Menu -->
-  <section id="menu" class="py-5">
+  <section id="menumonan" class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-4">
-          <p>MENU</p>
+          <p class="m-0" style="border-top: 2px solid #937438;border-bottom: 2px solid #937438; width: 48px">MENU</p>
           <h3>Try Our Special Offers</h3>
           <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content making it look like readable English. </p>
+          <img src="../img/form1/anh4.png" alt="" class="img-fluid">
+          <button> See all dishes</button>
         </div>
         <div class="col-1"></div>
-        <div class="col-7">
+        <div class="col-7 p-4">
           <h4>Loại đồ ăn 1</h4>
+          <div class="row">
+            <div class="col-2 d-flex justify-content-center">
+            <img src="../img/form1/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+            </div>
+            <div class="col-8">
+              <h4>Raw Scallops from Erquy</h4>
+              <p>Candied Jerusalem artichokes, truffle</p>
+            </div>
+            <div class="col-2 d-flex align-items-end">
+              <b style="margin-bottom: 1rem;">100k</b>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -115,7 +129,7 @@
   <section id="service">
     <div class="container py-5">
       <div class="row bg-right">
-        <div class="col-6 p-4">
+        <div class="col-6 py-4 ps-0">
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
           <h3 style="width:200px">Always fresh ingredients</h3>
           <p style="width:400px">the people, food and the prime locations make Rodich the perfect place good frinds & family to come together and have great time </p>
@@ -144,9 +158,13 @@
   </section>
   <!-- end service -->
 
+  <!-- book table -->
+  <?php
+  include('booktable.php')
+  ?>
   <!-- footer -->
   <?php
-  include('footer.php');
+  include('../logged/footer.php');
   ?>
 
   <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
