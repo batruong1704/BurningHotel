@@ -26,7 +26,23 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `chitietdatmon`
 --
-
+/*
+SET GLOBAL event_scheduler = ON;
+CREATE EVENT CapNhapTrangThaiHoaDon
+ON SCHEDULE EVERY 1 SECOND
+STARTS CURRENT_TIMESTAMP
+DO
+  UPDATE hoadon AS hd
+  JOIN chitietdatphong AS ctdp
+  ON hd.MaPDP = ctdp.MaPDP
+  SET hd.TinhTrang = 
+  CASE
+    WHEN ctdp.NgayDen <= NOW() AND ctdp.NgayDi >= NOW() THEN 'Chờ thanh toán'
+    WHEN ctdp.NgayDi < NOW() THEN 'Đã thanh toán'
+  END
+  Where hd.TinhTrang IN ('Đã đặt cọc', 'Chờ thanh toán')
+  
+*/
 CREATE TABLE `chitietdatmon` (
   `MaDatMon` int(11) NOT NULL,
   `MaHoaDon` int(11) NOT NULL,
