@@ -8,26 +8,26 @@
     <title>Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link css bootstrap -->
-    <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
     <!-- link slick -->
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 
     <link rel="stylesheet/less" type="text/css"
-        href="../css/restaurant/cheflist.module.scss?v=<?php echo time(); ?>">
-    <link rel="icon" href="../public_html/favicon.ico" type="image/png">
+        href="../../css/restaurant/chef/cheflist.module.scss?v=<?php echo time(); ?>">
+    <link rel="icon" href="../../public_html/favicon.ico" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
 </head>
 
 <body>
     <!-- header -->
-    <?php include('../logged/header.php'); ?>
+    <?php include('../../logged/header.php'); ?>
     <!-- banner -->
     <section id="banner">
         <div class="container-fluid p-0 text-center">
             <div class="img h-100">
-                <img src="../img/service/banner_service_1.jpg" alt="" class="w-100">
+                <img src="../../img/service/banner_service_1.jpg" alt="" class="w-100">
                 <div class="box">
                     <div class="tieude"></div>
                     <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Restaurant</p>
@@ -40,7 +40,7 @@
     <!-- end banner -->
 
     <?php
-    include('../config.php');
+    include('../../config.php');
 
     $sql = "SELECT id, hinhanh, hoten, chucvu FROM daubep"; // Thêm cột 'id' vào truy vấn SQL
     $result = $con->query($sql);
@@ -51,8 +51,8 @@
                 <div class="row d-flex justify-content-center">';
         while ($row = $result->fetch_assoc()) {
             echo '<div class="col-4 text-center">
-                    <a href="chefdetail.php?id=' . $row["id"] . '"><img class="cheflist" src="' . $row["hinhanh"] . '" alt=""></a>
-                    <a href="chefdetail.php?id=' . $row["id"] . '"><h4 class="chefname">' . $row["hoten"] . '</h4></a>
+                    <a href="chef__detail.php?id=' . $row["id"] . '"><img class="cheflist" src="' . $row["hinhanh"] . '" alt=""></a>
+                    <a href="chef__detail.php?id=' . $row["id"] . '"><h4 class="chefname">' . $row["hoten"] . '</h4></a>
                         <span>' . $row["chucvu"] . '</span>
                     
                 </div>';
@@ -67,16 +67,16 @@
     ?>
 
     <!-- footer -->
-    <?php include('../logged/footer.php'); ?>
+    <?php include('../../logged/footer.php'); ?>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <!-- bootstrap -->
-    <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
-    <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
+    <script src="../../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
     <!-- slick -->
-    <script src="../common/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/scrip.js"></script>
+    <script src="../../common/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/scrip.js"></script>
 </body>
 
 </html>

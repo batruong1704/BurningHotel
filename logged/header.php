@@ -50,7 +50,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="./service.php">All Service</a></li>
-                  <li><a class="dropdown-item" href="./restaurant.php">Restaurant</a></li>
+                  <li><a class="dropdown-item" href="../restaurant/index.php">Restaurant</a></li>
                   <li><a class="dropdown-item" href="./bar.php">Bar</a></li>
                   <li><a class="dropdown-item" href="./fitness.php">Gym & Fitness</a></li>
                   <li><a class="dropdown-item" href="./washingcloses.php">washing closes</a></li>
