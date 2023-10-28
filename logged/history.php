@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Document</title>
+
+    <title>Lịch sử đặt phòng</title>
 </head>
 <body>
     <?php
@@ -43,17 +44,14 @@
                                     'IMG'=>$row['IMG'], 'NgayTT'=>$row["NgayTT"]);
                   }
                }
-               
+            
               ?>
-     
+                
         <div class="mainroom">
         <?php foreach($lichsuphongs as $key => $value) { 
-            $ngayden=date("d-m-Y", strtotime($value['NgayDen']));
-            $ngaydi=date("d-m-Y", strtotime($value['NgayDi']));
-            $ngayhientai=date("d-m-Y ", time());
-            $ngaythanhtoan=date("d-m-Y", strtotime($value['NgayTT']));
+            $ngayhientai=date("Y-m-d");
             ?>
-            <div class="ngaydat"> <?php echo  $ngaythanhtoan ?></div>
+            <div class="ngaydat"> <?php echo  $value['NgayTT'] ?></div>
             <div class="mainroom_1">
                 <div class="mainroom12">
                     <img src="<?php echo $value['IMG']?>" alt="" width="250px" height="200px">
@@ -62,8 +60,10 @@
                 <div class="mainroom11">
                     <p class="mainroom111"><?php echo $value['KieuPhong']?></p>
                     <p class="mainroom112">Tổng Số Tiền : <?php echo $value['TongTien']?> VNĐ</p>
-                    <p class="mainroom112">Ngày Đến - Ngày Đi: <?php echo $ngayden .' / '.$ngaydi?></p>
-                    <p class="mainroom112">Ngày đặt phòng: <?php echo $ngaythanhtoan ?></p>
+                    <p><span class="mainroom112">Ngày Đến:</span>
+                    <span class="ngayden" style="margin-right: 20px;"> <?php echo $value['NgayDen']?></span>
+                    <span class="mainroom112 ">Ngày Đi: <?php echo $value['NgayDi'] ?></span></p>
+                    <p class="mainroom112">Ngày đặt phòng: <?php echo $value['NgayTT'] ?></p>
                 </div>
                 <div class="mainroom13">
                 <div class="mainroom131">Trạng thái</div>
@@ -72,27 +72,32 @@
                         echo $value['TinhTrang'];
                     ?>
                 </div>
+        
                 <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
                 <div> <a class="huyphong" style="text-decoration: none " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy Đặt Phòng</a> </div>
                 </div>
                 </div>
+
                 <script>
                     var trangthaiElements = document.querySelectorAll('.trangthai');
                     var huyphongElements = document.querySelectorAll('.huyphong');
+                    var ngaydenElements = document.querySelectorAll('.ngayden');
+                    var ngayhientai = new Date();  
 
-                    var ngayhientai = new Date('<?php echo $ngayhientai?>');
-                    var ngayden = new Date('<?php echo $ngayden?>');
-            
+                    //toLocaleDateString()
                     for (var i = 0; i < trangthaiElements.length; i++) {
-                    var trangthai = trangthaiElements[i].innerText;
-                    var huyphong = huyphongElements[i];
+                        var trangthai = trangthaiElements[i].innerText;
+                        var huyphong = huyphongElements[i];
+                        var ngayden=new Date( ngaydenElements[i].innerText);
+                        
+                        if ((trangthai == 'Đã thanh toán' &&ngayden > ngayhientai) || trangthai == 'Đã đặt cọc') {
+                            huyphong.style.display = "block";
+                        } else {
+                            huyphong.style.display = "none";
+                        }
 
-                    if (trangthai == "Đã đặt cọc" || (trangthai == "Đã thanh toán" && ngayhientai < ngayden)) {
-                        huyphong.style.display = "block";
-                    } else {
-                        huyphong.style.display = "none";
                     }
-                }
+                    
                 </script>
 
             <?php

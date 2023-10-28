@@ -20,7 +20,7 @@ $mapdv=$_GET['MaPDV'];
 
     echo '<script>
     alert("Hủy đặt phòng thành công!"); 
-    window.location="home.php";
+    window.location="history.php";
     </script>';
 
 ?>

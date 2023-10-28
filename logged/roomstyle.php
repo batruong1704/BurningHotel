@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="KiemTraNgay.js"></script>
     <title>Document</title>
 </head>
 
@@ -51,33 +52,25 @@
                     $phong = $_POST["category"];
                     $_SESSION['ngayden'] = $ngayden;
                     $_SESSION['ngaydi'] = $ngaydi;
-                    $_SESSION['nguoi'] = $nguoi;
                 }
                 if (isset($_POST["submit"])) {
-                    $ngayden = $_POST["ngaydenrs"];
-                    $ngaydi = $_POST["ngaydirs"];
+                    $ngaydenrs = $_POST["ngaydenrs"];
+                    $ngaydirs = $_POST["ngaydirs"];
                     $nguoi = $_POST["checknguoi"];
                     $phong = $_POST["checkphong"];
-                    $_SESSION['ngayden'] = $ngayden;
-                    $_SESSION['ngaydi'] = $ngaydi;
-                    $_SESSION['nguoi'] = $nguoi;
+                    $_SESSION['ngayden'] = $ngaydenrs;
+                    $_SESSION['ngaydi'] = $ngaydirs;
                 }
+            
             ?>
             <div class="form">
                 <form action="" method="POST">
-                    <?php if (isset($_POST["btn"])) { ?>
-                        <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngayden ?>">
-                        </div>
-                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>">
-                        </div>
-                    <?php } else { ?>
-                        <div class="form_item"><input type="datetime-local" name="ngaydenrs" id="ngayrs" placeholder="Check In" value="<?php echo $ngayden ?>">
-                        </div>
-                        <div class="form_item"><input type="datetime-local" name="ngaydirs" id="ngayrs" placeholder="Check Out" value="<?php echo $ngaydi ?>">
-                        </div>
-
-                    <?php } ?>
-
+                    <div class="form_item">
+                        <input type="datetime-local" name="ngaydenrs" id="ngayden" placeholder="Check In" onchange="chonngayden()" value="<?php echo (isset($_POST["btn"])) ? $ngayden : $ngaydenrs; ?>"></div>
+                        <div id="thongbaongayden" style="color: red"></div>
+                    <div class="form_item">
+                        <input type="datetime-local" name="ngaydirs" id="ngaydi" placeholder="Check Out" onchange="chonngaydi()" value="<?php echo (isset($_POST["btn"])) ? $ngaydi : $ngaydirs; ?>"></div>
+                        <div id="thongbaongaydi" style="color: red"></div>
                     <div class="form_item">
                         <select name="checknguoi" id="room">
                             <?php
@@ -99,16 +92,15 @@
                                     while ($row = mysqli_fetch_array($result)) {
                                         $loaiphongs[] =  $row['LoaiPhong'];
                                     }
-
                                     foreach ($loaiphongs as $loaiphong) {
-                                        $selected = ($phong == $loaiphong || $phongas == $loaiphong) ? 'selected' : '';
+                                        $selected = ($phong == $loaiphong ) ? 'selected' : '';
                                         echo "<option value='$loaiphong' $selected> $loaiphong </option>";
                                     }
                                 }
                             ?>
                         </select>
                     </div>
-                    <button type="submit" name="submit"><img src="../img/icon_muiten.png">Check </button>
+                    <button type="submit"  onclick="return kiemtrangay()" name="submit"><img src="../img/icon_muiten.png">Check </button>
                 </form>
             </div>
         </div>
@@ -152,8 +144,22 @@
                             5/5
                         </div>
                         <div class="mainroom133">
-                            <a href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
+                            <a onclick="return kiemtrangay()" href="roomdetail.php?MaPhong=<?php echo $value['MaPhong']; ?>">READ MORE</a>
                         </div>
+                        <script>
+                        function kiemtrangay() {
+                            thongbaoden = document.getElementById("thongbaongayden").innerHTML;
+                            thongbaodi = document.getElementById("thongbaongaydi").innerHTML;
+                            
+                            if (thongbaoden || thongbaodi) {
+                                alert("Vui lòng kiểm tra lại thông tin!");
+                                return false; 
+                            } 
+                            else {
+                                return true;
+                            }
+                        }
+                    </script>
                     </div>
                 </div>
             <?php
