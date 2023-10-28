@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html>g/form1
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../css/restaurant/form1.css?v= <?php echo time(); ?>">
+  <link rel="stylesheet" href="../css/restaurant/main.css?v= <?php echo time(); ?>">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="../public_html/favicon.ico" type="image/png">
   <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
   <section id="banner">
     <div class="container-fluid p-0 text-center">
       <div class="img h-100">
-        <img src="../img/form1/banner.png" alt="" class="w-100">
+        <img src="../img/restaurant/main/banner.png" alt="" class="w-100">
         <div class="box">
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:100px; margin-bottom:0px">RESERVATION</p>
           <b style="font-size: 45px;text-align:left;">This evening will be great!</b>
@@ -44,7 +44,7 @@
       <div class="row pb-5">
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/form1/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Locate Us</h5>
@@ -53,7 +53,7 @@
         </div>
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/form1/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Open Hours</h5>
@@ -62,7 +62,7 @@
         </div>
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/form1/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Reservation</h5>
@@ -72,7 +72,7 @@
       </div>
       <div class="row">
         <div class="col-6" style="border-right: 1px solid #B29A90">
-          <img src="../img/form1/anh1.png" alt="" class="img-fluid" style="width:500px">
+          <img src="../img/restaurant/main/anh1.png" alt="" class="img-fluid" style="width:500px">
         </div>
         <div class="col-6 content ps-5">
           <h3>The Story</h3>
@@ -101,7 +101,7 @@
           <p class="m-0" style="border-top: 2px solid #937438;border-bottom: 2px solid #937438; width: 48px">MENU</p>
           <h3>Try Our Special Offers</h3>
           <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content making it look like readable English. </p>
-          <img src="../img/form1/anh4.png" alt="" class="img-fluid">
+          <img src="../img/restaurant/main/anh4.png" alt="" class="img-fluid">
           <button> See all dishes</button>
         </div>
         <div class="col-1"></div>
@@ -109,7 +109,7 @@
           <h4>Loại đồ ăn 1</h4>
           <div class="row">
             <div class="col-2 d-flex justify-content-center">
-            <img src="../img/form1/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
             </div>
             <div class="col-8">
               <h4>Raw Scallops from Erquy</h4>
@@ -137,14 +137,14 @@
         </div>
         <div class="col-6 p-0">
           <div class="img1 d-flex justify-content-end">
-            <img src="../img/form1/anh2.png" alt="" style="width: 600px;">
+            <img src="../img/restaurant/main/anh2.png" alt="" style="width: 600px;">
           </div>
         </div>
       </div>
       <div class="row bg-left">
         <div class="col-6 p-0">
           <div class="img1 d-flex justify-content-start">
-            <img src="../img/form1/anh3.png" alt="" style="width: 600px;">
+            <img src="../img/restaurant/main/anh3.png" alt="" style="width: 600px;">
           </div>
         </div>
         <div class="col-6 p-4">
