@@ -20,7 +20,7 @@ if (isset($_GET['code'])) {
   $email = $google_account_info['email'];
 
   // Kiểm tra xem người dùng đã tồn tại trong cơ sở dữ liệu dựa trên email
-  $sql = "SELECT * FROM quanlytaikhoan WHERE Email = ?";
+  $sql = "SELECT * FROM khachhang WHERE Email = ?";
   $stmt = $con->prepare($sql);
   $stmt->bind_param("s", $email);
   $stmt->execute();
@@ -39,7 +39,7 @@ if (isset($_GET['code'])) {
     $full_name = $google_account_info['name'];
     $token = $google_account_info['id'];
 
-    $sql = "INSERT INTO quanlytaikhoan(HoTen, SDT, Email, CMND, PassWord, AccessToken)
+    $sql = "INSERT INTO khachhang(HoTen, SDT, Email, CMND, PassWord, AccessToken)
                 VALUES (?, '', ?, '', '', ?)";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $full_name, $email, $token);
