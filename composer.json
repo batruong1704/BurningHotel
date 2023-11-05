@@ -1,5 +1,6 @@
 {
     "require": {
+        "symfony/deprecation-contracts": "3.2.0",
         "monolog/monolog": "^2.0",
         "google/apiclient": "2.15.0",
         "league/oauth2-google": "^4.0",
