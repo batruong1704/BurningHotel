@@ -89,7 +89,7 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <button class="butn"><a href="">See all dishes</a></button>
+                    <a href=""><button class="butn">See all dishes</button></a>
                 </div>
             </div>
         </div>
