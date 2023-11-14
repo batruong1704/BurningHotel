@@ -89,17 +89,17 @@
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
                     if ($result_main_dishes->num_rows > 0) {
-                        while ($row_main_dishes = $result_main_dishes->fetch_assoc()) {
+                        while ($result = $result_main_dishes->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
                             echo '<img src="../img/restaurant/main/monan2.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
-                            echo '<h4>' . $row_main_dishes["TenMon"] . '</h4>';
-                            echo '<p>' . $row_main_dishes["ThanhPhan"] . '</p>';
+                            echo '<h4>' . $result["TenMon"] . '</h4>';
+                            echo '<p>' . $result["ThanhPhan"] . '</p>';
                             echo '</div>';
                             echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $row_main_dishes["ThanhTien"] . '</b>';
+                            echo '<b style="margin-bottom: 1rem;">' . $result["ThanhTien"] . '</b>';
                             echo '</div>';
                             echo '</div>';
                         }
