@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 04, 2023 lúc 07:35 PM
+-- Thời gian đã tạo: Th10 14, 2023 lúc 09:28 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -34,6 +34,15 @@ CREATE TABLE `chitietdatmon` (
   `SoLuong` int(11) NOT NULL,
   `ThanhTien` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdatmon`
+--
+
+INSERT INTO `chitietdatmon` (`MaDatMon`, `MaPMA`, `MaMonAn`, `SoLuong`, `ThanhTien`) VALUES
+(12, 0, 7, 2, 56000),
+(13, 0, 3, 2, 60000),
+(14, 2, 7, 2, 56000);
 
 -- --------------------------------------------------------
 
@@ -92,7 +101,7 @@ INSERT INTO `chucvu` (`MaChucVu`, `TenChucVu`, `LuongTheoNgay`) VALUES
 ('21', 'Trưởng bộ phận lễ tân', 670000),
 ('210', 'Nhân viên hành lý', 200000),
 ('211', 'Nhân viên đứng cửa', 200000),
-('212', 'Nhân viên trực tổng đài', 200000),
+('212', 'Nhân viên trực tổng đài', 210000),
 ('213', 'Nhân viên lái xe', 200000),
 ('22', 'Quản lý phòng khách sạn', 1000000),
 ('23', 'Quản lý ca trực', 500000),
@@ -116,7 +125,8 @@ INSERT INTO `chucvu` (`MaChucVu`, `TenChucVu`, `LuongTheoNgay`) VALUES
 ('61', 'Kế toán trưởng', 670000),
 ('62', 'Kế toán tổng hợp', 500000),
 ('71', 'Trưởng bộ phận an ninh', 370000),
-('72', 'Nhân viên an ninh', 200000);
+('72', 'Nhân viên an ninh', 200000),
+('81', 'tí nữa xoá', 10000);
 
 -- --------------------------------------------------------
 
@@ -299,7 +309,7 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MaHoaDon`, `MaPDP`, `TongTien`, `TinhTrang`) VALUES
-(10, 10, 2700000, 'Đã đặt cọc');
+(10, 10, 2812000, 'Đã thanh toán');
 
 -- --------------------------------------------------------
 
@@ -325,7 +335,7 @@ CREATE TABLE `khachhang` (
 
 INSERT INTO `khachhang` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `DiaChi`, `GioiTinh`, `PassWord`, `AccessToken`) VALUES
 (1, 'Admin', '0123456789', 'admin@gmail.com', '343025555', 'Thanh Hoá', 1, 'admin', NULL),
-(3, 'Thùy Dung Nguyễn Thị', '0334504676', 'thuydungtstb@gmail.com', '001200507328', 'Thái Bình', 0, 'tstb2002', ''),
+(3, 'Thùy Dung Nguyễn Thị', '0334504676', 'thuydungtstb@gmail.com', '001200507328', 'Thái Bình', 1, 'tstb2002', ''),
 (4, 'Minh Tâm', '0125556789', 'tam@gmail.com', '00123456776', 'Hà Nội', 1, '456', ''),
 (5, 'Trần Anh', '0126666789', 'anh@gmail.com', '00123456776', 'Đà Nẵng', 1, '789', ''),
 (6, 'Hoàng Nam', '0127776789', 'nam@gmail.com', '00123456776', 'Hồ Chí Minh', 1, '135', ''),
@@ -454,12 +464,12 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MaNhanVien`, `HoTen`, `MaChucVu`, `NgaySinh`, `GioiTinh`, `DiaChi`, `Email`, `SoDienThoai`, `MatKhau`) VALUES
-(1, 'Bá Trường', '1', '2023-11-01', 1, 'Thanh Hoá', 'admin@gmail.com', '123456789', 'admin'),
+(1, 'Bá Trường', '31', '2023-11-01', 1, 'Thanh Hoá', 'admin@gmail.com', '123456789', 'admin'),
 (2, 'Cấn Minh Quang', '31', '2002-03-20', 1, 'Hà Nội', 'quang@gmail.com', '0973956942', '1'),
 (3, 'Minh Tâm', '13', '2000-05-15', 1, 'Hà Nội', 'tam@gmail.com', '0125556789', '456'),
 (4, 'Trần Anh', '14', '1998-03-21', 1, 'Đà Nẵng', 'anh@gmail.com', '0126666789', '789'),
 (5, 'Hoàng Nam', '21', '1999-07-10', 1, 'Hồ Chí Minh', 'nam@gmail.com', '0127776789', '135'),
-(6, 'Lan Hương', '22', '1997-09-05', 0, 'Bắc Ninh', 'huong@gmail.com', '0128886789', '246'),
+(6, 'Bùi Lan Hương', '22', '1997-09-05', 0, 'Bắc Ninh', 'huong@gmail.com', '0128886789', '246'),
 (7, 'Thanh Hà', '23', '1995-08-17', 0, 'Hải Phòng', 'ha@gmail.com', '0129996789', '579'),
 (8, 'Quốc Anh', '24', '2000-06-14', 1, 'Ninh Bình', 'quocanh@gmail.com', '0120001234', '111'),
 (9, 'Ngọc Thảo', '25', '2001-04-02', 0, 'Thái Nguyên', 'thaongoc@gmail.com', '0121112345', '222'),
@@ -520,7 +530,7 @@ CREATE TABLE `phieudatphong` (
 --
 
 INSERT INTO `phieudatphong` (`MaPDP`, `MaKhachHang`, `MaNhanVien`, `TongTien`, `ThanhToanTruoc`, `PhuongThucThanhToan`, `NgayTT`) VALUES
-(10, 74, 1, 2500000, 250000, 'Thanh toán bằng QR-Pay', '2023-10-31'),
+(10, 74, 1, 2500000, 1000, 'Thanh toán bằng QR-Pay', '2023-10-31'),
 (11, 78, 1, 3200000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
 (12, 78, 1, 11600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
 (13, 78, 1, 8600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02');
@@ -559,7 +569,7 @@ INSERT INTO `phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `ChietKhau`, `TinhTrang
 ('HST', 'Hội sách', 20, 1),
 ('LDG', 'Lễ hội giảm giá', 45, 0),
 ('LDT', 'Lễ hội du lịch', 75, 0),
-('LĐH', 'Lễ hội hè', 50, 0),
+('LĐH50', 'Lễ hội hè', 50, 0),
 ('MGN', 'Mừng sinh nhật', 10, 0),
 ('MHX', 'Mùa Hè Xanh', 5, 0),
 ('MMV', 'Mừng năm mới', 50, 0),
@@ -594,7 +604,8 @@ CREATE TABLE `phieumonan` (
 --
 
 INSERT INTO `phieumonan` (`MaPMA`, `MaHoaDon`, `TongTienMA`) VALUES
-(1, 10, 200000);
+(1, 10, 200000),
+(2, 10, 112000);
 
 -- --------------------------------------------------------
 
@@ -621,7 +632,7 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`MaPhong`, `LoaiPhong`, `KieuPhong`, `SLMax`, `LoaiGiuong`, `GiaPhong`, `IMG`, `DienTich`, `TamNhin`, `MoTa`, `TrangThai`) VALUES
-(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/junior_suite.jpg', '32m', '14:12', '0', 'Trống'),
+(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/tên ảnh', '32m', '14:12', '0', 'Đầy'),
 (102, 'Deluxe ', 'Deluxe Twin', 3, '2 giường đơn', 3200000, '../img/allroom/Deluxe_room1.jpg', '42m', 'Ra biển ', '0', 'Trống'),
 (103, 'Deluxe ', 'Deluxe Double', 3, '1 giường đôi và 1 giường đơn', 3200000, '../img/allroom/family_room.jpg', '42m', '12:10', '0', 'Trống'),
 (104, 'Deluxe ', 'Deluxe Triple', 4, '1 giường đôi và 2 giường đơn', 5800000, '../img/allroom/family_room1.jpg', '45m', '12:12', '0', 'Trống'),
@@ -642,9 +653,7 @@ INSERT INTO `phong` (`MaPhong`, `LoaiPhong`, `KieuPhong`, `SLMax`, `LoaiGiuong`,
 -- Chỉ mục cho bảng `chitietdatmon`
 --
 ALTER TABLE `chitietdatmon`
-  ADD PRIMARY KEY (`MaDatMon`),
-  ADD KEY `MaPMA` (`MaPMA`),
-  ADD KEY `MaMonAn` (`MaMonAn`);
+  ADD PRIMARY KEY (`MaDatMon`);
 
 --
 -- Chỉ mục cho bảng `chitietdatphong`
@@ -752,8 +761,7 @@ ALTER TABLE `phieugiamgia`
 -- Chỉ mục cho bảng `phieumonan`
 --
 ALTER TABLE `phieumonan`
-  ADD PRIMARY KEY (`MaPMA`),
-  ADD KEY `mlk11` (`MaHoaDon`);
+  ADD PRIMARY KEY (`MaPMA`);
 
 --
 -- Chỉ mục cho bảng `phong`
@@ -769,7 +777,7 @@ ALTER TABLE `phong`
 -- AUTO_INCREMENT cho bảng `chitietdatmon`
 --
 ALTER TABLE `chitietdatmon`
-  MODIFY `MaDatMon` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MaDatMon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdatphong`
@@ -832,16 +840,14 @@ ALTER TABLE `phieudichvu`
   MODIFY `MaPDV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT cho bảng `phieumonan`
 --
+ALTER TABLE `phieumonan`
+  MODIFY `MaPMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Các ràng buộc cho bảng `chitietdatmon`
+-- Các ràng buộc cho các bảng đã đổ
 --
-ALTER TABLE `chitietdatmon`
-  ADD CONSTRAINT `chitietdatmon_ibfk_1` FOREIGN KEY (`MaPMA`) REFERENCES `phieumonan` (`MaPMA`),
-  ADD CONSTRAINT `chitietdatmon_ibfk_2` FOREIGN KEY (`MaPMA`) REFERENCES `phieumonan` (`MaPMA`),
-  ADD CONSTRAINT `chitietdatmon_ibfk_3` FOREIGN KEY (`MaMonAn`) REFERENCES `doan` (`ID`);
 
 --
 -- Các ràng buộc cho bảng `chitietdatphong`
@@ -897,11 +903,21 @@ ALTER TABLE `phieudatphong`
 ALTER TABLE `phieudichvu`
   ADD CONSTRAINT `phieudichvu_ibfk_1` FOREIGN KEY (`MaPDP`) REFERENCES `phieudatphong` (`MaPDP`);
 
+DELIMITER $$
 --
--- Các ràng buộc cho bảng `phieumonan`
+-- Sự kiện
 --
-ALTER TABLE `phieumonan`
-  ADD CONSTRAINT `mlk11` FOREIGN KEY (`MaHoaDon`) REFERENCES `hoadon` (`MaHoaDon`);
+CREATE DEFINER=`root`@`localhost` EVENT `CapNhapTrangThaiHoaDon` ON SCHEDULE EVERY 1 SECOND STARTS '2023-10-28 22:53:33' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE hoadon AS hd
+  JOIN chitietdatphong AS ctdp
+  ON hd.MaPDP = ctdp.MaPDP
+  SET hd.TinhTrang = 
+  CASE
+    WHEN ctdp.NgayDen <= NOW() AND ctdp.NgayDi >= NOW() THEN 'Chờ thanh toán'
+    WHEN ctdp.NgayDi < NOW() THEN 'Đã thanh toán'
+  END
+  Where hd.TinhTrang IN ('Đã đặt cọc', 'Chờ thanh toán')$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

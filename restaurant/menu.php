@@ -53,43 +53,7 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Raw Scallops from Erquy</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Raw Scallops from Erquy</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Raw Scallops from Erquy</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
-                    <button class="butn"><> See all dishes</button>
+                    <button class="butn"> See all dishes</button>
                 </div>
             </div>
         </div>
