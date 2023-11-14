@@ -102,7 +102,7 @@
           <h3>Try Our Special Offers</h3>
           <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content making it look like readable English. </p>
           <img src="../img/restaurant/main/anh4.png" alt="" class="img-fluid">
-          <button> See all dishes</button>
+          <button href="./menu.php"> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>   
         </div>
         <div class="col-1"></div>
         <div class="col-7 p-4">
