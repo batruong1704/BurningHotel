@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/restaurant/menu.css?v= <?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/restaurant/menu/menu.css?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
@@ -53,7 +53,43 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <button class="butn"> See all dishes</button>
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center">
+                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+                        </div>
+                        <div class="col-8">
+                            <h4>Raw Scallops from Erquy</h4>
+                            <p>Candied Jerusalem artichokes, truffle</p>
+                        </div>
+                        <div class="col-2 d-flex align-items-end">
+                            <b style="margin-bottom: 1rem;">100k</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center">
+                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+                        </div>
+                        <div class="col-8">
+                            <h4>Raw Scallops from Erquy</h4>
+                            <p>Candied Jerusalem artichokes, truffle</p>
+                        </div>
+                        <div class="col-2 d-flex align-items-end">
+                            <b style="margin-bottom: 1rem;">100k</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center">
+                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+                        </div>
+                        <div class="col-8">
+                            <h4>Raw Scallops from Erquy</h4>
+                            <p>Candied Jerusalem artichokes, truffle</p>
+                        </div>
+                        <div class="col-2 d-flex align-items-end">
+                            <b style="margin-bottom: 1rem;">100k</b>
+                        </div>
+                    </div>
+                    <button class="butn"><> See all dishes</button>
                 </div>
             </div>
         </div>
