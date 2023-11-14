@@ -29,23 +29,19 @@
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
 
-            // Đếm tổng số dòng trong bảng
             $count_sql = "SELECT COUNT(*) as count FROM doan WHERE PhanLoai = '$category'";
             $count_result = $con->query($count_sql);
             $total_rows = $count_result->fetch_assoc()['count'];
 
-            $items_per_page = 5; // Số mục hiển thị mỗi lần
+            $items_per_page = 5; 
         
-            // Kiểm tra nếu có dữ liệu
             if ($total_rows > 0) {
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $start = ($current_page - 1) * $items_per_page;
 
-                // Thực hiện truy vấn với LIMIT để chỉ lấy một phần dữ liệu
                 $sql = "SELECT TenMon, MoTa, PhanLoai, HamLuongcalo, ThanhTien, img FROM doan WHERE PhanLoai = '$category' LIMIT $start, $items_per_page";
                 $result = $con->query($sql);
 
-                // Hiển thị dữ liệu
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="sub__content">';
                     echo '<div class="image">';
@@ -74,24 +70,22 @@
                     echo '</div>';
                 }
 
-                // Hiển thị nút "Quay lại" nếu không phải trang đầu tiên
+
+                // TODO: Lay du lieu cac page
                 if ($current_page > 1) {
                     $prev_page = $current_page - 1;
                     echo '<a href="?category=' . $category . '&page=' . $prev_page . '"><</a>';
                 }
 
-                // Hiển thị các nút số trang
                 $total_pages = ceil($total_rows / $items_per_page);
                 for ($i = 1; $i <= $total_pages; $i++) {
                     echo '<a href="?category=' . $category . '&page=' . $i . '">' . $i . '</a>';
                 }
 
-                // Hiển thị nút "Xem thêm" nếu còn dữ liệu
                 if ($result->num_rows == $items_per_page) {
                     $next_page = $current_page + 1;
                     echo '<a href="?category=' . $category . '&page=' . $next_page . '">></a>';
                 } else {
-                    // Ẩn nút "Xem thêm" nếu ở trang cuối
                     if (isset($next_page)) {
                         echo '<style> a[href="?category=' . $category . '&page=' . $next_page . '"] { display: none; } </style>';
                     }
