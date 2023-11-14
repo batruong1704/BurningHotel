@@ -96,25 +96,6 @@
                 echo    '</li>
                     </ul>
                 </nav>';
-                // TODO: Lay du lieu cac page
-                // if ($current_page > 1) {
-                //     $prev_page = $current_page - 1;
-                //     echo '<a href="?category=' . $category . '&page=' . $prev_page . '"><</a>';
-                // }
-
-                // $total_pages = ceil($total_rows / $items_per_page);
-                // for ($i = 1; $i <= $total_pages; $i++) {
-                //     echo '<a href="?category=' . $category . '&page=' . $i . '">' . $i . '</a>';
-                // }
-
-                // if ($result->num_rows == $items_per_page) {
-                //     $next_page = $current_page + 1;
-                //     echo '<a href="?category=' . $category . '&page=' . $next_page . '">></a>';
-                // } else {
-                //     if (isset($next_page)) {
-                //         echo '<style> a[href="?category=' . $category . '&page=' . $next_page . '"] { display: none; } </style>';
-                //     }
-                // }
             } else {
                 echo "0 kết quả";
             }
