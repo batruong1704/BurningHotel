@@ -60,14 +60,13 @@
                             echo '<div class="col-2 d-flex align-items-end">';
                             echo '<b style="margin-bottom: 1rem;">' . $row["ThanhTien"] . '</b>';
                             echo '</div>';
-
                         }
                     } else {
                         echo "0 kết quả";
                     }
                     ?>
                 </div>
-                <button class="butn"> See all dishes</button>
+                <button class="butn" onclick="redirectToMenuList('Món chính')">See Main Dishes</button>
             </div>
         </div>
         </div>
@@ -162,6 +161,11 @@
         </div>
     </section>
 
+    <script>
+        function redirectToMenuList(category) {
+            window.location.href = 'menu__list.php?category=' + encodeURIComponent(category);
+        }
+    </script>
     <!-- end dessert -->
     <!-- book table -->
     <?php include('booktable.php') ?>

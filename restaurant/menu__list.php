@@ -1,6 +1,6 @@
+<?php include('../config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,9 +20,8 @@
 </head> 
 
 <body>
-    <!-- header -->
     <?php include('../logged/header.php'); ?> 
-    <!-- banner -->
+
     <section id="banner">
         <div class="container-fluid p-0 text-center">
             <div class="img h-100">
@@ -38,44 +37,52 @@
     </section>
     <!-- end banner -->
 
-
-    <!-- TODO: content -->
-
     <section id="content">
-        <div class="sub__content">
-            <div class="image">
-                <img src="../img/restaurant/montrangmieng/Bánh cupcake socola.jpg" alt="hinhanhdoan" />
-            </div>
-            <div class="detail">
-                <h4>Bánh Kem Socola</h4>
-                <p class="describe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio praesentium aliquid eveniet molestiae
-                    nisi obcaecati qui aliquam eius, consectetur alias assumenda vitae modi, quis aut aperiam commodi
-                    totam. Optio, sed!</p>
-                <div class="sup__detail">
-                    <p class="topic">Danh Mục: </p>
-                    <p class="infor">Đồ ăn nhanh</p>
-                </div>
-                <div class="sup__detail">
-                    <p class="topic">Lương Kalo: </p>
-                    <p class="infor">45 kl</p>
-                </div>
-                <div class="sup__detail">
-                    <p class="topic">Giá: </p>
-                    <p class="infor">45.000 VND</p>
-                </div>
-                <div class="sup__detail">
-                    <p class="topic"></p>
-                    <p class="infor"></p>
-                </div>
-            </div>
-        </div>
+        <?php
+        // Kiểm tra nếu có tham số category trong URL
+        if (isset($_GET['category'])) {
+            $category = $_GET['category'];
 
+            // Thực hiện truy vấn CSDL dựa trên giá trị của category
+            $sql = "SELECT TenMon, MoTa, PhanLoai, HamLuongcalo, ThanhTien, img FROM doan WHERE PhanLoai = '$category'";
+            $result = $con->query($sql);
+
+            // Hiển thị dữ liệu
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="sub__content">';
+                    echo '<div class="image">';
+                    echo '<img src="../img/restaurant/menu/' . $row["img"] . '" alt="hinhanhdoan" />';
+                    echo '</div>';
+                    echo '<div class="detail">';
+                    echo '<h4>' . $row["TenMon"] . '</h4>';
+                    echo '<p class="describe">' . $row["MoTa"] . '</p>';
+                    echo '<div class="sup__detail">';
+                    echo '<p class="topic">Danh Mục: </p>';
+                    echo '<p class="infor">' . $row["PhanLoai"] . '</p>';
+                    echo '</div>';
+                    echo '<div class="sup__detail">';
+                    echo '<p class="topic">Lương Kalo: </p>';
+                    echo '<p class="infor">' . $row["HamLuongcalo"] . ' kl</p>';
+                    echo '</div>';
+                    echo '<div class="sup__detail">';
+                    echo '<p class="topic">Giá: </p>';
+                    echo '<p class="infor">' . $row["ThanhTien"] . ' VND</p>';
+                    echo '</div>';
+                    echo '<div class="sup__detail">';
+                    echo '<p class="topic"></p>';
+                    echo '<p class="infor"></p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "0 kết quả";
+            }
+        }
+    ?>
 
     </section>
-
-
-
-    <!-- content -->
 
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
