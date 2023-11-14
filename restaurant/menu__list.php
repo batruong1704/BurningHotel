@@ -83,7 +83,7 @@
     ?>
 
     </section>
-
+        
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
         
