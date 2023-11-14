@@ -15,7 +15,6 @@ if (session_status() == PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
   <title>Document</title>
   <link rel="icon" href="../public_html/favicon.ico" type="image/png">
-  </style>
 </head>
 
 <body>
