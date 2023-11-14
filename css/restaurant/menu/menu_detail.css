@@ -1,0 +1,51 @@
+#banner{
+    margin-top: 88px;
+    color: white;
+}
+#banner .img{
+    position: relative;
+    height: 450px;
+}
+#banner .img img{
+    filter: brightness(70%);
+    height: 305px;
+}
+#banner .box {
+    position: absolute;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#detail p{
+    text-align: justify;
+    font-size: 16px;
+}
+#detail .vote {
+    color: #bd945f;
+    margin-bottom: 0.5rem;
+}
+
+#buy-amount{
+    display: flex;
+    align-items: center;
+}
+
+#buy-amount button{
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    color: #E1B168;
+    border: 2px solid #E1B168;
+}
+#buy-amount button:hover{
+    background-color: #E1B168;
+    color: white;
+}
+#buy-amount input{
+    height: 40px;
+    width: 55px;
+    border: 2px solid #E1B168;
+    text-align: center;
+    margin: 0 2px;
+}
