@@ -14,6 +14,7 @@
     <!-- JavaScript Bundle with Popper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="KiemTraNgay.js"></script>
     <title>Document</title>
 </head>
 
@@ -42,44 +43,22 @@
             <?php
             if (isset($_POST['submit'])) {
                 $ngayden = $_POST['ngayden'];
-                $ngaydi = $_POST['ngaydi'];
-                $nguoi = $_POST['room'];
-                $phong = $_POST['category'];
-               $_SESSION['ngayden']=$ngayden;
-               $_SESSION['ngaydi']=$ngaydi;
+                $ngaydi =  $_POST['ngaydi'];
+                $nguoi =   $_POST['room'];
+                $phong =   $_POST['category'];
+                $_SESSION['ngayden']= $ngayden;
+                $_SESSION['ngaydi']=  $ngaydi;
             }
             ?>
           
             <div class="form">
                 <form action="" method="POST">
-                    <div class="form_item"><input type="datetime-local" name="ngayden" id="ngayden" placeholder="Check In" onchange="chonngayden()" value="<?php echo $ngayden ?>"></div>
+                    <div class="form_item">
+                        <input type="datetime-local" name="ngayden" id="ngayden" placeholder="Check In" onchange="chonngayden()" value="<?php echo $ngayden ?>" required></div>
                     <div id="thongbaongayden" style="color: red"></div>
-                    <div class="form_item"><input type="datetime-local" name="ngaydi" id="ngaydi" placeholder="Check Out" onchange="chonngaydi()" value="<?php echo $ngaydi ?>"></div>
+                    <div class="form_item">
+                        <input type="datetime-local" name="ngaydi"  id="ngaydi"  placeholder="Check Out"onchange="chonngaydi()" value="<?php echo $ngaydi ?>" required></div>
                     <div id="thongbaongaydi" style="color: red"></div>
-                    <script>
-                        function chonngaydi() {
-                            ngayhientai = new Date();
-                            ngayden = new Date(document.getElementById("ngayden").value);
-                            ngaydi = new Date(document.getElementById("ngaydi").value);
-                            if (ngaydi < ngayhientai || ngayden>ngaydi) {
-                            document.getElementById("thongbaongaydi").innerHTML = "Ngày đi không hợp lệ";
-                            } 
-                            else {
-                            document.getElementById("thongbaongaydi").innerHTML = ""; 
-                            }
-                        } 
-
-                        function chonngayden() {
-                            ngayhientai = new Date();
-                            ngayden = new Date(document.getElementById("ngayden").value);
-                            if (ngayden < ngayhientai || ngayden > ngaydi) {
-                            document.getElementById("thongbaongayden").innerHTML = "Ngày đến không hợp lệ";
-                            } 
-                            else {
-                            document.getElementById("thongbaongayden").innerHTML = ""; 
-                            }
-                        } 
-                    </script>
                     <div class="form_item">
                         <select name="room" id="room">
                         <?php
@@ -112,16 +91,15 @@
                                         $loaiphongs[] =  $row['LoaiPhong'];
                                     }
                                     foreach ($loaiphongs as $loaiphong) {
-                                        $selected = ($phong == $loaiphong || $phongas == $loaiphong) ? 'selected' : '';
+                                        $selected = ($phong == $loaiphong) ? 'selected' : '';
                                         echo "<option value='$loaiphong' $selected> $loaiphong </option>";
                                     }
                                 }
                                 else 
                                 {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value ='" . $row['LoaiPhong'] . "'>" . $row["LoaiPhong"] . "</option>";
+                                        echo "<option value ='".$row['LoaiPhong']."'>".$row["LoaiPhong"]."</option>";
                                     }
-                                    echo "<option value ='" . $row['LoaiPhong'] . "'>" . $row["LoaiPhong"] . "</option>";
                                 }
                             }
                             ?>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5627360e32feaebfacbaf6edbd3d935",
+    "content-hash": "405a84182aa60fc3b57c289ff95d3260",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -140,16 +140,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.319.0",
+            "version": "v0.322.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "9206f4d8cfacbec3c494d68f1758b2c8ca5b179d"
+                "reference": "e892db67c88eb119de0c12aa2419b48401555ded"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/9206f4d8cfacbec3c494d68f1758b2c8ca5b179d",
-                "reference": "9206f4d8cfacbec3c494d68f1758b2c8ca5b179d",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/e892db67c88eb119de0c12aa2419b48401555ded",
+                "reference": "e892db67c88eb119de0c12aa2419b48401555ded",
                 "shasum": ""
             },
             "require": {
@@ -178,22 +178,22 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.319.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.322.0"
             },
-            "time": "2023-10-08T01:02:14+00:00"
+            "time": "2023-10-29T01:10:18+00:00"
         },
         {
             "name": "google/auth",
-            "version": "v1.31.0",
+            "version": "v1.32.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "22209fddd0c06f3f8e3cb4aade0b352aa00f9888"
+                "reference": "999e9ce8b9d17914f04e1718271a0a46da4de2f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/22209fddd0c06f3f8e3cb4aade0b352aa00f9888",
-                "reference": "22209fddd0c06f3f8e3cb4aade0b352aa00f9888",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/999e9ce8b9d17914f04e1718271a0a46da4de2f3",
+                "reference": "999e9ce8b9d17914f04e1718271a0a46da4de2f3",
                 "shasum": ""
             },
             "require": {
@@ -236,9 +236,9 @@
             "support": {
                 "docs": "https://googleapis.github.io/google-auth-library-php/main/",
                 "issues": "https://github.com/googleapis/google-auth-library-php/issues",
-                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.31.0"
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.32.1"
             },
-            "time": "2023-10-05T20:39:00+00:00"
+            "time": "2023-10-17T21:13:22+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -692,16 +692,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e2392369686d420ca32df3803de28b5d6f76867d"
+                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e2392369686d420ca32df3803de28b5d6f76867d",
-                "reference": "e2392369686d420ca32df3803de28b5d6f76867d",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c915e2634718dbc8a4a15c61b0e62e7a44e14448",
+                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448",
                 "shasum": ""
             },
             "require": {
@@ -777,7 +777,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.4.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.5.0"
             },
             "funding": [
                 {
@@ -789,7 +789,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-21T08:46:11+00:00"
+            "time": "2023-10-27T15:32:31+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -909,17 +909,97 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
-            "name": "phpseclib/phpseclib",
-            "version": "3.0.23",
+            "name": "phpmailer/phpmailer",
+            "version": "v6.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "866cc78fbd82462ffd880e3f65692afe928bed50"
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "e88da8d679acc3824ff231fdc553565b802ac016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/866cc78fbd82462ffd880e3f65692afe928bed50",
-                "reference": "866cc78fbd82462ffd880e3f65692afe928bed50",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e88da8d679acc3824ff231fdc553565b802ac016",
+                "reference": "e88da8d679acc3824ff231fdc553565b802ac016",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "ext-hash": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "doctrine/annotations": "^1.2.6 || ^1.13.3",
+                "php-parallel-lint/php-console-highlighter": "^1.0.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpcompatibility/php-compatibility": "^9.3.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.7.2",
+                "yoast/phpunit-polyfills": "^1.0.4"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
+                "ext-openssl": "Needed for secure SMTP sending and DKIM signing",
+                "greew/oauth2-azure-provider": "Needed for Microsoft Azure XOAUTH2 authentication",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)",
+                "thenetworg/oauth2-azure": "Needed for Microsoft XOAUTH2 authentication"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "support": {
+                "issues": "https://github.com/PHPMailer/PHPMailer/issues",
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.8.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Synchro",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-29T08:26:30+00:00"
+        },
+        {
+            "name": "phpseclib/phpseclib",
+            "version": "3.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpseclib/phpseclib.git",
+                "reference": "33fa69b2514a61138dd48e7a49f99445711e0ad0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/33fa69b2514a61138dd48e7a49f99445711e0ad0",
+                "reference": "33fa69b2514a61138dd48e7a49f99445711e0ad0",
                 "shasum": ""
             },
             "require": {
@@ -1000,7 +1080,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.23"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.33"
             },
             "funding": [
                 {
@@ -1016,7 +1096,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-18T17:22:01+00:00"
+            "time": "2023-10-21T14:00:39+00:00"
         },
         {
             "name": "psr/cache",

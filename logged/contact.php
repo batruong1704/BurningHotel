@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -34,6 +35,7 @@
     </section>
 
     <!-- end banner -->
+    <form method="POST" >
     <div class="contactus">
         <div class="main">
             <div class="main_lienhe">
@@ -87,8 +89,72 @@
                     <input type="submit" id ="submit" value="SUBMIT NOW">
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+            <div class="main_form">
+                <p>Send Message</p>
+                <div class="infor1">
+                    <div class="infor11">
+                        <input type="text" id="ten" name="ten" placeholder="Full name">
+                    </div>
+                    <div class="infor12">
+                        <input type="email" name="email" id="email" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="infor2">
+                    <div class="infor21"><input type="text" id="number" name="number" placeholder="Phone"></div>
+                    <div class="infor22"><input type="text" id="subject" name="subject" placeholder="Subject"></div>
+                </div>
+                <div class="infor3">
+                    <textarea name="cmt" id="cmt" cols="40" rows="12" placeholder="Type your comment..."></textarea>
+                </div>
+                <input type="submit" id="submit" name="submit" value="SUBMIT NOW">
+            </div>
+        </div>
+>>>>>>> remotes/origin/csdl+lienhe
     </div>
+    </form>
+    <?php
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    require '../vendor/autoload.php';
+
+    if (isset($_POST['submit'])) {
+        $ten = $_POST['ten'];
+        $email = $_POST['email'];
+        $sdt = $_POST['number'];
+        $subject = $_POST['subject'];
+        $message = $_POST['cmt'];
+
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->CharSet  = "utf-8";
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls'; 
+        $mail->Port = 587;  
+        
+        $mail->Username = '7steam.work@gmail.com';
+        $mail->Password = 'cnrw evpy rjbm adhe';
+
+        $mail->setFrom($email,$ten);//địa chỉ email người gửi
+        $mail->addAddress('7steam.work@gmail.com', ''); //địa chỉ email người nhận
+        
+        $mail->IsHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body = 'From: ' . $email . '<br> To: 7steam.work@gmail.com <br> Họ và tên: '.$ten .'<br> SĐT: '.$sdt.'<br>Nội dung: '.$message;
+
+        if (!$mail->send()) {
+            $error = "Lỗi: " . $mail->ErrorInfo;
+            echo '<p>' . $error . '</p>';
+        } else {
+            echo '<p>Đã gửi!</p>';
+        }
+
+    }
+
+        ?>
     <!-- footer -->
     <?php include('footer.php'); ?>
 

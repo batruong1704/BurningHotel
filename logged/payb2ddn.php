@@ -67,6 +67,11 @@
     <!-- endBanner -->
     <?php
    
+   if (isset($_POST['ngayden']) && isset($_POST['ngaydi'])) {
+    $_SESSION['ngayden'] = $_POST['ngayden'];
+    $_SESSION['ngaydi'] = $_POST['ngaydi'];
+    }
+
     $maphong=$_GET['MaPhong'];
     $sql = "SELECT * From phong where  MaPhong='$maphong'";
     $result = mysqli_query($con, $sql);
@@ -95,7 +100,7 @@
                     var timeout;
 
                     function CapNhatTrangThaiPhong() {
-                        var maphong = <?php echo json_encode($maphong); ?>; // Truyền giá trị từ PHP vào JavaScript
+                        var maphong = <?php echo json_encode($maphong); ?>;
                         var xmlhttp = new XMLHttpRequest();
                         xmlhttp.open("GET", "CapNhapTrangThaiPhong.php?maphong=" + maphong, true);
                         xmlhttp.send();
@@ -385,12 +390,12 @@
   </form>
   
             <?php
-      
+            
             if(ISSET($_POST['btn'])){
                 $makhachhang=$_SESSION['makhachhang'];
                 $ngayden=date("Y-m-d", strtotime($_SESSION['ngayden']));
                 $ngaydi=date("Y-m-d", strtotime($_SESSION['ngaydi']));
-                $ngaytt=date("Y-m-d ", time());
+                $ngaytt=date("Y-m-d ");
                 $thanhtoantruoc = $_POST["thanhtoantruoc"];
                 if ($thanhtoantruoc < $phaitra * 0.1) {
                     echo "<script>";
@@ -443,7 +448,7 @@
                         $trangthai="Đã thanh toán";
                     }
                     else {
-                        if($ngayhientai<$ngayden){
+                        if($ngaytt<$ngayden){
                             $trangthai= 'Đã đặt cọc';
                         }
                         else {
