@@ -25,3 +25,12 @@
     margin-top: 1rem;
     padding: 10px;
 }
+
+.butn a{
+    text-decoration: none;
+    color: #937438;
+}
+
+.butn:hover{
+
+}

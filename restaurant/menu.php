@@ -36,8 +36,8 @@
     <section id="drink">
         <div class="container  py-5">
             <div class="row">
-                <div class="col-4">
-                    <img src="../img/restaurant/menu/anh1.png" alt="" class="img-fluid">
+                <div class="col-4 pe-0">
+                    <img src="../img/restaurant/menu/anh1.png" alt="" class="img-fluid" style="height: 100%; width: 85%">
                 </div>
                 <div class="col-8">
                     <h3>Drink</h3>
@@ -89,7 +89,7 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <button class="butn"><> See all dishes</button>
+                    <button class="butn"><a href="">See all dishes</a></button>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
     <section id="maindishes">
         <div class="container  py-5">
             <div class="row">
-                <div class="col-8">
+                <div class="col-8 pe-0">
                     <h3>Main Dishes</h3>
                     <div class="row">
                         <div class="col-2 d-flex justify-content-center">
@@ -118,10 +118,10 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <button class="butn"> See all dishes</button>
+                    <button class="butn"><a href="">See all dishes</a></button>
                 </div>
                 <div class="col-4">
-                    <img src="../img/restaurant/menu/anh3.png" alt="" class="img-fluid">
+                    <img src="../img/restaurant/menu/anh3.png" alt="" class="img-fluid" style="height: 100%; width: 85%">
                 </div>
             </div>
         </div>
@@ -136,8 +136,8 @@
     <section id="dessert">
         <div class="container  py-5">
             <div class="row">
-                <div class="col-4">
-                    <img src="../img/restaurant/menu/anh5.png" alt="" class="img-fluid">
+                <div class="col-4 pe-0">
+                    <img src="../img/restaurant/menu/anh5.png" alt="" class="img-fluid" style="height: 100%; width: 85%">
                 </div>
                 <div class="col-8">
                     <h3>Dessert</h3>
@@ -153,7 +153,7 @@
                             <b style="margin-bottom: 1rem;">100k</b>
                         </div>
                     </div>
-                    <button class="butn"> See all dishes</button>
+                    <button class="butn"><a href="">See all dishes</a></button>
                 </div>
             </div>
         </div>
