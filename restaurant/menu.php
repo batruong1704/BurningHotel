@@ -1,3 +1,4 @@
+<?php include('../config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +16,7 @@
 
 <body>
     <!-- header -->
-    <?php
-    include('../logged/header.php');
-    ?>
+    <?php include('../logged/header.php'); ?>
     <!-- end header -->
     <!-- banner -->
     <section id="banner">
@@ -25,7 +24,9 @@
             <div class="img h-100">
                 <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:63px">MENU</h3>
+                    <h3
+                        style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:63px">
+                        MENU</h3>
                 </div>
             </div>
         </div>
@@ -41,21 +42,34 @@
                 </div>
                 <div class="col-8">
                     <h3>Drink</h3>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Raw Scallops from Erquy</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
-                    <button class="butn"> See all dishes</button>
+                    <?php
+                    $sql = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món chính' LIMIT 4";
+                    $result = $con->query($sql);
+
+                    // Bắt đầu vòng lặp để hiển thị dữ liệu
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="row">';
+                            echo '<div class="col-2 d-flex justify-content-center">';
+                            echo '<img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '</div>';
+                            echo '<div class="col-8">';
+                            echo '<h4>' . $row["TenMon"] . '</h4>';
+                            echo '<p>' . $row["ThanhPhan"] . '</p>';
+                            echo '</div>';
+                            echo '<div class="col-2 d-flex align-items-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . $row["ThanhTien"] . '</b>';
+                            echo '</div>';
+
+                        }
+                    } else {
+                        echo "0 kết quả";
+                    }
+                    ?>
                 </div>
+                <button class="butn"> See all dishes</button>
             </div>
+        </div>
         </div>
     </section>
     <!-- end drink -->
@@ -66,22 +80,34 @@
 
     <!-- maindishes -->
     <section id="maindishes">
-        <div class="container  py-5">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-8">
                     <h3>Main Dishes</h3>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan2.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Grilled Salmon with Dil Sauce</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
+                    <?php
+                    $sql_main_dishes = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món chính' LIMIT 4";
+                    $result_main_dishes = $con->query($sql_main_dishes);
+
+                    // Bắt đầu vòng lặp để hiển thị dữ liệu
+                    if ($result_main_dishes->num_rows > 0) {
+                        while ($row_main_dishes = $result_main_dishes->fetch_assoc()) {
+                            echo '<div class="row">';
+                            echo '<div class="col-2 d-flex justify-content-center">';
+                            echo '<img src="../img/restaurant/main/monan2.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '</div>';
+                            echo '<div class="col-8">';
+                            echo '<h4>' . $row_main_dishes["TenMon"] . '</h4>';
+                            echo '<p>' . $row_main_dishes["ThanhPhan"] . '</p>';
+                            echo '</div>';
+                            echo '<div class="col-2 d-flex align-items-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . $row_main_dishes["ThanhTien"] . '</b>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo "0 kết quả";
+                    }
+                    ?>
                     <button class="butn"> See all dishes</button>
                 </div>
                 <div class="col-4">
@@ -90,6 +116,7 @@
             </div>
         </div>
     </section>
+
     <!-- end maindishes -->
 
     <div class="container-fluid p-0">
@@ -98,30 +125,43 @@
 
     <!-- dessert -->
     <section id="dessert">
-        <div class="container  py-5">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-4">
                     <img src="../img/restaurant/menu/anh5.png" alt="" class="img-fluid">
                 </div>
                 <div class="col-8">
                     <h3>Dessert</h3>
-                    <div class="row">
-                        <div class="col-2 d-flex justify-content-center">
-                            <img src="../img/restaurant/main/monan3.png" alt="" class="rounded-circle" style="width:70px; height:70px">
-                        </div>
-                        <div class="col-8">
-                            <h4>Apple Pie with Cream</h4>
-                            <p>Candied Jerusalem artichokes, truffle</p>
-                        </div>
-                        <div class="col-2 d-flex align-items-end">
-                            <b style="margin-bottom: 1rem;">100k</b>
-                        </div>
-                    </div>
+                    <?php
+                    $sql_dessert = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món chính' LIMIT 4";
+                    $result_dessert = $con->query($sql_dessert);
+
+                    // Bắt đầu vòng lặp để hiển thị dữ liệu
+                    if ($result_dessert->num_rows > 0) {
+                        while ($row_dessert = $result_dessert->fetch_assoc()) {
+                            echo '<div class="row">';
+                            echo '<div class="col-2 d-flex justify-content-center">';
+                            echo '<img src="../img/restaurant/main/monan3.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '</div>';
+                            echo '<div class="col-8">';
+                            echo '<h4>' . $row_dessert["TenMon"] . '</h4>';
+                            echo '<p>' . $row_dessert["ThanhPhan"] . '</p>';
+                            echo '</div>';
+                            echo '<div class="col-2 d-flex align-items-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . $row_dessert["ThanhTien"] . '</b>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo "0 kết quả";
+                    }
+                    ?>
                     <button class="butn"> See all dishes</button>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- end dessert -->
     <!-- book table -->
     <?php include('booktable.php') ?>
