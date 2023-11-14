@@ -107,7 +107,7 @@
                         echo "0 kết quả";
                     }
                     ?>
-                    <button class="butn"> See all dishes</button>
+                    <button class="butn" onclick="redirectToMenuList('Món chính')">See Main Dishes</button>
                 </div>
                 <div class="col-4">
                     <img src="../img/restaurant/menu/anh3.png" alt="" class="img-fluid">
@@ -155,7 +155,7 @@
                         echo "0 kết quả";
                     }
                     ?>
-                    <button class="butn"> See all dishes</button>
+                    <button class="butn" onclick="redirectToMenuList('Món chính')">See Main Dishes</button>
                 </div>
             </div>
         </div>
