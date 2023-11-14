@@ -98,7 +98,7 @@
                         exit;
                         }
 
-                        $sql = "SELECT * FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
+                        $sql = "SELECT * FROM khachhang WHERE SDT = '$email' OR Email='$email'";
                         $_result= mysqli_query($con,$sql);
                         if (mysqli_num_rows($_result) == 0){
                             echo '<script>

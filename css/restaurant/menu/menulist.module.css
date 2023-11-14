@@ -36,24 +36,25 @@ html {
 }
 #content .sub__content {
   border: 2px solid gray;
+  margin-bottom: 15px;
   position: relative;
   display: flex;
 }
 #content .sub__content .image img {
   filter: brightness(70%);
-  height: 500px;
-  margin-bottom: 60px;
+  height: 340px;
+  width: 500px;
 }
 #content .sub__content .detail {
   margin: 0px 20px;
 }
 #content .sub__content .detail h4 {
   font-family: "Montserrat-Bold";
-  font-size: 90px;
+  font-size: 40px;
 }
 #content .sub__content .detail .describe {
   margin-top: -15px;
-  font-size: 25px;
+  font-size: 20px;
 }
 #content .sub__content .detail .sup__detail {
   display: flex;
