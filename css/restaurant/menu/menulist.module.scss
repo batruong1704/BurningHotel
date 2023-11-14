@@ -36,12 +36,13 @@ html {
 }
 
 #content {
+    margin-top: 130px;
     padding: 0rem 10rem;
     font-family: "Montserrat";
     
     .sub__content {
         border: 2px solid gray;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         position: relative;
         display: flex;
 
