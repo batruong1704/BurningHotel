@@ -31,13 +31,13 @@
     </section>
     <!-- end banner -->
 
-    <!-- detail -->
+    <!-- food detail -->
     <section id="food-detail">
         <div class="container py-5">
             <div class="row">
-                <div class="col-6 pe-0">
-                    <div class="d-flex justify-content-center">
-                        <img src="../img/restaurant/menu/menu-detail.png" alt="" class="" style="width:80%; height:80%">
+                <div class="col-6 ">
+                    <div class="">
+                        <img src="../img/restaurant/menu/menu-detail.png" alt="" class="" style="height:80%; width:90%">
                     </div>
                 </div>
                 <div class="col-5 detail-content p-3 ps-0">
@@ -65,17 +65,17 @@
                     <p>Interactively procrastinate high-payoff content without backward compatible data uickly cultivate optimal processes and tactical via accurate e-markets.</p>
                     <div class="adjbutton d-flex">
                         <div id="buy-amount">
-                        <button class="plus-btn" onclick="minusHandleClick()">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                            </svg>
-                        </button>
-                        <input type="text" name="soluong" id="soluong" value="1">
-                        <button class="minus-btn" onclick="plusHandleClick()">                           
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </button>
+                            <button class="plus-btn" onclick="minusHandleClick()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                </svg>
+                            </button>
+                            <input type="text" name="soluong" id="soluong" value="1">
+                            <button class="minus-btn" onclick="plusHandleClick()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </button>
                         </div>
                         <button class="btnaddcart">Add to cart</button>
                     </div>
@@ -89,7 +89,108 @@
             </div>
         </div>
     </section>
-    <!-- end detail -->
+    <!-- end food detail -->
+
+    <!-- similar dish -->
+    <section id="similar-dish">
+        <div class="container py-5">
+            <div class="title">
+                <h3>Món tương tự</h3>
+                <button>Order now</button>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="card" style="width: 18  rem;">
+                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h6>pepper and sesame Burger</h6>
+                            <hr style="border-style:dashed">
+                            <div class="information">
+                                <h6>$14.00</h6>
+                                <div class="vote">
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 18  rem;">
+                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h6>pepper and sesame Burger</h6>
+                            <hr style="border-style:dashed">
+                            <div class="information">
+                                <h6>$14.00</h6>
+                                <div class="vote">
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 18  rem;">
+                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h6>pepper and sesame Burger</h6>
+                            <hr style="border-style:dashed">
+                            <div class="information">
+                                <h6>$14.00</h6>
+                                <div class="vote">
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- end similar dish -->
 
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
