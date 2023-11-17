@@ -17,15 +17,28 @@
 	transform: translate(-50%, -50%);
 }
 
-#detail p{
+#food-detail p{
     text-align: justify;
     font-size: 16px;
 }
-#detail .vote {
+#food-detail .vote {
     color: #bd945f;
     margin-bottom: 0.5rem;
 }
-
+.adjbutton{
+    margin-bottom: 16px;
+}
+.adjbutton .btnaddcart{
+    background-color: transparent;
+    color: #E1B168;
+    border: 2px solid #E1B168;
+    padding: 0 25px;
+    margin-left: 25px;
+}
+.adjbutton button:hover{
+    background-color: #E1B168;
+    color: white;
+}
 #buy-amount{
     display: flex;
     align-items: center;
@@ -48,4 +61,16 @@
     border: 2px solid #E1B168;
     text-align: center;
     margin: 0 2px;
+}
+
+#food-detail .food-information h6{
+    color: #E1B168;
+}
+#food-detail .food-information h6 span{
+    color: black;
+    font-weight: 400;
+}
+#food-detail .food-information .icon{
+    color: #E1B168;
+    margin: 0 5px;
 }
