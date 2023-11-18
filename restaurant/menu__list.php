@@ -70,20 +70,20 @@
                     echo '</div>';
                     echo '</div>';
                 }
-                echo '<nav aria-label="Page navigation example">
-                    <ul class="pagination">
+                echo'<nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
                         <li class="page-item">';
-                if ($current_page > 1) {
-                    $prev_page = $current_page - 1;
-                    echo '<a href="?category=' . $category . '&page=' . $prev_page . '" class="page-link">Previous</a>';
-                }
-                echo '</li>
+                        if ($current_page > 1) {
+                            $prev_page = $current_page - 1;
+                            echo '<a href="?category=' . $category . '&page=' . $prev_page . '" class="page-link">Previous</a>';
+                        }
+                echo    '</li>
                         <li class="page-item d-flex">';
-                $total_pages = ceil($total_rows / $items_per_page);
-                for ($i = 1; $i <= $total_pages; $i++) {
-                    echo '<a href="?category=' . $category . '&page=' . $i . '" class="page-link">' . $i . '</a>';
-                }
-                echo '</li>
+                        $total_pages = ceil($total_rows / $items_per_page);
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            echo '<a href="?category=' . $category . '&page=' . $i . '" class="page-link">' . $i . '</a>';
+                        }
+                echo    '</li>
                         
                 <li class="page-item">';
                 if ($result->num_rows == $items_per_page) {
