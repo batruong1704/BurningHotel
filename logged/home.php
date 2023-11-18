@@ -31,6 +31,7 @@ if (isset($_GET['code'])) {
     $userinfo = $result->fetch_assoc();
     $_SESSION['ten'] = $userinfo['HoTen'];
     $_SESSION['makhachhang'] = $userinfo['ID'];
+    echo "Email: " . $_SESSION['makhachang'];
     $_SESSION['email'] = $email;
     header("Location: home.php");
     exit;
@@ -333,6 +334,10 @@ if (!isset($_SESSION['email'])) {
   <!-- footer -->
   <?php include('footer.php'); ?>
 
+  <script>
+    var makh = <?php echo json_encode($_SESSION['makhachhang']); ?>;
+    localStorage.setItem("makhachhang", makh);
+</script>
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <!-- bootstrap -->
