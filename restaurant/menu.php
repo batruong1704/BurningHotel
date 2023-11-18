@@ -1,4 +1,5 @@
 <?php include('../config.php'); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/restaurant/menu/menu.css?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
+    
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
     <!-- CSS only -->
@@ -66,7 +68,8 @@
                         echo "0 kết quả";
                     }
                     ?>
-                <button class="butn" onclick="redirectToMenuList('Nước uống')">See all drink</button>
+                <!-- <button class="butn" onclick="redirectToMenuList('Nước uống')">See all drink</button> -->
+                <button class="butn"><a href="cart.php">See all drink</a></button>
 
                 </div>
                 <!-- <button class="butn" onclick="redirectToMenuList('Món chính')">See Main Dishes</button> -->

@@ -89,29 +89,7 @@
                     <input type="submit" id ="submit" value="SUBMIT NOW">
                 </div>
             </div>
-<<<<<<< HEAD
-=======
-            <div class="main_form">
-                <p>Send Message</p>
-                <div class="infor1">
-                    <div class="infor11">
-                        <input type="text" id="ten" name="ten" placeholder="Full name">
-                    </div>
-                    <div class="infor12">
-                        <input type="email" name="email" id="email" placeholder="Email Address">
-                    </div>
-                </div>
-                <div class="infor2">
-                    <div class="infor21"><input type="text" id="number" name="number" placeholder="Phone"></div>
-                    <div class="infor22"><input type="text" id="subject" name="subject" placeholder="Subject"></div>
-                </div>
-                <div class="infor3">
-                    <textarea name="cmt" id="cmt" cols="40" rows="12" placeholder="Type your comment..."></textarea>
-                </div>
-                <input type="submit" id="submit" name="submit" value="SUBMIT NOW">
-            </div>
         </div>
->>>>>>> remotes/origin/csdl+lienhe
     </div>
     </form>
     <?php

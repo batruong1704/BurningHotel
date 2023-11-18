@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include('../config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +34,8 @@
             $count_result = $con->query($count_sql);
             $total_rows = $count_result->fetch_assoc()['count'];
 
-            $items_per_page = 5; 
-        
+            $items_per_page = 5;
+
             if ($total_rows > 0) {
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $start = ($current_page - 1) * $items_per_page;
@@ -45,7 +46,7 @@
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="sub__content">';
                     echo '<div class="image">';
-                    echo '<img src="../img/restaurant/menu/' . $row["img"] . '" alt="hinhanhdoan" />';
+                    echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" />';
                     echo '</div>';
                     echo '<div class="detail">';
                     echo '<h4>' . $row["TenMon"] . '</h4>';
@@ -69,31 +70,31 @@
                     echo '</div>';
                     echo '</div>';
                 }
-                echo'<nav aria-label="Page navigation example">
+                echo '<nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">';
-                        if ($current_page > 1) {
-                            $prev_page = $current_page - 1;
-                            echo '<a href="?category=' . $category . '&page=' . $prev_page . '" class="page-link">Previous</a>';
-                        }
-                echo    '</li>
+                if ($current_page > 1) {
+                    $prev_page = $current_page - 1;
+                    echo '<a href="?category=' . $category . '&page=' . $prev_page . '" class="page-link">Previous</a>';
+                }
+                echo '</li>
                         <li class="page-item d-flex">';
-                        $total_pages = ceil($total_rows / $items_per_page);
-                        for ($i = 1; $i <= $total_pages; $i++) {
-                            echo '<a href="?category=' . $category . '&page=' . $i . '" class="page-link">' . $i . '</a>';
-                        }
-                echo    '</li>
+                $total_pages = ceil($total_rows / $items_per_page);
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    echo '<a href="?category=' . $category . '&page=' . $i . '" class="page-link">' . $i . '</a>';
+                }
+                echo '</li>
                         
                 <li class="page-item">';
-                        if ($result->num_rows == $items_per_page) {
-                            $next_page = $current_page + 1;
-                            echo '<a href="?category=' . $category . '&page=' . $next_page . '" class="page-link">Next</a>';
-                        } else {
-                            if (isset($next_page)) {
-                                echo '<style> a[href="?category=' . $category . '&page=' . $next_page . '"] { display: none; } </style>';
-                            }
-                        }
-                echo    '</li>
+                if ($result->num_rows == $items_per_page) {
+                    $next_page = $current_page + 1;
+                    echo '<a href="?category=' . $category . '&page=' . $next_page . '" class="page-link">Next</a>';
+                } else {
+                    if (isset($next_page)) {
+                        echo '<style> a[href="?category=' . $category . '&page=' . $next_page . '"] { display: none; } </style>';
+                    }
+                }
+                echo '</li>
                     </ul>
                 </nav>';
             } else {
