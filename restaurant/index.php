@@ -9,8 +9,8 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../css/restaurant/main.css?v= <?php echo time(); ?>">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/restaurant/main.css?v= <?php echo time(); ?>">
   <link rel="icon" href="../public_html/favicon.ico" type="image/png">
   <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
   <!-- CSS only -->
@@ -31,7 +31,7 @@ session_start();
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis</p>
           <div>
             <Button class="btbook">Book a Table</Button>
-            <Button class="btget">Get in touch</Button>
+            <Button class="btget"><a href="./menu.php" style="text-decoration: none;border: none;color: white;">View menu</a></Button>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@ session_start();
           <h3>Try Our Special Offers</h3>
           <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content making it look like readable English. </p>
           <img src="../img/restaurant/main/anh4.png" alt="" class="img-fluid">
-          <button href="./menu.php"> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>   
+          <button> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>   
         </div>
         <div class="col-1"></div>
         <div class="col-7 p-4">
@@ -135,7 +135,7 @@ session_start();
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
           <h3 style="width:200px">Always fresh ingredients</h3>
           <p style="width:400px">the people, food and the prime locations make Rodich the perfect place good frinds & family to come together and have great time </p>
-          <button class="p-2">View Menu</button>
+          <button class="p-2"><a href="./menu.php" style="text-decoration: none;color:#937438">View menu</a></button>
         </div>
         <div class="col-6 p-0">
           <div class="img1 d-flex justify-content-end">
@@ -153,7 +153,7 @@ session_start();
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
           <h3>We invite you to visit our restaurant</h3>
           <p style="width:400px">Every time you perfectly dine with us, it should happy for great inspired food in an environment designed with individual touches unique to the local area. </p>
-          <button class="p-2">View Menu</button>
+          <button class="p-2"><a href="./menu.php" style="text-decoration: none;color:#937438">View menu</a></button>
         </div>
       </div>
     </div>
