@@ -32,7 +32,7 @@
                 <div class="box">
                     <div class="tieude"></div>
                     <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Restaurant</p>
-                    <h3 style="font-size:36px;font-family: Montserrat-Bold;">Meet Our Professional Chefs</h3>
+                    <h3 style="font-size:36px;font-family: Montserrat-Bold;">Menu List</h3>
                     <div class="tieude"></div>
                 </div>
             </div>
@@ -59,6 +59,7 @@
                 $result = $con->query($sql);
 
                 while ($row = $result->fetch_assoc()) {
+                    $ID = $row["ID"];
                     echo '<div class="sub__content">';
                     echo '<div class="image">';
                     echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" class="h-100"/>';
@@ -83,12 +84,14 @@
                     echo '<p class="infor"></p>';
                     echo '</div>';
                     ?>
-                    <a style="text-decoration:none;color:black;" href="menu_detail?ID=<?php echo $value['ID']; ?>"><button>Xem Chi Tiết</button></a>
+                    
+                    <a style="text-decoration:none;color:black;" href="menu_detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
                     <button>Thêm giỏ hàng</button>
                     <?php
                     echo '</div>';
                     echo '</div>';
-                }
+                
+            }
                 echo'<nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">';
