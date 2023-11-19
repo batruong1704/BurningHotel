@@ -45,7 +45,7 @@
                 <div class="col-8">
                     <h3>Drink</h3>
                     <?php
-                    $sql = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Nước uống' LIMIT 4";
+                    $sql = "SELECT * FROM doan WHERE PhanLoai = 'Nước uống' LIMIT 4";
                     $result = $con->query($sql);
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
@@ -53,7 +53,7 @@
                         while ($row = $result->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
-                            echo '<img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '<img src="'. $row["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
                             echo '<h4>' . $row["TenMon"] . '</h4>';
@@ -68,8 +68,8 @@
                         echo "0 kết quả";
                     }
                     ?>
-                <!-- <button class="butn" onclick="redirectToMenuList('Nước uống')">See all drink</button> -->
-                <button class="butn"><a href="cart.php">See all drink</a></button>
+                <button class="butn" onclick="redirectToMenuList('Nước uống')">See all drink</button>
+                <!-- <button class="butn"><a href="cart.php">See all drink</a></button> -->
 
                 </div>
                 <!-- <button class="butn" onclick="redirectToMenuList('Món chính')">See Main Dishes</button> -->
@@ -90,7 +90,7 @@
                 <div class="col-8 pe-0">
                     <h3>Appetizer</h3>
                     <?php
-                    $sql_appetizer = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món khai vị' LIMIT 4";
+                    $sql_appetizer = "SELECT * FROM doan WHERE PhanLoai = 'Món khai vị' LIMIT 4";
                     $result_appetizer = $con->query($sql_appetizer);
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
@@ -98,7 +98,7 @@
                         while ($result = $result_appetizer->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
-                            echo '<img src="../img/restaurant/main/monan2.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '<img src="'. $result["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
                             echo '<h4>' . $result["TenMon"] . '</h4>';
@@ -137,7 +137,7 @@
                 <div class="col-8">
                     <h3>Main dishes</h3>
                     <?php
-                    $sql_maindishes = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món chính' LIMIT 4";
+                    $sql_maindishes = "SELECT * FROM doan WHERE PhanLoai = 'Món chính' LIMIT 4";
                     $result_maindishes = $con->query($sql_maindishes);
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
@@ -145,7 +145,7 @@
                         while ($row_maindishes = $result_maindishes->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
-                            echo '<img src="../img/restaurant/main/monan3.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '<img src="'. $row_maindishes["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
                             echo '<h4>' . $row_maindishes["TenMon"] . '</h4>';
@@ -178,7 +178,7 @@
                 <div class="col-8 pe-0">
                     <h3>Dessert</h3>
                     <?php
-                    $sql_dessert = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Món tráng miệng' LIMIT 4";
+                    $sql_dessert = "SELECT * FROM doan WHERE PhanLoai = 'Món tráng miệng' LIMIT 4";
                     $result_dessert = $con->query($sql_dessert);
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
@@ -186,7 +186,7 @@
                         while ($result = $result_dessert->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
-                            echo '<img src="../img/restaurant/main/monan2.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '<img src="'. $result["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
                             echo '<h4>' . $result["TenMon"] . '</h4>';
@@ -226,7 +226,7 @@
                 <div class="col-8">
                     <h3>Fast Food</h3>
                     <?php
-                    $sql_fastfood = "SELECT TenMon, ThanhPhan, ThanhTien FROM doan WHERE PhanLoai = 'Đồ ăn nhanh' LIMIT 4";
+                    $sql_fastfood = "SELECT * FROM doan WHERE PhanLoai = 'Đồ ăn nhanh' LIMIT 4";
                     $result_fastfood = $con->query($sql_fastfood);
 
                     // Bắt đầu vòng lặp để hiển thị dữ liệu
@@ -234,7 +234,7 @@
                         while ($row_fastfood = $result_fastfood->fetch_assoc()) {
                             echo '<div class="row">';
                             echo '<div class="col-2 d-flex justify-content-center">';
-                            echo '<img src="../img/restaurant/main/monan3.png" alt="" class="rounded-circle" style="width:70px; height:70px">';
+                            echo '<img src="'. $row_fastfood["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">';
                             echo '</div>';
                             echo '<div class="col-8">';
                             echo '<h4>' . $row_fastfood["TenMon"] . '</h4>';
