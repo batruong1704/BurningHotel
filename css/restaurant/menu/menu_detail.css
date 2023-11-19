@@ -82,17 +82,18 @@ hcon .shopping span {
     position: fixed;
     top:0;
     left: 100%;
-    width: 500px;
+    width: 30%;
     background-color: #453E3B;
-    height: 90%;
+    height: 87%;
     transition: 0.5s;
+    z-index: 3;
 }
 .active .supercard{
-    left: calc(100% - 500px);
-    margin-top: 80px;
+    left: calc(100% - 30%);
+    margin-top: 88px;
 }
 .active .container{
-   transform: translateX(-200px);
+   transform: translateX(-120px);
 }
 .supercard h1{
     color: #E8BC0E;
@@ -105,7 +106,7 @@ hcon .shopping span {
 }
 .supercard .checkOut{
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -140,8 +141,15 @@ hcon .shopping span {
     width: 90%;
 }
 .listCard li button{
-    background-color: #fff5;
-    border: none;
+    background-color: transparent;
+    color: #E1B168;
+    border: 2px solid #E1B168;
+    height: 30px;
+    width: 30px;
+}
+.listCard li button:hover{
+    background-color: #E1B168;
+    color: white;
 }
 .listCard .count{
     margin: 0 10px;
@@ -203,6 +211,21 @@ hcon .shopping span {
 #food-detail .food-information .icon{
     color: #E1B168;
     margin: 0 5px;
+}
+
+#ingredients h6{
+    margin-bottom: 0;
+    padding-left: 5px;
+}
+
+#ingredients .icon{
+    color: #E1B168;
+    font-size: 18px;
+}
+
+#ingredients .card-body p{
+    color: silver;
+    font-size: 15px;
 }
 
 #similar-dish h6{

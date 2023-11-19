@@ -31,9 +31,19 @@ function initApp() {
                     <div>${value.tenmon}</div>
                     <div>${value.gia.toLocaleString()}</div>
                     <div>
-                        <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">-</button>
+                            <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                            </svg>
+                    </button>
                         <div class="count">${value.soluong}</div>
-                        <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">+</button>
+                        <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                    </button>
                     </div>`;
                 listCard.appendChild(newLi);
                 let newDiv = document.createElement('div');
