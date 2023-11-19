@@ -1,12 +1,14 @@
 <?php
-// get_customer_cart.php
-require_once('../../config.php');
+require_once('../config.php');
 
 if (isset($_GET['customer_id'])) {
     $customerId = $_GET['customer_id'];
 
     // Thực hiện truy vấn để lấy thông tin giỏ hàng của khách hàng từ cơ sở dữ liệu
-    $sql = "SELECT * FROM giohang WHERE makhachhang = $customerId";
+    $sql = "SELECT giohang.id id, doan.id mamonan, doan.img, giohang.soluong soluong, giohang.gia gia, doan.tenmon tenmon
+    FROM giohang 
+    INNER JOIN doan ON giohang.mamonan = doan.id
+    WHERE giohang.makhachhang =  $customerId";
     $result = $con->query($sql);
 
     $cartItems = [];
@@ -19,6 +21,7 @@ if (isset($_GET['customer_id'])) {
                 'img' => $row['img'],
                 'soluong' => $row['soluong'],
                 'gia' => $row['gia'],
+                'tenmon' => $row['tenmon']
             ];
         }
     }

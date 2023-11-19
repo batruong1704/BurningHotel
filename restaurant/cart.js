@@ -16,19 +16,34 @@ closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
 
+// cart.js
+
 function initApp() {
     fetch('get-cart.php?customer_id=' + customerId)
         .then(response => response.json())
         .then(data => {
+            listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
+
             data.forEach((value, key) => {
+                let newLi = document.createElement('li');
+                newLi.innerHTML = `
+                    <div><img src="${value.img}"/></div>
+                    <div>${value.tenmon}</div>
+                    <div>${value.gia.toLocaleString()}</div>
+                    <div>
+                        <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">-</button>
+                        <div class="count">${value.soluong}</div>
+                        <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">+</button>
+                    </div>`;
+                listCard.appendChild(newLi);
                 let newDiv = document.createElement('div');
                 newDiv.classList.add('item');
                 newDiv.innerHTML = `
-                    <img src="image/${value.img}">
-                    <div class="title">${value.mamonan}</div>
+                    <img src="${value.img}">
+                    <div class="title">${value.tenmon}</div>
                     <div class="price">${value.gia.toLocaleString()}</div>
                     <button onclick="addToCard(${key})">Add To Card</button>`;
-                list.appendChild(newDiv);
+                list.appendChild(newDiv);       
             });
         })
         .catch(error => {
@@ -41,15 +56,20 @@ initApp();
 let listCards = [];
 
 function addToCard(key) {
-    // Thực hiện thêm món ăn vào giỏ hàng và lưu vào cơ sở dữ liệu
-    fetch('add_to_cart.php', {
+    // Đảm bảo customerId đã được đặt giá trị
+    if (!customerId) {
+        console.error('Customer ID is not set.');
+        return;
+    }
+
+    fetch('cart__add.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             customerId: customerId,
-            productId: key + 1, // Sửa lại nếu mã món ăn không phải là key + 1
+            productId: key + 1,
         }),
     })
         .then(response => response.json())
@@ -69,7 +89,7 @@ function reloadCard() {
     fetch(`get-cart.php?customer_id=${customerId}`)
         .then(response => response.json())
         .then(data => {
-            listCard.innerHTML = '';
+            listCard.innerHTML = ''; // Xóa nội dung cũ trong listCard
             let count = 0;
             let totalPrice = 0;
 
@@ -78,17 +98,21 @@ function reloadCard() {
                 count = count + value.soluong;
 
                 if (value != null) {
+                    // Tạo một phần tử mới cho mỗi sản phẩm và thêm vào listCard
                     let newDiv = document.createElement('li');
                     newDiv.innerHTML = `
-                        <div><img src="image/${value.img}"/></div>
-                        <div>${value.mamonan}</div>
+                        <div><img src="${value.img}"/></div>
+                        <div>${value.tenmon}</div>
                         <div>${value.gia.toLocaleString()}</div>
                         <div>
                             <button onclick="changeQuantity(${key}, ${value.soluong - 1})">-</button>
-                            <div class="count">${value.soluong}</div>
+                            <div class="count" id="count-${key}">${value.soluong}</div>
                             <button onclick="changeQuantity(${key}, ${value.soluong + 1})">+</button>
                         </div>`;
                     listCard.appendChild(newDiv);
+
+                    // Cập nhật số lượng trực tiếp trong listCard
+                    document.getElementById(`count-${key}`).innerText = value.soluong;
                 }
             });
 

@@ -24,6 +24,21 @@
 
 <body>
     <?php include('../logged/header.php'); ?>
+     <!-- TODO: banner -->
+     <section id="banner">
+        <div class="container-fluid p-0 text-center">
+            <div class="img h-100">
+                <img src="../img/service/banner_service_1.jpg" alt="" class="w-100">
+                <div class="box">
+                    <div class="tieude"></div>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Restaurant</p>
+                    <h3 style="font-size:36px;font-family: Montserrat-Bold;">Meet Our Professional Chefs</h3>
+                    <div class="tieude"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end banner -->
 
     <section id="content">
         <?php
@@ -49,7 +64,7 @@
                     echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" />';
                     echo '</div>';
                     echo '<div class="detail">';
-                    echo '<h4>' . $row["TenMon"] . '</h4>';
+                    echo '<h4>' . $row["TenMon"] . '<a><img src="../img/restaurant/icon/add.svg" alt="button add"></a></h4>';
                     echo '<p class="describe">' . $row["MoTa"] . '</p>';
                     echo '<div class="sup__detail">';
                     echo '<p class="topic">Danh Mục: </p>';
@@ -102,6 +117,7 @@
             }
         }
         ?>
+        
 
     </section>
 

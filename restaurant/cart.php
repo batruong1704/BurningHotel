@@ -47,7 +47,7 @@ $so_luong_mon = $row['total'];
         <ul class="listCard">
         </ul>
         <div class="checkOut">
-            <div class="total">0</div>
+            <div class="total"><?php echo $so_luong_mon ?></div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
