@@ -1,24 +1,24 @@
 <?php
 session_start();
 include("../config.php");
-$ID=$_GET['ID'];
-        $sql = "SELECT * From doan where  ID='$ID'";
-        $result = mysqli_query($con, $sql);
-        if(mysqli_num_rows($result)>0){
-            while($row=mysqli_fetch_assoc($result)){
-                $ID=$row["ID"];
-                $TenMon=$row["TenMon"];
-                $PhanLoai=$row["PhanLoai"];
-                $ThoiGianNau=$row["ThoiGianNau"];
-                $DoKho=$row["DoKho"];
-                $ThanhPhan=$row["ThanhPhan"];
-                $HamLuongcalo=$row["HamLuongcalo"];
-                $ThanhTien=$row["ThanhTien"];
-                $MoTa=$row["MoTa"];
-                $SoLuongDaBan=$row["SoLuongDaBan"];
-                $img=$row['img'];
-            }
-        }
+$ID = $_GET['ID'];
+$sql = "SELECT * From doan where  ID='$ID'";
+$result = mysqli_query($con, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $ID = $row["ID"];
+        $TenMon = $row["TenMon"];
+        $PhanLoai = $row["PhanLoai"];
+        $ThoiGianNau = $row["ThoiGianNau"];
+        $DoKho = $row["DoKho"];
+        $ThanhPhan = $row["ThanhPhan"];
+        $HamLuongcalo = $row["HamLuongcalo"];
+        $ThanhTien = $row["ThanhTien"];
+        $MoTa = $row["MoTa"];
+        $SoLuongDaBan = $row["SoLuongDaBan"];
+        $img = $row['img'];
+    }
+}
 $result = mysqli_query($con, "SELECT COUNT(*) as total FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
 $so_luong_mon = $row['total'];
@@ -55,7 +55,7 @@ $so_luong_mon = $row['total'];
         </div>
     </section>
     <!-- end banner -->
-    
+
     <!-- food detail -->
     <section id="food-detail">
         <hcon>
@@ -68,14 +68,14 @@ $so_luong_mon = $row['total'];
         </hcon>
         <div class="container py-5">
             <div class="row">
-            
+
                 <div class="col-6 ">
                     <div class="">
-                        <img src="<?php echo $img?>" alt="" class="" style="height:80%; width:90%">
+                        <img src="<?php echo $img ?>" alt="" class="" style="height:80%; width:90%">
                     </div>
                 </div>
                 <div class="col-5 detail-content p-3 ps-0">
-                    <h3><?php echo $TenMon?></h3>
+                    <h3><?php echo $TenMon ?></h3>
                     <div class="vote">
                         <span>
                             <i class="fa fa-star"></i>
@@ -121,7 +121,7 @@ $so_luong_mon = $row['total'];
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </section>
     <!-- end food detail -->
@@ -152,21 +152,30 @@ $so_luong_mon = $row['total'];
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-8 p-0  d-flex align-items-center">
-                                    <i class="icon far fa-clock"></i><h6>Cooking time:</h6>
+                                    <i class="icon far fa-clock"></i>
+                                    <h6>Cooking time:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $ThoiGianNau ?> phút</p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end">
+                                    <p class="mb-0"><?php echo $ThoiGianNau ?> phút</p>
+                                </div>
                             </div>
                             <div class="row py-3">
                                 <div class="col-8 p-0  d-flex align-items-center">
-                                    <i class="icon far fa-clock"></i><h6>Difficulty:</h6>
+                                    <i class="icon far fa-clock"></i>
+                                    <h6>Difficulty:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $DoKho ?></p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end">
+                                    <p class="mb-0"><?php echo $DoKho ?></p>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-8 p-0  d-flex align-items-center">
-                                    <i class="icon far fa-clock"></i><h6>Servings:</h6>
+                                    <i class="icon far fa-clock"></i>
+                                    <h6>Servings:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $HamLuongcalo ?> calories</p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end">
+                                    <p class="mb-0"><?php echo $HamLuongcalo ?> calories</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,6 +186,28 @@ $so_luong_mon = $row['total'];
     <!-- end ingredients -->
 
     <!-- similar dish -->
+    <?php
+    $mang_chuoi = explode(' ', $TenMon);
+    $conditions = [];
+
+    foreach ($mang_chuoi as $tu) {
+        $conditions[] = "TenMon LIKE '%" . mysqli_real_escape_string($con, $tu) . "%'";
+    }
+
+    $sql = "SELECT * FROM doan WHERE (" . implode(' OR ', $conditions) . ") AND PhanLoai = '" . $PhanLoai . "'";
+
+
+    $result = mysqli_query($con, $sql);
+    $IDs = array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            $IDs[] = array(
+                'TenMon' => $row['TenMon'], "PhanLoai" => $row['PhanLoai'], "ThoiGianNau" => $row['ThoiGianNau'], "DoKho" => $row['DoKho'], "ThanhPhan" => $row['ThanhPhan'], "HamLuongcalo" => $row['HamLuongcalo'], "ThanhTien" => $row['ThanhTien'], "MoTa" => $row['MoTa'], "SoLuongDaBan" => $row['SoLuongDaBan'], "img" => $row['img'],
+                'ID' => $row['ID']
+            );
+        }
+    }
+    ?>
     <section id="similar-dish">
         <div class="container py-5">
             <div class="title">
@@ -184,93 +215,40 @@ $so_luong_mon = $row['total'];
                 <button>Order now</button>
             </div>
             <div class="row">
-                <div class="col-4">
-                    <div class="card" style="width: 18  rem;">
-                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>pepper and sesame Burger</h6>
-                            <hr style="border-style:dashed">
-                            <div class="information">
-                                <h6>$14.00</h6>
-                                <div class="vote">
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
+                <?php foreach ($IDs as $key => $value) { ?>
+
+                    <div class="col-4">
+
+                        <div class="card" style="width: 18  rem;">
+                            <img src="<?php echo $value['img'] ?>" class="card-img-top h-100 w-100" alt="...">
+                            <div class="card-body">
+                                <h6><?php echo $value['TenMon'] ?></h6>
+                                <hr style="border-style:dashed">
+                                <div class="information">
+                                    <h6><?php echo $value['ThanhTien'] ?></h6>
+                                    <div class="vote">
+                                        <span>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    </div>
+                                    <p><?php echo $value["PhanLoai"] ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-4">
-                    <div class="card" style="width: 18  rem;">
-                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>pepper and sesame Burger</h6>
-                            <hr style="border-style:dashed">
-                            <div class="information">
-                                <h6>$14.00</h6>
-                                <div class="vote">
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card" style="width: 18  rem;">
-                        <img src="../img/restaurant/menu/similar-dish-1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>pepper and sesame Burger</h6>
-                            <hr style="border-style:dashed">
-                            <div class="information">
-                                <h6>$14.00</h6>
-                                <div class="vote">
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
 
@@ -284,7 +262,7 @@ $so_luong_mon = $row['total'];
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
     <script src="../js/tanggiamsoluong.js"></script>
     <script src="cart.js"></script>
-    
+
 </body>
 
 </html>

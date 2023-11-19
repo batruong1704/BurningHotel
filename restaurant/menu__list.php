@@ -60,29 +60,29 @@
 
                 while ($row = $result->fetch_assoc()) {
                     $ID = $row["ID"];
-                    echo '<div class="sub__content">';
-                    echo '<div class="image">';
-                    echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" class="h-100"/>';
-                    echo '</div>';
-                    echo '<div class="detail">';
-                    echo '<h4>' . $row["TenMon"] . '</h4>';
-                    echo '<p class="describe">' . $row["MoTa"] . '</p>';
-                    echo '<div class="sup__detail">';
-                    echo '<p class="topic">Danh Mục: </p>';
-                    echo '<p class="infor">' . $row["PhanLoai"] . '</p>';
-                    echo '</div>';
-                    echo '<div class="sup__detail">';
-                    echo '<p class="topic">Hàm Lượng: </p>';
-                    echo '<p class="infor">' . $row["HamLuongcalo"] . ' Kalo</p>';
-                    echo '</div>';
-                    echo '<div class="sup__detail">';
-                    echo '<p class="topic">Giá: </p>';
-                    echo '<p class="infor">' . $row["ThanhTien"] . ' VND</p>';
-                    echo '</div>';
-                    echo '<div class="sup__detail">';
-                    echo '<p class="topic"></p>';
-                    echo '<p class="infor"></p>';
-                    echo '</div>';
+                    echo '<div class="sub__content">
+                    <div class="image">
+                    <img src="' . $row["img"] . '" alt="hinhanhdoan" class="h-100"/>
+                    </div>
+                    <div class="detail">
+                    <h4>' . $row["TenMon"] . '</h4>
+                    <p class="describe">' . $row["MoTa"] . '</p>
+                    <div class="sup__detail">
+                    <p class="topic">Danh Mục: </p>
+                    <p class="infor">' . $row["PhanLoai"] . '</p>
+                    </div>
+                    <div class="sup__detail">
+                    <p class="topic">Hàm Lượng: </p>
+                    <p class="infor">' . $row["HamLuongcalo"] . ' Calories</p>
+                    </div>
+                    <div class="sup__detail">
+                    <p class="topic">Giá: </p>
+                    <p class="infor">' . $row["ThanhTien"] . ' VNĐ</p>
+                    </div>
+                    <div class="sup__detail">
+                    <p class="topic"></p>
+                    <p class="infor"></p>
+                    </div>';
                     ?>
                     
                     <a style="text-decoration:none;color:black;" href="menu_detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
