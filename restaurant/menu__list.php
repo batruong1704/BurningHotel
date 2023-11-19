@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include('../config.php'); ?>
+<?php include('../config.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,13 +55,13 @@
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $start = ($current_page - 1) * $items_per_page;
 
-                $sql = "SELECT TenMon, MoTa, PhanLoai, HamLuongcalo, ThanhTien, img FROM doan WHERE PhanLoai = '$category' LIMIT $start, $items_per_page";
+                $sql = "SELECT * FROM doan WHERE PhanLoai = '$category' LIMIT $start, $items_per_page";
                 $result = $con->query($sql);
 
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="sub__content">';
                     echo '<div class="image">';
-                    echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" />';
+                    echo '<img src="' . $row["img"] . '" alt="hinhanhdoan" class="h-100"/>';
                     echo '</div>';
                     echo '<div class="detail">';
                     echo '<h4>' . $row["TenMon"] . '</h4>';
@@ -82,8 +82,10 @@
                     echo '<p class="topic"></p>';
                     echo '<p class="infor"></p>';
                     echo '</div>';
-                    echo '<button>Xem chi tiết</button>';
-                    echo '<button>Thêm giỏ hàng</button>';
+                    ?>
+                    <a style="text-decoration:none;color:black;" href="menu_detail?ID=<?php echo $value['ID']; ?>"><button>Xem Chi Tiết</button></a>
+                    <button>Thêm giỏ hàng</button>
+                    <?php
                     echo '</div>';
                     echo '</div>';
                 }

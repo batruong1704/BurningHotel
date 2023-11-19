@@ -1,7 +1,24 @@
 <?php
 session_start();
 include("../config.php");
-
+$ID=$_GET['ID'];
+        $sql = "SELECT * From doan where  ID='$ID'";
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $ID=$row["ID"];
+                $TenMon=$row["TenMon"];
+                $PhanLoai=$row["PhanLoai"];
+                $ThoiGianNau=$row["ThoiGianNau"];
+                $DoKho=$row["DoKho"];
+                $ThanhPhan=$row["ThanhPhan"];
+                $HamLuongcalo=$row["HamLuongcalo"];
+                $ThanhTien=$row["ThanhTien"];
+                $MoTa=$row["MoTa"];
+                $SoLuongDaBan=$row["SoLuongDaBan"];
+                $img=$row['img'];
+            }
+        }
 $result = mysqli_query($con, "SELECT COUNT(*) as total FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
 $so_luong_mon = $row['total'];
@@ -38,7 +55,7 @@ $so_luong_mon = $row['total'];
         </div>
     </section>
     <!-- end banner -->
-
+    
     <!-- food detail -->
     <section id="food-detail">
         <hcon>
@@ -51,13 +68,14 @@ $so_luong_mon = $row['total'];
         </hcon>
         <div class="container py-5">
             <div class="row">
+            
                 <div class="col-6 ">
                     <div class="">
-                        <img src="../img/restaurant/menu/menu-detail.png" alt="" class="" style="height:80%; width:90%">
+                        <img src="<?php echo $img?>" alt="" class="" style="height:80%; width:90%">
                     </div>
                 </div>
                 <div class="col-5 detail-content p-3 ps-0">
-                    <h3>Chicken Burger</h3>
+                    <h3><?php echo $TenMon?></h3>
                     <div class="vote">
                         <span>
                             <i class="fa fa-star"></i>
@@ -76,10 +94,9 @@ $so_luong_mon = $row['total'];
                         </span>
                         <span style="color:silver">(0 custom review)</span>
                     </div>
-                    <h6>$14.00</h6>
+                    <h6><?php echo $ThanhTien ?> VNĐ</h6>
                     <hr style="border-style:dashed">
-                    <p>Interactively procrastinate high-payoff content without backward compatible data uickly cultivate
-                        optimal processes and tactical via accurate e-markets.</p>
+                    <p><?php echo $MoTa ?></p>
                     <div class="adjbutton d-flex">
                         <div id="buy-amount">
                             <button class="plus-btn" onclick="minusHandleClick()">
@@ -97,13 +114,14 @@ $so_luong_mon = $row['total'];
                         <button class="btnaddcart">Add to cart</button>
                     </div>
                     <div class="food-information">
-                        <h6>#no: <span>0010</span></h6>
-                        <h6>CATEGORY: <span>Food</span></h6>
+                        <h6>#no: <span><?php echo $ID ?></span></h6>
+                        <h6>CATEGORY: <span><?php echo $PhanLoai ?></span></h6>
                         <h6>TAGS: <span>Recipes, Sweet, Tasty</span></h6>
                         <h6>SHARE: <span class="icon fab fa-instagram"></span><span class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span class="icon fab fa-pinterest"></span> </h6>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
     <!-- end food detail -->
@@ -136,19 +154,19 @@ $so_luong_mon = $row['total'];
                                 <div class="col-8 p-0  d-flex align-items-center">
                                     <i class="icon far fa-clock"></i><h6>Cooking time:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0">25 min</p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $ThoiGianNau ?> phút</p></div>
                             </div>
                             <div class="row py-3">
                                 <div class="col-8 p-0  d-flex align-items-center">
                                     <i class="icon far fa-clock"></i><h6>Difficulty:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0">Medium</p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $DoKho ?></p></div>
                             </div>
                             <div class="row">
                                 <div class="col-8 p-0  d-flex align-items-center">
                                     <i class="icon far fa-clock"></i><h6>Servings:</h6>
                                 </div>
-                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0">0s</p></div>
+                                <div class="col-4 p-0 d-flex justify-content-end"><p class="mb-0"><?php echo $HamLuongcalo ?> calories</p></div>
                             </div>
                         </div>
                     </div>
