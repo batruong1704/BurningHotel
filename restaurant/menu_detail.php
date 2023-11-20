@@ -148,7 +148,7 @@ $so_luong_mon = $row['soluongmon'];
 
     <!-- cart -->
     <div class="supercard">
-        <h1>Card</h1>
+        <h1><a href="cart.php">Card</a></h1>
         <ul class="listCard ps-0">
         </ul>
         <div class="checkOut">
@@ -158,6 +158,7 @@ $so_luong_mon = $row['soluongmon'];
             <div class="closeShopping">Close</div>
         </div>
     </div>
+
     <!-- end cart -->
 
     <!-- ingredients -->

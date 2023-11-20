@@ -95,7 +95,7 @@ hcon .shopping span {
 .active .container{
    transform: translateX(-120px);
 }
-.supercard h1{
+.supercard h1 a{
     color: #E8BC0E;
     font-weight: 100;
     margin: 0;
@@ -103,6 +103,7 @@ hcon .shopping span {
     height: 80px;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 .supercard .checkOut{
     position: absolute;

@@ -46,7 +46,6 @@ function initApp() {
                     </button>
                     </div>`;
                 listCard.appendChild(newLi);  
-                
             });
         })
         .catch(error => {
@@ -104,14 +103,14 @@ function reloadCard() {
                 <div>${value.tenmon}</div>
                 <div>${value.gia.toLocaleString()}</div>
                 <div>
-                    <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">
+                    <button onclick="changeQuantity(${value.id}, ${parseInt(value.soluong) - 1})">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                         </svg>
                     </button>
                     <div class="count">${value.soluong}</div>
-                    <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">
+                    <button onclick="changeQuantity(${value.id}, ${parseInt(value.soluong) + 1})">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -125,28 +124,68 @@ function reloadCard() {
         });
 
         document.querySelector('.total').innerText = total.toLocaleString();
-        document.querySelector('.quantity').innerText = count;
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
 
-function changeQuantity(key, quantity) {
-    fetch('cart_update_quantity.php', {
+function changeQuantity(key, newQuantity) {
+    if (typeof newQuantity === 'number') {
+        if (newQuantity === 0) {
+            if (confirm("Bạn muốn xoá món này khỏi giỏ hàng?")) {
+                removeCartItem(key);
+            }
+        } else {
+            updateCartItemQuantity(key, newQuantity);
+        }
+    }
+}
+
+
+function removeCartItem(key) {
+    fetch('cart__remote.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            cartItemId: key + 1,
-            newQuantity: quantity,
+            cartItemId: key,
         }),
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            reloadCard(); 
+            reloadCard();
+            console.log('ID: ', key);
+
+        } else {
+            console.error('Error:', data.message, 'ID: ', key);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function updateCartItemQuantity(key, newQuantity) {
+    console.log('Updating quantity for item with ID:', key);
+    fetch('cart__update.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            cartItemId: key,
+            newQuantity: newQuantity,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Update response:', data);
+        if (data.success) {
+            reloadCard();
         } else {
             console.error('Error:', data.message);
         }

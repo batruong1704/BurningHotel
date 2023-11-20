@@ -8,6 +8,7 @@ $so_luong_mon = $row['total'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +19,7 @@ $so_luong_mon = $row['total'];
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet/less" type="text/css"
-        href="../css/restaurant/cart.module.scss?v=<?php echo time(); ?>">
+    <link rel="stylesheet/less" type="text/css" href="../css/restaurant/cart.module.scss?v=<?php echo time(); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="../css/restaurant/cart.css"> -->
@@ -34,7 +34,9 @@ $so_luong_mon = $row['total'];
             <h1>Your Shopping Cart</h1>
             <div class="shopping">
                 <img src="../img/restaurant/icon/shopping-car.svg" alt="cart">
-                <span class="quantity"><?php echo $so_luong_mon ?></span>
+                <span class="quantity">
+                    <?php echo $so_luong_mon ?>
+                </span>
             </div>
         </header>
 
@@ -47,7 +49,9 @@ $so_luong_mon = $row['total'];
         <ul class="listCard">
         </ul>
         <div class="checkOut">
-            <div class="total"><?php echo $so_luong_mon ?></div>
+            <div class="total">
+                <?php echo $so_luong_mon ?>
+            </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
@@ -59,7 +63,142 @@ $so_luong_mon = $row['total'];
     <!-- slick -->
     <script src="../common/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/scrip.js"></script>
-    <script src="cart.js"></script>
+    <script>
+        let openShopping = document.querySelector('.shopping');
+        let closeShopping = document.querySelector('.closeShopping');
+        let list = document.querySelector('.list');
+        let listCard = document.querySelector('.listCard');
+        let body = document.querySelector('body');
+        let total = document.querySelector('.total');
+        let quantity = document.querySelector('.quantity');
+
+        let customerId = localStorage.getItem("makhachhang");
+
+        openShopping.addEventListener('click', () => {
+            body.classList.add('active');
+        });
+
+        closeShopping.addEventListener('click', () => {
+            body.classList.remove('active');
+        });
+
+        // cart.js
+
+        function initApp() {
+            fetch('cart__get.php?customer_id=' + customerId)
+                .then(response => response.json())
+                .then(data => {
+                    listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
+
+                    data.forEach((value, key) => {
+                        let newLi = document.createElement('li');
+                        newLi.innerHTML = `
+                    <div><img src="${value.img}"/></div>
+                    <div>${value.tenmon}</div>
+                    <div>${value.gia.toLocaleString()}</div>
+                    <div>
+                            <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                            </svg>
+                    </button>
+                        <div class="count">${value.soluong}</div>
+                        <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                    </button>
+                    </div>`;
+                        listCard.appendChild(newLi);
+                        let newDiv = document.createElement('div');
+                newDiv.classList.add('item');
+                newDiv.innerHTML = `
+                    <img src="${value.img}">
+                    <div class="title">${value.tenmon}</div>
+                    <div class="price">${value.gia.toLocaleString()}</div>
+                    <button onclick="delete(${key})">Bỏ</button>`;
+                list.appendChild(newDiv);
+
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        initApp()
+        function reloadCard() {
+            fetch(`cart__get.php?customer_id=${localStorage.getItem('makhachhang')}`)
+                .then(response => response.json())
+                .then(data => {
+                    let listCard = document.querySelector('.listCard');
+                    listCard.innerHTML = '';
+
+                    let total = 0;
+                    let count = 0;
+
+                    data.forEach((value, key) => {
+                        let newLi = document.createElement('li');
+                        newLi.innerHTML = `
+                <div><img src="${value.img}"/></div>
+                <div>${value.tenmon}</div>
+                <div>${value.gia.toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
+                    </button>
+                    <div class="count">${value.soluong}</div>
+                    <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>`;
+                        listCard.appendChild(newLi);
+
+                        total += value.gia * value.soluong;
+                        count += value.soluong;
+                    });
+
+                    document.querySelector('.total').innerText = total.toLocaleString();
+                    document.querySelector('.quantity').innerText = count;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function changeQuantity(key, quantity) {
+            fetch('cart_update_quantity.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cartItemId: key + 1,
+                    newQuantity: quantity,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        reloadCard();
+                    } else {
+                        console.error('Error:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+    </script>
 </body>
 
 </html>
