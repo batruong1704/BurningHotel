@@ -28,9 +28,9 @@
                         INNER JOIN phong AS p ON ctdp.MaPhong = p.MaPhong
                         LEFT JOIN phieudichvu AS pdv ON pdp.MaPDP = pdv.MaPDP
                         LEFT JOIN chitietdichvu AS ctdv ON pdv.MaPDV = ctdv.MaPDV
-                        INNER JOIN quanlytaikhoan AS qltk ON qltk.ID = pdp.MaKhachHang
+                        INNER JOIN khachhang AS kh ON kh.ID = pdp.MaKhachHang
                         INNER JOIN hoadon AS hd ON hd.MaPDP = pdp.MaPDP
-                        WHERE qltk.ID = '".$_SESSION['makhachhang']."'
+                        WHERE kh.ID = '".$_SESSION['makhachhang']."'
                         GROUP BY pdp.MaPDP";
                         
                $result = mysqli_query($con, $sql);
@@ -90,7 +90,7 @@
                         var huyphong = huyphongElements[i];
                         var ngayden=new Date( ngaydenElements[i].innerText);
                         
-                        if ((trangthai == 'Đã thanh toán' &&ngayden > ngayhientai) || trangthai == 'Đã đặt cọc') {
+                        if ((trangthai == 'Đã thanh toán' && ngayden > ngayhientai) || trangthai == 'Đã đặt cọc') {
                             huyphong.style.display = "block";
                         } else {
                             huyphong.style.display = "none";

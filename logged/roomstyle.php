@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="KiemTraNgay.js"></script>
     <title>Document</title>
 </head>
 
@@ -50,16 +49,14 @@
                     $ngaydi = $_POST["ngaydi"];
                     $nguoi = $_POST["room"];
                     $phong = $_POST["category"];
-                    $_SESSION['ngayden'] = $ngayden;
-                    $_SESSION['ngaydi'] = $ngaydi;
+                 
                 }
                 if (isset($_POST["submit"])) {
                     $ngaydenrs = $_POST["ngaydenrs"];
                     $ngaydirs = $_POST["ngaydirs"];
                     $nguoi = $_POST["checknguoi"];
                     $phong = $_POST["checkphong"];
-                    $_SESSION['ngayden'] = $ngaydenrs;
-                    $_SESSION['ngaydi'] = $ngaydirs;
+                  
                 }
             
             ?>
@@ -71,6 +68,7 @@
                     <div class="form_item">
                         <input type="datetime-local" name="ngaydirs" id="ngaydi" placeholder="Check Out" onchange="chonngaydi()" value="<?php echo (isset($_POST["btn"])) ? $ngaydi : $ngaydirs; ?>"></div>
                         <div id="thongbaongaydi" style="color: red"></div>
+                        <script src="KiemTraNgay.js?v=<?php echo time(); ?>" ></script>
                     <div class="form_item">
                         <select name="checknguoi" id="room">
                             <?php

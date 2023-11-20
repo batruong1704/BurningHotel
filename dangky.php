@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký</title>
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./CSS/dangky.css">
+    <link rel="stylesheet" href="./CSS/dangky.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./css/style.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -48,6 +48,11 @@
                              <div class="main31">Nhập PassWord</div>
                              <div class="main32"> <input type="password" name="pass" id="pass">  </div>
                          </div>
+
+                         <div class="main3">
+                             <div class="main31">Nhập Địa chỉ</div>
+                             <div class="main32"> <input type="text" name="diachi" id="diachi">  </div>
+                         </div>
                         </div>
                     <div class="mainform2">
                             <div class="main4">
@@ -59,26 +64,37 @@
                                 <div class="main52"><input type="email" name="email" id="email"></div>
                               </div>
                             <div class="main6">
-                               <input type="submit" name="btn" id="btn" value="Đăng Ký">
+                                <div class="main61">Giới Tính</div>
+                                <div class=" d-flex align-items-center mt-4">
+                                    <label for="nam">Nam</label>
+                                    <input type="radio" id="nam" name="gender" value="0" style="height: 20px;">
+                                
+                                    <label for="nu">Nữ</label>
+                                    <input type="radio" id="nu" name="gender" value="1" style="height: 20px;">
+                                </div>
+                                
                              </div>
+                             <input type="submit" name="btn" id="btn" value="Đăng Ký">
                             </div>
+                            
                     </form>
+                    <div>
+                                
+                             </div>
             </div>
         
     <?php
 
             if($_SERVER['REQUEST_METHOD']=="POST" and ISSET($_POST['btn'])){
+                $gender=$_POST["gender"];
                 $hoten=$_POST["hoten"];
                 $sdt=$_POST["sdt"];
                 $email=$_POST["email"];
+                $diachi=$_POST["diachi"];
                 $cmnd=$_POST["cmnd"];
                 $pass=$_POST["pass"];
-            $con=mysqli_connect("localhost","root","","burninghotel");
-            if(!$con){
-                    echo"Kết nối thất bại";
-                    return;
-            }
-            if(empty($hoten)||empty($sdt)||empty($email)||empty($cmnd)||empty($pass)){
+            include('config.php');
+            if(empty($hoten)||empty($sdt)||empty($email)||empty($cmnd)||empty($pass)||empty($gender)||empty($diachi)){
                 echo '<script>
                 alert("Nhập thiếu thông tin!"); 
                 window.location="javascript: history.go(-1)";
@@ -86,7 +102,7 @@
                 exit;
             }
             //kiểm tra email or sdt đã tồn tại chưa?
-            $sql = "SELECT * FROM quanlytaikhoan WHERE SDT = '$sdt' OR Email='$email'";
+            $sql = "SELECT * FROM khachhang WHERE SDT = '$sdt' OR Email='$email'";
             $_result= mysqli_query($con,$sql);
             if (mysqli_num_rows($_result) > 0){
                 echo '<script>
@@ -97,12 +113,12 @@
    
             }
             else{
-                $sql ="INSERT Into quanlytaikhoan values ('','".$hoten."','".$sdt."','".$email."','".$cmnd."','".$pass."')";
+                $sql ="INSERT Into khachhang values ('','".$hoten."','".$sdt."','".$email."','".$cmnd."','".$diachi."','".$gender."','".$pass."',NULL)";
                 $_result= mysqli_query($con,$sql);
                     if($_result==true){
                         echo '<script>
                         alert("Đăng ký thành công!"); 
-                        window.location="dangnhap.php";
+                        window.location="index.php";
                         </script>';
                         exit;
                     }

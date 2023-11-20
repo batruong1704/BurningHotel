@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="KiemTraNgay.js"></script>
+  <script src="KiemTraNgay.js?v=<?php echo time(); ?>" ></script>
 </head>
 
 <body>
@@ -23,9 +23,7 @@
                <input type="datetime-local" name="ngayden" id="ngayden" onchange="chonngayden()" value="" required>
                </div>
             <div id="thongbaongayden" style="color: red"></div>
-            <?php
-             $ngayhientai=date("d-m-Y ", time());
-            ?>
+          
           </div>
           <div class="col">
             <div>
@@ -35,7 +33,6 @@
               <input type="datetime-local" name="ngaydi" id="ngaydi" onchange="chonngaydi()" value="" required>
             </div>
             <div id="thongbaongaydi" style="color: red"></div>
-
 
           </div>
           <div class="col">
