@@ -20,6 +20,7 @@
             <div class="header-wrapper">
                 <div class="header-logo">
                     <a href="#">BURNING HOTEL</a>
+                 
                 </div>
                 <div class="nav">
                     <a href="./not loggin/index.php"> <img
@@ -42,7 +43,7 @@
                             <label for="password">Mật khẩu</label> <br>
                             <input type="password" name="password" id="password">
                         </div>
-
+                        
                         <div class="btn-footer">
                             <div>
                                 <input type="submit" class="btn-login" name="btn" id="btn" value="Đăng nhập">
@@ -85,11 +86,6 @@
                         $email=$_POST["email"];
                         $pass=$_POST["password"];
                     
-                        // $con=mysqli_connect("localhost","root","","burninghotel");
-                        if(!$con){
-                            echo"Kết nối thất bại";
-                            return;
-                        }
                         if($email==""||$pass==""){
                             echo '<script>
                             alert("Vui lòng nhập đầy đủ thông tin");
@@ -98,7 +94,7 @@
                         exit;
                         }
 
-                        $sql = "SELECT * FROM quanlytaikhoan WHERE SDT = '$email' OR Email='$email'";
+                        $sql = "SELECT * FROM khachhang WHERE SDT = '$email' OR Email='$email'";
                         $_result= mysqli_query($con,$sql);
                         if (mysqli_num_rows($_result) == 0){
                             echo '<script>

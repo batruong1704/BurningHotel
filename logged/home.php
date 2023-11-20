@@ -139,6 +139,7 @@ if (!isset($_SESSION['email'])) {
     <div class="container">
       <div class="row">
         <div class="col-5">
+          
           <p style="color: #937438;font-family: Montserrat-Regular;">Accommodations</p>
           <h3>Chào Mừng Đến Với Khách Sạn Và Khu Nghỉ Dưỡng Của Chúng Tôi</h3>
           <p class="mb-5 mt-4" style="color: #707070;width: 350px;font-family: Montserrat-Regular;">Những du khách hiểu biết không chỉ tìm kiếm điểm đến tiếp theo trên bản đồ. Họ đang tìm kiếm một trải nghiệm đáng nhớ và kết bạn mới trên đường đi.</p>

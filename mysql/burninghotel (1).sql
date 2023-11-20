@@ -1,4 +1,17 @@
--- phpMyAdmin SQL Dump
+CREATE EVENT CapNhapTrangThaiHoaDon
+ON SCHEDULE EVERY 1 DAY
+STARTS TIMESTAMP(CURRENT_DATE, '00:00:00')
+DO
+  UPDATE hoadon AS hd
+  JOIN chitietdatphong AS ctdp
+  ON hd.MaPDP = ctdp.MaPDP
+  SET hd.TinhTrang = 
+  CASE
+    WHEN ctdp.NgayDen <= NOW() AND ctdp.NgayDi >= NOW() THEN 'Chờ thanh toán'
+    WHEN ctdp.NgayDi < NOW() THEN 'Đã thanh toán'
+  END
+  Where hd.TinhTrang IN ('Đã đặt cọc', 'Chờ thanh toán')
+  -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
@@ -21,6 +34,7 @@ SET time_zone = "+00:00";
 -- Cơ sở dữ liệu: `burninghotel`
 --
 
+  
 -- --------------------------------------------------------
 
 --

@@ -94,8 +94,9 @@
     </form>
     <?php
 
-    use PHPMailer\PHPMailer\PHPMailer;
+
     require '../vendor/autoload.php';
+    use PHPMailer\PHPMailer\PHPMailer;
 
     if (isset($_POST['submit'])) {
         $ten = $_POST['ten'];
@@ -103,7 +104,6 @@
         $sdt = $_POST['number'];
         $subject = $_POST['subject'];
         $message = $_POST['cmt'];
-
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
