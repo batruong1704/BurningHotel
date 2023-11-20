@@ -1,28 +1,42 @@
 <?php
 require_once('../config.php');
 
-if (isset($_POST['customerId']) && isset($_POST['productId'])) {
-    $customerId = $_POST['customerId'];
-    $productId = $_POST['productId'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['customerId']) && isset($_POST['productId']) && isset($_POST['quantity'])) {
+        $customerId = $_POST['customerId'];
+        $productId = $_POST['productId'];
+        $quantity = $_POST['quantity'];
 
-    // Thêm món vào giỏ hàng của khách hàng
-    $sql = "INSERT INTO giohang (mamonan, soluong, gia, makhachhang) 
-            SELECT TenMon, 1, ThanhTien, $customerId FROM doan WHERE ID = $productId";
-    mysqli_query($con, $sql);
+        $checkSql = "SELECT * FROM giohang WHERE makhachhang = $customerId AND mamonan = $productId";
+        $checkResult = $con->query($checkSql);
 
-    // Truy vấn để lấy số lượng mới của sản phẩm sau khi thêm vào giỏ hàng
-    $getQuantitySql = "SELECT soluong FROM giohang WHERE makhachhang = $customerId AND mamonan = $productId";
-    $result = $con->query($getQuantitySql);
-    $newQuantity = $result->fetch_assoc()['soluong'];
+        if ($checkResult->num_rows > 0) {
+            $row = $checkResult->fetch_assoc();
+            $cartItemId = $row['id'];
+            $newQuantity = $row['soluong'] + $quantity;
 
-    // Trả về số lượng mới
-    $response = ['success' => true, 'message' => 'Product added to cart.', 'newQuantity' => $newQuantity];
-    echo json_encode($response);
+            $updateSql = "UPDATE giohang SET soluong = $newQuantity WHERE id = $cartItemId AND makhachhang = $customerId";
+            mysqli_query($con, $updateSql);
+        } else {
+            $insertSql = "INSERT INTO giohang (mamonan, soluong, gia, makhachhang) 
+               SELECT ID, $quantity, ThanhTien, $customerId FROM doan WHERE ID = $productId";
+            mysqli_query($con, $insertSql);
+        }
+
+        $getQuantitySql = "SELECT soluong FROM giohang WHERE makhachhang = $customerId AND mamonan = $productId";
+        $result = $con->query($getQuantitySql);
+        $newQuantity = $result->fetch_assoc()['soluong'];
+
+        $response = ['success' => true, 'message' => 'Product added to cart.', 'newQuantity' => $newQuantity];
+        echo json_encode($response);
+    } else {
+        $response = ['success' => false, 'message' => 'Invalid request.'];
+        echo json_encode($response);
+    }
 } else {
     $response = ['success' => false, 'message' => 'Invalid request.'];
     echo json_encode($response);
 }
 
-// Đóng kết nối
 mysqli_close($con);
 ?>

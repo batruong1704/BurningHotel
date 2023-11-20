@@ -48,7 +48,8 @@ $so_luong_mon = $row['total'];
             <div class="img h-100">
                 <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
+                    <h3
+                        style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
                         Chi Tiết Món</h3>
                 </div>
             </div>
@@ -75,7 +76,9 @@ $so_luong_mon = $row['total'];
                     </div>
                 </div>
                 <div class="col-5 detail-content p-3 ps-0">
-                    <h3><?php echo $TenMon ?></h3>
+                    <h3>
+                        <?php echo $TenMon ?>
+                    </h3>
                     <div class="vote">
                         <span>
                             <i class="fa fa-star"></i>
@@ -94,30 +97,47 @@ $so_luong_mon = $row['total'];
                         </span>
                         <span style="color:silver">(0 custom review)</span>
                     </div>
-                    <h6><?php echo $ThanhTien ?> VNĐ</h6>
+                    <h6>
+                        <?php echo $ThanhTien ?> VNĐ
+                    </h6>
                     <hr style="border-style:dashed">
-                    <p><?php echo $MoTa ?></p>
+                    <p>
+                        <?php echo $MoTa ?>
+                    </p>
                     <div class="adjbutton d-flex">
                         <div id="buy-amount">
                             <button class="plus-btn" onclick="minusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                 </svg>
                             </button>
                             <input type="text" name="soluong" id="soluong" value="1">
                             <button class="minus-btn" onclick="plusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </button>
                         </div>
-                        <button class="btnaddcart">Add to cart</button>
+                        <button class="btnaddcart" 
+                            data-masp="<?php echo $ID; ?>"
+                            data-product-quantity="document.getElementById('soluong').value">
+                            Add to cart
+                        </button>
+
                     </div>
                     <div class="food-information">
-                        <h6>#no: <span><?php echo $ID ?></span></h6>
-                        <h6>CATEGORY: <span><?php echo $PhanLoai ?></span></h6>
+                        <h6>#no: <span>
+                                <?php echo $ID ?>
+                            </span></h6>
+                        <h6>CATEGORY: <span>
+                                <?php echo $PhanLoai ?>
+                            </span></h6>
                         <h6>TAGS: <span>Recipes, Sweet, Tasty</span></h6>
-                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span class="icon fab fa-pinterest"></span> </h6>
+                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span
+                                class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span
+                                class="icon fab fa-pinterest"></span> </h6>
                     </div>
                 </div>
             </div>
@@ -132,7 +152,9 @@ $so_luong_mon = $row['total'];
         <ul class="listCard ps-0">
         </ul>
         <div class="checkOut">
-            <div class="total"><?php echo $so_luong_mon ?></div>
+            <div class="total">
+                <?php echo $so_luong_mon ?>
+            </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
@@ -156,7 +178,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Cooking time:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $ThoiGianNau ?> phút</p>
+                                    <p class="mb-0">
+                                        <?php echo $ThoiGianNau ?> phút
+                                    </p>
                                 </div>
                             </div>
                             <div class="row py-3">
@@ -165,7 +189,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Difficulty:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $DoKho ?></p>
+                                    <p class="mb-0">
+                                        <?php echo $DoKho ?>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -174,7 +200,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Servings:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $HamLuongcalo ?> calories</p>
+                                    <p class="mb-0">
+                                        <?php echo $HamLuongcalo ?> calories
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +230,16 @@ $so_luong_mon = $row['total'];
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
             $IDs[] = array(
-                'TenMon' => $row['TenMon'], "PhanLoai" => $row['PhanLoai'], "ThoiGianNau" => $row['ThoiGianNau'], "DoKho" => $row['DoKho'], "ThanhPhan" => $row['ThanhPhan'], "HamLuongcalo" => $row['HamLuongcalo'], "ThanhTien" => $row['ThanhTien'], "MoTa" => $row['MoTa'], "SoLuongDaBan" => $row['SoLuongDaBan'], "img" => $row['img'],
+                'TenMon' => $row['TenMon'],
+                "PhanLoai" => $row['PhanLoai'],
+                "ThoiGianNau" => $row['ThoiGianNau'],
+                "DoKho" => $row['DoKho'],
+                "ThanhPhan" => $row['ThanhPhan'],
+                "HamLuongcalo" => $row['HamLuongcalo'],
+                "ThanhTien" => $row['ThanhTien'],
+                "MoTa" => $row['MoTa'],
+                "SoLuongDaBan" => $row['SoLuongDaBan'],
+                "img" => $row['img'],
                 'ID' => $row['ID']
             );
         }
@@ -222,10 +259,14 @@ $so_luong_mon = $row['total'];
                         <div class="card" style="width: 18  rem;">
                             <img src="<?php echo $value['img'] ?>" class="card-img-top h-100 w-100" alt="...">
                             <div class="card-body">
-                                <h6><?php echo $value['TenMon'] ?></h6>
+                                <h6>
+                                    <?php echo $value['TenMon'] ?>
+                                </h6>
                                 <hr style="border-style:dashed">
                                 <div class="information">
-                                    <h6><?php echo $value['ThanhTien'] ?></h6>
+                                    <h6>
+                                        <?php echo $value['ThanhTien'] ?>
+                                    </h6>
                                     <div class="vote">
                                         <span>
                                             <i class="fa fa-star"></i>
@@ -243,7 +284,9 @@ $so_luong_mon = $row['total'];
                                             <i class="fa fa-star"></i>
                                         </span>
                                     </div>
-                                    <p><?php echo $value["PhanLoai"] ?></p>
+                                    <p>
+                                        <?php echo $value["PhanLoai"] ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -254,10 +297,31 @@ $so_luong_mon = $row['total'];
 
     </section>
     <!-- end similar dish -->
-
+                    
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
     <!-- end footer -->
+<script>
+    document.querySelector('.btnaddcart').addEventListener('click', function () {
+        let productId = this.getAttribute('data-masp');
+        let quantity = document.getElementById('soluong').value;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "cart__add.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Response: " ,xhr.responseText);
+            }
+        };
+
+        xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+                 "&productId=" + productId +
+                 "&quantity=" + quantity);
+    });
+</script>
+
     <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
     <script src="../js/tanggiamsoluong.js"></script>

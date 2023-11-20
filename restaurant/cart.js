@@ -19,7 +19,7 @@ closeShopping.addEventListener('click', () => {
 // cart.js
 
 function initApp() {
-    fetch('get-cart.php?customer_id=' + customerId)
+    fetch('cart__get.php?customer_id=' + customerId)
         .then(response => response.json())
         .then(data => {
             listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
@@ -45,15 +45,8 @@ function initApp() {
                             </svg>
                     </button>
                     </div>`;
-                listCard.appendChild(newLi);
-                let newDiv = document.createElement('div');
-                newDiv.classList.add('item');
-                newDiv.innerHTML = `
-                    <img src="${value.img}">
-                    <div class="title">${value.tenmon}</div>
-                    <div class="price">${value.gia.toLocaleString()}</div>
-                    <button onclick="addToCard(${key})">Add To Card</button>`;
-                list.appendChild(newDiv);       
+                listCard.appendChild(newLi);  
+                
             });
         })
         .catch(error => {
@@ -63,75 +56,68 @@ function initApp() {
 
 initApp();
 
-let listCards = [];
+document.querySelector('.btnaddcart').addEventListener('click', function () {
+    let productId = this.getAttribute('data-masp');
+    let quantity = document.getElementById('soluong').value;
 
-function addToCard(key) {
-    // Đảm bảo customerId đã được đặt giá trị
-    if (!customerId) {
-        console.error('Customer ID is not set.');
-        return;
-    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "cart__add.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    fetch('cart__add.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            customerId: customerId,
-            productId: key + 1,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                reloadCard();
-            } else {
-                console.error('Error:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Response: " ,xhr.responseText);
+        }
+    };
+
+    xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+             "&productId=" + productId +
+             "&quantity=" + quantity);
+});
 
 function reloadCard() {
-    fetch(`get-cart.php?customer_id=${customerId}`)
-        .then(response => response.json())
-        .then(data => {
-            listCard.innerHTML = ''; // Xóa nội dung cũ trong listCard
-            let count = 0;
-            let totalPrice = 0;
+    fetch(`cart__get.php?customer_id=${customerId}`)
+    .then(response => response.json())
+    .then(data => {
+        let listCard = document.querySelector('.listCard');
+        listCard.innerHTML = '';
 
-            data.forEach((value, key) => {
-                totalPrice = totalPrice + value.gia;
-                count = count + value.soluong;
+        let total = 0;
+        let count = 0;
 
-                if (value != null) {
-                    // Tạo một phần tử mới cho mỗi sản phẩm và thêm vào listCard
-                    let newDiv = document.createElement('li');
-                    newDiv.innerHTML = `
-                        <div><img src="${value.img}"/></div>
-                        <div>${value.tenmon}</div>
-                        <div>${value.gia.toLocaleString()}</div>
-                        <div>
-                            <button onclick="changeQuantity(${key}, ${value.soluong - 1})">-</button>
-                            <div class="count" id="count-${key}">${value.soluong}</div>
-                            <button onclick="changeQuantity(${key}, ${value.soluong + 1})">+</button>
-                        </div>`;
-                    listCard.appendChild(newDiv);
+        data.forEach((value, key) => {
+            let newLi = document.createElement('li');
+            newLi.innerHTML = `
+                <div><img src="${value.img}"/></div>
+                <div>${value.tenmon}</div>
+                <div>${value.gia.toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${value.id}, ${value.soluong - 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
+                    </button>
+                    <div class="count">${value.soluong}</div>
+                    <button onclick="changeQuantity(${value.id}, ${value.soluong + 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>`;
+            listCard.appendChild(newLi);
 
-                    // Cập nhật số lượng trực tiếp trong listCard
-                    document.getElementById(`count-${key}`).innerText = value.soluong;
-                }
-            });
-
-            total.innerText = totalPrice.toLocaleString();
-            quantity.innerText = count;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            total += value.gia * value.soluong;
+            count += value.soluong;
         });
+
+        document.querySelector('.total').innerText = total.toLocaleString();
+        document.querySelector('.quantity').innerText = count;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
 function changeQuantity(key, quantity) {
@@ -145,15 +131,16 @@ function changeQuantity(key, quantity) {
             newQuantity: quantity,
         }),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                reloadCard();
-            } else {
-                console.error('Error:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Thành công, cập nhật UI
+            reloadCard();
+        } else {
+            console.error('Error:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
