@@ -16,13 +16,11 @@ closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
 
-// cart.js
-
 function initApp() {
     fetch('cart__get.php?customer_id=' + customerId)
         .then(response => response.json())
         .then(data => {
-            listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
+            listCard.innerHTML = ''; 
 
             data.forEach((value, key) => {
                 let newLi = document.createElement('li');
@@ -66,13 +64,9 @@ document.querySelector('.btnaddcart').addEventListener('click', function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                // Parse phản hồi JSON từ server
                 const response = JSON.parse(xhr.responseText);
-    
-                // Cập nhật số lượng món trong giao diện
                 document.querySelector('.soluongmon').innerText = response.so_luong_mon;
     
-                // Reload giỏ hàng
                 reloadCard();
             } else {
                 console.error('Error:', xhr.statusText);
