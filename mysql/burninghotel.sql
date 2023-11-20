@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 14, 2023 lúc 09:28 AM
+-- Thời gian đã tạo: Th10 19, 2023 lúc 06:32 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -41,8 +41,7 @@ CREATE TABLE `chitietdatmon` (
 
 INSERT INTO `chitietdatmon` (`MaDatMon`, `MaPMA`, `MaMonAn`, `SoLuong`, `ThanhTien`) VALUES
 (12, 0, 7, 2, 56000),
-(13, 0, 3, 2, 60000),
-(14, 2, 7, 2, 56000);
+(13, 0, 3, 2, 60000);
 
 -- --------------------------------------------------------
 
@@ -101,7 +100,7 @@ INSERT INTO `chucvu` (`MaChucVu`, `TenChucVu`, `LuongTheoNgay`) VALUES
 ('21', 'Trưởng bộ phận lễ tân', 670000),
 ('210', 'Nhân viên hành lý', 200000),
 ('211', 'Nhân viên đứng cửa', 200000),
-('212', 'Nhân viên trực tổng đài', 210000),
+('212', 'Nhân viên trực tổng đài', 200000),
 ('213', 'Nhân viên lái xe', 200000),
 ('22', 'Quản lý phòng khách sạn', 1000000),
 ('23', 'Quản lý ca trực', 500000),
@@ -125,8 +124,7 @@ INSERT INTO `chucvu` (`MaChucVu`, `TenChucVu`, `LuongTheoNgay`) VALUES
 ('61', 'Kế toán trưởng', 670000),
 ('62', 'Kế toán tổng hợp', 500000),
 ('71', 'Trưởng bộ phận an ninh', 370000),
-('72', 'Nhân viên an ninh', 200000),
-('81', 'tí nữa xoá', 10000);
+('72', 'Nhân viên an ninh', 200000);
 
 -- --------------------------------------------------------
 
@@ -232,64 +230,85 @@ CREATE TABLE `doan` (
 --
 
 INSERT INTO `doan` (`ID`, `TenMon`, `PhanLoai`, `ThoiGianNau`, `DoKho`, `ThanhPhan`, `HamLuongcalo`, `ThanhTien`, `MoTa`, `SoLuongDaBan`, `img`) VALUES
-(1, 'Gà nướng Kon Tum', 'Món chính', 35, 'Dễ', 'Gà, xả, muối tôm, tỏi băm, mật ong, dầu ăn', 450, 250000, 'Thịt được tẩm ướp gia vị từ một số loài rễ, lá, mật ong và cây rừng Kon Tum nên gà nướng mang hương vị đặc biệt. Khi thưởng thức nên chấm thêm muối tiêu hoặc muối hột lớn với ớt cay cay hay lá bét (một loại lá rừng).', 0, ''),
-(2, 'Bún riêu cua', 'Món chính', 30, 'Bình thường', 'Riêu cua, bún, hành, mắm tôm', 350, 22000, 'Bún riêu cua là món ngon đặc biệt với hương vị độc đáo từ riêu cua và bún mềm, thấm vị.', 0, ''),
-(3, 'Mì Quảng', 'Món chính', 25, 'Tương đối khó', 'Mì, gia vị, hành, thịt', 200, 30000, 'Mì Quảng là một món ăn truyền thống của Quảng Nam, có hương vị đậm đà và phong cách riêng.', 0, ''),
-(4, 'Lẩu cá hồi', 'Món chính', 40, 'Khó', 'Cá hồi, rau sống, nước lẩu', 360, 400000, 'Lẩu cá hồi với cá hồi tươi ngon và nước lẩu thơm ngon, hoàn hảo cho những ngày se lạnh.', 0, ''),
-(5, 'Bánh mì thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt gà, rau sống', 310, 25000, 'Bánh mì thịt với thịt gà tươi ngon và bánh mì giòn tan, thích hợp cho bữa sáng hoặc bữa trưa.', 0, ''),
-(6, 'Cơm rang dương châu', 'Món chính', 25, 'Tương đối khó', 'Cơm, hành, dương châu, gia vị', 520, 35000, 'Cơm rang dương châu với cơm nướng và hương vị độc đáo từ dương châu.', 0, ''),
-(7, 'Bún bò Huế', 'Món chính', 35, 'Bình thường', 'Bún, bò, gia vị, hành, rau sống', 420, 28000, 'Bún bò Huế với hương vị đặc trưng của miền Trung Việt Nam, thích hợp cho người thích mì vị cay.', 0, ''),
-(8, 'Phở gà', 'Món chính', 30, 'Dễ', 'Phở, gà, gia vị', 380, 30000, 'Phở gà với mì và thịt gà thơm ngon, thích hợp cho bữa sáng hoặc bữa trưa.', 0, ''),
-(9, 'Bánh xèo', 'Món chính', 20, 'Dễ', 'Bánh xèo, gia vị', 380, 20000, 'Bánh xèo với bánh mỳ giòn tan và nhiều loại gia vị tươi ngon.', 0, ''),
-(10, 'Bánh tráng cuốn', 'Món chính', 25, 'Bình thường', 'Bánh tráng, thịt nướng, rau sống', 350, 22000, 'Bánh tráng cuốn với bánh tráng mỏng và thịt nướng tươi ngon.', 0, ''),
-(11, 'Gà nướng Kon Tum', 'Món chính', 35, 'Dễ', 'Gà, xả, muối tôm, tỏi băm, mật ong, dầu ăn', 450, 250000, 'Thịt được tẩm ướp gia vị từ một số loài rễ, lá, mật ong và cây rừng Kon Tum nên gà nướng mang hương vị đặc biệt. Khi thưởng thức nên chấm thêm muối tiêu hoặc muối hột lớn với ớt cay cay hay lá bét (một loại lá rừng).', 0, ''),
-(12, 'Bún riêu cua', 'Món chính', 30, 'Bình thường', 'Riêu cua, bún, hành, mắm tôm', 350, 22000, 'Bún riêu cua là món ngon đặc biệt với hương vị độc đáo từ riêu cua và bún mềm, thấm vị.', 0, ''),
-(13, 'Mì Quảng', 'Món chính', 25, 'Tương đối khó', 'Mì, gia vị, hành, thịt', 200, 30000, 'Mì Quảng là một món ăn truyền thống của Quảng Nam, có hương vị đậm đà và phong cách riêng.', 0, ''),
-(14, 'Lẩu cá hồi', 'Món chính', 40, 'Khó', 'Cá hồi, rau sống, nước lẩu', 360, 400000, 'Lẩu cá hồi với cá hồi tươi ngon và nước lẩu thơm ngon, hoàn hảo cho những ngày se lạnh.', 0, ''),
-(15, 'Bánh mì thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt gà, rau sống', 310, 25000, 'Bánh mì thịt với thịt gà tươi ngon và bánh mì giòn tan, thích hợp cho bữa sáng hoặc bữa trưa.', 0, ''),
-(16, 'Cơm rang dương châu', 'Món chính', 25, 'Tương đối khó', 'Cơm, hành, dương châu, gia vị', 520, 35000, 'Cơm rang dương châu với cơm nướng và hương vị độc đáo từ dương châu.', 0, ''),
-(17, 'Bún bò Huế', 'Món chính', 35, 'Bình thường', 'Bún, bò, gia vị, hành, rau sống', 420, 28000, 'Bún bò Huế với hương vị đặc trưng của miền Trung Việt Nam, thích hợp cho người thích mì vị cay.', 0, ''),
-(18, 'Phở gà', 'Món chính', 30, 'Dễ', 'Phở, gà, gia vị', 380, 30000, 'Phở gà với mì và thịt gà thơm ngon, thích hợp cho bữa sáng hoặc bữa trưa.', 0, ''),
-(19, 'Bánh xèo', 'Món chính', 20, 'Dễ', 'Bánh xèo, gia vị', 380, 20000, 'Bánh xèo với bánh mỳ giòn tan và nhiều loại gia vị tươi ngon.', 0, ''),
-(20, 'Bánh tráng cuốn', 'Món chính', 25, 'Bình thường', 'Bánh tráng, thịt nướng, rau sống', 350, 22000, 'Bánh tráng cuốn với bánh tráng mỏng và thịt nướng tươi ngon.', 0, ''),
-(21, 'Bún chả', 'Món chính', 25, 'Bình thường', 'Bún, thịt nướng, gia vị', 380, 25000, 'Bún chả là món ăn truyền thống của Hà Nội với bún mềm, thịt nướng thơm ngon. Bún chả thường được ăn kèm với nhiều loại rau sống và nước mắm pha chua ngọt.', 0, ''),
-(22, 'Cơm gà', 'Món chính', 30, 'Dễ', 'Cơm, thịt gà, gia vị', 350, 20000, 'Cơm gà là món ngon và bổ dưỡng với thịt gà tươi ngon và cơm hấp. Món này thường được kèm theo nước lẩu hấp dẫn.', 0, ''),
-(23, 'Bánh mì kẹp thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt, rau sống', 320, 18000, 'Bánh mì kẹp thịt với thịt và rau sống giòn tan là lựa chọn lý tưởng cho bữa ăn nhanh và ngon miệng.', 0, ''),
-(24, 'Hủ tiếu Nam Vang', 'Món chính', 30, 'Tương đối khó', 'Hủ tiếu, thịt, gia vị', 410, 28000, 'Hủ tiếu Nam Vang là món ăn phổ biến tại Sài Gòn với hủ tiếu và thịt tươi ngon. Món này thường được kèm theo nước dùng thơm ngon.', 0, ''),
-(25, 'Mì Ý hấp', 'Món chính', 35, 'Tương đối khó', 'Mì Ý, thịt, gia vị', 450, 32000, 'Mì Ý hấp với mì Ý mềm và thịt ngon là một món ăn sang trọng và ngon miệng.', 0, ''),
-(26, 'Cơm rang dưa lưới', 'Món chính', 25, 'Bình thường', 'Cơm, dưa lưới, gia vị', 320, 22000, 'Cơm rang dưa lưới là món ăn thơm ngon và dễ làm với cơm và dưa lưới giòn tan.', 0, ''),
-(27, 'Gỏi cuốn', 'Món chính', 20, 'Dễ', 'Bánh tráng, thịt nướng, rau sống', 280, 18000, 'Gỏi cuốn là món ăn dễ làm và ngon miệng với bánh tráng mỏng và thịt nướng tươi ngon.', 0, ''),
-(28, 'Gỏi cuốn', 'Món khai vị', 20, 'Dễ', 'Bánh tráng, thịt nướng, rau sống', 280, 18000, 'Gỏi cuốn là món ăn dễ làm và ngon miệng với bánh tráng mỏng và thịt nướng tươi ngon.', 0, ''),
-(29, 'Bánh mì pate', 'Món khai vị', 15, 'Dễ', 'Bánh mì, pate, gia vị', 250, 12000, 'Bánh mì pate với lớp pate thơm ngon và bánh mì giòn tan là lựa chọn tuyệt vời cho món khai vị.', 0, ''),
-(30, 'Canapé hải sản', 'Món khai vị', 25, 'Tương đối khó', 'Bánh mì, hải sản, gia vị', 320, 22000, 'Canapé hải sản với hải sản tươi ngon và bánh mì hấp dẫn là món khai vị hấp dẫn.', 0, ''),
-(31, 'Nem chua', 'Món khai vị', 20, 'Dễ', 'Thịt, gia vị', 240, 14000, 'Nem chua là món khai vị truyền thống với thịt và gia vị thơm ngon.', 0, ''),
-(32, 'Bánh mì ốp la', 'Món khai vị', 20, 'Dễ', 'Bánh mì, trứng, gia vị', 290, 16000, 'Bánh mì ốp la với trứng gà và gia vị hấp dẫn là món khai vị ngon miệng.', 0, ''),
-(33, 'Xúc xích chiên', 'Món khai vị', 25, 'Dễ', 'Xúc xích, gia vị', 310, 18000, 'Xúc xích chiên với xúc xích tươi ngon và gia vị là lựa chọn lý tưởng cho món khai vị.', 0, ''),
-(34, 'Súp lơ', 'Món khai vị', 30, 'Tương đối khó', 'Súp lơ, gia vị', 260, 14000, 'Súp lơ với súp lơ thơm ngon và gia vị là món khai vị hấp dẫn.', 0, ''),
-(35, 'Kem sữa chua', 'Món tráng miệng', 10, 'Dễ', 'Sữa chua, gia vị', 180, 15000, 'Kem sữa chua với lớp sữa chua mềm mịn và hương vị thơm ngon.', 0, ''),
-(36, 'Bánh flan', 'Món tráng miệng', 15, 'Dễ', 'Bánh flan, gia vị', 250, 18000, 'Bánh flan với lớp caramel và bánh flan mềm mịn là món tráng miệng ngon miệng.', 0, ''),
-(37, 'Kem chocolate', 'Món tráng miệng', 10, 'Dễ', 'Sô cô la, kem', 220, 16000, 'Kem chocolate với kem thơm và sô cô la là món tráng miệng ngon miệng.', 0, ''),
-(38, 'Cheesecake dâu', 'Món tráng miệng', 20, 'Tương đối khó', 'Dâu, bánh cheesecake, gia vị', 290, 22000, 'Cheesecake dâu với lớp cheesecake mềm và hương vị dâu là món tráng miệng hấp dẫn.', 0, ''),
-(39, 'Bánh ngọt phô mai', 'Món tráng miệng', 15, 'Dễ', 'Bánh ngọt, phô mai, gia vị', 260, 19000, 'Bánh ngọt phô mai với lớp phô mai béo và bánh ngọt giòn là món tráng miệng ngon miệng.', 0, ''),
-(40, 'Panna cotta', 'Món tráng miệng', 25, 'Tương đối khó', 'Kem, hạt dẻ', 320, 25000, 'Panna cotta với lớp kem mềm và hương vị hạt dẻ là món tráng miệng hấp dẫn.', 0, ''),
-(41, 'Bánh tiramisu', 'Món tráng miệng', 20, 'Tương đối khó', 'Bánh tiramisu, cà phê', 310, 22000, 'Bánh tiramisu với bánh tiramisu thơm ngon và lớp cà phê là món tráng miệng hấp dẫn.', 0, ''),
-(42, 'Bánh mì hamburger', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mì, thịt bò, rau sống', 450, 35000, 'Bánh mì hamburger với thịt bò, rau sống và gia vị hấp dẫn là món đồ ăn nhanh phổ biến.', 0, ''),
-(43, 'Pizza hawaiian', 'Đồ ăn nhanh', 20, 'Tương đối khó', 'Bánh pizza, thịt dăm, dứa, phô mai', 500, 42000, 'Pizza hawaiian với lớp bánh pizza mỏng, thịt dăm, dứa và phô mai là món đồ ăn nhanh thơm ngon.', 0, ''),
-(44, 'Bánh mỳ sandwich', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mỳ, thịt gà, rau sống', 380, 30000, 'Bánh mỳ sandwich với thịt gà, rau sống và gia vị hấp dẫn là món đồ ăn nhanh ngon miệng.', 0, ''),
-(45, 'Bánh bao', 'Đồ ăn nhanh', 10, 'Dễ', 'Bánh bao, nhân thịt', 280, 18000, 'Bánh bao với lớp bánh mềm và nhân thịt là món đồ ăn nhanh truyền thống.', 0, ''),
-(46, 'Cơm cuộn', 'Đồ ăn nhanh', 25, 'Dễ', 'Cơm, thịt nướng, rau sống', 320, 25000, 'Cơm cuộn với lớp cơm, thịt nướng và rau sống là món đồ ăn nhanh ngon miệng.', 0, ''),
-(47, 'Mì xào hải sản', 'Đồ ăn nhanh', 20, 'Tương đối khó', 'Mì, hải sản, gia vị', 420, 35000, 'Mì xào hải sản với lớp mì và hải sản tươi ngon là món đồ ăn nhanh hấp dẫn.', 0, ''),
-(48, 'Hotdog', 'Đồ ăn nhanh', 15, 'Dễ', 'Xúc xích, bánh mì', 350, 28000, 'Hotdog với xúc xích và bánh mì giòn là món đồ ăn nhanh phổ biến.', 0, ''),
-(49, 'Bánh trứng', 'Đồ ăn nhanh', 12, 'Dễ', 'Trứng gà, gia vị', 280, 20000, 'Bánh trứng với lớp bánh mềm và trứng gà là món đồ ăn nhanh ngon miệng.', 0, ''),
-(50, 'Bánh mì bơ tỏi', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mì, bơ tỏi, gia vị', 320, 22000, 'Bánh mì bơ tỏi với bơ tỏi thơm và bánh mì giòn là món đồ ăn nhanh hấp dẫn.', 0, ''),
-(51, 'Bánh su kem', 'Đồ ăn nhanh', 18, 'Dễ', 'Bánh su kem, kem, gia vị', 280, 19000, 'Bánh su kem với lớp bánh su kem mềm và kem thơm là món đồ ăn nhanh ngon miệng.', 0, ''),
-(52, 'Cà phê đen', 'Nước uống', 5, 'Dễ', 'Cà phê, nước', 30, 22000, 'Cà phê đen với hương vị đắng và thơm là món nước uống phổ biến.', 0, ''),
-(53, 'Nước chanh', 'Nước uống', 5, 'Dễ', 'Nước chanh, đường', 40, 15000, 'Nước chanh với hương vị chua ngọt là món nước uống giải khát.', 0, ''),
-(54, 'Soda chanh', 'Nước uống', 8, 'Dễ', 'Soda, nước chanh', 60, 25000, 'Soda chanh với hương vị soda và chanh là món nước uống giải khát phổ biến.', 0, ''),
-(55, 'Nước dừa', 'Nước uống', 10, 'Dễ', 'Nước dừa', 50, 28000, 'Nước dừa tươi ngon và bổ dưỡng.', 0, ''),
-(56, 'Sinh tố bơ', 'Nước uống', 10, 'Dễ', 'Bơ, sữa, đường', 90, 35000, 'Sinh tố bơ với hương vị bơ ngon và thơm.', 0, ''),
-(57, 'Cà phê sữa', 'Nước uống', 5, 'Dễ', 'Cà phê, sữa, đường', 70, 26000, 'Cà phê sữa với hương vị cà phê và sữa ngon miệng.', 0, ''),
-(58, 'Trà đào', 'Nước uống', 8, 'Dễ', 'Trà, đào, đường', 80, 30000, 'Trà đào với hương vị trà thơm và đào ngon miệng.', 0, '');
+(1, 'Gà nướng Kon Tum', 'Món chính', 35, 'Dễ', 'Gà, xả, muối tôm, tỏi băm, mật ong, dầu ăn', 450, 250000, 'Thịt được tẩm ướp gia vị từ một số loài rễ, lá, mật ong và cây rừng Kon Tum nên gà nướng mang hương vị đặc biệt. Khi thưởng thức nên chấm thêm muối tiêu hoặc muối hột lớn với ớt cay cay hay lá bét (một loại lá rừng).', 0, '../img/restaurant/monchinh/Gà bó xôi.jpg'),
+(2, 'Bún riêu cua', 'Món chính', 30, 'Bình thường', 'Riêu cua, bún, hành, mắm tôm', 350, 22000, 'Bún riêu cua là món ngon đặc biệt với hương vị độc đáo từ riêu cua và bún mềm, thấm vị.', 0, '../img/restaurant/monchinh/Lẩu cá thác lác.jpg'),
+(3, 'Mì Quảng', 'Món chính', 25, 'Tương đối khó', 'Mì, gia vị, hành, thịt', 200, 30000, 'Mì Quảng là một món ăn truyền thống của Quảng Nam, có hương vị đậm đà và phong cách riêng.', 0, '../img/restaurant/monchinh/Sườn bò hầm táo đỏ ăn kèm bánh mì baguette.jpg'),
+(4, 'Lẩu cá hồi', 'Món chính', 40, 'Khó', 'Cá hồi, rau sống, nước lẩu', 360, 400000, 'Lẩu cá hồi với cá hồi tươi ngon và nước lẩu thơm ngon, hoàn hảo cho những ngày se lạnh.', 0, '../img/restaurant/monchinh/Lẩu gà lá giang.png'),
+(5, 'Bánh mì thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt gà, rau sống', 310, 25000, 'Bánh mì thịt với thịt gà tươi ngon và bánh mì giòn tan, thích hợp cho bữa sáng hoặc bữa trưa.', 0, '../img/restaurant/monchinh/Gà bó xôi.jpg'),
+(6, 'Cơm rang dương châu', 'Món chính', 25, 'Tương đối khó', 'Cơm, hành, dương châu, gia vị', 520, 35000, 'Cơm rang dương châu với cơm nướng và hương vị độc đáo từ dương châu.', 0, '../img/restaurant/monchinh/Mực xào sa tế.png'),
+(7, 'Bún bò Huế', 'Món chính', 35, 'Bình thường', 'Bún, bò, gia vị, hành, rau sống', 420, 28000, 'Bún bò Huế với hương vị đặc trưng của miền Trung Việt Nam, thích hợp cho người thích mì vị cay.', 0, '../img/restaurant/monchinh/Sườn bò hầm táo đỏ ăn kèm bánh mì baguette.jpg'),
+(8, 'Phở gà', 'Món chính', 30, 'Dễ', 'Phở, gà, gia vị', 380, 30000, 'Phở gà với mì và thịt gà thơm ngon, thích hợp cho bữa sáng hoặc bữa trưa.', 0, '../img/restaurant/monchinh/Lẩu gà lá giang.png'),
+(9, 'Bánh xèo', 'Món chính', 20, 'Dễ', 'Bánh xèo, gia vị', 380, 20000, 'Bánh xèo với bánh mỳ giòn tan và nhiều loại gia vị tươi ngon.', 0, '../img/restaurant/monchinh/Bò né.jpg'),
+(10, 'Bánh tráng cuốn', 'Món chính', 25, 'Bình thường', 'Bánh tráng, thịt nướng, rau sống', 350, 22000, 'Bánh tráng cuốn với bánh tráng mỏng và thịt nướng tươi ngon.', 0, '../img/restaurant/monchinh/Cá tầm sốt nấm tiêu đen đút lò.jpg'),
+(11, 'Gà nướng Kon Tum', 'Món chính', 35, 'Dễ', 'Gà, xả, muối tôm, tỏi băm, mật ong, dầu ăn', 450, 250000, 'Thịt được tẩm ướp gia vị từ một số loài rễ, lá, mật ong và cây rừng Kon Tum nên gà nướng mang hương vị đặc biệt. Khi thưởng thức nên chấm thêm muối tiêu hoặc muối hột lớn với ớt cay cay hay lá bét (một loại lá rừng).', 0, '../img/restaurant/monchinh/Vịt nướng tiêu đen.jpg'),
+(12, 'Bún riêu cua', 'Món chính', 30, 'Bình thường', 'Riêu cua, bún, hành, mắm tôm', 350, 22000, 'Bún riêu cua là món ngon đặc biệt với hương vị độc đáo từ riêu cua và bún mềm, thấm vị.', 0, '../img/restaurant/monchinh/Sườn bò hầm táo đỏ ăn kèm bánh mì baguette.jpg'),
+(13, 'Mì Quảng', 'Món chính', 25, 'Tương đối khó', 'Mì, gia vị, hành, thịt', 200, 30000, 'Mì Quảng là một món ăn truyền thống của Quảng Nam, có hương vị đậm đà và phong cách riêng.', 0, '../img/restaurant/monchinh/Lẩu cá thác lác.jpg'),
+(14, 'Lẩu cá hồi', 'Món chính', 40, 'Khó', 'Cá hồi, rau sống, nước lẩu', 360, 400000, 'Lẩu cá hồi với cá hồi tươi ngon và nước lẩu thơm ngon, hoàn hảo cho những ngày se lạnh.', 0, '../img/restaurant/monchinh/Lẩu gà lá giang.png'),
+(15, 'Bánh mì thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt gà, rau sống', 310, 25000, 'Bánh mì thịt với thịt gà tươi ngon và bánh mì giòn tan, thích hợp cho bữa sáng hoặc bữa trưa.', 0, '../img/restaurant/monchinh/Sườn sốt BBQ đút lò.jpg'),
+(16, 'Cơm rang dương châu', 'Món chính', 25, 'Tương đối khó', 'Cơm, hành, dương châu, gia vị', 520, 35000, 'Cơm rang dương châu với cơm nướng và hương vị độc đáo từ dương châu.', 0, '../img/restaurant/monchinh/Thăn heo đút lò sốt nho.png'),
+(17, 'Bún bò Huế', 'Món chính', 35, 'Bình thường', 'Bún, bò, gia vị, hành, rau sống', 420, 28000, 'Bún bò Huế với hương vị đặc trưng của miền Trung Việt Nam, thích hợp cho người thích mì vị cay.', 0, '../img/restaurant/monchinh/Lẩu cá thác lác.jpg'),
+(18, 'Phở gà', 'Món chính', 30, 'Dễ', 'Phở, gà, gia vị', 380, 30000, 'Phở gà với mì và thịt gà thơm ngon, thích hợp cho bữa sáng hoặc bữa trưa.', 0, '../img/restaurant/monchinh/Lẩu gà lá giang.png'),
+(19, 'Bánh xèo', 'Món chính', 20, 'Dễ', 'Bánh xèo, gia vị', 380, 20000, 'Bánh xèo với bánh mỳ giòn tan và nhiều loại gia vị tươi ngon.', 0, '../img/restaurant/monchinh/Cá bớp nướng muối ớt xanh.jpg'),
+(20, 'Bánh tráng cuốn', 'Món chính', 25, 'Bình thường', 'Bánh tráng, thịt nướng, rau sống', 350, 22000, 'Bánh tráng cuốn với bánh tráng mỏng và thịt nướng tươi ngon.', 0, '../img/restaurant/monchinh/Cá tầm sốt nấm tiêu đen đút lò.jpg'),
+(21, 'Bún chả', 'Món chính', 25, 'Bình thường', 'Bún, thịt nướng, gia vị', 380, 25000, 'Bún chả là món ăn truyền thống của Hà Nội với bún mềm, thịt nướng thơm ngon. Bún chả thường được ăn kèm với nhiều loại rau sống và nước mắm pha chua ngọt.', 0, '../img/restaurant/monchinh/Mực hấp rim mắm tỏi.jpg'),
+(22, 'Cơm gà', 'Món chính', 30, 'Dễ', 'Cơm, thịt gà, gia vị', 350, 20000, 'Cơm gà là món ngon và bổ dưỡng với thịt gà tươi ngon và cơm hấp. Món này thường được kèm theo nước lẩu hấp dẫn.', 0, '../img/restaurant/monchinh/Cá lóc hấp bầu.png'),
+(23, 'Bánh mì kẹp thịt', 'Món chính', 20, 'Bình thường', 'Bánh mì, thịt, rau sống', 320, 18000, 'Bánh mì kẹp thịt với thịt và rau sống giòn tan là lựa chọn lý tưởng cho bữa ăn nhanh và ngon miệng.', 0, '../img/restaurant/monchinh/Gà bó xôi.jpg'),
+(24, 'Hủ tiếu Nam Vang', 'Món chính', 30, 'Tương đối khó', 'Hủ tiếu, thịt, gia vị', 410, 28000, 'Hủ tiếu Nam Vang là món ăn phổ biến tại Sài Gòn với hủ tiếu và thịt tươi ngon. Món này thường được kèm theo nước dùng thơm ngon.', 0, '../img/restaurant/monchinh/Lẩu gà lá giang.png'),
+(25, 'Mì Ý hấp', 'Món chính', 35, 'Tương đối khó', 'Mì Ý, thịt, gia vị', 450, 32000, 'Mì Ý hấp với mì Ý mềm và thịt ngon là một món ăn sang trọng và ngon miệng.', 0, '../img/restaurant/monchinh/Mực hấp gừng.jpg'),
+(26, 'Cơm rang dưa lưới', 'Món chính', 25, 'Bình thường', 'Cơm, dưa lưới, gia vị', 320, 22000, 'Cơm rang dưa lưới là món ăn thơm ngon và dễ làm với cơm và dưa lưới giòn tan.', 0, '../img/restaurant/monchinh/Cá lóc hấp bầu.png'),
+(27, 'Gỏi cuốn', 'Món chính', 20, 'Dễ', 'Bánh tráng, thịt nướng, rau sống', 280, 18000, 'Gỏi cuốn là món ăn dễ làm và ngon miệng với bánh tráng mỏng và thịt nướng tươi ngon.', 0, '../img/restaurant/monchinh/Bò né.jpg'),
+(28, 'Gỏi cuốn', 'Món khai vị', 20, 'Dễ', 'Bánh tráng, thịt nướng, rau sống', 280, 18000, 'Gỏi cuốn là món ăn dễ làm và ngon miệng với bánh tráng mỏng và thịt nướng tươi ngon.', 0, '../img/restaurant/monkhaivi/Thịt nguội bát bửu.jpg'),
+(29, 'Bánh mì pate', 'Món khai vị', 15, 'Dễ', 'Bánh mì, pate, gia vị', 250, 12000, 'Bánh mì pate với lớp pate thơm ngon và bánh mì giòn tan là lựa chọn tuyệt vời cho món khai vị.', 0, '../img/restaurant/monkhaivi/Bánh Korokke nhân thịt bò.jpg'),
+(30, 'Canapé hải sản', 'Món khai vị', 25, 'Tương đối khó', 'Bánh mì, hải sản, gia vị', 320, 22000, 'Canapé hải sản với hải sản tươi ngon và bánh mì hấp dẫn là món khai vị hấp dẫn.', 0, '../img/restaurant/monkhaivi/Gỏi ngó sen tôm thịt.jpg'),
+(31, 'Nem chua', 'Món khai vị', 20, 'Dễ', 'Thịt, gia vị', 240, 14000, 'Nem chua là món khai vị truyền thống với thịt và gia vị thơm ngon.', 0, '../img/restaurant/monkhaivi/Gỏi bưởi tôm mực.jpg'),
+(32, 'Bánh mì ốp la', 'Món khai vị', 20, 'Dễ', 'Bánh mì, trứng, gia vị', 290, 16000, 'Bánh mì ốp la với trứng gà và gia vị hấp dẫn là món khai vị ngon miệng.', 0, '../img/restaurant/monkhaivi/Bánh xếp nhân thịt heo chiên giòn.jpg'),
+(33, 'Xúc xích chiên', 'Món khai vị', 25, 'Dễ', 'Xúc xích, gia vị', 310, 18000, 'Xúc xích chiên với xúc xích tươi ngon và gia vị là lựa chọn lý tưởng cho món khai vị.', 0, '../img/restaurant/monkhaivi/Tôm chiên xù.jpg'),
+(34, 'Súp lơ', 'Món khai vị', 30, 'Tương đối khó', 'Súp lơ, gia vị', 260, 14000, 'Súp lơ với súp lơ thơm ngon và gia vị là món khai vị hấp dẫn.', 0, '../img/restaurant/monkhaivi/Sallat rau củ.png'),
+(35, 'Kem sữa chua', 'Món tráng miệng', 10, 'Dễ', 'Sữa chua, gia vị', 180, 15000, 'Kem sữa chua với lớp sữa chua mềm mịn và hương vị thơm ngon.', 0, '../img/restaurant/monkhaivi/Sallat rau củ.png'),
+(36, 'Bánh flan', 'Món tráng miệng', 15, 'Dễ', 'Bánh flan, gia vị', 250, 18000, 'Bánh flan với lớp caramel và bánh flan mềm mịn là món tráng miệng ngon miệng.', 0, '../img/restaurant/montrangmieng/Rau câu hoa đậu biếc.png'),
+(37, 'Kem chocolate', 'Món tráng miệng', 10, 'Dễ', 'Sô cô la, kem', 220, 16000, 'Kem chocolate với kem thơm và sô cô la là món tráng miệng ngon miệng.', 0, '../img/restaurant/montrangmieng/Bánh cupcake socola.jpg'),
+(38, 'Cheesecake dâu', 'Món tráng miệng', 20, 'Tương đối khó', 'Dâu, bánh cheesecake, gia vị', 290, 22000, 'Cheesecake dâu với lớp cheesecake mềm và hương vị dâu là món tráng miệng hấp dẫn.', 0, '../img/restaurant/montrangmieng/Chè dưỡng nhan.jpg'),
+(39, 'Bánh ngọt phô mai', 'Món tráng miệng', 15, 'Dễ', 'Bánh ngọt, phô mai, gia vị', 260, 19000, 'Bánh ngọt phô mai với lớp phô mai béo và bánh ngọt giòn là món tráng miệng ngon miệng.', 0, '../img/restaurant/montrangmieng/Bánh Mochi.jpg'),
+(40, 'Panna cotta', 'Món tráng miệng', 25, 'Tương đối khó', 'Kem, hạt dẻ', 320, 25000, 'Panna cotta với lớp kem mềm và hương vị hạt dẻ là món tráng miệng hấp dẫn.', 0, '../img/restaurant/montrangmieng/Chè khúc bạch.jpg'),
+(41, 'Bánh tiramisu', 'Món tráng miệng', 20, 'Tương đối khó', 'Bánh tiramisu, cà phê', 310, 22000, 'Bánh tiramisu với bánh tiramisu thơm ngon và lớp cà phê là món tráng miệng hấp dẫn.', 0, '../img/restaurant/montrangmieng/Bánh tuyết thiên sứ.jpg'),
+(42, 'Bánh mì hamburger', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mì, thịt bò, rau sống', 450, 35000, 'Bánh mì hamburger với thịt bò, rau sống và gia vị hấp dẫn là món đồ ăn nhanh phổ biến.', 0, '../img/restaurant/monkhaivi/Bánh Korokke nhân thịt bò.jpg'),
+(43, 'Pizza hawaiian', 'Đồ ăn nhanh', 20, 'Tương đối khó', 'Bánh pizza, thịt dăm, dứa, phô mai', 500, 42000, 'Pizza hawaiian với lớp bánh pizza mỏng, thịt dăm, dứa và phô mai là món đồ ăn nhanh thơm ngon.', 0, '../img/restaurant/monkhaivi/Càng cua bách hoa.jpg'),
+(44, 'Bánh mỳ sandwich', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mỳ, thịt gà, rau sống', 380, 30000, 'Bánh mỳ sandwich với thịt gà, rau sống và gia vị hấp dẫn là món đồ ăn nhanh ngon miệng.', 0, '../img/restaurant/monkhaivi/Bánh xếp nhân thịt heo chiên giòn.jpg'),
+(45, 'Bánh bao', 'Đồ ăn nhanh', 10, 'Dễ', 'Bánh bao, nhân thịt', 280, 18000, 'Bánh bao với lớp bánh mềm và nhân thịt là món đồ ăn nhanh truyền thống.', 0, '../img/restaurant/monkhaivi/Súp cua.jpg'),
+(46, 'Cơm cuộn', 'Đồ ăn nhanh', 25, 'Dễ', 'Cơm, thịt nướng, rau sống', 320, 25000, 'Cơm cuộn với lớp cơm, thịt nướng và rau sống là món đồ ăn nhanh ngon miệng.', 0, '../img/restaurant/monkhaivi/Gỏi ngó sen tôm thịt.jpg'),
+(47, 'Mì xào hải sản', 'Đồ ăn nhanh', 20, 'Tương đối khó', 'Mì, hải sản, gia vị', 420, 35000, 'Mì xào hải sản với lớp mì và hải sản tươi ngon là món đồ ăn nhanh hấp dẫn.', 0, '../img/restaurant/monkhaivi/Gỏi ngũ sắc hải sản.jpg'),
+(48, 'Hotdog', 'Đồ ăn nhanh', 15, 'Dễ', 'Xúc xích, bánh mì', 350, 28000, 'Hotdog với xúc xích và bánh mì giòn là món đồ ăn nhanh phổ biến.', 0, '../img/restaurant/monkhaivi/Tôm chiên xù.jpg'),
+(49, 'Bánh trứng', 'Đồ ăn nhanh', 12, 'Dễ', 'Trứng gà, gia vị', 280, 20000, 'Bánh trứng với lớp bánh mềm và trứng gà là món đồ ăn nhanh ngon miệng.', 0, '../img/restaurant/monkhaivi/Sú ghẹ nấm đông cô.jpg'),
+(50, 'Bánh mì bơ tỏi', 'Đồ ăn nhanh', 15, 'Dễ', 'Bánh mì, bơ tỏi, gia vị', 320, 22000, 'Bánh mì bơ tỏi với bơ tỏi thơm và bánh mì giòn là món đồ ăn nhanh hấp dẫn.', 0, '../img/restaurant/monkhaivi/Càng cua bách hoa.jpg'),
+(51, 'Bánh su kem', 'Đồ ăn nhanh', 18, 'Dễ', 'Bánh su kem, kem, gia vị', 280, 19000, 'Bánh su kem với lớp bánh su kem mềm và kem thơm là món đồ ăn nhanh ngon miệng.', 0, '../img/restaurant/montrangmieng/Bánh su kem.jpg'),
+(52, 'Cà phê đen', 'Nước uống', 5, 'Dễ', 'Cà phê, nước', 30, 22000, 'Cà phê đen với hương vị đắng và thơm là món nước uống phổ biến.', 0, '../img/restaurant/douong/Whisky.jpg'),
+(53, 'Nước chanh', 'Nước uống', 5, 'Dễ', 'Nước chanh, đường', 40, 15000, 'Nước chanh với hương vị chua ngọt là món nước uống giải khát.', 0, '../img/restaurant/douong/Spite.jpg'),
+(54, 'Soda chanh', 'Nước uống', 8, 'Dễ', 'Soda, nước chanh', 60, 25000, 'Soda chanh với hương vị soda và chanh là món nước uống giải khát phổ biến.', 0, '../img/restaurant/douong/Soda.jpg'),
+(55, 'Nước dừa', 'Nước uống', 10, 'Dễ', 'Nước dừa', 50, 28000, 'Nước dừa tươi ngon và bổ dưỡng.', 0, '../img/restaurant/douong/Rượu voodka.jpg'),
+(56, 'Sinh tố bơ', 'Nước uống', 10, 'Dễ', 'Bơ, sữa, đường', 90, 35000, 'Sinh tố bơ với hương vị bơ ngon và thơm.', 0, '../img/restaurant/douong/Soda.jpg'),
+(57, 'Cà phê sữa', 'Nước uống', 5, 'Dễ', 'Cà phê, sữa, đường', 70, 26000, 'Cà phê sữa với hương vị cà phê và sữa ngon miệng.', 0, '../img/restaurant/douong/Whisky.jpg'),
+(58, 'Trà đào', 'Nước uống', 8, 'Dễ', 'Trà, đào, đường', 80, 30000, 'Trà đào với hương vị trà thơm và đào ngon miệng.', 0, '../img/restaurant/douong/Rượu vang.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giohang`
+--
+
+CREATE TABLE `giohang` (
+  `id` int(11) NOT NULL,
+  `mamonan` varchar(255) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `gia` int(11) DEFAULT NULL,
+  `makhachhang` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`id`, `mamonan`, `soluong`, `gia`, `makhachhang`) VALUES
+(1, '1', 1, 20000, 1);
 
 -- --------------------------------------------------------
 
@@ -309,7 +328,7 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MaHoaDon`, `MaPDP`, `TongTien`, `TinhTrang`) VALUES
-(10, 10, 2812000, 'Đã thanh toán');
+(10, 10, 2700000, 'Đã thanh toán');
 
 -- --------------------------------------------------------
 
@@ -335,7 +354,7 @@ CREATE TABLE `khachhang` (
 
 INSERT INTO `khachhang` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `DiaChi`, `GioiTinh`, `PassWord`, `AccessToken`) VALUES
 (1, 'Admin', '0123456789', 'admin@gmail.com', '343025555', 'Thanh Hoá', 1, 'admin', NULL),
-(3, 'Thùy Dung Nguyễn Thị', '0334504676', 'thuydungtstb@gmail.com', '001200507328', 'Thái Bình', 1, 'tstb2002', ''),
+(3, 'Thùy Dung Nguyễn Thị', '0334504676', 'thuydungtstb@gmail.com', '001200507328', 'Thái Bình', 0, 'tstb2002', ''),
 (4, 'Minh Tâm', '0125556789', 'tam@gmail.com', '00123456776', 'Hà Nội', 1, '456', ''),
 (5, 'Trần Anh', '0126666789', 'anh@gmail.com', '00123456776', 'Đà Nẵng', 1, '789', ''),
 (6, 'Hoàng Nam', '0127776789', 'nam@gmail.com', '00123456776', 'Hồ Chí Minh', 1, '135', ''),
@@ -464,12 +483,12 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MaNhanVien`, `HoTen`, `MaChucVu`, `NgaySinh`, `GioiTinh`, `DiaChi`, `Email`, `SoDienThoai`, `MatKhau`) VALUES
-(1, 'Bá Trường', '31', '2023-11-01', 1, 'Thanh Hoá', 'admin@gmail.com', '123456789', 'admin'),
+(1, 'Bá Trường', '1', '2023-11-01', 1, 'Thanh Hoá', 'admin@gmail.com', '123456789', 'admin'),
 (2, 'Cấn Minh Quang', '31', '2002-03-20', 1, 'Hà Nội', 'quang@gmail.com', '0973956942', '1'),
 (3, 'Minh Tâm', '13', '2000-05-15', 1, 'Hà Nội', 'tam@gmail.com', '0125556789', '456'),
 (4, 'Trần Anh', '14', '1998-03-21', 1, 'Đà Nẵng', 'anh@gmail.com', '0126666789', '789'),
 (5, 'Hoàng Nam', '21', '1999-07-10', 1, 'Hồ Chí Minh', 'nam@gmail.com', '0127776789', '135'),
-(6, 'Bùi Lan Hương', '22', '1997-09-05', 0, 'Bắc Ninh', 'huong@gmail.com', '0128886789', '246'),
+(6, 'Lan Hương', '22', '1997-09-05', 0, 'Bắc Ninh', 'huong@gmail.com', '0128886789', '246'),
 (7, 'Thanh Hà', '23', '1995-08-17', 0, 'Hải Phòng', 'ha@gmail.com', '0129996789', '579'),
 (8, 'Quốc Anh', '24', '2000-06-14', 1, 'Ninh Bình', 'quocanh@gmail.com', '0120001234', '111'),
 (9, 'Ngọc Thảo', '25', '2001-04-02', 0, 'Thái Nguyên', 'thaongoc@gmail.com', '0121112345', '222'),
@@ -530,7 +549,7 @@ CREATE TABLE `phieudatphong` (
 --
 
 INSERT INTO `phieudatphong` (`MaPDP`, `MaKhachHang`, `MaNhanVien`, `TongTien`, `ThanhToanTruoc`, `PhuongThucThanhToan`, `NgayTT`) VALUES
-(10, 74, 1, 2500000, 1000, 'Thanh toán bằng QR-Pay', '2023-10-31'),
+(10, 74, 1, 2500000, 250000, 'Thanh toán bằng QR-Pay', '2023-10-31'),
 (11, 78, 1, 3200000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
 (12, 78, 1, 11600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
 (13, 78, 1, 8600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02');
@@ -569,7 +588,7 @@ INSERT INTO `phieugiamgia` (`MaGiamGia`, `TenMaGiamGia`, `ChietKhau`, `TinhTrang
 ('HST', 'Hội sách', 20, 1),
 ('LDG', 'Lễ hội giảm giá', 45, 0),
 ('LDT', 'Lễ hội du lịch', 75, 0),
-('LĐH50', 'Lễ hội hè', 50, 0),
+('LĐH', 'Lễ hội hè', 50, 0),
 ('MGN', 'Mừng sinh nhật', 10, 0),
 ('MHX', 'Mùa Hè Xanh', 5, 0),
 ('MMV', 'Mừng năm mới', 50, 0),
@@ -604,8 +623,7 @@ CREATE TABLE `phieumonan` (
 --
 
 INSERT INTO `phieumonan` (`MaPMA`, `MaHoaDon`, `TongTienMA`) VALUES
-(1, 10, 200000),
-(2, 10, 112000);
+(1, 10, 200000);
 
 -- --------------------------------------------------------
 
@@ -632,7 +650,7 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`MaPhong`, `LoaiPhong`, `KieuPhong`, `SLMax`, `LoaiGiuong`, `GiaPhong`, `IMG`, `DienTich`, `TamNhin`, `MoTa`, `TrangThai`) VALUES
-(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/tên ảnh', '32m', '14:12', '0', 'Đầy'),
+(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/junior_suite.jpg', '32m', '14:12', '0', 'Trống'),
 (102, 'Deluxe ', 'Deluxe Twin', 3, '2 giường đơn', 3200000, '../img/allroom/Deluxe_room1.jpg', '42m', 'Ra biển ', '0', 'Trống'),
 (103, 'Deluxe ', 'Deluxe Double', 3, '1 giường đôi và 1 giường đơn', 3200000, '../img/allroom/family_room.jpg', '42m', '12:10', '0', 'Trống'),
 (104, 'Deluxe ', 'Deluxe Triple', 4, '1 giường đôi và 2 giường đơn', 5800000, '../img/allroom/family_room1.jpg', '45m', '12:12', '0', 'Trống'),
@@ -695,6 +713,12 @@ ALTER TABLE `dichvu`
 --
 ALTER TABLE `doan`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `hoadon`
@@ -777,7 +801,7 @@ ALTER TABLE `phong`
 -- AUTO_INCREMENT cho bảng `chitietdatmon`
 --
 ALTER TABLE `chitietdatmon`
-  MODIFY `MaDatMon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `MaDatMon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdatphong`
@@ -808,6 +832,12 @@ ALTER TABLE `dichvu`
 --
 ALTER TABLE `doan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `hoadon`
@@ -843,7 +873,7 @@ ALTER TABLE `phieudichvu`
 -- AUTO_INCREMENT cho bảng `phieumonan`
 --
 ALTER TABLE `phieumonan`
-  MODIFY `MaPMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaPMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
