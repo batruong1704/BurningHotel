@@ -67,8 +67,13 @@ document.querySelector('.btnaddcart').addEventListener('click', function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText);
-                console.log("aaaa");
+                // Parse phản hồi JSON từ server
+                const response = JSON.parse(xhr.responseText);
+    
+                // Cập nhật số lượng món trong giao diện
+                document.querySelector('.soluongmon').innerText = response.so_luong_mon;
+    
+                // Reload giỏ hàng
                 reloadCard();
             } else {
                 console.error('Error:', xhr.statusText);

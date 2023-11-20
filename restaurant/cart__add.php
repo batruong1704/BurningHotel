@@ -1,42 +1,40 @@
 <?php
-require_once('../config.php');
+session_start();
+include("../config.php");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['customerId']) && isset($_POST['productId']) && isset($_POST['quantity'])) {
-        $customerId = $_POST['customerId'];
-        $productId = $_POST['productId'];
-        $quantity = $_POST['quantity'];
+// Xác định thông tin sản phẩm từ request
+$productId = $_POST['productId'];
+$quantity = $_POST['quantity'];
 
-        $checkSql = "SELECT * FROM giohang WHERE makhachhang = $customerId AND mamonan = $productId";
-        $checkResult = $con->query($checkSql);
-
-        if ($checkResult->num_rows > 0) {
-            $row = $checkResult->fetch_assoc();
-            $cartItemId = $row['id'];
-            $newQuantity = $row['soluong'] + $quantity;
-
-            $updateSql = "UPDATE giohang SET soluong = $newQuantity WHERE id = $cartItemId AND makhachhang = $customerId";
-            mysqli_query($con, $updateSql);
-        } else {
-            $insertSql = "INSERT INTO giohang (mamonan, soluong, gia, makhachhang) 
-               SELECT ID, $quantity, ThanhTien, $customerId FROM doan WHERE ID = $productId";
-            mysqli_query($con, $insertSql);
-        }
-
-        $getQuantitySql = "SELECT soluong FROM giohang WHERE makhachhang = $customerId AND mamonan = $productId";
-        $result = $con->query($getQuantitySql);
-        $newQuantity = $result->fetch_assoc()['soluong'];
-
-        $response = ['success' => true, 'message' => 'Product added to cart.', 'newQuantity' => $newQuantity];
-        echo json_encode($response);
-    } else {
-        $response = ['success' => false, 'message' => 'Invalid request.'];
-        echo json_encode($response);
-    }
-} else {
-    $response = ['success' => false, 'message' => 'Invalid request.'];
-    echo json_encode($response);
+// Kiểm tra xem khách hàng đã đăng nhập chưa
+if (!isset($_SESSION['makhachhang'])) {
+    // Nếu chưa đăng nhập, trả về thông báo lỗi
+    echo json_encode(array('success' => false, 'message' => 'Bạn phải đăng nhập để thêm món vào giỏ hàng.'));
+    exit();
 }
 
-mysqli_close($con);
+// Kiểm tra xem món đã tồn tại trong giỏ hàng chưa
+$sqlCheckExistence = "SELECT * FROM giohang WHERE makhachhang = $_SESSION[makhachhang] AND mamonan = $productId";
+$resultCheckExistence = mysqli_query($con, $sqlCheckExistence);
+
+if (mysqli_num_rows($resultCheckExistence) > 0) {
+    // Nếu món đã tồn tại, cập nhật số lượng
+    $row = mysqli_fetch_assoc($resultCheckExistence);
+    $newQuantity = $row['soluong'] + $quantity;
+    $sqlUpdateQuantity = "UPDATE giohang SET soluong = $newQuantity WHERE makhachhang = $_SESSION[makhachhang] AND mamonan = $productId";
+    mysqli_query($con, $sqlUpdateQuantity);
+} else {
+    // Nếu món chưa tồn tại, thêm món mới
+    $sqlAddToCart = "INSERT INTO giohang (mamonan, soluong, gia, makhachhang) 
+    SELECT ID, $quantity, ThanhTien, $_SESSION[makhachhang] FROM doan WHERE ID = $productId";
+    mysqli_query($con, $sqlAddToCart);
+}
+
+// Đếm số lượng các món khác nhau đã đặt theo mã khách hàng
+$countResult = mysqli_query($con, "SELECT COUNT(*) as soluongmon FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
+$countRow = mysqli_fetch_assoc($countResult);
+$so_luong_mon = $countRow['soluongmon'];
+
+// Trả về phản hồi với số lượng món mới
+echo json_encode(array('success' => true, 'so_luong_mon' => $so_luong_mon));
 ?>
