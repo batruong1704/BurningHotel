@@ -19,7 +19,7 @@
         include('header.php');
         include('../config.php');
 
-        $sql = "SELECT * From quanlytaikhoan where Email ='" . $_SESSION['email'] . "'";
+        $sql = "SELECT * From khachhang where ID ='" . $_SESSION['makhachhang'] . "'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
@@ -27,6 +27,8 @@
                 $sdt = $row['SDT'];
                 $email = $row['Email'];
                 $cmnd = $row['CMND'];
+                $diachi=$row['DiaChi'];
+                $gioitinh=$row['GioiTinh'];
             }
         }
     ?>
@@ -44,11 +46,33 @@
                         <button type="button" onclick="editten()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
                     <div class="col-5">
+                        <label for="">Giới tính: </label>
+                    </div>
+                    <div class="col-7 d-flex align-items-end">
+                        <div class="d-flex justify-content-center" style="width: 400px;">
+                       
+                            <label for="nam" style="padding: 0px;">Nam</label>
+                            <input type="radio" id="nam" name="gender" <?php echo ($gioitinh==1)?'checked':''?> value="1" style="height: 15px;" >
+                                
+                            <label for="nu" style="padding: 0px;">Nữ</label>
+                            <input type="radio" id="nu" name="gender" <?php echo ($gioitinh==0)?'checked':''?> value="0" style="height: 15px;" >
+                        </div>
+                            
+                        <button type="button" style="border: none;background-color:#181a1b; margin-bottom:3px; margin-left:4px"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px;"></i></button>
+                    </div>
+                    <div class="col-5">
                         <label for="">Số Điện Thoại: </label>
                     </div>
                     <div class="col-7">
                         <input type="text" name="sdt" id="sdt" value="<?php echo $sdt ?>" readonly>
                         <button type="button" onclick="editsdt()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
+                    </div>
+                    <div class="col-5">
+                        <label for="">Địa Chỉ: </label>
+                    </div>
+                    <div class="col-7">
+                        <input type="text" name="diachi" id="diachi" value="<?php echo $diachi ?>" readonly>
+                        <button type="button" onclick="editdiachi()" style="border: none;background-color:#181a1b"><i class="fa fa-wrench" style="color: #EBB853; font-size: 25px"></i></button>
                     </div>
                     <div class="col-5">
                         <label for="">Email: </label>
@@ -83,6 +107,10 @@
                     function editten() {
                         document.getElementById("ten").removeAttribute("readonly");
                     }
+                   
+                    function editdiachi() {
+                        document.getElementById("diachi").removeAttribute("readonly");
+                    }
 
                     function editemail() {
                         document.getElementById("email").removeAttribute("readonly");
@@ -108,7 +136,7 @@
     <?php
         if (isset($_POST['submit'])) {
             $matkhau = $_POST["mk"];
-            $sql1 = "SELECT * FROM quanlytaikhoan WHERE ID = '" . $_SESSION['makhachhang'] . "' AND PassWord = '" . $matkhau . "'";
+            $sql1 = "SELECT * FROM khachhang WHERE ID = '" . $_SESSION['makhachhang'] . "' AND PassWord = '" . $matkhau . "'";
             $result = mysqli_query($con, $sql1);
             if (mysqli_num_rows($result) == 0) {
                 echo '<script>
@@ -121,8 +149,9 @@
             $email = $_POST["email"];
             $sdt = $_POST["sdt"];
             $cmnd = $_POST["cmnd"];
-
-            $sql = "SELECT * FROM quanlytaikhoan WHERE Email = '" . $email . "' OR SDT = '" . $sdt . "' OR ID ='" . $_SESSION['makhachhang'] . "' ";
+            $diachi=$_POST['diachi'];
+            $gioitinh=$_POST['gender'];
+            $sql = "SELECT * FROM khachhang WHERE Email = '" . $email . "' OR SDT = '" . $sdt . "' OR ID ='" . $_SESSION['makhachhang'] . "' ";
             $result = mysqli_query($con, $sql);
             if (mysqli_num_rows($result) > 1) {
                 echo '<script>
@@ -130,7 +159,7 @@
                     window.location="javascript: history.go(-1)";
                     </script>';
             } else {
-                $sql = "UPDATE quanlytaikhoan SET HoTen='" . $hoten . "', SDT='" . $sdt . "', Email='" . $email . "', CMND='" . $cmnd . "' WHERE SDT='" . $_SESSION['sdt'] . "'";
+                $sql = "UPDATE khachhang SET HoTen='" . $hoten . "', SDT='" . $sdt . "', Email='" . $email . "',DiaChi='".$diachi."',GioiTinh='".$gioitinh."', CMND='" . $cmnd . "' WHERE SDT='" . $_SESSION['sdt'] . "'";
                 $result = mysqli_query($con, $sql);
                 if ($result == true) {
                     echo "<script>";

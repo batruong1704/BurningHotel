@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact us</title>
-    <link rel="stylesheet" href="../css/form1.css">
+    <link rel="stylesheet" href="../css/contact.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/a0ff9460a2.js" crossorigin="anonymous"></script>
@@ -42,60 +42,61 @@
                 <p>Get In Touch</p>
                 <p>Phasellus nisi sapien, rutrum placerat sapien eu, rhoncus templus felis.<br>
                     Nulla non pulvina enim, vel viverra nunc.</p>
-                    <div class="main_item">
-                       <div class="chu "> <img class="phone" src="../img/icon_Phone.png">Emergency Help</div>
-                        <span class="so ">+ 123 (458) 896 895</span>
-                    </div>
-                    <div class="main_item">
-                        <div class="chu"><img class="mess" src="../img/icon_Mess.png">Quick Email</div>
-                        <span class="so">support@gmail.com</span>
-                    </div>
-                    <div class="main_item">
-                        <div class="chu"><img class="address" src="../img/icon_Address.png">support@gmai.com</div>
-                        <div class="so">GXF4+8HQ Chippenham  </div> 
-                        <div class="so">United KingDom</div>
-                    </div>  
-                    <div class="main_link">
-                            <span class="main_icon">
-                                <a class="main_link_icon" href="#"><i class="fa-brands fa-facebook"></i></a>
-                            </span>
-                            <span class="main_icon">
-                                <a class="main_link_icon" href="#"><i class="fa-brands fa-instagram"></i></a>
-                            </span>
-                            <span class="main_icon">
-                                <a class="main_link_icon" href="#"><i class="fa-brands fa-youtube"></i></a>
-                            </span>
-                            <span class="main_icon">
-                                <a class="main_link_icon" href="#"><i class="fa-brands fa-twitter"></i></a>
-                            </span>
-                        </div>
+                <div class="main_item">
+                    <div class="chu "> <img class="phone" src="../img/icon_Phone.png">Emergency Help</div>
+                    <span class="so ">+ 123 (458) 896 895</span>
                 </div>
-                <div class="main_form" action="send-email.php"> 
-                    <p>Send Message</p>
-                    <div class="infor1">
-                        <div class="infor11">
-                            <input type="text" id="name" name="name" placeholder="Full name" >
-                        </div>
-                        <div class="infor12">
-                            <input type="text" name="email" id="email"  placeholder="Email Address"></div> 
-                    </div>
-                    <div class="infor2">
-                        <div class="infor21"><input type="text" id="phone" name="phone" placeholder="Phone"></div>
-                        <div class="infor22"><input type="text" id="subject" name="subject" placeholder="Subject"></div>
-                    </div>
-                    <div class="infor3">
-                        <textarea name="cmt" id="cmt" cols="40" rows="12" placeholder="Type your comment..."></textarea>
-                    </div>
-                    <input type="submit" id ="submit" value="SUBMIT NOW">
+                <div class="main_item">
+                    <div class="chu"><img class="mess" src="../img/icon_Mess.png">Quick Email</div>
+                    <span class="so">support@gmail.com</span>
                 </div>
+                <div class="main_item">
+                    <div class="chu"><img class="address" src="../img/icon_Address.png">support@gmai.com</div>
+                    <div class="so">GXF4+8HQ Chippenham </div>
+                    <div class="so">United KingDom</div>
+                </div>
+                <div class="main_link">
+                    <span class="main_icon">
+                        <a class="main_link_icon" href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </span>
+                    <span class="main_icon">
+                        <a class="main_link_icon" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </span>
+                    <span class="main_icon">
+                        <a class="main_link_icon" href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </span>
+                    <span class="main_icon">
+                        <a class="main_link_icon" href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="main_form">
+                <p>Send Message</p>
+                <div class="infor1">
+                    <div class="infor11">
+                        <input type="text" id="ten" name="ten" placeholder="Full name">
+                    </div>
+                    <div class="infor12">
+                        <input type="email" name="email" id="email" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="infor2">
+                    <div class="infor21"><input type="text" id="number" name="number" placeholder="Phone"></div>
+                    <div class="infor22"><input type="text" id="subject" name="subject" placeholder="Subject"></div>
+                </div>
+                <div class="infor3">
+                    <textarea name="cmt" id="cmt" cols="40" rows="12" placeholder="Type your comment..."></textarea>
+                </div>
+                <input type="submit" id="submit" name="submit" value="SUBMIT NOW">
             </div>
         </div>
     </div>
     </form>
     <?php
 
-    use PHPMailer\PHPMailer\PHPMailer;
+
     require '../vendor/autoload.php';
+    use PHPMailer\PHPMailer\PHPMailer;
 
     if (isset($_POST['submit'])) {
         $ten = $_POST['ten'];
@@ -103,7 +104,6 @@
         $sdt = $_POST['number'];
         $subject = $_POST['subject'];
         $message = $_POST['cmt'];
-
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
@@ -136,7 +136,8 @@
     <!-- footer -->
     <?php include('footer.php'); ?>
 
-        <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
-        <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
-</body> 
+    <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
+    <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+</body>
+
 </html>

@@ -117,13 +117,12 @@ input{
     margin-bottom: 15px;
     font-size: 20px;
 }
-.main6{
-    margin-top:59px;
-}
+
 #btn{
     background-color:rgb(184,145,70) ;
     color: white;
     font-size: 20px;
+    margin-top: 55px;
 }
 .form{
     display: flex;
@@ -204,8 +203,3 @@ input{
     border: none;
 }
 /* end footer */
-
-
-
-
-
