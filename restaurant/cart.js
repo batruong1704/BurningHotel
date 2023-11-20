@@ -65,8 +65,14 @@ document.querySelector('.btnaddcart').addEventListener('click', function () {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("Response: " ,xhr.responseText);
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                let data = JSON.parse(xhr.responseText);
+                console.log("aaaa");
+                reloadCard();
+            } else {
+                console.error('Error:', xhr.statusText);
+            }
         }
     };
 
@@ -75,8 +81,9 @@ document.querySelector('.btnaddcart').addEventListener('click', function () {
              "&quantity=" + quantity);
 });
 
+
 function reloadCard() {
-    fetch(`cart__get.php?customer_id=${customerId}`)
+    fetch(`cart__get.php?customer_id=${localStorage.getItem('makhachhang')}`)
     .then(response => response.json())
     .then(data => {
         let listCard = document.querySelector('.listCard');
@@ -121,21 +128,20 @@ function reloadCard() {
 }
 
 function changeQuantity(key, quantity) {
-    fetch('update_quantity.php', {
+    fetch('cart_update_quantity.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            cartItemId: key + 1, // Sửa lại nếu mã giỏ hàng không phải là key + 1
+            cartItemId: key + 1,
             newQuantity: quantity,
         }),
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Thành công, cập nhật UI
-            reloadCard();
+            reloadCard(); 
         } else {
             console.error('Error:', data.message);
         }

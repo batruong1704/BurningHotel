@@ -19,9 +19,9 @@ if (mysqli_num_rows($result) > 0) {
         $img = $row['img'];
     }
 }
-$result = mysqli_query($con, "SELECT COUNT(*) as total FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
+$result = mysqli_query($con, "SELECT COUNT(*) as soluongmon FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
-$so_luong_mon = $row['total'];
+$so_luong_mon = $row['soluongmon'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +62,10 @@ $so_luong_mon = $row['total'];
         <hcon>
             <div class="shopping">
                 <img src="../img/restaurant/icon/shopping-car.svg" alt="cart">
-                <span class="quantity">
+                <span class="soluongmon" id="so-luong-mon">
                     <?php echo $so_luong_mon ?>
                 </span>
+
             </div>
         </hcon>
         <div class="container py-5">
@@ -120,8 +121,7 @@ $so_luong_mon = $row['total'];
                                 </svg>
                             </button>
                         </div>
-                        <button class="btnaddcart" 
-                            data-masp="<?php echo $ID; ?>"
+                        <button class="btnaddcart" data-masp="<?php echo $ID; ?>"
                             data-product-quantity="document.getElementById('soluong').value">
                             Add to cart
                         </button>
@@ -297,31 +297,10 @@ $so_luong_mon = $row['total'];
 
     </section>
     <!-- end similar dish -->
-                    
+
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
     <!-- end footer -->
-<script>
-    document.querySelector('.btnaddcart').addEventListener('click', function () {
-        let productId = this.getAttribute('data-masp');
-        let quantity = document.getElementById('soluong').value;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "cart__add.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Response: " ,xhr.responseText);
-            }
-        };
-
-        xhr.send("customerId=" + localStorage.getItem('makhachhang') +
-                 "&productId=" + productId +
-                 "&quantity=" + quantity);
-    });
-</script>
-
     <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
     <script src="../js/tanggiamsoluong.js"></script>
