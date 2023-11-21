@@ -351,8 +351,6 @@
     <script>
         var ngayDen = new Date(localStorage.getItem("ngayden"));
         var ngayDi = new Date(localStorage.getItem("ngaydi"));
-        console.log(ngayDen);
-        console.log(ngayDi);
         var soNgay = (ngayDi - ngayDen) / (1000 * 60 * 60 * 24);
         var tienphong = soNgay * <?php echo $GiaPhong ?>;
         var tongtien = tienphong + <?php echo $_SESSION['tiendichvu'] ?>;
