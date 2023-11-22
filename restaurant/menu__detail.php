@@ -31,7 +31,7 @@ $so_luong_mon = $row['total'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết món</title>
-    <link rel="stylesheet" href="../css/restaurant/menu/menu_detail.css?v= <?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/restaurant/menu/menu__detail.css?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/f6b816f05e.js" crossorigin="anonymous"></script>
@@ -130,7 +130,7 @@ $so_luong_mon = $row['total'];
 
                     </div>
                     <div class="food-information">
-                        <h6>#no: <span>
+                        <h6>#ID: <span>
                                 <?php echo $ID ?>
                             </span></h6>
                         <h6>CATEGORY: <span>
@@ -193,8 +193,7 @@ function ThanhTon() {
                             icon: 'success',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                            // Chuyển hướng người dùng đến trang home.php
-                            window.location = "home.php";
+                            window.location = "index.php";
                         });
                     } else {
                         Swal.fire({
@@ -315,7 +314,7 @@ function ThanhTon() {
         <div class="container py-5">
             <div class="title">
                 <h3>Món tương tự</h3>
-                <button>Order now</button>
+                <button><a href="cart.php">Order now</a></button>
             </div>
             <div class="row">
                 <?php foreach ($IDs as $key => $value) { ?>

@@ -85,8 +85,8 @@
         <div class="container d-flex pt-3" style="align-items: center;">
             <img src="../img/thanhtoan1/icon-tt2.png" style="height: 45px;" alt="">
             <p class="mt-3 ms-1" style="font-family:Montserrat-Regular;">Thời gian hoàn tất thanh toán
-                <span id="phut" style="color: red;">0</span>:
-                <span id="giay" style="color: red;">15</span>
+                <span id="phut" style="color: red;">15</span>:
+                <span id="giay" style="color: red;">00</span>
                 <span>phút</span>
 
                 <script>
@@ -274,8 +274,8 @@
                 <p class="m-0 ms-4" style="font-family:Montserrat-Regular; padding-right: 150px;">
                     Hưỡng dẫn thanh toán sẽ được gửi tới quý khách khi nhấn nút thanh toán phòng sẽ được gửi tới bạn,
                     vui
-                    lòng thanh toán trước <span style="color: rgba(228, 17, 20, 0.77)"><?php echo date("d-m-Y", time()) ?></span>. Quá thời hạn trên chúng tôi có thể không gửi được phòng này
-                    cho bạn nữa.
+                    lòng thanh toán trước khoảng thời gian cho phép. Quá thời hạn trên chúng tôi có thể không gửi được phòng này
+                    cho bạn nữa!
                 </p>
                 <h3 class=" pt-2" style="font-family: Montserrat-Bold;">Chọn ngân hàng</h3>
                 <div class="nganhang d-flex pb-3">

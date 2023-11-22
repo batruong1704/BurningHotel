@@ -49,7 +49,7 @@
             $count_result = $con->query($count_sql);
             $total_rows = $count_result->fetch_assoc()['count'];
 
-            $items_per_page = 5;
+            $items_per_page = 7;
 
             if ($total_rows > 0) {
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -85,7 +85,7 @@
                     </div>';
                     ?>
                     
-                    <a style="text-decoration:none;color:black;" href="menu_detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
+                    <a style="text-decoration:none;color:black;" href="menu__detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
                     <button>Thêm giỏ hàng</button>
                     <?php
                     echo '</div>';
