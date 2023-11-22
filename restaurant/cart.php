@@ -2,7 +2,7 @@
 session_start();
 include("../config.php");
 
-$result = mysqli_query($con, "SELECT COUNT(*) as total FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
+$result = mysqli_query($con, "SELECT COUNT(*) as total  FROM giohang WHERE  makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
 $so_luong_mon = $row['total'];
 ?>
@@ -29,7 +29,7 @@ $so_luong_mon = $row['total'];
 
 <body class="" style="z-index: 3;">
 
-    <div class="container">
+     <div class="container">
         <header>
             <h1>Your Shopping Cart</h1>
             <div class="shopping">
@@ -52,9 +52,9 @@ $so_luong_mon = $row['total'];
             <div class="total">
                 <?php echo $so_luong_mon ?>
             </div>
-            <div class="closeShopping">Close</div>
+            <div class="closeShopping">Thanh Toán</div>
         </div>
-    </div>
+    </div> 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <!-- bootstrap -->

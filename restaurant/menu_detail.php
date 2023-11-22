@@ -19,9 +19,10 @@ if (mysqli_num_rows($result) > 0) {
         $img = $row['img'];
     }
 }
-$result = mysqli_query($con, "SELECT COUNT(*) as soluongmon FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
+$result = mysqli_query($con, "SELECT COUNT(*) as total,SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
-$so_luong_mon = $row['soluongmon'];
+$tongtien=$row['tongtien'];
+$so_luong_mon = $row['total'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +35,7 @@ $so_luong_mon = $row['soluongmon'];
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/f6b816f05e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
 </head>
@@ -151,17 +153,80 @@ $so_luong_mon = $row['soluongmon'];
         <h1><a href="cart.php">Card</a></h1>
         <ul class="listCard ps-0">
         </ul>
+        
         <div class="checkOut">
             <div class="total">
-                <?php echo $so_luong_mon ?>
+            <button onclick="ThanhTon()" name="btn" style="font-family:Montserrat-Regular; background-color: #937438;color: white;">Thanh Toán</button>
             </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
 
     <!-- end cart -->
+    <script>
+function ThanhTon() {
+    Swal.fire({
+        title: 'Vui lòng nhập mã đặt phòng:',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy bỏ',
+        showLoaderOnConfirm: true,
+        preConfirm: (maphieudatphong) => {
+            return new Promise((resolve, reject) => {
+                resolve(maphieudatphong);
+            });
+        },
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+          
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "thanhtoan_monan.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var response =  xmlhttp.responseText;
+                    if (response=="") {
+                        Swal.fire({
+                            title: 'Đặt món thành công!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        }).then(() => {
+                            // Chuyển hướng người dùng đến trang home.php
+                            window.location = "home.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Lỗi',
+                            text: response,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }
+            };
 
+            var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
+            xmlhttp.send(data);
+        } else {
+            // Người dùng đã hủy bỏ
+            Swal.fire({
+                title: 'Hủy bỏ đặt món.',
+                icon: 'info',
+                confirmButtonText: 'OK',
+            });
+        }
+    })
+    .catch(error => {
+        Swal.showValidationMessage(`Lỗi: ${error}`);
+    });
+}
+
+
+</script>
     <!-- ingredients -->
+
     <section id="ingredients">
         <div class="container py-5">
             <h3>Chi tiết thành phần</h3>
