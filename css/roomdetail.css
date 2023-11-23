@@ -39,6 +39,17 @@
     background-color: #181A1B;
     color: #fff;
 }
+#information .bookingnow{
+    border: none;
+    color: white;
+    background-color: #937438;
+    padding: 35px;
+    font-family: Montserrat-Medium;
+}
+#information .bookingnow:hover{
+    color: #937438;
+    background-color: white;
+}
 /* end information */
 
 /* overview */
@@ -57,6 +68,7 @@
 #overview span{
     font-family:Montserrat-Regular;
 }
+
 /* end overview */
 
 /* special-features */
@@ -139,14 +151,7 @@
     background-color: black;
     font-family: Montserrat-Medium;
 }
-#checknow .check button{
-    border: none;
-    color: white;
-    background-color: #937438;
-    height: 48px;
-    width: 130px;
-    font-family: Montserrat-Medium;
-}
+
 /* end checknow */
 
 /* room */

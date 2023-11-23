@@ -104,11 +104,16 @@
     padding-left: 900px;
 }
 
-#button button{
-   height: 40px;
-    width: 300px;
-    background-color: #937438;
+#button .btnthanhtoan{
+    font-family: Montserrat-SemiBold; 
+    height:50px;width: 300px; 
+    background-color: #937438; 
     color: white;
-    
+    border: none;
+}
+
+#button .btnthanhtoan:hover{
+    background-color: white;
+    color: #937438;
 }
 

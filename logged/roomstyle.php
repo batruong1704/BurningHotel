@@ -122,10 +122,10 @@
         <div class="mainroom">
             <?php foreach ($phongs as $key => $value) { ?>
                 <div class="mainroom_1">
-                    <div class="mainroom12">
+                    <div class="mainroom12 col-3">
                         <img src="<?php echo $value['IMG'] ?>" alt="" width="250px" height="200px">
                     </div>
-                    <div class="mainroom11">
+                    <div class="mainroom11 col-6">
                         <p class="mainroom111"> <?php echo $value['KieuPhong']; ?> </p>
 
                         <p class="mainroom112">Sawy trevelers are looking for more than just the<br> next destination on
@@ -137,8 +137,8 @@
                             <span class="icon_nguoi"><img src="../img/icon_3p.png" alt="" width="32px" height="25px">(<?php echo $value['SLMax']; ?>)Guest's</span>
                         </div>
                     </div>
-                    <div class="mainroom13">
-                        <div class="mainroom131"><?php echo $value['GiaPhong'] ?>/Night</div>
+                    <div class="mainroom13 col-3">
+                        <div class="mainroom131"><?php echo number_format($value['GiaPhong']) ?> VNĐ/Night</div>
                         <div class="mainroom132">
                             <i class="fa fa-star" style="color:yellow"> </i>
                             5/5

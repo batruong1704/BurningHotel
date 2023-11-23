@@ -385,7 +385,7 @@
     </section>
 
     <section id="button">
-        <div class="pb-3"><button type="submit" name="btn" style="font-family:Montserrat-Regular;">Thanh Toán</button></div>
+        <div class="pb-3"><button type="submit" name="btn" class="btnthanhtoan">Thanh Toán</button></div>
     </section>
   </form>
   

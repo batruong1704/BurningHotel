@@ -4,11 +4,10 @@
 }
 #banner .img{
     position: relative;
-    height: 450px;
 }
 #banner .img img{
     filter: brightness(70%);
-    height: 305px;
+    height: 255px;
 }
 #banner .box {
     position: absolute;

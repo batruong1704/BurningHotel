@@ -217,10 +217,10 @@ $so_luong_mon = $row['total'];
             <div class="row">
                 <?php foreach ($IDs as $key => $value) { ?>
 
-                    <div class="col-4">
+                    <div class="col-4  pt-3">
 
                         <div class="card" style="width: 18  rem;">
-                            <img src="<?php echo $value['img'] ?>" class="card-img-top h-100 w-100" alt="...">
+                            <img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;">
                             <div class="card-body">
                                 <h6><?php echo $value['TenMon'] ?></h6>
                                 <hr style="border-style:dashed">
