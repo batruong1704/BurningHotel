@@ -168,7 +168,13 @@ session_start();
   <?php
   include('../logged/footer.php');
   ?>
-
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(".btbook").click(function(){
+    var targetOffset = $("#booktable").offset().top;
+    $('html,body').animate({scrollTop: targetOffset}, 0);
+});
+    </script>
   <!-- <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
   <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script> -->
 </body>

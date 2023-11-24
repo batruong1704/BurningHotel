@@ -66,7 +66,7 @@ if (session_status() == PHP_SESSION_NONE) {
               </li>
               <li class="nav-item ms-4">
                 <div class="dropdown">
-                  <button class="btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button class="btn-secondary dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="fa-stack fa-2x">
                       <i class="fa fa-circle-thin fa-stack-2x" style="color: #B89146;"></i>
                       <i class="fa fa-user-o fa-stack-1x" style="color: #B89146;"></i>

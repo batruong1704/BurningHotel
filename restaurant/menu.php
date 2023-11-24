@@ -254,7 +254,7 @@
             </div>
         </div>
     </section>
-
+    
     <script>
         function redirectToMenuList(category) {
             window.location.href = 'menu__list.php?category=' + encodeURIComponent(category);

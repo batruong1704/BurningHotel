@@ -42,7 +42,7 @@
     <?php
     include('../config.php');
 
-    $sql = "SELECT id, hinhanh, hoten, chucvu FROM daubep"; // Thêm cột 'id' vào truy vấn SQL
+    $sql = "SELECT * FROM daubep"; // Thêm cột 'id' vào truy vấn SQL
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
