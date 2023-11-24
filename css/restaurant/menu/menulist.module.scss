@@ -9,13 +9,10 @@ html {
 
     .img {
         position: relative;
-        height: 450px;
 
         img {
             filter: brightness(70%);
-            height: 305px;
-
-            margin-bottom: 60px;
+            height: 255px;
         }
     }
 
@@ -40,7 +37,7 @@ html {
     font-family: "Montserrat";
     
     .sub__content {
-        border: 2px solid gray;
+        border: 2px solid #E1B168;
         margin-bottom: 30px;
         position: relative;
         display: flex;
@@ -65,13 +62,13 @@ html {
             }
             button{
                 background-color: transparent;
-                color: black;
-                border: 2px solid black;
+                color: #E1B168;
+                border: 2px solid #E1B168;
                 padding: 10px 25px;
                 margin-right: 10px;
             }
             button:hover{
-                background-color: black;
+                background-color: #E1B168;
                 color: white;
             }
             .sup__detail {

@@ -93,14 +93,14 @@
                     </div>
 
 
-                    <div style="font-family: Montserrat-SemiBold;">
+                    <!-- <div style="font-family: Montserrat-SemiBold;">
                         Nếu quý khách nhập địa chỉ thư điện tử và không hoàn thành việc Đặt phòng thì chúng tôi có thể nhắc
                         nhờ giúp quý khách tiếp tục Đặt phòng.
-                    </div>
-                    <div class="mt-2 d-flex">
+                    </div> -->
+                    <!-- <div class="mt-2 d-flex">
                         <input type="checkbox" name="datphongho" style="width: 22px; height: 22px;">
                         <label for="" class="ms-2" style="font-family: Montserrat-SemiBold;">Bạn Đặt phòng hộ người khác!</label>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -130,11 +130,11 @@
                 }
 
                 ?>
-                <div class="dichvu">
+                <div class="dichvu row">
                     <?php foreach ($dichvus as $key => $value) { ?>
-                        <div class="d-flex mt-2">
-                            <input type="checkbox" name="dichvu[]" id="dichvu" value="<?php echo $value['DonGia'] . '-' . $value['MaDichVu'] ?>" style="width: 22px;height: 22px;">
-                            <label for="dichvu" id="tendv" class="ms-2"><?php echo $value['TenDichVu'] ?></label>
+                        <div class="col-4 d-flex mt-2">                            
+                                <input type="checkbox" name="dichvu[]" id="dichvu" value="<?php echo $value['DonGia'] . '-' . $value['MaDichVu'] ?>" style="width: 22px;height: 22px;">
+                                <label for="dichvu" id="tendv" class="ms-2"><?php echo $value['TenDichVu'] ?></label>                          
                         </div>
                     <?php
                     }
@@ -249,7 +249,7 @@
 
         <section id="tieptuc">
             <div class="container d-flex justify-content-end">
-                <button style="font-family: Montserrat-SemiBold; height:50px;width: 300px; background-color: #937438; color: white;" type="submit" name="submit">Tiếp Tục </button>
+                <button class="btntieptuc" type="submit" name="submit">Tiếp Tục </button>
             </div>
         </section>
     </form>

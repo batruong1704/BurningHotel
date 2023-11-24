@@ -347,7 +347,7 @@
     </section>
 
     <section id="button">
-        <div class="pb-3"><button onclick="kiemtrathanhtoan()" name="btn" style="font-family:Montserrat-Regular;">Thanh Toán</button></div>
+        <div class="pb-3"><button onclick="kiemtrathanhtoan()" type="submit" name="btn" class="btnthanhtoan">Thanh Toán</button></div>
     </section>
     <script>
         var maphong = <?php echo $maphong ?>;

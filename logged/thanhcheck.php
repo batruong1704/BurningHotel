@@ -14,9 +14,9 @@
     include('../config.php');
   ?>
   <section id="checknow">
-    <div class="container check text-white p-4">
+    <div class="container check text-white " style="height: 97px;">
       <form action="roomstyle.php" onsubmit="return kiemtrangay()" method="POST">
-        <div class="row">
+        <div class="row" style="margin: 0 auto; padding:20px">
           <div class="col">
             <div> Check-in </div>
             <div>
@@ -26,7 +26,7 @@
           
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Check-out
             </div>
             <div>
@@ -34,11 +34,12 @@
             </div>
             <div id="thongbaongaydi" style="color: red"></div>
 
+
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Số Lượng
-            </div>
+            </p>
             <div>
               <select name="room" id="room">
                 <?php
@@ -50,10 +51,9 @@
             </div>
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Loại Phòng
-            </div>
-            <div>
+            </p>
               <select name="category" id="category">
                 <?php
                   $sql = "SELECT DISTINCT LoaiPhong FROM phong";
@@ -65,9 +65,8 @@
                   }
                 ?>
               </select>
-            </div>
           </div>
-          <div class="col d-flex justify-content-center pe-0" style="align-items: center;">
+          <div class="col" style="align-items: center;">
             <input class="buttonCheck" type="submit" name="btn" value="Check Now">
           </div>
           <script>

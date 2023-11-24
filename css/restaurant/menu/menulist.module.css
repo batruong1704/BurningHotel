@@ -9,12 +9,11 @@ html {
 }
 #banner .img {
   position: relative;
-  height: 450px;
 }
 #banner .img img {
   filter: brightness(70%);
-  height: 305px;
-  margin-bottom: 60px;
+  height: 255px;
+  /* margin-bottom: 60px; */
 }
 #banner .box {
   position: absolute;
