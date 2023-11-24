@@ -53,33 +53,33 @@ function initApp() {
 
 initApp();
 
-document.querySelector('.btnaddcart').addEventListener('click', function () {
-    let productId = this.getAttribute('data-masp');
-    let quantity = document.getElementById('soluong').value;
+document.querySelectorAll('.btnaddcart').forEach(function(btn) {
+    btn.addEventListener('click', function () {
+        let productId = this.getAttribute('data-masp');
+        let quantity = document.getElementById('soluong').value;
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "cart__add.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "cart__add.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                document.querySelector('.soluongmon').innerText = response.so_luong_mon;
-    
-                reloadCard();
-            } else {
-                console.error('Error:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.querySelector('.soluongmon').innerText = response.so_luong_mon;
+        
+                    reloadCard();
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
             }
-        }
-    };
+        };
 
-    xhr.send("customerId=" + localStorage.getItem('makhachhang') +
-             "&productId=" + productId +
-             "&quantity=" + quantity);
+        xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+                "&productId=" + productId +
+                "&quantity=" + quantity);
+    });
 });
-
-
 function reloadCard() {
     fetch(`cart__get.php?customer_id=${localStorage.getItem('makhachhang')}`)
     .then(response => response.json())

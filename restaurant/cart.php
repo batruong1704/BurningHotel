@@ -5,6 +5,7 @@ include("../config.php");
 $result = mysqli_query($con, "SELECT COUNT(*) as total  FROM giohang WHERE  makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
 $so_luong_mon = $row['total'];
+$so_luong_mon = $row['quantity'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +83,12 @@ $so_luong_mon = $row['total'];
             body.classList.remove('active');
         });
 
-        // cart.js
 
         function initApp() {
             fetch('cart__get.php?customer_id=' + customerId)
                 .then(response => response.json())
                 .then(data => {
-                    listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
+                    listCard.innerHTML = '';
 
                     data.forEach((value, key) => {
                         let newLi = document.createElement('li');

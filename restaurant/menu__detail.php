@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
         $img = $row['img'];
     }
 }
-$result = mysqli_query($con, "SELECT COUNT(*) as total,SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
+$result = mysqli_query($con, "SELECT COUNT(*) as total, SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
 $tongtien=$row['tongtien'];
 $so_luong_mon = $row['total'];
@@ -67,7 +67,6 @@ $so_luong_mon = $row['total'];
                 <span class="soluongmon" id="so-luong-mon">
                     <?php echo $so_luong_mon ?>
                 </span>
-
             </div>
         </hcon>
         <div class="container py-5">
@@ -155,14 +154,14 @@ $so_luong_mon = $row['total'];
         </ul>
         
         <div class="checkOut">
-            <div class="total">
-            <button onclick="ThanhTon()" name="btn" style="font-family:Montserrat-Regular; background-color: #937438;color: white;">Thanh Toán</button>
+            <div>
+            <button onclick="ThanhTon()" name="btn" >Thanh Toán</button>
             </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
-
     <!-- end cart -->
+    
     <script>
 function ThanhTon() {
     Swal.fire({
