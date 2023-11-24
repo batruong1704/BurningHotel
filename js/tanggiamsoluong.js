@@ -20,5 +20,6 @@ amountElement.addEventListener('input', ()=>{
     amount = amountElement.value;
     amount = parseInt(amount);
     amount = (isNaN(amount)||amount == 0)?1:amount;
+    render(amount);
     console.log(amount);
 })
