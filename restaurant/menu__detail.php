@@ -317,15 +317,16 @@ function ThanhTon() {
                 <button><a href="cart.php">Order now</a></button>
             </div>
             <div class="row">
-                <?php foreach ($IDs as $key => $value) { ?>
-
+                <?php foreach ($IDs as $key => $value) { 
+                    ?>
                     <div class="col-4  pt-3">
 
                         <div class="card" style="width: 18  rem;">
-                            <img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;">
+                                <a href="menu__detail.php?ID=<?php echo $value['ID']; ?>"><img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;"></a>
                             <div class="card-body">
                                 <h6>
-                                    <?php echo $value['TenMon'] ?>
+                                    <a href="menu__detail.php?ID=<?php echo $value['ID']; ?>"><?php echo $value['TenMon'] ?></a>
+                                    
                                 </h6>
                                 <hr style="border-style:dashed">
                                 <div class="information">
@@ -349,9 +350,7 @@ function ThanhTon() {
                                             <i class="fa fa-star"></i>
                                         </span>
                                     </div>
-                                    <p>
-                                        <?php echo $value["PhanLoai"] ?>
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -231,6 +231,11 @@ hcon .shopping span {
 #similar-dish h6{
     margin-bottom: 0;
 }
+#similar-dish h6 a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
 #similar-dish .title{
     display: flex;
     justify-content: space-between;
@@ -261,5 +266,5 @@ hcon .shopping span {
 
 #similar-dish .information .vote{
     color: #bd945f;
-    margin-bottom: 0.5rem;
+    
 }
