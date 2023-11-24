@@ -16,13 +16,11 @@ closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
 
-// cart.js
-
 function initApp() {
-    fetch('get-cart.php?customer_id=' + customerId)
+    fetch('cart__get.php?customer_id=' + customerId)
         .then(response => response.json())
         .then(data => {
-            listCard.innerHTML = '';  // Xóa bỏ nội dung cũ
+            listCard.innerHTML = ''; 
 
             data.forEach((value, key) => {
                 let newLi = document.createElement('li');
@@ -45,15 +43,7 @@ function initApp() {
                             </svg>
                     </button>
                     </div>`;
-                listCard.appendChild(newLi);
-                let newDiv = document.createElement('div');
-                newDiv.classList.add('item');
-                newDiv.innerHTML = `
-                    <img src="${value.img}">
-                    <div class="title">${value.tenmon}</div>
-                    <div class="price">${value.gia.toLocaleString()}</div>
-                    <button onclick="addToCard(${key})">Add To Card</button>`;
-                list.appendChild(newDiv);       
+                listCard.appendChild(newLi);  
             });
         })
         .catch(error => {
@@ -63,97 +53,190 @@ function initApp() {
 
 initApp();
 
-let listCards = [];
+document.querySelector('.btnaddcart').addEventListener('click', function () {
+    let productId = this.getAttribute('data-masp');
+    let quantity = document.getElementById('soluong').value;
 
-function addToCard(key) {
-    // Đảm bảo customerId đã được đặt giá trị
-    if (!customerId) {
-        console.error('Customer ID is not set.');
-        return;
-    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "cart__add.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    fetch('cart__add.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            customerId: customerId,
-            productId: key + 1,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                document.querySelector('.soluongmon').innerText = response.so_luong_mon;
+    
                 reloadCard();
             } else {
-                console.error('Error:', data.message);
+                console.error('Error:', xhr.statusText);
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+        }
+    };
+
+    xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+             "&productId=" + productId +
+             "&quantity=" + quantity);
+});
+
 
 function reloadCard() {
-    fetch(`get-cart.php?customer_id=${customerId}`)
-        .then(response => response.json())
-        .then(data => {
-            listCard.innerHTML = ''; // Xóa nội dung cũ trong listCard
-            let count = 0;
-            let totalPrice = 0;
+    fetch(`cart__get.php?customer_id=${localStorage.getItem('makhachhang')}`)
+    .then(response => response.json())
+    .then(data => {
+        let listCard = document.querySelector('.listCard');
+        listCard.innerHTML = '';
 
-            data.forEach((value, key) => {
-                totalPrice = totalPrice + value.gia;
-                count = count + value.soluong;
+        let total = 0;
+        let count = 0;
 
-                if (value != null) {
-                    // Tạo một phần tử mới cho mỗi sản phẩm và thêm vào listCard
-                    let newDiv = document.createElement('li');
-                    newDiv.innerHTML = `
-                        <div><img src="${value.img}"/></div>
-                        <div>${value.tenmon}</div>
-                        <div>${value.gia.toLocaleString()}</div>
-                        <div>
-                            <button onclick="changeQuantity(${key}, ${value.soluong - 1})">-</button>
-                            <div class="count" id="count-${key}">${value.soluong}</div>
-                            <button onclick="changeQuantity(${key}, ${value.soluong + 1})">+</button>
-                        </div>`;
-                    listCard.appendChild(newDiv);
+        data.forEach((value, key) => {
+            let newLi = document.createElement('li');
+            newLi.innerHTML = `
+                <div><img src="${value.img}"/></div>
+                <div>${value.tenmon}</div>
+                <div>${value.gia.toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${value.id}, ${parseInt(value.soluong) - 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                        </svg>
+                    </button>
+                    <div class="count">${value.soluong}</div>
+                    <button onclick="changeQuantity(${value.id}, ${parseInt(value.soluong) + 1})">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>`;
+            listCard.appendChild(newLi);
 
-                    // Cập nhật số lượng trực tiếp trong listCard
-                    document.getElementById(`count-${key}`).innerText = value.soluong;
-                }
-            });
-
-            total.innerText = totalPrice.toLocaleString();
-            quantity.innerText = count;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            total += value.gia * value.soluong;
+            count += value.soluong;
         });
+
+        document.querySelector('.total').innerText = total.toLocaleString();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
-function changeQuantity(key, quantity) {
-    fetch('update_quantity.php', {
+function changeQuantity(key, newQuantity) {
+    if (typeof newQuantity === 'number') {
+        if (newQuantity === 0) {
+            if (confirm("Bạn muốn xoá món này khỏi giỏ hàng?")) {
+                removeCartItem(key);
+            }
+        } else {
+            updateCartItemQuantity(key, newQuantity);
+        }
+    }
+}
+
+
+function removeCartItem(key) {
+    fetch('cart__remote.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            cartItemId: key + 1, // Sửa lại nếu mã giỏ hàng không phải là key + 1
-            newQuantity: quantity,
+            cartItemId: key,
         }),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                reloadCard();
-            } else {
-                console.error('Error:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            reloadCard();
+            console.log('ID: ', key);
+
+        } else {
+            console.error('Error:', data.message, 'ID: ', key);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function updateCartItemQuantity(key, newQuantity) {
+    console.log('Updating quantity for item with ID:', key);
+    fetch('cart__update.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            cartItemId: key,
+            newQuantity: newQuantity,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Update response:', data);
+        if (data.success) {
+            reloadCard();
+        } else {
+            console.error('Error:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+function ThanhToan() {
+    // Hàm xử lý khi người dùng nhấp vào nút Thanh Toán
+    alert('Đã nhấp vào nút Thanh Toán');
+  }
+function ThanhToan1(){
+    Swal.fire({
+        title: 'Vui lòng nhập mã đặt phòng:',
+        input: 'number',
+        showCancelButton: true,
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy bỏ',
+        showLoaderOnConfirm: true,
+        preConfirm: (maphieudat) => {
+          // Thực hiện xử lý với mã phiếu đặt phòng mà người dùng đã nhập
+          // Ví dụ: Gửi mã đặt phòng lên máy chủ kiểm tra và nhận kết quả
+          return fetch(`/kiemtra-maphieudat?maphieudat=${maphieudat}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText);
+              }
+              return response.json();
+            })
+            .catch(error => {
+              Swal.showValidationMessage(`Lỗi: ${error}`);
+            });
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Xử lý khi người dùng xác nhận mã đặt phòng
+          Swal.fire({
+            title: 'Xác nhận!',
+            text: `Bạn đã nhập mã đặt phòng: ${result.value}`,
+            icon: 'success'
+          });
+        }
+      });
+      
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "thanhtoan.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            
+        }
+    }
+    var data = "ngayDen=" + ngayden + "&ngayDi=" + ngaydi + "&thanhtoantruoc=" + thanhtoantruoc + "&maphong=" + maphong + "&tongtien=" + sotienphaitra + "&phuongthucthanhtoan=" + phuongthucthanhtoan + "&btn";
+    xhr.send(data);
+
+
 }

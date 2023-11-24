@@ -19,8 +19,9 @@ if (mysqli_num_rows($result) > 0) {
         $img = $row['img'];
     }
 }
-$result = mysqli_query($con, "SELECT COUNT(*) as total FROM giohang WHERE makhachhang = $_SESSION[makhachhang]");
+$result = mysqli_query($con, "SELECT COUNT(*) as total,SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
+$tongtien=$row['tongtien'];
 $so_luong_mon = $row['total'];
 ?>
 <!DOCTYPE html>
@@ -30,10 +31,11 @@ $so_luong_mon = $row['total'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết món</title>
-    <link rel="stylesheet" href="../css/restaurant/menu/menu_detail.css?v= <?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/restaurant/menu/menu__detail.css?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/f6b816f05e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
 </head>
@@ -48,7 +50,8 @@ $so_luong_mon = $row['total'];
             <div class="img h-100">
                 <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
+                    <h3
+                        style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
                         Chi Tiết Món</h3>
                 </div>
             </div>
@@ -61,9 +64,10 @@ $so_luong_mon = $row['total'];
         <hcon>
             <div class="shopping">
                 <img src="../img/restaurant/icon/shopping-car.svg" alt="cart">
-                <span class="quantity">
+                <span class="soluongmon" id="so-luong-mon">
                     <?php echo $so_luong_mon ?>
                 </span>
+
             </div>
         </hcon>
         <div class="container py-5">
@@ -75,7 +79,9 @@ $so_luong_mon = $row['total'];
                     </div>
                 </div>
                 <div class="col-5 detail-content p-3 ps-0">
-                    <h3><?php echo $TenMon ?></h3>
+                    <h3>
+                        <?php echo $TenMon ?>
+                    </h3>
                     <div class="vote">
                         <span>
                             <i class="fa fa-star"></i>
@@ -94,30 +100,46 @@ $so_luong_mon = $row['total'];
                         </span>
                         <span style="color:silver">(0 custom review)</span>
                     </div>
-                    <h6><?php echo $ThanhTien ?> VNĐ</h6>
+                    <h6>
+                        <?php echo $ThanhTien ?> VNĐ
+                    </h6>
                     <hr style="border-style:dashed">
-                    <p><?php echo $MoTa ?></p>
+                    <p>
+                        <?php echo $MoTa ?>
+                    </p>
                     <div class="adjbutton d-flex">
                         <div id="buy-amount">
                             <button class="plus-btn" onclick="minusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                 </svg>
                             </button>
                             <input type="text" name="soluong" id="soluong" value="1">
                             <button class="minus-btn" onclick="plusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </button>
                         </div>
-                        <button class="btnaddcart">Add to cart</button>
+                        <button class="btnaddcart" data-masp="<?php echo $ID; ?>"
+                            data-product-quantity="document.getElementById('soluong').value">
+                            Add to cart
+                        </button>
+
                     </div>
                     <div class="food-information">
-                        <h6>#no: <span><?php echo $ID ?></span></h6>
-                        <h6>CATEGORY: <span><?php echo $PhanLoai ?></span></h6>
+                        <h6>#ID: <span>
+                                <?php echo $ID ?>
+                            </span></h6>
+                        <h6>CATEGORY: <span>
+                                <?php echo $PhanLoai ?>
+                            </span></h6>
                         <h6>TAGS: <span>Recipes, Sweet, Tasty</span></h6>
-                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span class="icon fab fa-pinterest"></span> </h6>
+                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span
+                                class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span
+                                class="icon fab fa-pinterest"></span> </h6>
                     </div>
                 </div>
             </div>
@@ -128,17 +150,82 @@ $so_luong_mon = $row['total'];
 
     <!-- cart -->
     <div class="supercard">
-        <h1>Card</h1>
+        <h1><a href="cart.php">Card</a></h1>
         <ul class="listCard ps-0">
         </ul>
+        
         <div class="checkOut">
-            <div class="total"><?php echo $so_luong_mon ?></div>
+            <div class="total">
+            <button onclick="ThanhTon()" name="btn" style="font-family:Montserrat-Regular; background-color: #937438;color: white;">Thanh Toán</button>
+            </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
-    <!-- end cart -->
 
+    <!-- end cart -->
+    <script>
+function ThanhTon() {
+    Swal.fire({
+        title: 'Vui lòng nhập mã đặt phòng:',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy bỏ',
+        showLoaderOnConfirm: true,
+        preConfirm: (maphieudatphong) => {
+            return new Promise((resolve, reject) => {
+                resolve(maphieudatphong);
+            });
+        },
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+          
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "thanhtoan_monan.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var response =  xmlhttp.responseText;
+                    if (response=="") {
+                        Swal.fire({
+                            title: 'Đặt món thành công!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        }).then(() => {
+                            window.location = "index.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Lỗi',
+                            text: response,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }
+            };
+
+            var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
+            xmlhttp.send(data);
+        } else {
+            // Người dùng đã hủy bỏ
+            Swal.fire({
+                title: 'Hủy bỏ đặt món.',
+                icon: 'info',
+                confirmButtonText: 'OK',
+            });
+        }
+    })
+    .catch(error => {
+        Swal.showValidationMessage(`Lỗi: ${error}`);
+    });
+}
+
+
+</script>
     <!-- ingredients -->
+
     <section id="ingredients">
         <div class="container py-5">
             <h3>Chi tiết thành phần</h3>
@@ -156,7 +243,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Cooking time:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $ThoiGianNau ?> phút</p>
+                                    <p class="mb-0">
+                                        <?php echo $ThoiGianNau ?> phút
+                                    </p>
                                 </div>
                             </div>
                             <div class="row py-3">
@@ -165,7 +254,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Difficulty:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $DoKho ?></p>
+                                    <p class="mb-0">
+                                        <?php echo $DoKho ?>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
@@ -174,7 +265,9 @@ $so_luong_mon = $row['total'];
                                     <h6>Servings:</h6>
                                 </div>
                                 <div class="col-4 p-0 d-flex justify-content-end">
-                                    <p class="mb-0"><?php echo $HamLuongcalo ?> calories</p>
+                                    <p class="mb-0">
+                                        <?php echo $HamLuongcalo ?> calories
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +295,16 @@ $so_luong_mon = $row['total'];
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
             $IDs[] = array(
-                'TenMon' => $row['TenMon'], "PhanLoai" => $row['PhanLoai'], "ThoiGianNau" => $row['ThoiGianNau'], "DoKho" => $row['DoKho'], "ThanhPhan" => $row['ThanhPhan'], "HamLuongcalo" => $row['HamLuongcalo'], "ThanhTien" => $row['ThanhTien'], "MoTa" => $row['MoTa'], "SoLuongDaBan" => $row['SoLuongDaBan'], "img" => $row['img'],
+                'TenMon' => $row['TenMon'],
+                "PhanLoai" => $row['PhanLoai'],
+                "ThoiGianNau" => $row['ThoiGianNau'],
+                "DoKho" => $row['DoKho'],
+                "ThanhPhan" => $row['ThanhPhan'],
+                "HamLuongcalo" => $row['HamLuongcalo'],
+                "ThanhTien" => $row['ThanhTien'],
+                "MoTa" => $row['MoTa'],
+                "SoLuongDaBan" => $row['SoLuongDaBan'],
+                "img" => $row['img'],
                 'ID' => $row['ID']
             );
         }
@@ -212,7 +314,7 @@ $so_luong_mon = $row['total'];
         <div class="container py-5">
             <div class="title">
                 <h3>Món tương tự</h3>
-                <button>Order now</button>
+                <button><a href="cart.php">Order now</a></button>
             </div>
             <div class="row">
                 <?php foreach ($IDs as $key => $value) { ?>
@@ -222,10 +324,14 @@ $so_luong_mon = $row['total'];
                         <div class="card" style="width: 18  rem;">
                             <img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;">
                             <div class="card-body">
-                                <h6><?php echo $value['TenMon'] ?></h6>
+                                <h6>
+                                    <?php echo $value['TenMon'] ?>
+                                </h6>
                                 <hr style="border-style:dashed">
                                 <div class="information">
-                                    <h6><?php echo $value['ThanhTien'] ?></h6>
+                                    <h6>
+                                        <?php echo $value['ThanhTien'] ?>
+                                    </h6>
                                     <div class="vote">
                                         <span>
                                             <i class="fa fa-star"></i>
@@ -243,7 +349,9 @@ $so_luong_mon = $row['total'];
                                             <i class="fa fa-star"></i>
                                         </span>
                                     </div>
-                                    <p><?php echo $value["PhanLoai"] ?></p>
+                                    <p>
+                                        <?php echo $value["PhanLoai"] ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -70,7 +70,7 @@
             $sdt = $_POST['sdt'];
             $passcu = $_POST['mkm'];
             $passmoi = $_POST['nlmk'];
-            $sql = "SELECT  SDT FROM quanlytaikhoan Where SDT='" . $sdt . "'";
+            $sql = "SELECT  SDT FROM khachhang Where SDT='" . $sdt . "'";
             $_result = mysqli_query($con, $sql);
             if (mysqli_num_rows($_result) == 0) {
                 echo '<script>
@@ -86,7 +86,7 @@
                     </script>';
                 exit;
             }
-            $sql = "UPDATE quanlytaikhoan SET PassWord='$passmoi'";
+            $sql = "UPDATE khachhang SET PassWord='$passmoi'";
             $_result = mysqli_query($con, $sql);
             if ($_result == true) {
                 echo '<script>

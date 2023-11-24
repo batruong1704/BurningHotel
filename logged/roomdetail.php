@@ -22,21 +22,21 @@
     <!-- header -->
     <?php include('header.php'); ?>
     <?php
-    include('../config.php');
-    $MaPhong = $_GET['MaPhong'];
-    $sql = "SELECT * From phong where  MaPhong='$MaPhong'";
-    $result = mysqli_query($con, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $KieuPhong = $row["KieuPhong"];
-            $LoaiGiuong = $row["LoaiGiuong"];
-            $TamNhin = $row["TamNhin"];
-            $DienTich = $row["DienTich"];
-            $SLMax = $row["SLMax"];
-            $IMG = $row['IMG'];
+        include('../config.php');
+        $MaPhong=$_GET['MaPhong'];
+        $sql = "SELECT * From phong where  MaPhong='$MaPhong'";
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $KieuPhong=$row["KieuPhong"];
+                $LoaiGiuong=$row["LoaiGiuong"];
+                $TamNhin=$row["TamNhin"];
+                $DienTich=$row["DienTich"];
+                $SLMax=$row["SLMax"];
+                $IMG=$row['IMG'];
+            }
         }
-    }
-
+        
     ?>
     <!-- Banner -->
 

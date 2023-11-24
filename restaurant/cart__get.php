@@ -4,7 +4,6 @@ require_once('../config.php');
 if (isset($_GET['customer_id'])) {
     $customerId = $_GET['customer_id'];
 
-    // Thực hiện truy vấn để lấy thông tin giỏ hàng của khách hàng từ cơ sở dữ liệu
     $sql = "SELECT giohang.id id, doan.id mamonan, doan.img, giohang.soluong soluong, giohang.gia gia, doan.tenmon tenmon
     FROM giohang 
     INNER JOIN doan ON giohang.mamonan = doan.id
@@ -28,7 +27,6 @@ if (isset($_GET['customer_id'])) {
 
     echo json_encode($cartItems);
 } else {
-    // Trả về một giá trị mặc định nếu không có mã khách hàng
     echo json_encode([]);
 }
 

@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,25 +15,26 @@
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   
+
 </head>
 
-<body>
-     <!-- header -->
-     <?php
-        include('header.php');
-        include('../config.php');
+<body onunload="myFunction()">
+    <!-- header -->
+    <?php
+    include('header.php');
+    include('../config.php');
     ?>
-    
+
     <!-- Banner -->
-    <form action="" method="POST">
     <section id="banner">
         <div class="container-fluid p-0 text-center">
             <div class="img">
                 <img src="../img/pay/banner.jpg" alt="" class="img-fluid">
                 <div class="box">
                     <div class="trangtri"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span
-                            style="color: #937438;">Room List</span></p>
+                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Home - <span style="color: #937438;">Room List</span></p>
                     <h3 style="font-size:36px;font-family: Montserrat-Bold;">Thanh Toán</h3>
                     <div class="trangtri"></div>
                 </div>
@@ -65,39 +66,34 @@
         </div>
     </section>
     <!-- endBanner -->
-    <?php
-   
-   if (isset($_POST['ngayden']) && isset($_POST['ngaydi'])) {
-    $_SESSION['ngayden'] = $_POST['ngayden'];
-    $_SESSION['ngaydi'] = $_POST['ngaydi'];
-    }
 
-    $maphong=$_GET['MaPhong'];
+    <?php
+    $maphong = $_GET['MaPhong'];
     $sql = "SELECT * From phong where  MaPhong='$maphong'";
     $result = mysqli_query($con, $sql);
-    if(mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result)){
-            $KieuPhong=$row["KieuPhong"];
-            $LoaiGiuong=$row["LoaiGiuong"];
-            $SLMax=$row["SLMax"];
-            $GiaPhong=$row["GiaPhong"];
-            
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $KieuPhong = $row["KieuPhong"];
+            $LoaiGiuong = $row["LoaiGiuong"];
+            $SLMax = $row["SLMax"];
+            $GiaPhong = $row["GiaPhong"];
         }
     }
-  
-     ?>
+
+    ?>
     <section id="Time" style="background-color: #352911; color: white;">
         <div class="container d-flex pt-3" style="align-items: center;">
             <img src="../img/thanhtoan1/icon-tt2.png" style="height: 45px;" alt="">
-            <p class="mt-3 ms-1" style="font-family:Montserrat-Regular;">Thời gian hoàn tất thanh toán 
-            <span id="phut" style="color: red;">1 </span>:
-            <span id="giay" style="color: red;">00</span> 
-            <span>phút</span>
+            <p class="mt-3 ms-1" style="font-family:Montserrat-Regular;">Thời gian hoàn tất thanh toán
+                <span id="phut" style="color: red;">15</span>:
+                <span id="giay" style="color: red;">00</span>
+                <span>phút</span>
 
                 <script>
                     var phut = parseInt(document.getElementById('phut').innerHTML);
                     var giay = parseInt(document.getElementById('giay').innerHTML);
                     var timeout;
+                    var countdownRunning = true;
 
                     function CapNhatTrangThaiPhong() {
                         var maphong = <?php echo json_encode($maphong); ?>;
@@ -107,24 +103,35 @@
                     }
 
                     function updateCountdown() {
+                        if (!countdownRunning) {
+                            return;
+                        }
                         giay -= 1;
                         if (giay == -1) {
                             phut -= 1;
                             giay = 59;
                         }
                         if (phut == -1) {
+                            phut = 0;
+                            giay = 0;
                             clearTimeout(timeout);
                             CapNhatTrangThaiPhong();
                             alert('Thời gian thanh toán đã hết!');
-                            window.location="home.php";
+                            window.location = "home.php";
                         }
-                        document.getElementById('phut').innerHTML  = phut;
-                        document.getElementById('giay').innerHTML  = giay;
+                        document.getElementById('phut').innerHTML = phut;
+                        document.getElementById('giay').innerHTML = giay;
                         timeout = setTimeout(updateCountdown, 1000);
-                    }
 
-                    updateCountdown(); // Bắt đầu đếm ngược
+                    }
+                    updateCountdown();
+
+                    function myFunction() {
+                        CapNhatTrangThaiPhong();
+                    }
                 </script>
+
+
             </p>
         </div>
     </section>
@@ -133,19 +140,19 @@
         <div class="container pt-4" style="align-items: center;">
             <h3 class="mb-3 " style="font-family: Montserrat-Bold;">Chi Tiết Thanh Toán</h3>
             <img src="../img/pay/roomstyle_deluxe1.png" alt="" class=" rounded-3">
-            <h3 class="pt-2" style="font-family: Montserrat-Bold;"><?php echo $KieuPhong?></h3>
+            <h3 class="pt-2" style="font-family: Montserrat-Bold;"><?php echo $KieuPhong ?></h3>
 
         </div>
         <div class=" container d-flex mb-2">
             <div class="img">
                 <img src="../img/icon_3p.png" alt="" class="img-fluid">
             </div>
-            
-            <p class="ps-1 m-0">(<?php echo $SLMax?>) Guest's</p>
+
+            <p class="ps-1 m-0">(<?php echo $SLMax ?>) Guest's</p>
         </div>
         <div class=" container ps-3">
-            <p class="mb-0 ms-4"> <i class="fa fa-circle"></i> Sức chứa tối đa <?php echo $SLMax?> người</p>
-            <p class="mb-0 ms-4"> <i class="fa fa-circle"></i> Loại giường : <?php echo $LoaiGiuong?> </p>
+            <p class="mb-0 ms-4"> <i class="fa fa-circle"></i> Sức chứa tối đa <?php echo $SLMax ?> người</p>
+            <p class="mb-0 ms-4"> <i class="fa fa-circle"></i> Loại giường : <?php echo $LoaiGiuong ?> </p>
             <p class="mb-0 ms-4"> <i class="fa fa-circle"></i> Cho phép ở thêm 1 người lớn và 1 trẻ nhỏ, trên 3 người bạn có
                 thể sẽ chịu thêm phí</p>
         </div>
@@ -159,24 +166,12 @@
             <div class="row">
                 <div class="col-6 d-flex">
                     <div>
-                        <p class="m-0 ms-5" style="font-family:Montserrat-Regular;">1 phòng x
-                        <?php
-                            $songay1 = abs(strtotime($_SESSION['ngaydi']) - strtotime($_SESSION['ngayden']));
-                            echo $songay=floor($songay1 / (60*60*24));
-                        ?>
-                        
-                        ngày
-                     </p>
+                        <p id="ngayluutru" class="m-0 ms-5" style="font-family:Montserrat-Regular;"> </p>
                     </div>
                 </div>
                 <div class="col-6 ">
                     <div>
-                        <p class="m-0" style=" padding-left: 200px; font-family:Montserrat-Regular;color:white">
-                        <?php
-                            echo $tienphong=$GiaPhong*$songay;
-                        ?>
-                        VNĐ
-                     </p>
+                        <p id="tienphong" class="m-0" style=" padding-left: 200px; font-family:Montserrat-Regular;color:white"> </p>
                     </div>
                 </div>
             </div>
@@ -189,85 +184,57 @@
                 </div>
                 <div class="col-6 ">
                     <div>
-                <?php
-                if(ISSET($_POST['submit'])){
-                    $sql = "UPDATE phong SET TrangThai='Phòng chờ' WHERE MaPhong='".$maphong."'";
-                    mysqli_query($con,$sql);
-                       
-                    if (isset($_POST['dichvu'])) {
-                        $dichvu = $_POST['dichvu'];
-                        $explode = array();
-                        $madichvu =array();
-                        foreach ($dichvu as $value) {
-                            $parts = explode('-', $value);
-                            $explode[] = $parts[0];
-                            $madichvu[]=$parts[1];
+                        <?php
+                        if (isset($_POST['submit'])) {
+                            $sql = "UPDATE phong SET TrangThai='Phòng chờ' WHERE MaPhong='" . $maphong . "'";
+                            mysqli_query($con, $sql);
+
+                            if (isset($_POST['dichvu'])) {
+                                $dichvu = $_POST['dichvu'];
+                                $explode = array();
+                                $madichvu = array();
+                                foreach ($dichvu as $value) {
+                                    $parts = explode('-', $value);
+                                    $explode[] = $parts[0];
+                                    $madichvu[] = $parts[1];
+                                }
+
+                                $tiendichvu = array_sum($explode);
+                                $_SESSION['tiendichvu'] = $tiendichvu;
+                                $_SESSION['madichvu'] = $madichvu;
+                            } else {
+                                $_SESSION['tiendichvu'] = 0;
+                                $_SESSION['madichvu'] = "";
+                            }
                         }
-                      
-                        $tiendichvu = array_sum($explode);
-                        $_SESSION['tiendichvu']=$tiendichvu;
-                        $_SESSION['madichvu']=$madichvu;
-                    }
-                    else{
-                        $_SESSION['tiendichvu']=0;
-                        $_SESSION['madichvu']="";
-                    }
-                }
-                ?>
-
-                    <p class="m-0" style=" padding-left: 200px; font-family:Montserrat-Regular;color:white"><?php echo  $_SESSION['tiendichvu'] ?>VNĐ</p>
-                  
+                        ?>
+                        <p class="m-0" style=" padding-left: 200px; font-family:Montserrat-Regular;color:white"><?php echo  $_SESSION['tiendichvu'] ?>VNĐ</p>
                     </div>
-
-             
-
                 </div>
             </div>
 
             <div class="row mt-2" style="font-size:20px;">
-                <div class="col-6 d-flex" >
+                <div class="col-6 d-flex">
                     <div>
                         <h5 class="ms-5" style="font-family:Montserrat-Regular;">Tổng thanh toán</h5>
                     </div>
                 </div>
                 <div class="col-6">
                     <div>
-                        <h5 style="color:white; padding-left: 200px; font-family:Montserrat-Regular;">
-                        <?php
-                            echo $tongtien=$tienphong+ $_SESSION['tiendichvu'];
-                        ?>
-                        VNĐ
-                    </h5>
+                        <h5 id="tongtien" style="color:white; padding-left: 200px; font-family:Montserrat-Regular;"> </h5>
                     </div>
                 </div>
             </div>
-            
+
             <div class="row mt-2">
-                <div class="col-6 d-flex" >
+                <div class="col-6 d-flex">
                     <div>
                         <h5 class="ms-5" style="font-family:Montserrat-Regular; font-size:18px;">Ưu đãi giảm giá</h5>
                     </div>
                 </div>
                 <div class="col-6">
                     <div>
-                        <h5 style="color:white; padding-left: 200px; font-family:Montserrat-Regular;">
-                        <?php
-                       if($tongtien>6000000 && $tongtien<15000000){
-                            $uudai=($tongtien/100)*3;
-                            echo $uudai;
-                       }
-                       else if($tongtien>15000000){
-                        $uudai=($tongtien/100)*5;
-                        echo $uudai;
-                       }
-                       else{
-                         echo $uudai=0;
-
-                       }
-                       
-                        ?>
-                        VNĐ
-                    </h5>
+                        <h5 id="uudai" style="color:white; padding-left: 200px; font-family:Montserrat-Regular;"> </h5>
                     </div>
                 </div>
             </div>
@@ -279,12 +246,7 @@
                 </div>
                 <div class="col-6">
                     <div>
-                        <h5 style="color:#EBB853; padding-left: 200px; font-family:Montserrat-Regular;">
-                        <?php
-                          echo $phaitra=$tongtien-$uudai;
-                        ?>
-                        VNĐ
-                    </h5>
+                        <h5 id="sotienpt" style="color:#EBB853; padding-left: 200px; font-family:Montserrat-Regular;"> </h5>
                     </div>
                 </div>
             </div>
@@ -296,7 +258,7 @@
                 </div>
                 <div class="col-6">
                     <div style="width:60%;padding-left:200px">
-                        <input type="text" name="thanhtoantruoc" style="display:flex;width:100%;background-color: #181A1B;color:brown;border:none;border-bottom: 1px solid #525354;font-family:Montserrat-Regular" placeholder="Nhập số tiền tại đây" required>
+                        <input type="text" id="thanhtoantruoc" style="display:flex;width:100%;background-color: #181A1B;color:brown;border:none;border-bottom: 1px solid #525354;font-family:Montserrat-Regular" placeholder="Nhập số tiền tại đây" required>
                     </div>
                 </div>
             </div>
@@ -312,8 +274,8 @@
                 <p class="m-0 ms-4" style="font-family:Montserrat-Regular; padding-right: 150px;">
                     Hưỡng dẫn thanh toán sẽ được gửi tới quý khách khi nhấn nút thanh toán phòng sẽ được gửi tới bạn,
                     vui
-                    lòng thanh toán trước <span style="color: rgba(228, 17, 20, 0.77)"><?php echo date("d-m-Y", time())?></span>. Quá thời hạn trên chúng tôi có thể không gửi được phòng này
-                    cho bạn nữa.
+                    lòng thanh toán trước khoảng thời gian cho phép. Quá thời hạn trên chúng tôi có thể không gửi được phòng này
+                    cho bạn nữa!
                 </p>
                 <h3 class=" pt-2" style="font-family: Montserrat-Bold;">Chọn ngân hàng</h3>
                 <div class="nganhang d-flex pb-3">
@@ -359,7 +321,7 @@
                 <label for="qr" style="font-family:Montserrat-Regular;">Thanh toán bằng QR-Pay</label>
             </div>
             <div class="col-6 ">
-                <input type="radio" id ="qr" name="thanhtoan" value="Thanh toán bằng QR-Pay">
+                <input type="radio" id="qr" class="thanhtoan" name="thanhtoan" value="Thanh toán bằng QR-Pay">
             </div>
         </div>
 
@@ -369,7 +331,7 @@
                 <label for="atm" style="font-family:Montserrat-Regular;">Thẻ ATM/Tài khoản ngân hàng</label>
             </div>
             <div class="col-6 ">
-                <input type="radio" id="atm" name="thanhtoan" value="Thẻ ATM/Tài khoản ngân hàng" >
+                <input type="radio" id="atm" class="thanhtoan" name="thanhtoan" value="Thẻ ATM/Tài khoản ngân hàng">
 
             </div>
         </div>
@@ -379,98 +341,105 @@
                 <label for="visa" style="font-family:Montserrat-Regular;">Thẻ Visa, Master Card</label>
             </div>
             <div class="col-6 ">
-                <input type="radio" id="visa" name="thanhtoan" value="Thẻ Visa, Master Card">
+                <input type="radio" id="visa" class="thanhtoan" name="thanhtoan" value="Thẻ Visa, Master Card">
             </div>
         </div>
     </section>
 
     <section id="button">
-        <div class="pb-3"><button type="submit" name="btn" class="btnthanhtoan">Thanh Toán</button></div>
+        <div class="pb-3"><button onclick="kiemtrathanhtoan()" type="submit" name="btn" class="btnthanhtoan">Thanh Toán</button></div>
     </section>
-  </form>
-  
-            <?php
-            
-            if(ISSET($_POST['btn'])){
-                $makhachhang=$_SESSION['makhachhang'];
-                $ngayden=date("Y-m-d", strtotime($_SESSION['ngayden']));
-                $ngaydi=date("Y-m-d", strtotime($_SESSION['ngaydi']));
-                $ngaytt=date("Y-m-d ");
-                $thanhtoantruoc = $_POST["thanhtoantruoc"];
-                if ($thanhtoantruoc < $phaitra * 0.1) {
-                    echo "<script>";
-                    echo "alert('Số tiền thanh toán không hợp lệ!!!')";
-                    echo "</script>";
-                }
-                else if($thanhtoantruoc> $phaitra){
-                    echo "<script>";
-                    echo "alert('Tiền thanh toán lớn hơn tiền cần trả!!!')";
-                    echo "</script>";
-                }
-                else if(empty($_POST['thanhtoan'])){
-                    echo "<script>";
-                    echo "alert('Vui lòng chọn phương thức thanh toán')";
-                    echo "</script>";
-                }
-                else{
-                    $pttt=$_POST['thanhtoan'];
-                    $sql="INSERT INTO phieudatphong VALUES ('','".$makhachhang."','".$phaitra."','".$thanhtoantruoc."','".$pttt."','" .$ngaytt."')";
-                    if(mysqli_query($con,$sql)){
-                        $maphieudatphong=mysqli_insert_id($con);
-                        echo "<script>";
-                        echo "alert('Đặt phòng thành công!')";
-                        echo "</script>";
-                    
-                    }
-                   
-                    $sql="INSERT INTO chitietdatphong VALUES ('','".$maphieudatphong."','".$maphong."','".$ngayden."','".$ngaydi."')";
-                    mysqli_query($con,$sql);
+    <script>
+        var maphong = <?php echo $maphong ?>;
+        var ngayDen = new Date(localStorage.getItem("ngayden"));
+        var ngayDi = new Date(localStorage.getItem("ngaydi"));
+        var soNgay = (ngayDi - ngayDen) / (1000 * 60 * 60 * 24);
+        var tienphong = soNgay * <?php echo $GiaPhong ?>;
+        var tongtien = tienphong + <?php echo $_SESSION['tiendichvu'] ?>;
+        var uudai, phuongthucthanhtoan;
 
-                    $sql = "UPDATE phong SET TrangThai='Đầy' WHERE MaPhong='".$maphong."'";
-                    if(mysqli_query($con,$sql)){
-                        echo '<script>
-                              alert("Chúc bạn có một kỳ nghỉ vui vẻ!"); 
-                              </script>';
-                    }
-                    if($_SESSION["tiendichvu"]>0){
-                        $sql="INSERT INTO phieudichvu VALUES ('','".$maphieudatphong."','".$_SESSION["tiendichvu"]."')";
-                        if(mysqli_query($con,$sql)){
-                            $maphieudichvu=mysqli_insert_id($con);
-                        }
-
-                        foreach( $_SESSION['madichvu'] as $mdv){
-                            $sql1 = "INSERT INTO chitietdichvu VALUES ('','".$maphieudichvu."','".$mdv."')";
-                            mysqli_query($con, $sql1);
-                        }
-                    }
-                    
-                    if($thanhtoantruoc==$phaitra){
-                        $trangthai="Đã thanh toán";
-                    }
-                    else {
-                        if($ngaytt<$ngayden){
-                            $trangthai= 'Đã đặt cọc';
-                        }
-                        else {
-                            $trangthai= 'Chờ thanh toán';
-                        }
-                    }
-                    $sql="INSERT INTO hoadon VALUES ('','".$maphieudatphong."','".$phaitra."','".$trangthai."')";
-                    mysqli_query($con,$sql);
-                         ?>
-                        <script>
-                            var m= <?php echo json_encode($maphieudatphong);?>;
-                            alert('Mã đặt phòng của bạn là: ' + m);
-                            window.location="home.php";
-                            </script>
-                        <?php
-                    
-                }
+        if (tongtien > 6000000 && tongtien < 15000000) {
+            uudai = (tongtien / 100) * 3;
+        } else if (tongtien > 15000000) {
+            uudai = (tongtien / 100) * 5;
+        } else {
+            uudai = 0;
         }
-            ?>
+        var sotienphaitra = tongtien - uudai;
+        var ngayden = ngayDen.toISOString().split('T')[0];
+        var ngaydi = ngayDi.toISOString().split('T')[0];
+        document.getElementById("ngayluutru").innerHTML = "1 phòng x " + soNgay + "ngày";
+        document.getElementById("tienphong").innerHTML = tienphong + " VNĐ";
+        document.getElementById("tongtien").innerHTML = tongtien + " VNĐ";
+        document.getElementById("uudai").innerHTML = uudai + " VNĐ";
+        document.getElementById("sotienpt").innerHTML = sotienphaitra + " VNĐ";
 
-     <!-- footer -->
-     <?php
+
+        function kiemtrathanhtoan() {
+            var radios = document.getElementsByName("thanhtoan");
+            var radioChecked = false;
+            var thanhtoantruoc = document.getElementById("thanhtoantruoc").value;
+            countdownRunning = false;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    radioChecked = true;
+                    phuongthucthanhtoan = radios[i].value;
+                    break;
+                }
+            }
+            if (!radioChecked) {
+                alert("Vui lòng chọn phương thức thanh toán");
+                return false;
+            }
+            if (thanhtoantruoc < sotienphaitra * 0.1) {
+                alert('Số tiền thanh toán không hợp lệ!!!');
+                return false;
+            } else if (thanhtoantruoc > sotienphaitra) {
+                alert('Tiền thanh toán lớn hơn tiền cần trả!!!');
+                return false;
+            } else if (thanhtoantruoc == "") {
+                alert('Vui lòng nhập tiền đặt cọc');
+                return false;
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "thanhtoan.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    Swal.fire({
+                        title: "Đặt phòng thành công!",
+                        text: "Chúc bạn có một kỳ nghỉ vui vẻ!",
+                        icon: "success",
+                        confirmButtonText: "OK",
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var m = xhr.responseText;
+
+                            Swal.fire({
+                                title: "Mã đặt phòng của bạn",
+                                text: m,
+                                icon: "info",
+                                confirmButtonText: "OK",
+                                allowOutsideClick: false,
+                            }).then((result1) => {
+                                if (result.isConfirmed) {
+                                    window.location = "home.php";
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+            var data = "ngayDen=" + ngayden + "&ngayDi=" + ngaydi + "&thanhtoantruoc=" + thanhtoantruoc + "&maphong=" + maphong + "&tongtien=" + sotienphaitra + "&phuongthucthanhtoan=" + phuongthucthanhtoan + "&btn";
+            xhr.send(data);
+
+        }
+    </script>
+
+    <?php
     include('footer.php');
     ?>
 

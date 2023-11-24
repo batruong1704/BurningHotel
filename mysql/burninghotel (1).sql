@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 22, 2023 lúc 06:35 PM
+-- Thời gian đã tạo: Th10 19, 2023 lúc 06:32 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -62,8 +62,7 @@ CREATE TABLE `chitietdatphong` (
 --
 
 INSERT INTO `chitietdatphong` (`MaCTDP`, `MaPDP`, `MaPhong`, `NgayDen`, `NgayDi`) VALUES
-(10, 10, 101, '2023-11-01', '2023-11-02'),
-(11, 14, 101, '2023-11-23', '2023-11-24');
+(10, 10, 101, '2023-11-01', '2023-11-02');
 
 -- --------------------------------------------------------
 
@@ -298,9 +297,9 @@ INSERT INTO `doan` (`ID`, `TenMon`, `PhanLoai`, `ThoiGianNau`, `DoKho`, `ThanhPh
 
 CREATE TABLE `giohang` (
   `id` int(11) NOT NULL,
-  `mamonan` int(11) DEFAULT NULL,
+  `mamonan` varchar(255) DEFAULT NULL,
   `soluong` int(11) DEFAULT NULL,
-  `gia` int(11) NOT NULL,
+  `gia` int(11) DEFAULT NULL,
   `makhachhang` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -309,10 +308,7 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`id`, `mamonan`, `soluong`, `gia`, `makhachhang`) VALUES
-(7, 52, 2, 0, 1),
-(29, 54, 4, 0, 1),
-(30, 52, 3, 22000, 84),
-(31, 53, 1, 15000, 84);
+(1, '1', 1, 20000, 1);
 
 -- --------------------------------------------------------
 
@@ -332,8 +328,7 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MaHoaDon`, `MaPDP`, `TongTien`, `TinhTrang`) VALUES
-(10, 10, 2700000, 'Đã thanh toán'),
-(11, 14, 2500000, 'Đã đặt cọc');
+(10, 10, 2700000, 'Đã thanh toán');
 
 -- --------------------------------------------------------
 
@@ -409,8 +404,7 @@ INSERT INTO `khachhang` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `DiaChi`, `GioiT
 (50, 'Cát Trường Trương Bá', '0336004076', 'batruong1704@gmail.com', '123456789', 'Hà Nội', 1, '0123456789', '108617347685033795623'),
 (51, 'Cao Bằng', '0121112345', 'caobang@gmail.com', '00123456776', 'Cao Bằng', 1, '432', ''),
 (74, 'Cát Trường Trương Bá', '0336004076', 'truongtg2k@gmail.com', '123456789', 'Hà Nội', 1, 'admin123', '109408661915133195138'),
-(78, 'Trường Bá', '', '7steam.work@gmail.com', '0', 'Hà Nội', 1, 'admin', '105238185890006122819'),
-(84, 'Phạm Bá Hoàng', '0336004074', 'phambahoang@gmail.com', '038202016655', 'Thanh Hoé', 1, 'admin123', NULL);
+(78, 'Trường Bá', '', '7steam.work@gmail.com', '0', 'Hà Nội', 1, 'admin', '105238185890006122819');
 
 -- --------------------------------------------------------
 
@@ -558,8 +552,7 @@ INSERT INTO `phieudatphong` (`MaPDP`, `MaKhachHang`, `MaNhanVien`, `TongTien`, `
 (10, 74, 1, 2500000, 250000, 'Thanh toán bằng QR-Pay', '2023-10-31'),
 (11, 78, 1, 3200000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
 (12, 78, 1, 11600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
-(13, 78, 1, 8600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02'),
-(14, 84, NULL, 2500000, 1000000, 'Thẻ Visa, Master Card', '2023-11-22');
+(13, 78, 1, 8600000, 0, 'Thanh Toán Trực Tiếp', '2023-11-02');
 
 -- --------------------------------------------------------
 
@@ -657,7 +650,7 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`MaPhong`, `LoaiPhong`, `KieuPhong`, `SLMax`, `LoaiGiuong`, `GiaPhong`, `IMG`, `DienTich`, `TamNhin`, `MoTa`, `TrangThai`) VALUES
-(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/junior_suite.jpg', '32m', '14:12', '0', 'Đầy'),
+(101, 'Deluxe ', 'Deluxe Single', 2, '1 giường đơn', 2500000, '../img/roomstyle/junior_suite.jpg', '32m', '14:12', '0', 'Trống'),
 (102, 'Deluxe ', 'Deluxe Twin', 3, '2 giường đơn', 3200000, '../img/allroom/Deluxe_room1.jpg', '42m', 'Ra biển ', '0', 'Trống'),
 (103, 'Deluxe ', 'Deluxe Double', 3, '1 giường đôi và 1 giường đơn', 3200000, '../img/allroom/family_room.jpg', '42m', '12:10', '0', 'Trống'),
 (104, 'Deluxe ', 'Deluxe Triple', 4, '1 giường đôi và 2 giường đơn', 5800000, '../img/allroom/family_room1.jpg', '45m', '12:12', '0', 'Trống'),
@@ -814,7 +807,7 @@ ALTER TABLE `chitietdatmon`
 -- AUTO_INCREMENT cho bảng `chitietdatphong`
 --
 ALTER TABLE `chitietdatphong`
-  MODIFY `MaCTDP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `MaCTDP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdichvu`
@@ -844,19 +837,19 @@ ALTER TABLE `doan`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `MaHoaDon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `MaHoaDon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
@@ -868,7 +861,7 @@ ALTER TABLE `nhanvien`
 -- AUTO_INCREMENT cho bảng `phieudatphong`
 --
 ALTER TABLE `phieudatphong`
-  MODIFY `MaPDP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `MaPDP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `phieudichvu`
