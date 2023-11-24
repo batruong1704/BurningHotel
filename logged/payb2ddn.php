@@ -424,7 +424,7 @@
                                 icon: "info",
                                 confirmButtonText: "OK",
                                 allowOutsideClick: false,
-                            }).then((result1) => {
+                            }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location = "home.php";
                                 }

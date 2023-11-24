@@ -34,6 +34,8 @@
                 $sql = "INSERT INTO chitietdatmon VALUES ('','" . $maphieudatmon . "','".$value["mamonan"]."','".$value["soluong"]."','')";
                 mysqli_query($con, $sql);
                 }
+                $sql = "UPDATE hoadon SET TongTien= TongTien+$tongtien WHERE MaHoaDon= $mahoadon ";
+                mysqli_query($con, $sql);
                 $sql = "DELETE  FROM giohang WHERE makhachhang= '".$_SESSION['makhachhang']."'";
                 mysqli_query($con, $sql);
 

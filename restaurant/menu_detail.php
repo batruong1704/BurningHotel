@@ -21,7 +21,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 $result = mysqli_query($con, "SELECT COUNT(*) as total,SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
 $row = mysqli_fetch_assoc($result);
-$tongtien=$row['tongtien'];
+$tongtien = $row['tongtien'];
 $so_luong_mon = $row['total'];
 ?>
 <!DOCTYPE html>
@@ -50,8 +50,7 @@ $so_luong_mon = $row['total'];
             <div class="img h-100">
                 <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <h3
-                        style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
+                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
                         Chi Tiết Món</h3>
                 </div>
             </div>
@@ -110,21 +109,18 @@ $so_luong_mon = $row['total'];
                     <div class="adjbutton d-flex">
                         <div id="buy-amount">
                             <button class="plus-btn" onclick="minusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                 </svg>
                             </button>
                             <input type="text" name="soluong" id="soluong" value="1">
                             <button class="minus-btn" onclick="plusHandleClick()">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </button>
                         </div>
-                        <button class="btnaddcart" data-masp="<?php echo $ID; ?>"
-                            data-product-quantity="document.getElementById('soluong').value">
+                        <button class="btnaddcart" data-masp="<?php echo $ID; ?>" data-product-quantity="document.getElementById('soluong').value">
                             Add to cart
                         </button>
 
@@ -137,9 +133,7 @@ $so_luong_mon = $row['total'];
                                 <?php echo $PhanLoai ?>
                             </span></h6>
                         <h6>TAGS: <span>Recipes, Sweet, Tasty</span></h6>
-                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span
-                                class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span
-                                class="icon fab fa-pinterest"></span> </h6>
+                        <h6>SHARE: <span class="icon fab fa-instagram"></span><span class="icon fab fa-facebook"></span><span class="icon fab fa-twitter"></span><span class="icon fab fa-pinterest"></span> </h6>
                     </div>
                 </div>
             </div>
@@ -153,18 +147,19 @@ $so_luong_mon = $row['total'];
         <h1><a href="cart.php">Card</a></h1>
         <ul class="listCard ps-0">
         </ul>
-        
+
         <div class="checkOut">
             <div class="total">
-            <button onclick="ThanhTon()" name="btn" style="font-family:Montserrat-Regular; background-color: #937438;color: white;">Thanh Toán</button>
+                <button onclick="ThanhTon()" name="btn" style="font-family:Montserrat-Regular; background-color: #937438;color: white;">Thanh Toán</button>
             </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
 
     <!-- end cart -->
+
     <script>
-function ThanhTon() {
+        function ThanhTon() {
     Swal.fire({
         title: 'Vui lòng nhập mã đặt phòng:',
         input: 'text',
@@ -193,8 +188,7 @@ function ThanhTon() {
                             icon: 'success',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                            // Chuyển hướng người dùng đến trang home.php
-                            window.location = "home.php";
+                            window.location = "index.php";
                         });
                     } else {
                         Swal.fire({
@@ -222,9 +216,7 @@ function ThanhTon() {
         Swal.showValidationMessage(`Lỗi: ${error}`);
     });
 }
-
-
-</script>
+    </script>
     <!-- ingredients -->
 
     <section id="ingredients">
