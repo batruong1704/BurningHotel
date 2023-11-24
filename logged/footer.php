@@ -45,13 +45,13 @@
                             <div class="img">
                                 <img src="../img/trangchu1/icon-location.png" alt="" class="logo">
                             </div>
-                            <p class="my-0 p-1">GXF4+8HQ Chippenham United Kingdom</p>
+                            <p class="my-0 p-1">Burning Hotel, 33 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội</p>
                         </li>
                         <li>
                             <div class="img">
                                 <img src="../img/trangchu1/icon-mail.png" alt="" class="logo">
                             </div>
-                            <p class="my-0 p-1">help.info@gamil.com</p>
+                            <p class="my-0 p-1">7steam.work@gmail.com</p>
                         </li>
                         <li>
                             <div class="img">

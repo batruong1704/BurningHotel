@@ -31,7 +31,7 @@ $so_luong_mon = $row['total'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết món</title>
-    <link rel="stylesheet" href="../css/restaurant/menu/menu_detail.css?v= <?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/restaurant/menu/menu__detail.css?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://kit.fontawesome.com/f6b816f05e.js" crossorigin="anonymous"></script>
@@ -126,7 +126,7 @@ $so_luong_mon = $row['total'];
 
                     </div>
                     <div class="food-information">
-                        <h6>#no: <span>
+                        <h6>#ID: <span>
                                 <?php echo $ID ?>
                             </span></h6>
                         <h6>CATEGORY: <span>
@@ -307,15 +307,15 @@ $so_luong_mon = $row['total'];
         <div class="container py-5">
             <div class="title">
                 <h3>Món tương tự</h3>
-                <button>Order now</button>
+                <button><a href="cart.php">Order now</a></button>
             </div>
             <div class="row">
                 <?php foreach ($IDs as $key => $value) { ?>
 
-                    <div class="col-4">
+                    <div class="col-4  pt-3">
 
                         <div class="card" style="width: 18  rem;">
-                            <img src="<?php echo $value['img'] ?>" class="card-img-top h-100 w-100" alt="...">
+                            <img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;">
                             <div class="card-body">
                                 <h6>
                                     <?php echo $value['TenMon'] ?>

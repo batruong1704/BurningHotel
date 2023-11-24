@@ -49,8 +49,8 @@ session_start();
             <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
-            <h5>Locate Us</h5>
-            <p>Riverside 25, San Francisco, California</p>
+            <h5>Địa Chỉ</h5>
+            <p>33 Lý Thường Kiệt, Hoàn Kiếm, Hà Nội.</p>
           </div>
         </div>
         <div class="col-4 d-flex">
@@ -58,8 +58,8 @@ session_start();
             <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
-            <h5>Open Hours</h5>
-            <p>Mon to Fri 9:00 AM - 9:00 PM</p>
+            <h5>Giờ Mở Cửa</h5>
+            <p>Cả tuần từ 9:00 AM - 9:00 PM</p>
           </div>
         </div>
         <div class="col-4 d-flex">
@@ -67,8 +67,8 @@ session_start();
             <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
-            <h5>Reservation</h5>
-            <p>Hirestaurantate@gmail.com</p>
+            <h5>Đặt Trước</h5>
+            <p>7steam.chef@gmail.com</p>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ session_start();
         </div>
         <div class="col-1"></div>
         <div class="col-7 p-4">
-          <h4>Loại đồ ăn 1</h4>
+          <h4>Best Sellers</h4>
           <div class="row">
             <div class="col-2 d-flex justify-content-center">
             <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">

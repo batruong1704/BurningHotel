@@ -28,19 +28,17 @@
      <section id="banner">
         <div class="container-fluid p-0 text-center">
             <div class="img h-100">
-                <img src="../img/service/banner_service_1.jpg" alt="" class="w-100">
+                <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <div class="tieude"></div>
-                    <p class="m-0" style="font-size: 14px;font-family: Montserrat-Regular">Restaurant</p>
-                    <h3 style="font-size:36px;font-family: Montserrat-Bold;">Menu List</h3>
-                    <div class="tieude"></div>
+                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
+                        Chi Tiết Món</h3>
                 </div>
             </div>
         </div>
     </section>
     <!-- end banner -->
 
-    <section id="content">
+    <section id="content" class="pt-5">
         <?php
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
@@ -49,7 +47,7 @@
             $count_result = $con->query($count_sql);
             $total_rows = $count_result->fetch_assoc()['count'];
 
-            $items_per_page = 5;
+            $items_per_page = 7;
 
             if ($total_rows > 0) {
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -60,9 +58,9 @@
 
                 while ($row = $result->fetch_assoc()) {
                     $ID = $row["ID"];
-                    echo '<div class="sub__content">
+                    echo '<div class="sub__content ">
                     <div class="image">
-                    <img src="' . $row["img"] . '" alt="hinhanhdoan" class="h-100"/>
+                    <img src="' . $row["img"] . '" alt="hinhanhdoan" class=""/>
                     </div>
                     <div class="detail">
                     <h4>' . $row["TenMon"] . '</h4>
@@ -85,7 +83,7 @@
                     </div>';
                     ?>
                     
-                    <a style="text-decoration:none;color:black;" href="menu_detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
+                    <a style="text-decoration:none;color:black;" href="menu__detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
                     <button>Thêm giỏ hàng</button>
                     <?php
                     echo '</div>';

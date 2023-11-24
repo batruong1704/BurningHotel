@@ -1,113 +1,128 @@
-.container{
+.container {
     width: 1110px;
- }
- hr{
+}
+
+hr {
     width: 80%;
     margin: 0 auto;
- }
+}
 
 /* banner */
-#banner{
+#banner {
     margin-top: 40px;
     color: white;
 }
-#banner .img{
+
+#banner .img {
     position: relative;
 }
-#banner .img img{
+
+#banner .img img {
     width: 100%;
     height: 300px;
     filter: brightness(30%);
 }
+
 #banner .box {
     position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-#banner .box .trangtri{
+
+#banner .box .trangtri {
     border: 2px solid white;
     background-color: white;
     height: 60px;
     width: 2px;
     margin: 0 auto;
 }
+
 /* end banner */
 
 /* information */
-#information{
+#information {
     background-color: #181A1B;
     color: #fff;
 }
+<<<<<<< HEAD
+
+=======
+#information .bookingnow{
+    border: none;
+    color: white;
+    background-color: #937438;
+    padding: 35px;
+    font-family: Montserrat-Medium;
+}
+#information .bookingnow:hover{
+    color: #937438;
+    background-color: white;
+}
+>>>>>>> remotes/origin/tienquang
 /* end information */
 
 /* overview */
-#overview{
+#overview {
     background-color: #181A1B;
     color: #fff;
     padding-top: 20px;
 }
-#overview h3{
-    color: #B8B1A8;
-    font-family:Montserrat-SemiBold;
+
+#overview p {
+    font-family: Montserrat-SemiBold;
 }
-#overview p{
-    font-family:Montserrat-SemiBold;
+
+#overview span {
+    font-family: Montserrat-Regular;
 }
-#overview span{
-    font-family:Montserrat-Regular;
-}
+
 /* end overview */
 
 /* special-features */
-#special-features{
+#special-features {
     background-color: #181A1B;
     color: #fff;
     padding-top: 20px;
 }
-#special-features h3{
-    color: #B8B1A8;
-    font-family:Montserrat-SemiBold;
+
+#special-features span {
+    font-family: Montserrat-Regular;
 }
-#special-features span{
-    font-family:Montserrat-Regular;
-}
+
 /* end special-features */
 
 /* common */
-#common{
+#common {
     background-color: #181A1B;
     color: #fff;
     padding-top: 20px;
 }
-#common h3{
-    color: #B8B1A8;
-    font-family:Montserrat-SemiBold;
+
+#common p {
+    font-family: Montserrat-SemiBold;
 }
-#common p{
-    font-family:Montserrat-SemiBold;
-}
-#common span{
-    font-family:Montserrat-Regular;
+
+#common span {
+    font-family: Montserrat-Regular;
     text-align: justify;
 }
+
 /* end common */
 
 /* detail */
-#detail{
+#detail {
     background-color: #181A1B;
     color: #fff;
     padding-top: 20px;
 }
-#detail h3{
-    color: #B8B1A8;
-    font-family:Montserrat-SemiBold;
-}
-#detail span{
-    font-family:Montserrat-Regular;
+
+#detail span {
+    font-family: Montserrat-Regular;
     text-align: justify;
 }
-#detail button{
+
+#detail button {
     border: none;
     color: white;
     background-color: #937438;
@@ -116,30 +131,36 @@
     margin-top: 10px;
     font-family: Montserrat-Medium;
 }
+
 /* end detail */
 
 /* checknow */
-#checknow .container{
+#checknow .container {
     position: relative;
     width: 1100px;
     margin-top: -97px;
 }
-#checknow .check{
+
+#checknow .check {
     background-color: black;
 }
-#checknow input{
+
+#checknow input {
     border: none;
     color: #937438;
     background-color: black;
     font-family: Montserrat-Medium;
 }
-#checknow select{
+
+#checknow select {
     border: none;
     color: #937438;
     background-color: black;
     font-family: Montserrat-Medium;
 }
-#checknow .check button{
+
+<<<<<<< HEAD
+#checknow .check button {
     border: none;
     color: white;
     background-color: #937438;
@@ -147,51 +168,64 @@
     width: 130px;
     font-family: Montserrat-Medium;
 }
+
+=======
+>>>>>>> remotes/origin/tienquang
 /* end checknow */
 
 /* room */
-#room{
+#room {
     background-color: #181A1B;
 }
-#room .container{
+
+#room .container {
     width: 1110px;
-    padding-top:80px ;
+    padding-top: 80px;
 }
-#room a{
+
+#room a {
     color: white;
     text-decoration: none;
     text-align: center;
     width: 100px;
-    font-family:Montserrat-SemiBold;
+    font-family: Montserrat-SemiBold;
 }
-#room h3{
+
+h3 {
     color: white;
-    font-family: Montserrat-Regular;
+    font-family: Montserrat-SemiBold;
+
     font-weight: bold;
 }
-#room .img{
+
+#room .img {
     position: relative;
 }
-#room .img img{
+
+#room .img img {
     filter: brightness(70%);
 }
-#room .content{
+
+#room .content {
     position: absolute;
     top: 70%;
     left: 10%;
     color: white;
     font-family: Montserrat-SemiBold;
 }
-#room .content .trangtri{
+
+#room .content .trangtri {
     width: 160%;
     text-align: center;
     border: 1px solid #937438;
     background-color: #937438;
 }
-#room .content .trangtri1{
+
+#room .content .trangtri1 {
     width: 310%;
     text-align: center;
     border: 1px solid #937438;
     background-color: #937438;
 }
+
 /* end room */

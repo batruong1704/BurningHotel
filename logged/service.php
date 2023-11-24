@@ -45,7 +45,7 @@
           <p style="color:#937438;">Food</p>
           <h3>Restaurant Burning</h3>
           <p>Với sự hợp tác giữa BURNING và VINFAST cùng với mong muốn cho quý khách thì bên chúng tôi có dịch vụ ăn uống bao gồm đặt đồ lên phòng hoặc đặt bàn dưới nhà ăn </p>
-          <a href="./restaurant.php"><button class="p-2 mt-5">READING NOW <i class="fa fa-long-arrow-right"></i></button></a>
+          <a href="../restaurant/index.php"><button class="p-2 mt-5">READING NOW <i class="fa fa-long-arrow-right"></i></button></a>
         </div>
         <div class="col-4 p-0">
           <div class="img1 d-flex justify-content-end">

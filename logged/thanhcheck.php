@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="KiemTraNgay.js?v=<?php echo time(); ?>" ></script>
+  <script src="KiemTraNgay.js"></script>
 </head>
 
 <body>
@@ -14,31 +14,28 @@
     include('../config.php');
   ?>
   <section id="checknow">
-    <div class="container check text-white p-4">
+    <div class="container check text-white " style="height: 97px;">
       <form action="roomstyle.php" onsubmit="return kiemtrangay()" method="POST">
-        <div class="row">
+        <div class="row" style="margin: 0 auto; padding:20px">
           <div class="col">
-            <div> Check-in </div>
-            <div>
-               <input type="datetime-local" name="ngayden" id="ngayden" onchange="chonngayden()" value="" required>
-               </div>
-            <div id="thongbaongayden" style="color: red"></div>
-          
+            <p class="m-0"> Check-in </p>
+            <input type="datetime-local" name="ngayden" id="ngayden" onchange="chonngayden()" value="" required>
+            <b id="thongbaongayden" style="color: red; font-size: 12px;"></b>
+            <?php
+             $ngayhientai=date("d-m-Y ", time());
+            ?>
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Check-out
-            </div>
-            <div>
-              <input type="datetime-local" name="ngaydi" id="ngaydi" onchange="chonngaydi()" value="" required>
-            </div>
-            <div id="thongbaongaydi" style="color: red"></div>
-
+            </p>            
+            <input type="datetime-local" name="ngaydi" id="ngaydi" onchange="chonngaydi()" value="" required>
+            <b id="thongbaongaydi" style="color: red; font-size: 12px;"></b>
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Số Lượng
-            </div>
+            </p>
             <div>
               <select name="room" id="room">
                 <?php
@@ -50,10 +47,9 @@
             </div>
           </div>
           <div class="col">
-            <div>
+            <p class="m-0">
               Loại Phòng
-            </div>
-            <div>
+            </p>
               <select name="category" id="category">
                 <?php
                   $sql = "SELECT DISTINCT LoaiPhong FROM phong";
@@ -65,9 +61,8 @@
                   }
                 ?>
               </select>
-            </div>
           </div>
-          <div class="col d-flex justify-content-center pe-0" style="align-items: center;">
+          <div class="col" style="align-items: center;">
             <input class="buttonCheck" type="submit" name="btn" value="Check Now">
           </div>
           <script>
