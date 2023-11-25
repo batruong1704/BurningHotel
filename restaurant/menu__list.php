@@ -1,5 +1,11 @@
 <?php session_start(); ?>
-<?php include('../config.php');?>
+<?php 
+    include('../config.php');
+    $result = mysqli_query($con, "SELECT COUNT(*) as total, SUM(giohang.soluong * doan.ThanhTien) AS tongtien FROM giohang,doan WHERE giohang.mamonan=doan.ID AND makhachhang = $_SESSION[makhachhang]");
+    $row = mysqli_fetch_assoc($result);
+    $tongtien=$row['tongtien'];
+    $so_luong_mon = $row['total'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +44,17 @@
     </section>
     <!-- end banner -->
 
+    
+
     <section id="content" class="pt-5">
+        <hcon>
+            <div class="shopping">
+                <img src="../img/restaurant/icon/shopping-car.svg" alt="cart">
+                <span class="soluongmon" id="so-luong-mon">
+                    <?php echo $so_luong_mon ?>
+                </span>
+            </div>
+        </hcon>
         <?php
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
@@ -58,7 +74,8 @@
 
                 while ($row = $result->fetch_assoc()) {
                     $ID = $row["ID"];
-                    echo '<div class="sub__content ">
+                    echo '
+                    <div class="sub__content ">
                     <div class="image">
                     <img src="' . $row["img"] . '" alt="hinhanhdoan" class=""/>
                     </div>
@@ -84,7 +101,7 @@
                     ?>
                     
                     <a style="text-decoration:none;color:black;" href="menu__detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi Tiết</button></a>
-                    <button>Thêm giỏ hàng</button>
+                    <button class="btnaddcartlist" data-masp="<?php echo $ID; ?>" data-product-quantity="1">Thêm giỏ hàng</button>
                     <?php
                     echo '</div>';
                     echo '</div>';
@@ -126,9 +143,114 @@
 
     </section>
 
+    <!-- cart -->
+    <div class="supercard">
+        <h1><a href="cart.php">Card</a></h1>
+        <ul class="listCard ps-0">
+        </ul>
+        
+            <div class="checkOut">
+                <div>
+            <button onclick="ThanhTon()" name="btn">Thanh Toán</button>
+            </div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+    <!-- end cart -->
 
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
+
+    <script>
+function ThanhTon() {
+    Swal.fire({
+        title: 'Vui lòng nhập mã đặt phòng:',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: 'Xác nhận',
+        cancelButtonText: 'Hủy bỏ',
+        showLoaderOnConfirm: true,
+        preConfirm: (maphieudatphong) => {
+            return new Promise((resolve, reject) => {
+                resolve(maphieudatphong);
+            });
+        },
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+          
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "thanhtoan_monan.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var response =  xmlhttp.responseText;
+                    if (response=="") {
+                        Swal.fire({
+                            title: 'Đặt món thành công!',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        }).then(() => {
+                            window.location = "index.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Lỗi',
+                            text: response,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }
+            };
+
+            var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
+            xmlhttp.send(data);
+        } else {
+            // Người dùng đã hủy bỏ
+            Swal.fire({
+                title: 'Hủy bỏ đặt món.',
+                icon: 'info',
+                confirmButtonText: 'OK',
+            });
+        }
+    })
+    .catch(error => {
+        Swal.showValidationMessage(`Lỗi: ${error}`);
+    });
+}
+
+
+</script>
+<script>
+    document.querySelectorAll('.btnaddcartlist').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            let productId = this.getAttribute('data-masp');
+            let quantity = this.getAttribute('data-product-quantity');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "cart__add.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        document.querySelector('.soluongmon').innerText = response.so_luong_mon;
+
+                        reloadCard();
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+                "&productId=" + productId +
+                "&quantity=" + quantity);
+        });
+    });
+</script>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -138,6 +260,8 @@
     <!-- slick -->
     <script src="../common/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/scrip.js"></script>
+    <script src="cart.js"></script>
+    
 </body>
 
 </html>

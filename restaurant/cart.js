@@ -53,33 +53,33 @@ function initApp() {
 
 initApp();
 
-document.querySelector('.btnaddcart').addEventListener('click', function () {
-    let productId = this.getAttribute('data-masp');
-    let quantity = document.getElementById('soluong').value;
+document.querySelectorAll('.btnaddcart').forEach(function(btn) {
+    btn.addEventListener('click', function () {
+        let productId = this.getAttribute('data-masp');
+        let quantity = document.getElementById('soluong').value;
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "cart__add.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "cart__add.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                document.querySelector('.soluongmon').innerText = response.so_luong_mon;
-    
-                reloadCard();
-            } else {
-                console.error('Error:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.querySelector('.soluongmon').innerText = response.so_luong_mon;
+        
+                    reloadCard();
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
             }
-        }
-    };
+        };
 
-    xhr.send("customerId=" + localStorage.getItem('makhachhang') +
-             "&productId=" + productId +
-             "&quantity=" + quantity);
+        xhr.send("customerId=" + localStorage.getItem('makhachhang') +
+                "&productId=" + productId +
+                "&quantity=" + quantity);
+    });
 });
-
-
 function reloadCard() {
     fetch(`cart__get.php?customer_id=${localStorage.getItem('makhachhang')}`)
     .then(response => response.json())
@@ -188,55 +188,5 @@ function updateCartItemQuantity(key, newQuantity) {
         console.error('Error:', error);
     });
 }
-function ThanhToan() {
-    // Hàm xử lý khi người dùng nhấp vào nút Thanh Toán
-    alert('Đã nhấp vào nút Thanh Toán');
-  }
-function ThanhToan1(){
-    Swal.fire({
-        title: 'Vui lòng nhập mã đặt phòng:',
-        input: 'number',
-        showCancelButton: true,
-        confirmButtonText: 'Xác nhận',
-        cancelButtonText: 'Hủy bỏ',
-        showLoaderOnConfirm: true,
-        preConfirm: (maphieudat) => {
-          // Thực hiện xử lý với mã phiếu đặt phòng mà người dùng đã nhập
-          // Ví dụ: Gửi mã đặt phòng lên máy chủ kiểm tra và nhận kết quả
-          return fetch(`/kiemtra-maphieudat?maphieudat=${maphieudat}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText);
-              }
-              return response.json();
-            })
-            .catch(error => {
-              Swal.showValidationMessage(`Lỗi: ${error}`);
-            });
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Xử lý khi người dùng xác nhận mã đặt phòng
-          Swal.fire({
-            title: 'Xác nhận!',
-            text: `Bạn đã nhập mã đặt phòng: ${result.value}`,
-            icon: 'success'
-          });
-        }
-      });
-      
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "thanhtoan.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-
-            
-        }
-    }
-    var data = "ngayDen=" + ngayden + "&ngayDi=" + ngaydi + "&thanhtoantruoc=" + thanhtoantruoc + "&maphong=" + maphong + "&tongtien=" + sotienphaitra + "&phuongthucthanhtoan=" + phuongthucthanhtoan + "&btn";
-    xhr.send(data);
 
 
-}
