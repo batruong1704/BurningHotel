@@ -52,7 +52,9 @@
                 $NgayDen = $row['NgayDen'];
                 $NgayDi = $row['NgayDi'];
                 $TinhTrang=$row['TinhTrang'];
+                $dichvu =$row['MaPDV'];
                 $dichvus[]=array('TenDichVu'=>$row['TenDichVu'], 'GiaDichVu'=>$row['DonGia']);
+
             }
         }
 
@@ -75,6 +77,7 @@
                         <div class="rice3"> <?php echo $KieuPhong ?> </div>
                     </div>
                 </div>
+                <a class="huyphong" style="text-decoration: none; padding: 10px 0px; " href="HuyDatPhong.php?MaPDP=<?php echo $maphieudatphong; ?>&MaPDV=<?php echo $dichvu; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')"><button class="btnhuy"> Hủy đặt phòng </button></a>
             </div>
             <div class="inforchitiet">
                 <table>

@@ -59,8 +59,8 @@
                             echo '<h4>' . $row["TenMon"] . '</h4>';
                             echo '<p>' . $row["ThanhPhan"] . '</p>';
                             echo '</div>';
-                            echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $row["ThanhTien"] . '</b>';
+                            echo '<div class="col-2 d-flex align-items-end justify-content-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . number_format($row["ThanhTien"]) . ' VNĐ</b>';
                             echo '</div>';
                             echo '</div>';
                         }
@@ -104,8 +104,8 @@
                             echo '<h4>' . $result["TenMon"] . '</h4>';
                             echo '<p>' . $result["ThanhPhan"] . '</p>';
                             echo '</div>';
-                            echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $result["ThanhTien"] . '</b>';
+                            echo '<div class="col-2 d-flex align-items-end  justify-content-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . number_format($result["ThanhTien"]) . ' VNĐ</b>';
                             echo '</div>';
                             echo '</div>';
                         }
@@ -151,8 +151,8 @@
                             echo '<h4>' . $row_maindishes["TenMon"] . '</h4>';
                             echo '<p>' . $row_maindishes["ThanhPhan"] . '</p>';
                             echo '</div>';
-                            echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $row_maindishes["ThanhTien"] . '</b>';
+                            echo '<div class="col-2 d-flex align-items-end  justify-content-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . number_format($row_maindishes["ThanhTien"]) . ' VNĐ</b>';
                             echo '</div>';
                             echo '</div>';
                         }
@@ -192,8 +192,8 @@
                             echo '<h4>' . $result["TenMon"] . '</h4>';
                             echo '<p>' . $result["ThanhPhan"] . '</p>';
                             echo '</div>';
-                            echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $result["ThanhTien"] . '</b>';
+                            echo '<div class="col-2 d-flex align-items-end  justify-content-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . number_format($result["ThanhTien"]) . ' VNĐ</b>';
                             echo '</div>';
                             echo '</div>';
                         }
@@ -240,8 +240,8 @@
                             echo '<h4>' . $row_fastfood["TenMon"] . '</h4>';
                             echo '<p>' . $row_fastfood["ThanhPhan"] . '</p>';
                             echo '</div>';
-                            echo '<div class="col-2 d-flex align-items-end">';
-                            echo '<b style="margin-bottom: 1rem;">' . $row_fastfood["ThanhTien"] . '</b>';
+                            echo '<div class="col-2 d-flex align-items-end  justify-content-end">';
+                            echo '<b style="margin-bottom: 1rem;">' . number_format($row_fastfood["ThanhTien"]) . ' VNĐ</b>';
                             echo '</div>';
                             echo '</div>';
                         }

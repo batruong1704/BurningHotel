@@ -31,7 +31,8 @@
 }
 
 .butn:hover{
-    color: #937438;
+    background-color: #937438;
+    color: white;
 }
 
 /* #drink .row{

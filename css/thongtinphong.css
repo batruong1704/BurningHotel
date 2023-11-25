@@ -62,3 +62,16 @@ td{
     font-size: 16px;
     padding: 10px 20px 5px 5px;
 }
+
+.inforroom .btnhuy{
+    margin-top: 10px;
+    padding: 10px 40px;
+    border: none;
+    background-color: #937438;
+    color: white;
+}
+
+.inforroom .btnhuy:hover{
+    background-color: white;
+    color: #937438;
+}

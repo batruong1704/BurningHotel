@@ -43,6 +43,10 @@
                                     'NgayDen'=>$row["NgayDen"],'NgayDi'=>$row["NgayDi"], 'PhuongThucThanhToan'=> $row['PhuongThucThanhToan'],
                                     'IMG'=>$row['IMG'], 'NgayTT'=>$row["NgayTT"]);
                   }
+               }else{
+                ?>
+                <p style="color: red; font-size: 30px; padding:78px;">Bạn chưa đặt phòng</p>
+                <?php
                }
             
               ?>
@@ -73,8 +77,8 @@
                     ?>
                 </div>
         
-                <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
-                <div> <a class="huyphong" style="text-decoration: none " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy Đặt Phòng</a> </div>
+                <div> <a style="text-decoration: none; padding: 10px 0px;" href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
+                <div> <a class="huyphong" style="text-decoration: none; padding: 10px 0px; " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy đặt phòng</a> </div>
                 </div>
                 </div>
 

@@ -21,9 +21,9 @@
 <body>
     <!-- header -->
     <?php
-        include('header.php');
-        include('../config.php');
-        $tiendichvu = 0;
+    include('header.php');
+    include('../config.php');
+    $tiendichvu = 0;
     ?>
     <!-- Banner -->
     <form action="payb2ddn.php?MaPhong=<?php echo $_GET['MaPhong'] ?>" method="POST">
@@ -132,9 +132,9 @@
                 ?>
                 <div class="dichvu row">
                     <?php foreach ($dichvus as $key => $value) { ?>
-                        <div class="col-4 d-flex mt-2">                            
-                                <input type="checkbox" name="dichvu[]" id="dichvu" value="<?php echo $value['DonGia'] . '-' . $value['MaDichVu'] ?>" style="width: 22px;height: 22px;">
-                                <label for="dichvu" id="tendv" class="ms-2"><?php echo $value['TenDichVu'] ?></label>                          
+                        <div class="col-4 d-flex mt-2">
+                            <input type="checkbox" name="dichvu[]" id="dichvu" value="<?php echo $value['DonGia'] . '-' . $value['MaDichVu'] ?>" style="width: 22px;height: 22px;">
+                            <label for="dichvu" id="tendv" class="ms-2"><?php echo $value['TenDichVu'] ?></label>
                         </div>
                     <?php
                     }
@@ -193,55 +193,51 @@
         <section id="udai">
             <div class="container">
                 <div class="ms-5 d-flex">
-                    <div class="img d-flex">
+                    <div class="d-flex align-items-center">
                         <img src="../img/icon_UuDai.png" alt="">
                     </div>
 
                     <p class="mt-3 ms-2" style="font-size: 30px; font-family:Montserrat-Bold;">Ưu Đãi</p>
                 </div>
                 <div class="ud">
-                    <h5>Tiện ích giảm giá cho chuyến đi của bạn</h5>
-                    <div class="row">
-                        <div class="col-9 d-flex">
-                            <div class="ms-5 d-flex img">
-                                <img src="../img/icon_HoanTra.png" alt="">
+                        <div class="row mb-2 d-flex align-items-center">
+                            <div class="col-2 p-0 d-flex justify-content-center">
+                                <div class="img">
+                                    <img src="../img/icon_HoanTra.png" alt="">
+                                </div>
                             </div>
-                            <div class="content">
+                            <div class="col-10 p-0">
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Không rủi ro và được hoàn lại toàn
                                     bộ</p>
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Huỷ trước 7 ngày kể từ ngày thanh toán
                                     quý khách sẽ không phải trả gì cả!</p>
                             </div>
                         </div>
+                        <div class="row mb-2 d-flex align-items-center">
+                            <div class="col-2 p-0 d-flex justify-content-center">
+                                <div class="img">
+                                  <img src="../img/icon_HoanTra.png" alt="">  
+                                </div>
+                                
 
-                    </div>
-
-                    <div class="row">
-                        <div class="col-9 d-flex">
-                            <div class="ms-5 d-flex img">
-                                <img src="../img/icon_HoanTra.png" alt="">
                             </div>
-                            <div class="content">
+                            <div class="col-10 p-0">
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Ưu đãi thành viên</p>
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Đơn hàng 6 triệu - 15 triệu được giảm giá 3%</p>
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-9 d-flex">
-                            <div class="ms-5 d-flex img">
-                                <img src="../img/icon_HoanTra.png" alt="">
+                        <div class="row mb-2 d-flex align-items-center">
+                            <div class="col-2 p-0 d-flex justify-content-center">
+                                <div class=" img">
+                                    <img src="../img/icon_HoanTra.png" alt="">
+                                </div>
                             </div>
-                            <div class="content">
+                            <div class="col-10 p-0">
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Đặc biệt</p>
                                 <p class="m-0" style="font-family: Montserrat-SemiBold;">Đơn hàng > 15 triệu được giảm giá 5%
                                 </p>
                             </div>
                         </div>
-
-                    </div>
                 </div>
             </div>
             <hr style="width: 80%; margin: 0 auto; border: 0; border-top: 5px solid;">

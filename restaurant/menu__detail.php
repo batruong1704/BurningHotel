@@ -99,7 +99,7 @@ $so_luong_mon = $row['total'];
                         <span style="color:silver">(0 custom review)</span>
                     </div>
                     <h6>
-                        <?php echo $ThanhTien ?> VNĐ
+                        <?php echo number_format($ThanhTien) ?> VNĐ
                     </h6>
                     <hr style="border-style:dashed">
                     <p>
@@ -304,7 +304,7 @@ $so_luong_mon = $row['total'];
         <div class="container py-5">
             <div class="title">
                 <h3>Món tương tự</h3>
-                <button><a href="cart.php">Order now</a></button>
+                <a href="cart.php"><button>Order now</button></a>
             </div>
             <div class="row">
                 <?php foreach ($IDs as $key => $value) { 

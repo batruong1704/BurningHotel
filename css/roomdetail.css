@@ -45,9 +45,7 @@ hr {
     background-color: #181A1B;
     color: #fff;
 }
-<<<<<<< HEAD
 
-=======
 #information .bookingnow{
     border: none;
     color: white;
@@ -59,7 +57,6 @@ hr {
     color: #937438;
     background-color: white;
 }
->>>>>>> remotes/origin/tienquang
 /* end information */
 
 /* overview */
@@ -158,19 +155,6 @@ hr {
     background-color: black;
     font-family: Montserrat-Medium;
 }
-
-<<<<<<< HEAD
-#checknow .check button {
-    border: none;
-    color: white;
-    background-color: #937438;
-    height: 48px;
-    width: 130px;
-    font-family: Montserrat-Medium;
-}
-
-=======
->>>>>>> remotes/origin/tienquang
 /* end checknow */
 
 /* room */

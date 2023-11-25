@@ -92,7 +92,7 @@
                     </div>
                     <div class="sup__detail">
                     <p class="topic">Giá: </p>
-                    <p class="infor">' . $row["ThanhTien"] . ' VNĐ</p>
+                    <p class="infor">' . number_format($row["ThanhTien"]) . ' VNĐ</p>
                     </div>
                     <div class="sup__detail">
                     <p class="topic"></p>
