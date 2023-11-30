@@ -19,25 +19,20 @@
                 <div class="form" style="text-align: center;">
                     <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;margin: 0 auto;width: 80px; font-size:12px">RESERVATION</p>
                     <p>Book your table now</p>
-                    <div class="d-flex mb-3">
-                        <div class="col-6 me-1">
-                            <input type="text" style="width:240px" placeholder="Name">
+                    <div class="d-flex mb-3 justify-content-center">
+                        <div class="col-4">
+                            <input type="text" name="" id="" style="width:155px" placeholder="Persons">
                         </div>
-                        <div class="col-6 ms-1">
-                            <input type="text" style="width:240px" placeholder="Email">
+                        <div class="col-4 mx-1">
+                            <input type="text" name="" id="" style="width:155px" placeholder="Timing">
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="" id="" style="width:155px" placeholder="Date">
                         </div>
                     </div>
 
-                    <div class="d-flex mb-3">
-                        <div class="col-4">
-                            <input type="text" name="" id="" style="width:160px" placeholder="Persons">
-                        </div>
-                        <div class="col-4 mx-1">
-                            <input type="text" name="" id="" style="width:160px" placeholder="Timing">
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="" id="" style="width:160px" placeholder="Date">
-                        </div>
+                    <div class="col-12 mb-3">
+                            <textarea cols="40" rows="5" class="w-100" placeholder="NOTE" style="background-color: transparent; border:1px solid white; padding :3px; color:white"></textarea>
                     </div>
 
                     <div class="d-flex justify-content-center ms-2">
