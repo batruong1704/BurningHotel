@@ -252,9 +252,7 @@
 
 
     <!-- footer -->
-    <?php
-    include('footer.php');
-    ?>
+    <?php include('footer.php'); ?>
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
