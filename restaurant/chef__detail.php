@@ -41,7 +41,7 @@
 
 <body>
     <!-- header -->
-    <?php include('../logged/header.php'); ?>
+    <?php include('./header.php'); ?>
     <!-- banner -->
     <section id="banner">
         <div class="container-fluid p-0 text-center">

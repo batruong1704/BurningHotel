@@ -5,9 +5,9 @@ if (isset($_GET['customer_id'])) {
     $customerId = $_GET['customer_id'];
 
     $sql = "SELECT giohang.id id, doan.id mamonan, doan.img, giohang.soluong soluong, giohang.gia gia, doan.tenmon tenmon
-    FROM giohang 
-    INNER JOIN doan ON giohang.mamonan = doan.id
-    WHERE giohang.makhachhang =  $customerId";
+            FROM giohang
+            INNER JOIN doan ON giohang.mamonan = doan.id
+            WHERE giohang.makhachhang =  $customerId";
     $result = $con->query($sql);
 
     $cartItems = [];

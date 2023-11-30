@@ -18,7 +18,7 @@
 
 <body>
     <!-- header -->
-    <?php include('../logged/header.php'); ?>
+    <?php include('./header.php'); ?>
     <!-- end header -->
     <!-- banner -->
     <section id="banner">
