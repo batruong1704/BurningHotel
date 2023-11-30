@@ -321,7 +321,7 @@ $so_luong_mon = $row['total'];
                                 <hr style="border-style:dashed">
                                 <div class="information">
                                     <h6>
-                                        <?php echo $value['ThanhTien'] ?>
+                                        <?php echo number_format($value['ThanhTien']) ?> VNĐ
                                     </h6>
                                     <div class="vote">
                                         <span>
