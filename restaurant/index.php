@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../config.php');
 ?>
 
 <!DOCTYPE html>
@@ -110,16 +111,26 @@ session_start();
         <div class="col-7 p-4">
           <h4>Best Sellers</h4>
           <div class="row">
+            <?php
+            $sql = "SELECT * FROM doan ORDER BY SoLuongDaBan DESC LIMIT 8";
+            $result = $con->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+            ?>
             <div class="col-2 d-flex justify-content-center">
-            <img src="../img/restaurant/main/monan1.png" alt="" class="rounded-circle" style="width:70px; height:70px">
+            <?php  
+            echo  '<img src="'. $row["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">
             </div>
-            <div class="col-8">
-              <h4>Raw Scallops from Erquy</h4>
-              <p>Candied Jerusalem artichokes, truffle</p>
+            <div class="col-7">
+            <h4>'. $row["TenMon"] .' </h4>
+              <p>'. $row["ThanhPhan"] .'</p>
             </div>
-            <div class="col-2 d-flex align-items-end">
-              <b style="margin-bottom: 1rem;">100k</b>
-            </div>
+            <div class="col-3 d-flex align-items-end justify-content-end">
+              <b style="margin-bottom: 1rem;">'. number_format($row["ThanhTien"]) .' VNĐ</b>
+            </div>'; 
+              }
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -139,21 +150,21 @@ session_start();
         </div>
         <div class="col-6 p-0">
           <div class="img1 d-flex justify-content-end">
-            <img src="../img/restaurant/main/anh2.png" alt="" style="width: 600px;">
+            <img src="../img/restaurant/main/anh3.png" alt="" style="width: 600px;">
           </div>
         </div>
       </div>
       <div class="row bg-left">
         <div class="col-6 p-0">
           <div class="img1 d-flex justify-content-start">
-            <img src="../img/restaurant/main/anh3.png" alt="" style="width: 600px;">
+            <img src="../img/restaurant/main/anh2.png" alt="" style="width: 600px;">
           </div>
         </div>
         <div class="col-6 p-4">
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
           <h3>We invite you to visit our restaurant</h3>
           <p style="width:400px">Every time you perfectly dine with us, it should happy for great inspired food in an environment designed with individual touches unique to the local area. </p>
-          <button class="p-2"><a href="./menu.php" style="text-decoration: none;color:#937438">View menu</a></button>
+          <button class="p-2"><a href="./chef__list.php" style="text-decoration: none;color:#937438">View chef</a></button>
         </div>
       </div>
     </div>
