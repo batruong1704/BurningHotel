@@ -42,7 +42,7 @@
     <?php
     include('../config.php');
 
-    $sql = "SELECT * FROM daubep"; // Thêm cột 'id' vào truy vấn SQL
+    $sql = "SELECT db.ID, db.HoTen, db.NgaySinh, cv.TenChucVu, db.HinhAnh FROM `daubep` db, `chucvu` cv WHERE db.MaChucVu=cv.MaChucVu"; // Thêm cột 'id' vào truy vấn SQL
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
@@ -51,9 +51,9 @@
                 <div class="row d-flex justify-content-center">';
         while ($row = $result->fetch_assoc()) {
             echo '<div class="col-4 text-center">
-                    <a href="chef__detail.php?id=' . $row["id"] . '"><img class="cheflist" src="' . $row["hinhanh"] . '" alt=""></a>
-                    <a href="chef__detail.php?id=' . $row["id"] . '"><h4 class="chefname">' . $row["hoten"] . '</h4></a>
-                        <span>' . $row["chucvu"] . '</span>
+                    <a href="chef__detail.php?id=' . $row["ID"] . '"><img class="cheflist" src="' . $row["HinhAnh"] . '" alt=""></a>
+                    <a href="chef__detail.php?id=' . $row["ID"] . '"><h4 class="chefname">' . $row["HoTen"] . '</h4></a>
+                        <span>' . $row["TenChucVu"] . '</span>
                     
                 </div>';
         }

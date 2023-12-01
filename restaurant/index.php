@@ -33,9 +33,9 @@ include('../config.php');
           <b style="font-size: 45px;text-align:left;">Yêu là phải nói, đói là phải ăn</b>
           <p>Tạm gác hết những âu lo nhanh nhanh đến nhà hàng và “chill” cùng Burning Restaurant thôi! 😋</p>
           <div>
-            <Button class="btbook">Đặt bàn</Button>
+            <Button class="btbook">Đặt Bàn</Button>
             <Button class="btget">
-              <a href="./menu.php" style="text-decoration: none;border: none;color: white;">Xem menu</a></Button>
+              <a href="./menu.php" style="text-decoration: none;border: none;color: white;">Xem Menu</a></Button>
           </div>
         </div>
       </div>
@@ -89,20 +89,21 @@ include('../config.php');
             muốn cùng bạn đưa người ấy tận hưởng một buổi tối ngọt ngào, nhẹ nhàng và đầy sự trải nghiệm.</p>
           <div class="row">
             <div class="col-6">
-              <h3>Đi đơn</h3>
-              <p>Lorem Ipsum is that it has a more-or-less normal distribution </p>
+              <h3>Single</h3>
+              <p>Dành thời gian một mình tại khách sạn, tận hưởng sự riêng tư và chăm sóc đặc biệt dành cho bạn.</p>
             </div>
             <div class="col-6">
-              <h3>2021</h3>
-              <p>Lorem Ipsum is that it has a more-or-less normal Content content</p>
+              <h3>Couple</h3>
+              <p>Tìm một nơi không có ai nhìn chúng ta, tìm một nơi mà chúng ta không ai tìm! Buổi tối lãng mạng của đôi
+                ta.</p>
             </div>
             <div class="col-6">
-              <h3>1996</h3>
-              <p>Lorem Ipsum is that it has a more-or-less normal distribution </p>
+              <h3>Family</h3>
+              <p>Gia đình là trái tim của chúng tôi. Tại đây, mọi khoảnh khắc là niềm vui và kỷ niệm đáng nhớ.</p>
             </div>
             <div class="col-6">
-              <h3>2021</h3>
-              <p>Lorem Ipsum is that it has a more-or-less normal Content content</p>
+              <h3>Team Building</h3>
+              <p>Hội hè hoàn hảo tại khách sạn, nơi tạo nên không khí thân thiện và gắn kết với đồng đội và công ty.</p>
             </div>
           </div>
         </div>
@@ -117,9 +118,9 @@ include('../config.php');
       <div class="row">
         <div class="col-4">
           <p class="m-0" style="border-top: 2px solid #937438;border-bottom: 2px solid #937438; width: 48px">MENU</p>
-          <h3>Try Our Special Offers</h3>
-          <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content
-            here, content making it look like readable English. </p>
+          <h3>Burning Restaurant</h3>
+          <p>Thực đơn đa dạng, phong phú Nhà hàng Việt Nam phục vụ một thực đơn đa dạng, phong phú với nhiều món ăn đặc
+            sắc của Việt Nam</p>
           <img src="../img/restaurant/main/anh4.png" alt="" class="img-fluid">
           <button> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>
         </div>
@@ -161,9 +162,10 @@ include('../config.php');
         <div class="col-6 py-4 ps-0">
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE
           </p>
-          <h3 style="width:200px">Always fresh ingredients</h3>
-          <p style="width:400px">the people, food and the prime locations make Rodich the perfect place good frinds &
-            family to come together and have great time </p>
+          <h3 style="width:400px">Hương vị quê nhà</h3>
+          <p style="width:600px">Tất cả các nguyên liệu của nhà hàng đều được tuyển chọn kỹ lưỡng, đảm bảo tươi ngon và
+            chất lượng. Các món ăn được chế biến bởi đội ngũ đầu bếp chuyên nghiệp, giàu kinh nghiệm, mang đến cho bạn
+            những hương vị thơm ngon, hấp dẫn.</p>
           <button class="p-2"><a href="./menu.php" style="text-decoration: none;color:#937438">View menu</a></button>
         </div>
         <div class="col-6 p-0">
@@ -181,11 +183,12 @@ include('../config.php');
         <div class="col-6 p-4">
           <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE
           </p>
-          <h3>We invite you to visit our restaurant</h3>
-          <p style="width:400px">Every time you perfectly dine with us, it should happy for great inspired food in an
-            environment designed with individual touches unique to the local area. </p>
-          <button class="p-2"><a href="./chef__list.php" style="text-decoration: none;color:#937438">View
-              chef</a></button>
+          <h3>Đội ngũ đầu bếp tâm huyết</h3>
+          <p style="width:600px">Khám phá sức sáng tạo và đam mê ẩm thực cùng đội ngũ đầu bếp tâm huyết của chúng tôi.
+            Mỗi bữa ăn là một tác phẩm nghệ thuật, chăm sóc từng chi tiết nhỏ để mang đến trải nghiệm ẩm thực độc đáo và
+            đầy cảm xúc từ đó mỗi bữa ăn trở thành một cuộc phiêu lưu ngon miệng và đáng nhớ </p>
+          <button class="p-2"><a href="./chef__list.php" style="text-decoration: none;color:#937438">Xem
+              thêm</a></button>
         </div>
       </div>
     </div>
