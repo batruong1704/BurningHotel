@@ -88,6 +88,10 @@ $so_luong_mon = $row['total'];
                     <p class="infor">' . $row["PhanLoai"] . '</p>
                     </div>
                     <div class="sup__detail">
+                    <p class="topic">Thành Phần: </p>
+                    <p class="infor">' . $row["ThanhPhan"] . '</p>
+                    </div>
+                    <div class="sup__detail">
                     <p class="topic">Hàm Lượng: </p>
                     <p class="infor">' . $row["HamLuongcalo"] . ' Calories</p>
                     </div>
