@@ -5,6 +5,7 @@ $result = mysqli_query($con, "SELECT COUNT(*) as total, SUM(giohang.soluong * do
 $row = mysqli_fetch_assoc($result);
 $tongtien = $row['tongtien'];
 $so_luong_mon = $row['total'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,7 @@ $so_luong_mon = $row['total'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page</title>
-    <link rel="stylesheet/less" type="text/css"
-        href="../css/restaurant/menu/menulist.module.scss?v= <?php echo time(); ?>">
+    <link rel="stylesheet/less" type="text/css" href="../css/restaurant/menu/menulist.module.scss?v= <?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link css bootstrap -->
     <link rel="stylesheet" href="../common/bootstrap-5.2.2-dist/css/bootstrap.min.css">
@@ -26,6 +26,7 @@ $so_luong_mon = $row['total'];
 
     <link rel="icon" href="../public_html/favicon.ico" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -36,8 +37,7 @@ $so_luong_mon = $row['total'];
             <div class="img h-100">
                 <img src="../img/restaurant/menu/banner.png" alt="" class="w-100">
                 <div class="box">
-                    <h3
-                        style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
+                    <h3 style="font-size:20px;font-family: Montserrat-Bold;border-top: 2px solid #937438;border-bottom: 2px solid #937438;width:150px">
                         Chi Tiết Món</h3>
                 </div>
             </div>
@@ -99,15 +99,14 @@ $so_luong_mon = $row['total'];
                     <p class="topic"></p>
                     <p class="infor"></p>
                     </div>';
-                    ?>
+        ?>
 
                     <a style="text-decoration:none;color:black;" href="menu__detail.php?ID=<?php echo $ID; ?>"><button>Xem Chi
                             Tiết</button></a>
                     <button class="btnaddcartlist" data-masp="<?php echo $ID; ?>" data-product-quantity="1">Thêm giỏ hàng</button>
-                    <?php
+        <?php
                     echo '</div>';
                     echo '</div>';
-
                 }
                 echo '<nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
@@ -125,10 +124,10 @@ $so_luong_mon = $row['total'];
                 echo '</li>
                         
                 <li class="page-item">';
-                    if ($current_page < $total_pages) {
-                        $next_page = $current_page + 1;
-                        echo '<a href="?category=' . $category . '&page=' . $next_page . '" class="page-link">Next</a>';
-                    }
+                if ($current_page < $total_pages) {
+                    $next_page = $current_page + 1;
+                    echo '<a href="?category=' . $category . '&page=' . $next_page . '" class="page-link">Next</a>';
+                }
                 echo '</li>
 
                     </ul>
@@ -155,57 +154,155 @@ $so_luong_mon = $row['total'];
         </div>
     </div>
     <!-- end cart -->
+    <!-- chi tiết đặt món-->
+    <div class="modal fade" id="myModaldatban" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
+                            <input type="hidden" class="form-control" id="madatban" value="">
+                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['ten'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['sdt'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
+                            <input type="date" class="form-control" id="recipient-name" value="<?php echo  date("Y-m-d"); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ngày Đến:</label>
+                            <input type="date" class="form-control" id="ngayden" value="">
 
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Giờ Đến:</label>
+                            <input type="time" class="form-control" id="thoigian" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Ghi Chú:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tổng tiền:</label>
+                            <input type="text" class="form-control" name="tongtien" id="recipient-name" value="<?php echo $tongtien ?>">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" onclick="thanhtoan_datban()" name="btn-datban" class="btn btn-primary">Đồng ý</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end chi tiết đặt món -->
+
+
+
+    <!-- chi tiết đặt món-->
+    <div class="modal fade" id="myModaldatphong" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
+                            <input type="hidden" class="form-control" id="mahoadon" name="mahoadon" value="">
+                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['ten'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['sdt'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
+                            <input type="date" class="form-control" id="recipient-name" value="<?php echo  date("Y-m-d"); ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Ghi Chú:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tổng tiền: </label>
+                            <input type="text" name="tongtien" class="form-control" id="recipient-name" value=" <?php echo $tongtien ?>">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="thanhtoan_datphong()" name="btn-datphong" class="btn btn-primary">Đồng ý</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+    include('thanhtoanmon_datphong.php');
+    include('thanhtoanmon_datban.php');
+    ?>
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
 
     <script>
         function ThanhTon() {
             Swal.fire({
-                title: 'Vui lòng nhập mã đặt phòng:',
-                input: 'text',
-                showCancelButton: true,
-                confirmButtonText: 'Xác nhận',
-                cancelButtonText: 'Hủy bỏ',
-                showLoaderOnConfirm: true,
-                preConfirm: (maphieudatphong) => {
-                    return new Promise((resolve, reject) => {
-                        resolve(maphieudatphong);
-                    });
-                },
-            })
+                    title: 'Vui lòng nhập mã đặt phòng:',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Hủy bỏ',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (maphieudatphong) => {
+                        return new Promise((resolve, reject) => {
+                            resolve(maphieudatphong);
+                        });
+                    },
+                })
                 .then((result) => {
                     if (result.isConfirmed) {
 
                         var xmlhttp = new XMLHttpRequest();
                         xmlhttp.open("POST", "thanhtoan_monan.php", true);
                         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        xmlhttp.onreadystatechange = function () {
+                        xmlhttp.onreadystatechange = function() {
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                var response = xmlhttp.responseText;
-                                if (response == "") {
-                                    Swal.fire({
-                                        title: 'Đặt món thành công!',
-                                        icon: 'success',
-                                        confirmButtonText: 'OK',
-                                    }).then(() => {
-                                        window.location = "index.php";
-                                    });
+                                var response = JSON.parse(xmlhttp.responseText);
+                                if (response.message === 'Đúng mã đặt bàn!') {
+                                    document.getElementById("ngayden").value = response.ngayden;
+                                    document.getElementById("thoigian").value = response.thoigian;
+                                    document.getElementById("madatban").value = response.iddatban;
+                                    $('#myModaldatban').modal('show');
+
+                                } else if (response.message == "Đúng mã đặt phòng!") {
+                                    document.getElementById("mahoadon").value = response.mahoadon;
+                                    $('#myModaldatphong').modal('show');
                                 } else {
                                     Swal.fire({
                                         title: 'Lỗi',
-                                        text: response,
+                                        text: response.message,
                                         icon: 'error',
                                         confirmButtonText: 'OK',
                                     });
                                 }
                             }
                         };
-
-                        var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
+                        var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&btn";
                         xmlhttp.send(data);
                     } else {
-                        // Người dùng đã hủy bỏ
                         Swal.fire({
                             title: 'Hủy bỏ đặt món.',
                             icon: 'info',
@@ -218,11 +315,75 @@ $so_luong_mon = $row['total'];
                 });
         }
 
+        function thanhtoan_datphong() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "thanhtoanmon_datphong.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    if (response == "") {
+                        Swal.fire({
+                            title: "Đặt món thành công!",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            window.location = "home.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Lỗi',
+                            text: response,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }
+            };
+            mahoadon = document.getElementById("mahoadon").innerHTML;
+            var data = "mahoadon=" + mahoadon + "&tongtien=" + <?php echo $tongtien ?> + "&btn_datphong";
+            xhr.send(data);
+
+        }
+
+        function thanhtoan_datban() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "thanhtoanmon_datban.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = xhr.responseText;
+                    if (response == "") {
+                        Swal.fire({
+                            title: "Đặt món thành công!",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            window.location = "home.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Lỗi',
+                            text: response,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                }
+            };
+
+            var data = "tongtien=" + <?php echo $tongtien ?> + "&btn_datban";
+            xhr.send(data);
+        }
     </script>
+
     <script>
-        document.querySelectorAll('.btnaddcartlist').forEach(function (btn) {
-            btn.addEventListener('click', function () {
+        document.querySelectorAll('.btnaddcartlist').forEach(function(btn) {
+            btn.addEventListener('click', function() {
                 let productId = this.getAttribute('data-masp');
                 let quantity = this.getAttribute('data-product-quantity');
 
@@ -230,7 +391,7 @@ $so_luong_mon = $row['total'];
                 xhr.open("POST", "cart__add.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-                xhr.onreadystatechange = function () {
+                xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             const response = JSON.parse(xhr.responseText);
@@ -250,6 +411,7 @@ $so_luong_mon = $row['total'];
         });
     </script>
 
+
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <!-- bootstrap -->
@@ -259,7 +421,7 @@ $so_luong_mon = $row['total'];
     <script src="../common/slick/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/scrip.js"></script>
     <script src="cart.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
 
 </html>
