@@ -92,12 +92,13 @@ hcon .shopping span {
 }
 
 .supercard {
+    margin-top: 88px;
     position: fixed;
     top: 0;
     left: 100%;
     width: 30%;
     background-color: #453E3B;
-    height: 87%;
+    height: 88%;
     transition: 0.5s;
     z-index: 3;
 }
