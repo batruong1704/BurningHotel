@@ -1,8 +1,9 @@
 <?php
 session_start();
     require_once('../config.php');
-    if (isset($_POST["btn-datphong"])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["btn_datphong"])) {
         $mahoadon = $_POST['mahoadon'];
+        $tongtien = $_POST['tongtien'];
         $sql = "INSERT INTO phieumonan VALUES ('','" . $mahoadon . "','" . $tongtien . "')";
         if (mysqli_query($con, $sql)) {
             $maphieudatmon = mysqli_insert_id($con);

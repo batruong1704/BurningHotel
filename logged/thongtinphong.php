@@ -78,7 +78,7 @@
                         <div class="rice3"> <?php echo $KieuPhong ?> </div>
                     </div>
                 </div>
-                <button onclick="huydatphong()" type="submit" name="btn" class="btnthanhtoan">Hủy Đặt Phòng</button></a>
+                <button onclick="huydatphong()" type="submit" name="btn" id="btn" class="btnthanhtoan">Hủy Đặt Phòng</button></a>
             </div>
             <div class="inforchitiet">
                 <table>
@@ -158,6 +158,23 @@
 
     </div>
     <script>
+        var ngayden = new Date("<?php echo date('Y-m-d', strtotime($NgayDen)); ?>");
+        var ngayhientai = new Date("<?php echo date('Y-m-d', strtotime($NgayHienTai)); ?>");
+        var ngayden_timestamp = ngayden.getTime();
+        var ngayhientai_timestamp = ngayhientai.getTime();
+
+        if (ngayden_timestamp > ngayhientai_timestamp) {
+            document.getElementById("btn").style.display = "block";
+        } else {
+            document.getElementById("btn").style.display = "none";
+        }
+
+        if(ngayden>ngayhientai){
+          document.getElementById("btn").style.display="block";  
+        }
+        else{
+            document.getElementById("btn").style.display="none";  
+        }
         function huydatphong() {
             Swal.fire({
                 title: 'Bạn có chắc chắn muốn hủy đặt phòng?',
