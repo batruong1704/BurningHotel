@@ -17,10 +17,5 @@ $mapdv=$_GET['MaPDV'];
     mysqli_query($con,$sql5);
     $sql6="DELETE FROM phieudatphong WHERE MaPDP='".$maphieudatphong."'";
     mysqli_query($con,$sql6);
-
-    echo '<script>
-    alert("Hủy đặt phòng thành công!"); 
-    window.location="history.php";
-    </script>';
-
+    echo "success";
 ?>

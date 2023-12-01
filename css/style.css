@@ -293,6 +293,7 @@ li {
   background-color: transparent;
   border: solid 1px white;
   padding: 3px;
+  color: white;
 }
 
 #booktable .form button{

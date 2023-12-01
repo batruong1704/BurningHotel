@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../common/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="../common/slick/slick-theme.css">
     <link rel="stylesheet" href="../css/style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Lịch sử đặt phòng</title>
 </head>
 <body>
@@ -43,11 +43,8 @@
                                     'NgayDen'=>$row["NgayDen"],'NgayDi'=>$row["NgayDi"], 'PhuongThucThanhToan'=> $row['PhuongThucThanhToan'],
                                     'IMG'=>$row['IMG'], 'NgayTT'=>$row["NgayTT"]);
                   }
-               }else{
-                ?>
-                <p style="color: red; font-size: 30px; padding:78px;">Bạn chưa đặt phòng</p>
-                <?php
                }
+               else{ ?> <p style="color: red; font-size: 30px; padding:78px;">Bạn chưa đặt phòng</p> <?php }
             
               ?>
                 
@@ -77,8 +74,8 @@
                     ?>
                 </div>
         
-                <div> <a style="text-decoration: none; padding: 10px 0px;" href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
-                <div> <a class="huyphong" style="text-decoration: none; padding: 10px 0px; " href="HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']; ?>&MaPDV=<?php echo $value['MaPDV']; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')">Hủy đặt phòng</a> </div>
+                <div> <a style="text-decoration: none " href="thongtinphong.php?MaPDP=<?php echo $value['MaPDP']?>">Xem chi tiết</a></div>
+                <div> <a class="huyphong" style="text-decoration: none " href="#" onclick="huydatphong()">Hủy Đặt Phòng</a> </div>
                 </div>
                 </div>
 
@@ -101,7 +98,52 @@
                         }
 
                     }
-                    
+                    function huydatphong() {
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn hủy đặt phòng?',
+                icon: 'question',
+                iconColor: 'red', 
+                showCancelButton: true,
+                confirmButtonText: 'Tiếp Tục',
+                cancelButtonText: 'Hủy bỏ',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "HuyDatPhong.php?MaPDP=<?php echo $value['MaPDP']?>&MaPDV=<?php echo  $value['MaPDV'] ?>", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var response = xhr.responseText;
+                            if (response == "success") {
+                                Swal.fire({
+                                    title: 'Hủy phòng thành công!',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                }).then(() => {
+                                    window.location = "home.php";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Lỗi',
+                                    text: response,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                });
+                            }
+                        }
+                    };
+
+                    xhr.send();
+                } else {
+                    Swal.fire({
+                        title: 'Bỏ hủy đặt phòng',
+                        icon: 'info',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+        }
                 </script>
 
             <?php
