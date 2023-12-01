@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@
                 $NgayDen = $row['NgayDen'];
                 $NgayDi = $row['NgayDi'];
                 $TinhTrang=$row['TinhTrang'];
-                $dichvu =$row['MaPDV'];
+                $MaPDV = $row['MaPDV'];
                 $dichvus[]=array('TenDichVu'=>$row['TenDichVu'], 'GiaDichVu'=>$row['DonGia']);
 
             }
@@ -77,7 +78,7 @@
                         <div class="rice3"> <?php echo $KieuPhong ?> </div>
                     </div>
                 </div>
-                <a class="huyphong" style="text-decoration: none; padding: 10px 0px; " href="HuyDatPhong.php?MaPDP=<?php echo $maphieudatphong; ?>&MaPDV=<?php echo $dichvu; ?>" onclick="return confirm('Bạn có chắc chắn muốn hủy đặt phòng?')"><button class="btnhuy"> Hủy đặt phòng </button></a>
+                <button onclick="huydatphong()" type="submit" name="btn" class="btnthanhtoan">Hủy Đặt Phòng</button></a>
             </div>
             <div class="inforchitiet">
                 <table>
@@ -156,6 +157,55 @@
         </div>
 
     </div>
+    <script>
+        function huydatphong() {
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn hủy đặt phòng?',
+                icon: 'question',
+                iconColor: 'red', 
+                showCancelButton: true,
+                confirmButtonText: 'Tiếp Tục',
+                cancelButtonText: 'Hủy bỏ',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "HuyDatPhong.php?MaPDP=<?php echo $maphieudatphong ?>&MaPDV=<?php echo $MaPDV ?>", true);
+                    console.log(<?php echo $maphieudatphong; ?>);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var response = xhr.responseText;
+                            if (response == "success") {
+                                Swal.fire({
+                                    title: 'Hủy phòng thành công!',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                }).then(() => {
+                                    window.location = "home.php";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Lỗi',
+                                    text: response,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK',
+                                });
+                            }
+                        }
+                    };
+
+                    xhr.send();
+                } else {
+                    Swal.fire({
+                        title: 'Bỏ hủy đặt phòng',
+                        icon: 'info',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+        }
+    </script>
     <!-- footer -->
     <?php include('footer.php'); ?>
 </body>
