@@ -149,118 +149,118 @@ $so_luong_mon = $row['total'];
 
         <div class="checkOut">
             <div>
-            <button onclick="ThanhTon()" name="btn" >Thanh Toán</button>
+                <button onclick="ThanhTon()" name="btn">Thanh Toán</button>
             </div>
             <div class="closeShopping">Close</div>
         </div>
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
-            <input type="date" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Ngày Đến:</label>
-            <input type="date" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Giờ Đến:</label>
-            <input type="time" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Ghi Chú:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Tổng tiền:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Đồng ý</button>
-      </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
+                            <input type="date" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Ngày Đến:</label>
+                            <input type="date" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Giờ Đến:</label>
+                            <input type="time" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Ghi Chú:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tổng tiền:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Đồng ý</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
     <!-- end cart -->
     <script>
         function ThanhTon() {
-    Swal.fire({
-        title: 'Vui lòng nhập mã đặt phòng:',
-        input: 'text',
-        showCancelButton: true,
-        confirmButtonText: 'Xác nhận',
-        cancelButtonText: 'Hủy bỏ',
-        showLoaderOnConfirm: true,
-        preConfirm: (maphieudatphong) => {
-            return new Promise((resolve, reject) => {
-                resolve(maphieudatphong);
-            });
-        },
-    })
-    .then((result) => {
-        if (result.isConfirmed) {
-          
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "thanhtoan_monan.php", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var response =  xmlhttp.responseText;
-                    if (response=="") {
-                        $('#myModal').modal('show');
-                        // Swal.fire({
-                        //     title: 'Đặt món thành công!',
-                        //     icon: 'success',
-                        //     confirmButtonText: 'OK',
-                        // }).then(() => {
-                        //     window.location = "index.php";
-                        // });
+            Swal.fire({
+                    title: 'Vui lòng nhập mã đặt phòng:',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Hủy bỏ',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (maphieudatphong) => {
+                        return new Promise((resolve, reject) => {
+                            resolve(maphieudatphong);
+                        });
+                    },
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.open("POST", "thanhtoan_monan.php", true);
+                        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xmlhttp.onreadystatechange = function() {
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                var response = xmlhttp.responseText;
+                                if (response == "") {
+                                    $('#myModal').modal('show');
+                                    // Swal.fire({
+                                    //     title: 'Đặt món thành công!',
+                                    //     icon: 'success',
+                                    //     confirmButtonText: 'OK',
+                                    // }).then(() => {
+                                    //     window.location = "index.php";
+                                    // });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Lỗi',
+                                        text: response,
+                                        icon: 'error',
+                                        confirmButtonText: 'OK',
+                                    });
+                                }
+                            }
+                        };
+
+                        var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
+                        xmlhttp.send(data);
                     } else {
+                        // Người dùng đã hủy bỏ
                         Swal.fire({
-                            title: 'Lỗi',
-                            text: response,
-                            icon: 'error',
+                            title: 'Hủy bỏ đặt món.',
+                            icon: 'info',
                             confirmButtonText: 'OK',
                         });
                     }
-                }
-            };
-
-            var data = "maphieudatphong=" + encodeURIComponent(result.value) + "&tongtien=" + <?php echo $tongtien ?> + "&btn";
-            xmlhttp.send(data);
-        } else {
-            // Người dùng đã hủy bỏ
-            Swal.fire({
-                title: 'Hủy bỏ đặt món.',
-                icon: 'info',
-                confirmButtonText: 'OK',
-            });
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Lỗi: ${error}`);
+                });
         }
-    })
-    .catch(error => {
-        Swal.showValidationMessage(`Lỗi: ${error}`);
-    });
-}
     </script>
     <!-- ingredients -->
 
@@ -268,8 +268,36 @@ $so_luong_mon = $row['total'];
         <div class="container py-5">
             <h3>Chi tiết thành phần</h3>
             <div class="row border-top border-2">
-                <div class="col-8 border-end border-2">
+                <div class="col-8 border-end border-2 p-5">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="../img/restaurant/menu/thanhphan.png" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-8">
+                                    <div class="ingredients-content">
+                                        <h5>Chicken</h5>
+                                        <p>1kg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="../img/restaurant/menu/thanhphan.png" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-8">
+                                    <div class="ingredients-content">
+                                        <h5>Chicken</h5>
+                                        <p>1kg</p>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
                 </div>
                 <div class="col-4 p-5">
                     <div class="card border-0" style="width: 18rem;">
@@ -355,16 +383,16 @@ $so_luong_mon = $row['total'];
                 <a href="cart.php"><button>Order now</button></a>
             </div>
             <div class="row">
-                <?php foreach ($IDs as $key => $value) { 
-                    ?>
+                <?php foreach ($IDs as $key => $value) {
+                ?>
                     <div class="col-4  pt-3">
 
                         <div class="card" style="width: 18  rem;">
-                                <a href="menu__detail.php?ID=<?php echo $value['ID']; ?>"><img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;"></a>
+                            <a href="menu__detail.php?ID=<?php echo $value['ID']; ?>"><img src="<?php echo $value['img'] ?>" class="card-img-top w-100" alt="..." style="height: 236px;"></a>
                             <div class="card-body">
                                 <h6>
                                     <a href="menu__detail.php?ID=<?php echo $value['ID']; ?>"><?php echo $value['TenMon'] ?></a>
-                                    
+
                                 </h6>
                                 <hr style="border-style:dashed">
                                 <div class="information">
@@ -388,7 +416,7 @@ $so_luong_mon = $row['total'];
                                             <i class="fa fa-star"></i>
                                         </span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
