@@ -29,13 +29,13 @@ include('../config.php');
         <div class="box">
           <p
             style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:100px; margin-bottom:0px">
-            RESERVATION</p>
-          <b style="font-size: 45px;text-align:left;">This evening will be great!</b>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis</p>
+            RESTAURANT</p>
+          <b style="font-size: 45px;text-align:left;">Yêu là phải nói, đói là phải ăn</b>
+          <p>Tạm gác hết những âu lo nhanh nhanh đến nhà hàng và “chill” cùng Burning Restaurant thôi! 😋</p>
           <div>
-            <Button class="btbook">Book a Table</Button>
-            <Button class="btget"><a href="./menu.php" style="text-decoration: none;border: none;color: white;">View
-                menu</a></Button>
+            <Button class="btbook">Đặt bàn</Button>
+            <Button class="btget">
+              <a href="./menu.php" style="text-decoration: none;border: none;color: white;">Xem menu</a></Button>
           </div>
         </div>
       </div>
@@ -85,10 +85,17 @@ include('../config.php');
         </div>
         <div class="col-6 content ps-5">
           <h3>The Story</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente rem incidunt! Illo perferendis
-            laudantium blanditiis adipisci rem tempora beatae amet velit. Ex eius consequatur velit, delectus possimus
-            rerum veniam.</p>
+          <p>Dịp lễ này, không cần những món quà đắt đỏ, hay những bó hoa rực rỡ, mà đơn giản hơn, Burning Restaurant
+            muốn cùng bạn đưa người ấy tận hưởng một buổi tối ngọt ngào, nhẹ nhàng và đầy sự trải nghiệm.</p>
           <div class="row">
+            <div class="col-6">
+              <h3>Đi đơn</h3>
+              <p>Lorem Ipsum is that it has a more-or-less normal distribution </p>
+            </div>
+            <div class="col-6">
+              <h3>2021</h3>
+              <p>Lorem Ipsum is that it has a more-or-less normal Content content</p>
+            </div>
             <div class="col-6">
               <h3>1996</h3>
               <p>Lorem Ipsum is that it has a more-or-less normal distribution </p>

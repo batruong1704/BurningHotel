@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2023 lúc 05:55 PM
+-- Thời gian đã tạo: Th12 01, 2023 lúc 06:51 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -141,7 +141,7 @@ CREATE TABLE `datban` (
   `NgayDat` date NOT NULL,
   `NgayDen` date NOT NULL,
   `TinhTrang` varchar(50) NOT NULL,
-  `MaNhanVien` int(11) DEFAULT NULL
+  `MaNhanVien` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -149,10 +149,10 @@ CREATE TABLE `datban` (
 --
 
 INSERT INTO `datban` (`ID`, `MaKhachHang`, `SoLuong`, `ThoiGian`, `NgayDat`, `NgayDen`, `TinhTrang`, `MaNhanVien`) VALUES
-(6, 1, 1, '16:58:00', '2023-12-01', '2023-12-03', 'Chờ', NULL),
-(7, 1, 2, '16:59:00', '2023-12-01', '2023-12-09', 'Chờ', NULL),
-(8, 1, 3, '16:00:00', '2023-12-01', '2023-12-03', 'Chờ', NULL),
-(9, 1, 10, '17:15:00', '2023-12-01', '2023-12-02', 'Chờ', NULL);
+(6, 1, 1, '16:58:00', '2023-12-01', '2023-12-03', 'Chờ', 11),
+(7, 1, 2, '16:59:00', '2023-12-01', '2023-12-09', 'Chờ', 11),
+(8, 1, 3, '16:00:00', '2023-12-01', '2023-12-03', 'Chờ', 11),
+(9, 1, 10, '17:15:00', '2023-12-01', '2023-12-02', 'Chờ', 11);
 
 -- --------------------------------------------------------
 
