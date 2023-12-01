@@ -31,7 +31,7 @@ if (isset($_GET['code'])) {
     $userinfo = $result->fetch_assoc();
     $_SESSION['ten'] = $userinfo['HoTen'];
     $_SESSION['makhachhang'] = $userinfo['ID'];
-    echo "Email: " . $_SESSION['makhachang'];
+    // echo "Email: " . $_SESSION['makhachang'];
     $_SESSION['email'] = $email;
     header("Location: home.php");
     exit;

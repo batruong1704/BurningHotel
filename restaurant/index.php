@@ -27,12 +27,15 @@ include('../config.php');
       <div class="img h-100">
         <img src="../img/restaurant/main/banner.png" alt="" class="w-100">
         <div class="box">
-          <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:100px; margin-bottom:0px">RESERVATION</p>
+          <p
+            style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:100px; margin-bottom:0px">
+            RESERVATION</p>
           <b style="font-size: 45px;text-align:left;">This evening will be great!</b>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis</p>
           <div>
             <Button class="btbook">Book a Table</Button>
-            <Button class="btget"><a href="./menu.php" style="text-decoration: none;border: none;color: white;">View menu</a></Button>
+            <Button class="btget"><a href="./menu.php" style="text-decoration: none;border: none;color: white;">View
+                menu</a></Button>
           </div>
         </div>
       </div>
@@ -47,7 +50,8 @@ include('../config.php');
       <div class="row pb-5">
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle"
+              style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Địa Chỉ</h5>
@@ -56,7 +60,8 @@ include('../config.php');
         </div>
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle"
+              style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Giờ Mở Cửa</h5>
@@ -65,7 +70,8 @@ include('../config.php');
         </div>
         <div class="col-4 d-flex">
           <div class="img d-flex p-2">
-            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle" style="background-color: black;width:70px; height:70px">
+            <img src="../img/restaurant/main/icondiachi.png" alt="" class="rounded-circle"
+              style="background-color: black;width:70px; height:70px">
           </div>
           <div class="content p-2">
             <h5>Đặt Trước</h5>
@@ -79,8 +85,10 @@ include('../config.php');
         </div>
         <div class="col-6 content ps-5">
           <h3>The Story</h3>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente rem incidunt! Illo perferendis laudantium blanditiis adipisci rem tempora beatae amet velit. Ex eius consequatur velit, delectus possimus rerum veniam.</p>
-          <div class= "row">
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum sapiente rem incidunt! Illo perferendis
+            laudantium blanditiis adipisci rem tempora beatae amet velit. Ex eius consequatur velit, delectus possimus
+            rerum veniam.</p>
+          <div class="row">
             <div class="col-6">
               <h3>1996</h3>
               <p>Lorem Ipsum is that it has a more-or-less normal distribution </p>
@@ -103,9 +111,10 @@ include('../config.php');
         <div class="col-4">
           <p class="m-0" style="border-top: 2px solid #937438;border-bottom: 2px solid #937438; width: 48px">MENU</p>
           <h3>Try Our Special Offers</h3>
-          <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content making it look like readable English. </p>
+          <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content
+            here, content making it look like readable English. </p>
           <img src="../img/restaurant/main/anh4.png" alt="" class="img-fluid">
-          <button> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>   
+          <button> <a href="./menu.php" style="text-decoration: none;color:#937438">See all dishes</a></button>
         </div>
         <div class="col-1"></div>
         <div class="col-7 p-4">
@@ -116,25 +125,25 @@ include('../config.php');
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
-            ?>
-            <div class="col-2 d-flex justify-content-center">
-            <?php  
-            echo  '<img src="'. $row["img"] .'" alt="" class="rounded-circle" style="width:70px; height:70px">
+                ?>
+                <div class="col-2 d-flex justify-content-center">
+                  <?php
+                  echo '<img src="' . $row["img"] . '" alt="" class="rounded-circle" style="width:70px; height:70px">
             </div>
             <div class="col-7">
-            <h4>'. $row["TenMon"] .' </h4>
-              <p>'. $row["ThanhPhan"] .'</p>
+            <h4>' . $row["TenMon"] . ' </h4>
+              <p>' . $row["ThanhPhan"] . '</p>
             </div>
             <div class="col-3 d-flex align-items-end justify-content-end">
-              <b style="margin-bottom: 1rem;">'. number_format($row["ThanhTien"]) .' VNĐ</b>
-            </div>'; 
+              <b style="margin-bottom: 1rem;">' . number_format($row["ThanhTien"]) . ' VNĐ</b>
+            </div>';
               }
             }
             ?>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- end Menu -->
 
@@ -143,9 +152,11 @@ include('../config.php');
     <div class="container py-5">
       <div class="row bg-right">
         <div class="col-6 py-4 ps-0">
-          <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
+          <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE
+          </p>
           <h3 style="width:200px">Always fresh ingredients</h3>
-          <p style="width:400px">the people, food and the prime locations make Rodich the perfect place good frinds & family to come together and have great time </p>
+          <p style="width:400px">the people, food and the prime locations make Rodich the perfect place good frinds &
+            family to come together and have great time </p>
           <button class="p-2"><a href="./menu.php" style="text-decoration: none;color:#937438">View menu</a></button>
         </div>
         <div class="col-6 p-0">
@@ -161,10 +172,13 @@ include('../config.php');
           </div>
         </div>
         <div class="col-6 p-4">
-          <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE</p>
+          <p style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;text-align:left; width:67px">FEATURE
+          </p>
           <h3>We invite you to visit our restaurant</h3>
-          <p style="width:400px">Every time you perfectly dine with us, it should happy for great inspired food in an environment designed with individual touches unique to the local area. </p>
-          <button class="p-2"><a href="./chef__list.php" style="text-decoration: none;color:#937438">View chef</a></button>
+          <p style="width:400px">Every time you perfectly dine with us, it should happy for great inspired food in an
+            environment designed with individual touches unique to the local area. </p>
+          <button class="p-2"><a href="./chef__list.php" style="text-decoration: none;color:#937438">View
+              chef</a></button>
         </div>
       </div>
     </div>
@@ -174,18 +188,19 @@ include('../config.php');
   <!-- book table -->
   <?php
   include('booktable.php')
-  ?>
+    ?>
   <!-- footer -->
   <?php
   include('../logged/footer.php');
   ?>
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script>
-        $(".btbook").click(function(){
-    var targetOffset = $("#booktable").offset().top;
-    $('html,body').animate({scrollTop: targetOffset}, 0);
-});
-    </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <script>
+    $(".btbook").click(function () {
+      var targetOffset = $("#booktable").offset().top;
+      $('html,body').animate({ scrollTop: targetOffset }, 0);
+    });
+  </script>
   <!-- <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
   <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script> -->
 </body>
