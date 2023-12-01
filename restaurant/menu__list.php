@@ -154,59 +154,7 @@ $so_luong_mon = $row['total'];
         </div>
     </div>
     <!-- end cart -->
-    <!-- chi tiết đặt món-->
-    <div class="modal fade" id="myModaldatban" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
-                            <input type="hidden" class="form-control" id="madatban" value="">
-                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['ten'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
-                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['sdt'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
-                            <input type="date" class="form-control" id="recipient-name" value="<?php echo  date("Y-m-d"); ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Ngày Đến:</label>
-                            <input type="date" class="form-control" id="ngayden" value="">
-
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Giờ Đến:</label>
-                            <input type="time" class="form-control" id="thoigian" value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Ghi Chú:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Tổng tiền:</label>
-                            <input type="text" class="form-control" name="tongtien" id="recipient-name" value="<?php echo $tongtien ?>">
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" onclick="thanhtoan_datban()" name="btn-datban" class="btn btn-primary">Đồng ý</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- end chi tiết đặt món -->
-
-
+   
 
     <!-- chi tiết đặt món-->
     <div class="modal fade" id="myModaldatphong" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -220,16 +168,16 @@ $so_luong_mon = $row['total'];
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Họ Tên:</label>
-                            <input type="hidden" class="form-control" id="mahoadon" name="mahoadon" value="">
+                            <input type="hidden" class="form-control" id="mahoadon" name="mahoadon" value="" readonly>
                             <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['ten'] ?>">
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
-                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['sdt'] ?>">
+                            <input type="text" class="form-control" id="recipient-name" value="<?php echo $_SESSION['sdt'] ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
-                            <input type="date" class="form-control" id="recipient-name" value="<?php echo  date("Y-m-d"); ?>">
+                            <input type="date" class="form-control" id="recipient-name" value="<?php echo  date("Y-m-d"); ?>" readonly>
                         </div>
 
                         <div class="mb-3">
@@ -238,7 +186,7 @@ $so_luong_mon = $row['total'];
                         </div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Tổng tiền: </label>
-                            <input type="text" name="tongtien" class="form-control" id="recipient-name" value=" <?php echo $tongtien ?>">
+                            <input type="text" name="tongtien" class="form-control" id="recipient-name" value="  <?php echo number_format($tongtien)  ?> VNĐ" readonly>
                         </div>
 
                 </div>
@@ -272,18 +220,12 @@ $so_luong_mon = $row['total'];
                     if (result.isConfirmed) {
 
                         var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.open("POST", "thanhtoan_monan.php", true);
+                        xmlhttp.open("POST", "kiemtramaphong.php", true);
                         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                         xmlhttp.onreadystatechange = function() {
                             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                                 var response = JSON.parse(xmlhttp.responseText);
-                                if (response.message === 'Đúng mã đặt bàn!') {
-                                    document.getElementById("ngayden").value = response.ngayden;
-                                    document.getElementById("thoigian").value = response.thoigian;
-                                    document.getElementById("madatban").value = response.iddatban;
-                                    $('#myModaldatban').modal('show');
-
-                                } else if (response.message == "Đúng mã đặt phòng!") {
+                                 if (response.message == "Đúng mã đặt phòng!") {
                                     document.getElementById("mahoadon").value = response.mahoadon;
                                     $('#myModaldatphong').modal('show');
                                 } else {
@@ -326,8 +268,9 @@ $so_luong_mon = $row['total'];
                             confirmButtonText: "OK",
                             allowOutsideClick: false
                         }).then((result) => {
-                            window.location = "home.php";
+                            window.location = "../logged/home.php";
                         });
+
                     } else {
                         Swal.fire({
                             title: 'Lỗi',
@@ -338,43 +281,13 @@ $so_luong_mon = $row['total'];
                     }
                 }
             };
-            mahoadon = document.getElementById("mahoadon").innerHTML;
+            mahoadon = document.getElementById("mahoadon").value;
             var data = "mahoadon=" + mahoadon + "&tongtien=" + <?php echo $tongtien ?> + "&btn_datphong";
             xhr.send(data);
-
+            
         }
 
-        function thanhtoan_datban() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "thanhtoanmon_datban.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = xhr.responseText;
-                    if (response == "") {
-                        Swal.fire({
-                            title: "Đặt món thành công!",
-                            icon: "success",
-                            confirmButtonText: "OK",
-                            allowOutsideClick: false
-                        }).then((result) => {
-                            window.location = "home.php";
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Lỗi',
-                            text: response,
-                            icon: 'error',
-                            confirmButtonText: 'OK',
-                        });
-                    }
-                }
-            };
-
-            var data = "tongtien=" + <?php echo $tongtien ?> + "&btn_datban";
-            xhr.send(data);
-        }
+       
     </script>
 
     <script>
