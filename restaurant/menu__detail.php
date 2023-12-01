@@ -154,6 +154,53 @@ $so_luong_mon = $row['total'];
             <div class="closeShopping">Close</div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chi Tiết</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Họ Tên:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Số Điện Thoại:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Ngày Đặt:</label>
+            <input type="date" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Ngày Đến:</label>
+            <input type="date" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Giờ Đến:</label>
+            <input type="time" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Ghi Chú:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Tổng tiền:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- end cart -->
     <script>
         function ThanhTon() {
@@ -180,13 +227,14 @@ $so_luong_mon = $row['total'];
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var response =  xmlhttp.responseText;
                     if (response=="") {
-                        Swal.fire({
-                            title: 'Đặt món thành công!',
-                            icon: 'success',
-                            confirmButtonText: 'OK',
-                        }).then(() => {
-                            window.location = "index.php";
-                        });
+                        $('#myModal').modal('show');
+                        // Swal.fire({
+                        //     title: 'Đặt món thành công!',
+                        //     icon: 'success',
+                        //     confirmButtonText: 'OK',
+                        // }).then(() => {
+                        //     window.location = "index.php";
+                        // });
                     } else {
                         Swal.fire({
                             title: 'Lỗi',
@@ -357,6 +405,7 @@ $so_luong_mon = $row['total'];
     <!-- end footer -->
     <script src="../common/bootstrap-5.2.2-dist/js/popper.min.js"></script>
     <script src="../common/bootstrap-5.2.2-dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../js/tanggiamsoluong.js"></script>
     <script src="cart.js"></script>
 
