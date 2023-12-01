@@ -195,8 +195,8 @@ $so_luong_mon = $row['total'];
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="thanhtoan_datphong()" name="btn-datphong" class="btn btn-primary">Đồng ý</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy </button>
+                    <button type="button" onclick="thanhtoan_datphong()" name="btn-datphong" class="btn btn-primary">Thanh Toán</button>
                 </div>
                 </form>
             </div>
