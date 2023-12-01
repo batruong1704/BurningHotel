@@ -250,10 +250,6 @@ $so_luong_mon = $row['total'];
             </div>
         </div>
     </div>
-    <?php
-    include('thanhtoanmon_datphong.php');
-    include('thanhtoanmon_datban.php');
-    ?>
     <!-- footer -->
     <?php include('../logged/footer.php'); ?>
 
