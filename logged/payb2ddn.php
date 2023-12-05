@@ -82,7 +82,7 @@
 
     ?>
     <section id="Time" style="background-color: #352911; color: white;">
-        <div class="container d-flex pt-3" style="align-items: center;">
+        <div class="container d-flex pt-3 justify-content-center">
             <img src="../img/thanhtoan1/icon-tt2.png" style="height: 45px;" alt="">
             <p class="mt-3 ms-1" style="font-family:Montserrat-Regular;">Thời gian hoàn tất thanh toán
                 <span id="phut" style="color: red;">15</span>:
@@ -315,7 +315,7 @@
         </div>
         <hr style="width: 80%; margin: 0 50px; border: 0; border-top: 5px solid;">
     </section>
-    <section id="chon" style="background-color:#181A1B; color: white;">
+    <section x id="chon" style="background-color:#181A1B; color: white;">
         <div class="row d-flex ps-5 pt-3 pb-3">
             <div class="col-6">
                 <label for="qr" style="font-family:Montserrat-Regular;">Thanh toán bằng QR-Pay</label>

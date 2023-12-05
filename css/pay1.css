@@ -1,7 +1,7 @@
 
 
 #banner{
-    margin-top: 40px;
+    margin-top: 88px;
     color: white;
 }
 #banner .img{
@@ -55,11 +55,6 @@
     border: none;
     text-align: center;    
 }
-
-#Time .container{
-    margin-left: 570px;
-}
-
 
 #center {
     padding-left: 150px;

@@ -24,10 +24,10 @@ include('../config.php');
                     <p
                         style="border-top: 2px solid #937438;border-bottom: 2px solid #937438;margin: 0 auto;width: 80px; font-size:12px">
                         RESERVATION</p>
-                    <p>Book your table now</p>
+                    <p>Đặt bàn ngay</p>
                     <div class="d-flex mb-3 justify-content-center">
                         <div class="col-4">
-                            <input type="number" name="persons" id="persons" style="width:155px" placeholder="Persons"
+                            <input type="number" name="persons" id="persons" style="width:155px" placeholder="Số Lượng"
                                 required onfocus="resetBorderColor('persons')">
                         </div>
                         <div class="col-4 mx-1">
@@ -41,12 +41,12 @@ include('../config.php');
                     </div>
 
                     <div class="col-12 mb-3">
-                        <textarea cols="40" rows="5" class="w-100" name="note" id="note" placeholder="NOTE"
+                        <textarea cols="40" rows="5" class="w-100" name="note" id="note" placeholder="Ghi Chú"
                             style="background-color: transparent; border:1px solid white; padding: 3px; color:white"></textarea>
                     </div>
 
                     <div class="d-flex justify-content-center ms-2">
-                        <button onclick="bookTable()">Book a Table</button>
+                        <button onclick="bookTable()">Xác Nhận</button>
                     </div>
 
                 </div>

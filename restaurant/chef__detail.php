@@ -1,6 +1,6 @@
 <?php
     include('../config.php');
-    $id = $_GET['id']; // Lấy giá trị 'id' từ URL
+    $id = $_GET['id'];
     $sql = "SELECT * FROM `daubep` WHERE ID = $id";
     $result= mysqli_query($con,$sql);
     if ($result->num_rows > 0) {
@@ -60,7 +60,7 @@
 
     <section id="chef__profile">
         <div class="chef__image">
-            <img src="../img/restaurant/chef/chef2.jpg" alt="Chef Image">
+            <img src="<?php echo $hinhanh; ?>" alt="Chef Image">
         </div>
         <div class="chef__details">
             <div>

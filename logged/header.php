@@ -56,11 +56,12 @@ if (session_status() == PHP_SESSION_NONE) {
                 </ul>
               </li>
               <li class="nav-item p-3 me-4">
-                <a class="nav-link" href="./roomcheck.php">Kiểm Tra Phòng</a>
+                <a class="nav-link" href="../restaurant/index.php">Nhà Hàng</a>
               </li>
               <li class="nav-item p-3 me-4">
-                <a class="nav-link" href="./page.php">Về Chúng Tôi</a>
+                <a class="nav-link" href="./roomcheck.php">Kiểm Tra Phòng</a>
               </li>
+              
               <li class="nav-item p-3 me-4">
                 <a class="nav-link" href="./contact.php">Liên Hệ</a>
               </li>

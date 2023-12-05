@@ -15,7 +15,7 @@
 
 #banner .box {
     position: absolute;
-    width: 300px;
+    width: 400px;
     left: 20%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -50,8 +50,8 @@
 #history .content p {
     font-size: 14px;
     font-family: Montserrat-Regular;
-    color: #717272;
-    margin-bottom: 0px;
+    color: #3f3f3f;
+    margin-bottom: 15px;
 }
 
 #history .img {

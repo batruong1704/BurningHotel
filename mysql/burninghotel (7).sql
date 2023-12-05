@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2023 lúc 08:19 PM
+-- Thời gian đã tạo: Th12 01, 2023 lúc 05:55 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -141,7 +141,7 @@ CREATE TABLE `datban` (
   `NgayDat` date NOT NULL,
   `NgayDen` date NOT NULL,
   `TinhTrang` varchar(50) NOT NULL,
-  `MaNhanVien` int(11) DEFAULT 0
+  `MaNhanVien` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -149,10 +149,10 @@ CREATE TABLE `datban` (
 --
 
 INSERT INTO `datban` (`ID`, `MaKhachHang`, `SoLuong`, `ThoiGian`, `NgayDat`, `NgayDen`, `TinhTrang`, `MaNhanVien`) VALUES
-(6, 1, 1, '16:58:00', '2023-12-01', '2023-12-03', 'Chờ', 11),
-(7, 1, 2, '16:59:00', '2023-12-01', '2023-12-09', 'Chờ', 11),
-(8, 1, 3, '16:00:00', '2023-12-01', '2023-12-03', 'Chờ', 11),
-(9, 1, 10, '17:15:00', '2023-12-01', '2023-12-02', 'Chờ', 11);
+(6, 1, 1, '16:58:00', '2023-12-01', '2023-12-03', 'Chờ', NULL),
+(7, 1, 2, '16:59:00', '2023-12-01', '2023-12-09', 'Chờ', NULL),
+(8, 1, 3, '16:00:00', '2023-12-01', '2023-12-03', 'Chờ', NULL),
+(9, 1, 10, '17:15:00', '2023-12-01', '2023-12-02', 'Chờ', NULL);
 
 -- --------------------------------------------------------
 
@@ -179,15 +179,16 @@ CREATE TABLE `daubep` (
 --
 
 INSERT INTO `daubep` (`ID`, `HoTen`, `GioiTinh`, `NgaySinh`, `MaChucVu`, `SoNamKinhNghiem`, `Email`, `SoDienThoai`, `DiaChi`, `MoTa`, `HinhAnh`) VALUES
-(1, 'Trương Bá Cát Trường', 'Nam', '1985-01-15', '31', 15, 'truong@example.com', '0987654321', 'Đường Phủ Lý, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../img/restaurant/chef/chef1.jpg'),
-(2, 'Nguyễn Thị Xón', 'Nữ', '1990-06-25', '32', 10, 'xon@example.com', '0123456789', '456 Đường XYZ, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../img/restaurant/chef/chef2.jpg'),
-(3, 'Cấn Minh Quang', 'Nam', '1987-03-10', '33', 12, 'quang@example.com', '0369852147', '789 Đường DEF, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../img/restaurant/chef/chef3.jpg'),
-(4, 'Nguyễn Khánh', 'Nam', '1975-08-02', '33', 25, 'khanh@example.com', '0912345678', '987 Đường UVW, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../img/restaurant/chef/chef4.jpg'),
-(5, 'Trịnh Tiến Lên', 'Nam', '1993-12-20', '33', 8, 'len@example.com', '0563214789', '753 Đường JKL, Hà Nội', 'Với 8 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/chef/chef5.jpg'),
-(6, 'Gia Bảo', 'Nam', '1980-04-05', '33', 18, 'bao@example.com', '0709876543', '345 Đường MNO, Hà Nội', 'Với 18 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/chef/chef6.jpg'),
-(7, 'Trương Vân', 'Nữ', '1988-09-14', '33', 14, 'van@example.com', '0563217890', '542 Đường PQR, Hà Nội', 'Với 14 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/chef/chef1.jpg'),
-(8, 'Nguyễn Tuấn', 'Nam', '1982-06-07', '33', 20, 'tuan@example.com', '0918563201', '153 Đường STU, Hà Nội', 'Với 20 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/chef/chef1.jpg'),
-(9, 'Cao Trinh', 'Nữ', '1995-03-30', '33', 6, 'trinh@example.com', '0123456789', '456 Đường VWX, Hà Nội', 'Với 6 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/chef/chef1.jpg');
+(1, 'Trương Bá Cát Trường', 'Nam', '1985-01-15', '31', 15, 'truong@example.com', '0987654321', 'Đường Phủ Lý, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../../img/restaurant/chef1.jpg'),
+(2, 'Nguyễn Thị Xón', 'Nữ', '1990-06-25', '32', 10, 'xon@example.com', '0123456789', '456 Đường XYZ, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../../img/restaurant/chef2.jpg'),
+(3, 'Cấn Minh Quang', 'Nam', '1987-03-10', '33', 12, 'quang@example.com', '0369852147', '789 Đường DEF, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../../img/restaurant/chef3.jpg'),
+(4, 'Nguyễn Khánh', 'Nam', '1975-08-02', '33', 25, 'khanh@example.com', '0912345678', '987 Đường UVW, Hà Nội', 'Phó Bếp của chúng tôi không chỉ là người hỗ trợ Bếp Trưởng mà còn là linh hồn của bếp nhà hàng. Với 10 năm kinh nghiệm chế biến đa dạng các món ăn, Phó Bếp chịu trách nhiệm đảm bảo rằng mỗi món ăn đều được chuẩn bị một cách hoàn hảo. Sự tỉ mỉ, sự chú ý đến chi tiết và khả năng làm việc nhóm xuất sắc là những đặc điểm xuất sắc của họ.', '../../img/restaurant/chef4.jpg'),
+(5, 'Trịnh Tiến Lên', 'Nam', '1993-12-20', '33', 8, 'len@example.com', '0563214789', '753 Đường JKL, Hà Nội', 'Với 8 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../../img/restaurant/chef5.jpg'),
+(6, 'Gia Bảo', 'Nam', '1980-04-05', '33', 18, 'bao@example.com', '0709876543', '345 Đường MNO, Hà Nội', 'Với 18 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../../img/restaurant/chef6.jpg'),
+(7, 'Trương Vân', 'Nữ', '1988-09-14', '33', 14, 'van@example.com', '0563217890', '542 Đường PQR, Hà Nội', 'Với 14 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../../img/restaurant/chef1.jpg'),
+(8, 'Nguyễn Tuấn', 'Nam', '1982-06-07', '33', 20, 'tuan@example.com', '0918563201', '153 Đường STU, Hà Nội', 'Với 20 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../../img/restaurant/chef1.jpg'),
+(9, 'Cao Trinh', 'Nữ', '1995-03-30', '33', 6, 'trinh@example.com', '0123456789', '456 Đường VWX, Hà Nội', 'Với 6 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../../img/restaurant/chef1.jpg'),
+(10, 'Phan Quốc', 'Nam', '1986-11-12', '32', 13, 'quoc@example.com', '0987654321', '123 Đường YZA, Hà Nội', 'Với 13 năm kinh nghiệm, Đầu Bếp của chúng tôi không chỉ là người nấu ăn giỏi mà còn là người thầy hướng dẫn tài năng. Sự chắc chắn và khéo léo trong việc chế biến các nguyên liệu tươi ngon thành những bữa ăn tinh tế là niềm tự hào của họ. Độ sáng tạo không giới hạn và kỹ năng thượng thừa của Đầu Bếp đều làm cho mỗi bữa ăn trở thành một trải nghiệm ẩm thực đáng nhớ.', '../img/restaurant/Tên Ảnh');
 
 -- --------------------------------------------------------
 
@@ -373,9 +374,9 @@ CREATE TABLE `khachhang` (
   `HoTen` varchar(255) NOT NULL,
   `SDT` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `CMND` varchar(12) DEFAULT NULL,
-  `DiaChi` varchar(255) DEFAULT NULL,
-  `GioiTinh` int(11) DEFAULT NULL,
+  `CMND` varchar(12) NOT NULL,
+  `DiaChi` varchar(255) NOT NULL,
+  `GioiTinh` int(11) NOT NULL,
   `PassWord` varchar(255) NOT NULL,
   `AccessToken` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -437,9 +438,7 @@ INSERT INTO `khachhang` (`ID`, `HoTen`, `SDT`, `Email`, `CMND`, `DiaChi`, `GioiT
 (51, 'Cao Bằng', '0121112345', 'caobang@gmail.com', '00123456776', 'Cao Bằng', 1, '432', ''),
 (74, 'Cát Trường Trương Bá', '0336004076', 'truongtg2k@gmail.com', '123456789', 'Hà Nội', 1, 'admin123', '109408661915133195138'),
 (78, 'Trường Bá', '', '7steam.work@gmail.com', '0', 'Hà Nội', 1, 'admin', '105238185890006122819'),
-(84, 'Phạm Bá Hoàng', '0336004074', 'phambahoang@gmail.com', '038202016655', 'Thanh Hoé', 1, 'admin123', NULL),
-(85, 'Giang Nam', '254352345', 'Le@gmail.com', '', '', 0, '', NULL),
-(86, 'Giang Nam', '254352345', 'Le2@gmail.com', NULL, NULL, NULL, '', NULL);
+(84, 'Phạm Bá Hoàng', '0336004074', 'phambahoang@gmail.com', '038202016655', 'Thanh Hoé', 1, 'admin123', NULL);
 
 -- --------------------------------------------------------
 
@@ -897,7 +896,7 @@ ALTER TABLE `hoadon`
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
